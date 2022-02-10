@@ -39,17 +39,20 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-
-  # Enable the Plasma 5 Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.enable = true;
+  # Enable Wayland Compositor
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+    extraPackages = with pkgs; [ wofi xwayland alacritty wl-clipboard swaylock swayidle waybar ];
+  };
+  
+  # Enable Desktop Environment.
   
 
   # Configure keymap in X11
-  services.xserver.layout = "br";
-  services.xserver.xkbModel = "abnt2";
+  # services.xserver.layout = "br";
+  # services.xserver.xkbModel = "abnt2";
   # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable CUPS to print documents.
@@ -61,8 +64,55 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
-
+  programs.light.enable = true;
   services.gnome.gnome-keyring.enable = true;
+
+
+  # systemd.services.display-handler = {
+  #   wantedBy = [ "multi-user.target" ];
+  #   path = [ pkgs.nix ];
+  #   script = "${/home/abe/.dotfiles/monitorChange.py}";
+  #   serviceConfig = {
+  #     Restart = "always";
+  #     RestartSec = 0;
+  #   };
+  # }; 
+  # systemd.services.displayhandler = {
+  #   description = "displayhandler";
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #     User = "root";
+  #     ExecStart = "nix-shell -p 'python3' --run 'python3 /home/abe/.dotfiles/monitorChange.py'";
+  #   };
+  #   wantedBy = [ "multi-user.target"];
+  # };
+  # systemd.services.displayhandler.enable = true;
+  
+  # systemd.services.displayhandler.enable = true; 
+    # my-script = pkgs.writeScript "monitorChange.py" ''
+    #   #!${pkgs.python}/bin/python
+    #   import subprocess
+    #   import time
+
+    #   command = "xinput --map-to-output 12 eDP-1"
+    #   print("Running...")
+
+    #   def get_res():
+    #       # get resolution
+    #       xr = subprocess.check_output(["xrandr"]).decode("utf-8").split()
+    #       pos = xr.index("current")
+    #       return [int(xr[pos+1]), int(xr[pos+3].replace(",", "") )]
+
+    #   res1 = get_res()
+    #   while True:
+    #       time.sleep(5)
+    #       res2 = get_res()
+    #       if res2 != res1:
+    #           subprocess.Popen(["/bin/sh", "-c", command])
+    #       res1 = res2    
+    # '';
+    # in {
+    #   script = "${my-script}";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.abe = {
@@ -74,12 +124,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget git
+    vim wget git
     brave
-    gnome.gnome-keyring
-    libsecret
-    gnome.seahorse
+    gnome.seahorse gnome.gnome-keyring libsecret
+    pcmanfm
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
