@@ -26,6 +26,7 @@
     vscode
   ];
   home.file = {
-    ".config/sway/config".text = import ./sway.nix;
+    ".config/sway/config".text = import ./sway.sh;
+    ".config/waybar/config".text = import ./waybar.sh;
   };
 }

@@ -5,7 +5,9 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-default_border pixel 3
+default_border pixel 0
+gaps inner 5px
+gaps outer 5px
 
 ### Variables
 #
@@ -97,13 +99,24 @@ input "type:keyboard" {
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 #
+# Media keys
+
+    bindsym XF86MonBrightnessDown exec "brightnessctl set 10%-"
+	bindsym XF86MonBrightnessUp exec "brightnessctl set +10%"
+	bindsym XF86AudioRaiseVolume exec "pulseaudio-ctl up 10"
+	bindsym XF86AudioLowerVolume exec "pulseaudio-ctl down 10"
+	bindsym XF86AudioMute exec "pulseaudio-ctl mute"
+	bindsym XF86AudioMicMute exec "pulseaudio-ctl mute-input"
+	bindsym $mod+$right exec "swaylock"				# Lockscreen Command
+
+
 # Moving around:
 #
     # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
+    # bindsym $mod+$left focus left
+    # bindsym $mod+$down focus down
+    # bindsym $mod+$up focus up
+    # bindsym $mod+$right focus right
     # Or use $mod+[up|down|left|right]
     bindsym $mod+Left focus left
     bindsym $mod+Down focus down
@@ -213,19 +226,21 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
+# bar {
+#     position top
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+#     # When the status_command prints a new line to stdout, swaybar updates.
+#     # The default just shows the current date and time.
+#     status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
 
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
-}
+#     colors {
+#         statusline #ffffff
+#         background #323232
+#         inactive_workspace #32323200 #32323200 #5c5c5c
+#     }
+# }
+exec waybar
+exec swayidle -w before-sleep 'swaylock -f'
 
 include /etc/sway/config.d/*
 ''

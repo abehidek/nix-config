@@ -127,8 +127,12 @@
     vim wget git
     brave
     gnome.seahorse gnome.gnome-keyring libsecret
+    brightnessctl
     pcmanfm
+    pulseaudio-ctl playerctl pavucontrol
+    htop
   ];
+  fonts.fonts = with pkgs; [ font-awesome fira-code fira-code-symbols ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
