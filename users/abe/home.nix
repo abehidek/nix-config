@@ -25,4 +25,7 @@
     github-desktop
     vscode
   ];
+  home.file = {
+    ".config/sway/config".text = import ./sway.nix;
+  };
 }
