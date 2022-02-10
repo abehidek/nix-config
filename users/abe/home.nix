@@ -24,9 +24,11 @@
     neofetch
     github-desktop
     vscode
+    discord
   ];
   home.file = {
-    ".config/sway/config".text = import ./sway.sh;
-    ".config/waybar/config".text = import ./waybar.sh;
+    ".config/sway/config".text = import ./sway/sway.sh;
+    ".config/waybar/config".text = import ./waybar/waybar.sh;
+    ".config/waybar/style.css".text = import ./waybar/style.css;
   };
 }

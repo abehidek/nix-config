@@ -14,6 +14,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  hardware.opengl.extraPackages = [
+    pkgs.intel-compute-runtime
+  ];
+
   networking.hostName = "abe-nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -46,7 +50,7 @@
     wrapperFeatures.gtk = true;
     extraPackages = with pkgs; [ wofi xwayland alacritty wl-clipboard swaylock swayidle waybar ];
   };
-  
+  # xdg.portal.wlr.enable = true;
   # Enable Desktop Environment.
   
 
