@@ -5,10 +5,11 @@
 { config, pkgs, ... }:
 
 {
+
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -20,6 +21,7 @@
 
   networking.hostName = "abe-nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
+  # networking.networkmanager.wifi.backend = "iwd";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
@@ -42,18 +44,15 @@
     keyMap = "br-abnt2";
   };
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  # Enable Wayland Compositor
+  # Enable Sway Compositor
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [ wofi xwayland alacritty wl-clipboard swaylock swayidle waybar ];
+    extraPackages = with pkgs; [ wofi xwayland alacritty wl-clipboard swaylock swayidle waybar kanshi wlr-randr wdisplays mako autotiling ];
   };
   # xdg.portal.wlr.enable = true;
   # Enable Desktop Environment.
   
-
   # Configure keymap in X11
   # services.xserver.layout = "br";
   # services.xserver.xkbModel = "abnt2";
@@ -71,53 +70,6 @@
   programs.light.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
-
-  # systemd.services.display-handler = {
-  #   wantedBy = [ "multi-user.target" ];
-  #   path = [ pkgs.nix ];
-  #   script = "${/home/abe/.dotfiles/monitorChange.py}";
-  #   serviceConfig = {
-  #     Restart = "always";
-  #     RestartSec = 0;
-  #   };
-  # }; 
-  # systemd.services.displayhandler = {
-  #   description = "displayhandler";
-  #   serviceConfig = {
-  #     Type = "oneshot";
-  #     User = "root";
-  #     ExecStart = "nix-shell -p 'python3' --run 'python3 /home/abe/.dotfiles/monitorChange.py'";
-  #   };
-  #   wantedBy = [ "multi-user.target"];
-  # };
-  # systemd.services.displayhandler.enable = true;
-  
-  # systemd.services.displayhandler.enable = true; 
-    # my-script = pkgs.writeScript "monitorChange.py" ''
-    #   #!${pkgs.python}/bin/python
-    #   import subprocess
-    #   import time
-
-    #   command = "xinput --map-to-output 12 eDP-1"
-    #   print("Running...")
-
-    #   def get_res():
-    #       # get resolution
-    #       xr = subprocess.check_output(["xrandr"]).decode("utf-8").split()
-    #       pos = xr.index("current")
-    #       return [int(xr[pos+1]), int(xr[pos+3].replace(",", "") )]
-
-    #   res1 = get_res()
-    #   while True:
-    #       time.sleep(5)
-    #       res2 = get_res()
-    #       if res2 != res1:
-    #           subprocess.Popen(["/bin/sh", "-c", command])
-    #       res1 = res2    
-    # '';
-    # in {
-    #   script = "${my-script}";
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.abe = {
     isNormalUser = true;
@@ -128,13 +80,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim wget git
-    brave
+    vim wget git nnn htop
+    brave pcmanfm
     gnome.seahorse gnome.gnome-keyring libsecret
     brightnessctl
-    pcmanfm
     pulseaudio-ctl playerctl pavucontrol
-    htop
   ];
   fonts.fonts = with pkgs; [ font-awesome fira-code fira-code-symbols ];
 

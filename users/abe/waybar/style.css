@@ -40,7 +40,7 @@ window#waybar.hidden {
 
 #clock, #battery, #cpu, #memory, #temperature, #backlight, #network, #pulseaudio, #custom-media, #tray, #mode, #idle_inhibitor {
     padding: 0 10px;
-    margin: 0 5px;
+    margin: 0 2px;
 }
 
 #clock {
@@ -138,4 +138,4 @@ window#waybar.hidden {
     background-color: #ecf0f1;
     color: #2d3436;
 }
-''
+'' 
