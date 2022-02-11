@@ -3,16 +3,15 @@
 let
   buildScript = import ../buildScript.nix;
   wallpaper = /home/abe/Imagens/nordic-wallpapers/wallpapers/nixos.png ;
-  # lockScript = buildScript "lock" ../config/swaylock/lock {
-  #   bg = wallpaper;
-  #   lock = ../config/swaylock/lock.svg;
-  #   swaylock = "${pkgs.swaylock-effects}/bin/swaylock";
-  # };
+  lockScript = buildScript "lock" ../swaylock/lock {
+    bg = wallpaper;
+    lock = ../swaylock/lock.svg;
+    swaylock = "${pkgs.swaylock-effects}/bin/swaylock";
+  };
   import-gsettingsScript = buildScript "import-gsettings" ../import-gsettings {
     gsettings = "${pkgs.glib}/bin/gsettings";
   };
   theme = pkgs.nordic;
-  cfg  = config.wayland.windowManager.sway;
 in
 {
   gtk.enable = true;
@@ -28,6 +27,9 @@ in
         { command = "${pkgs.autotiling}/bin/autotiling";}
         { command = "${import-gsettingsScript}/bin/import-gsettings"; always = true; }
         { command = "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"; }
+        { command = "swayidle -w before-sleep '${lockScript}/bin/lock'"; }
+        #{ command = "swayidle -w before-sleep 'swaylock -f'"; }
+
       ];
       menu = "${pkgs.wofi}/bin/wofi --show run swaymsg exec --";
       terminal = "${pkgs.alacritty}/bin/alacritty";
@@ -49,8 +51,13 @@ in
         audio = "exec ${pkgs.pulseaudio-ctl}/bin/pulseaudio-ctl";
         light = "exec ${pkgs.brightnessctl}/bin/brightnessctl";
       in lib.mkOptionDefault {
+        XF86AudioRaiseVolume = "${audio} up 5";
+        XF86AudioLowerVolume = "${audio} down 5";
+        XF86AudioMute = "${audio} mute";
+        XF86AudioMicMute = "${audio} mute-input";
         XF86MonBrightnessDown = "${light} set 5%-";
         XF86MonBrightnessUp = "${light} set +5%";
+        "${mod}+l" = "exec ${lockScript}/bin/lock";
       };
       input."type:keyboard" = {
         xkb_layout = "br";
