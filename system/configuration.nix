@@ -9,6 +9,7 @@
   imports =
   [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./sway.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -43,21 +44,7 @@
     font = "Lat2-Terminus16";
     keyMap = "br-abnt2";
   };
-
-  # Enable Sway Compositor
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [ wofi xwayland alacritty wl-clipboard swaylock swayidle waybar kanshi wlr-randr wdisplays mako autotiling ];
-  };
-  # xdg.portal.wlr.enable = true;
-  # Enable Desktop Environment.
   
-  # Configure keymap in X11
-  # services.xserver.layout = "br";
-  # services.xserver.xkbModel = "abnt2";
-  # services.xserver.xkbOptions = "eurosign:e";
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
@@ -65,11 +52,12 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-  programs.light.enable = true;
-  services.gnome.gnome-keyring.enable = true;
-
+  services = {
+    xserver.libinput.enable = true;
+    gnome.gnome-keyring.enable = true;
+    pipewire.enable = true;
+  };
+  
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.abe = {
     isNormalUser = true;
