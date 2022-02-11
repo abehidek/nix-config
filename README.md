@@ -25,3 +25,22 @@ Also, if someone is interest I would love to chat about this topic since I have 
 | NIXROOT | Root partition, where linux operating system and its files is stored. |
 | NIXSWAP | Assistant and overflow space for RAM. |
 
+### Learn more about Nix and NixOS
+#### (I used these materials A LOT in order to be able to create this repo):
+##### Basics and Fundamentals
+- https://linktr.ee/nixos
+- https://nixos.wiki/wiki/Sway
+- https://wiki.archlinux.org/title/Sway
+- https://nixos.org/learn
+- https://github.com/swaywm/sway/wiki/
+- https://github.com/nix-community/home-manager/blob/master/modules/services/window-managers/i3-sway/sway.nix
+- https://specific.solutions.limited/blog/wayland-sway-window-manager
+- https://rycee.gitlab.io/home-manager/options.html#opt-wayland.windowManager.sway.enable
+- https://www.reddit.com/r/swaywm/comments/hmtdr9/how_do_you_guys_change_settings_in_sway/
+
+##### Some other dotfiles repo I use to understand better:
+- https://github.com/hlissner/dotfiles
+- https://github.com/KubqoA/dotfiles
+- https://github.com/alternateved/nixos-config
+- https://github.com/darch7/swaywm
+
