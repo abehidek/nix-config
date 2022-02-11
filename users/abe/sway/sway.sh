@@ -7,6 +7,7 @@ output HDMI-A-1 pos 0 0 res 1920x1080
 ### Theming
 
 default_border pixel 3
+default_floating_border pixel 5
 client.focused #eb52eb #eb52eb #eb52eb #eb52eb
 gaps inner 5px
 gaps outer 5px
@@ -78,8 +79,8 @@ input "type:keyboard" {
 
 # Media keys
 
-    bindsym XF86MonBrightnessDown exec "brightnessctl set 10%-"
-	bindsym XF86MonBrightnessUp exec "brightnessctl set +10%"
+    bindsym XF86MonBrightnessDown exec "brightnessctl set 5%-"
+	bindsym XF86MonBrightnessUp exec "brightnessctl set +5%"
 	bindsym XF86AudioRaiseVolume exec "pulseaudio-ctl up 10"
 	bindsym XF86AudioLowerVolume exec "pulseaudio-ctl down 10"
 	bindsym XF86AudioMute exec "pulseaudio-ctl mute"
