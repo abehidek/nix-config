@@ -1,10 +1,15 @@
 { config, pkgs, ... }:
-
+let 
+  homeDirectory = "/home/abe";
+in
 {
+  imports = [
+    ./sway/theme.nix
+  ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "abe";
-  home.homeDirectory = "/home/abe";
+  home.homeDirectory = homeDirectory;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -23,14 +28,18 @@
   home.packages = with pkgs;  [
     neofetch
     github-desktop
-    vscode
-    #vscodium
-    discord
+    vscode #vscodium
     exodus
   ];
   home.file = {
-    ".config/sway/config".text = import ./sway/sway.sh;
+    # ".config/sway/config".text = import ../../../testing/sway.sh;
     ".config/waybar/config".text = import ./waybar/waybar.sh;
     ".config/waybar/style.css".text = import ./waybar/style.css;
   };
+
+  xdg.enable = true;
+  xdg.configHome = "${homeDirectory}/.config";
+  xdg.dataHome = "${homeDirectory}/.local/share";
+  xdg.cacheHome = "${homeDirectory}/.cache";
+  
 }
