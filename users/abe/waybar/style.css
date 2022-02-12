@@ -40,7 +40,8 @@ window#waybar.hidden {
 
 #clock, #battery, #cpu, #memory, #temperature, #backlight, #network, #pulseaudio, #custom-media, #tray, #mode, #idle_inhibitor {
     padding: 0 10px;
-    margin: 0 2px;
+    /*margin: 0 2px;*/
+    /*border-bottom: 2px solid rgba(255, 255, 255, 0.2);;*/
 }
 
 #clock {

@@ -12,11 +12,14 @@ let
     gsettings = "${pkgs.glib}/bin/gsettings";
   };
   theme = pkgs.nordic;
+  iconTheme = pkgs.papirus-icon-theme;
 in
 {
   gtk.enable = true;
   gtk.theme.package = theme;
   gtk.theme.name = "Nordic";
+  gtk.iconTheme.package = iconTheme;
+  gtk.iconTheme.name = "Papirus";
 
   wayland.windowManager.sway = {
     enable = true;
@@ -27,7 +30,7 @@ in
         { command = "${pkgs.autotiling}/bin/autotiling";}
         { command = "${import-gsettingsScript}/bin/import-gsettings"; always = true; }
         { command = "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"; }
-        { command = "swayidle -w before-sleep '${lockScript}/bin/lock'"; }
+        { command = "swayidle -w before-sleep '${pkgs.swaylock-fancy}/bin/swaylock-fancy'"; }
 
       ];
       menu = "${pkgs.wofi}/bin/wofi --show run swaymsg exec --";
@@ -56,7 +59,7 @@ in
         XF86AudioMicMute = "${audio} mute-input";
         XF86MonBrightnessDown = "${light} set 5%-";
         XF86MonBrightnessUp = "${light} set +5%";
-        "${mod}+l" = "exec ${lockScript}/bin/lock";
+        "${mod}+l" = "exec ${pkgs.swaylock-fancy}/bin/swaylock-fancy";
       };
       input."type:keyboard" = {
         xkb_layout = "br";
@@ -76,6 +79,7 @@ in
       bars = [{ command = "waybar"; }];      
     };
     extraSessionCommands = ''
+      export GTK_USE_PORTAL=1 
       export XDG_SESSION_TYPE=wayland
       export XDG_SESSION_DESKTOP=sway
       export XDG_CURRENT_DESKTOP=sway

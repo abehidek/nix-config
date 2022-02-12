@@ -28,8 +28,8 @@ in
   home.packages = with pkgs;  [
     neofetch
     github-desktop
-    vscode #vscodium
     exodus
+    firefox
   ];
   home.file = {
     # ".config/sway/config".text = import ../../../testing/sway.sh;
@@ -42,4 +42,12 @@ in
   xdg.dataHome = "${homeDirectory}/.local/share";
   xdg.cacheHome = "${homeDirectory}/.cache";
   
+  xdg.mimeApps.defaultApplications = {
+    "inode/directory" = "org.gnome.Nautilus.desktop";
+    # "" = "nautilus.desktop"
+    # env XDG_UTILS_DEBUG_LEVEL=10  xdg-mime query default inode/directory
+  };
+  xdg.mimeApps.associations.removed = { 
+    "inode/directory" = "code.desktop"; 
+  };
 }

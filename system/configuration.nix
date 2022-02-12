@@ -5,7 +5,6 @@
 { config, pkgs, ... }:
 
 {
-
   imports =
   [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -67,14 +66,20 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     vim wget git nnn htop
-    brave pcmanfm
+    brave gnome.nautilus vscode
     gnome.seahorse gnome.gnome-keyring libsecret
     brightnessctl
     pulseaudio-ctl playerctl pavucontrol
+    xdg-utils
   ];
   fonts.fonts = with pkgs; [ font-awesome fira-code fira-code-symbols ];
+
+  xdg.mime.removedAssociations = {
+    "inode/directory" = "code.desktop";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -102,6 +107,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
-
 }
 
