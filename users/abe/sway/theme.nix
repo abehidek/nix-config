@@ -28,7 +28,6 @@ in
         { command = "${import-gsettingsScript}/bin/import-gsettings"; always = true; }
         { command = "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"; }
         { command = "swayidle -w before-sleep '${lockScript}/bin/lock'"; }
-        #{ command = "swayidle -w before-sleep 'swaylock -f'"; }
 
       ];
       menu = "${pkgs.wofi}/bin/wofi --show run swaymsg exec --";
