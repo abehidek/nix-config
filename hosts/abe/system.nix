@@ -7,8 +7,8 @@
 {
   imports =
   [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    ./sway.nix
+    ./hardware.nix
+    ../../modules/wm/swaysys.nix
   ];
 
   # Use the systemd-boot EFI boot loader.

@@ -5,10 +5,10 @@ let
   wallpaper = /home/abe/Imagens/nordic-wallpapers/wallpapers/nixos.png ;
   lockScript = buildScript "lock" ../swaylock/lock {
     bg = wallpaper;
-    lock = ../swaylock/lock.svg;
+    lock = ../swaylock-effects/lock.svg;
     swaylock = "${pkgs.swaylock-effects}/bin/swaylock";
   };
-  import-gsettingsScript = buildScript "import-gsettings" ../import-gsettings {
+  import-gsettingsScript = buildScript "import-gsettings" ../../scripts/import-gsettings.sh {
     gsettings = "${pkgs.glib}/bin/gsettings";
   };
   theme = pkgs.nordic;

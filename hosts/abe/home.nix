@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    ./sway/theme.nix
+    ../../modules/wm/swaycfg.nix
   ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -34,9 +34,8 @@ in
     #libsForQt5.qtstyleplugins
   ];
   home.file = {
-    # ".config/sway/config".text = import ../../../testing/sway.sh;
-    ".config/waybar/config".text = import ./waybar/waybar.sh;
-    ".config/waybar/style.css".text = import ./waybar/style.css;
+    ".config/waybar/config".text = import ../../modules/waybar/waybar.sh;
+    ".config/waybar/style.css".text = import ../../modules/waybar/style.css;
   };
 
   xdg.enable = true;
