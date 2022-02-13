@@ -19,6 +19,8 @@
     pkgs.intel-compute-runtime
   ];
 
+  hardware.cpu.intel.updateMicrocode = true;
+
   networking.hostName = "abe-nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
   # networking.networkmanager.wifi.backend = "iwd";
@@ -74,7 +76,11 @@
     brightnessctl
     pulseaudio-ctl playerctl pavucontrol
     xdg-utils
+    virtualbox
+    libsForQt5.dolphin
+    # libsForQt5.qt5.qtwayland
   ];
+  #programs.qt5ct.enable = true;
   fonts.fonts = with pkgs; [ font-awesome fira-code fira-code-symbols ];
 
   xdg.mime.removedAssociations = {

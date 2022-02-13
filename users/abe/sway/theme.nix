@@ -15,6 +15,10 @@ let
   iconTheme = pkgs.papirus-icon-theme;
 in
 {
+  #qt.enable = true;
+  #qt.platformTheme = "gnome";
+  #qt.style.package = pkgs.adwaita-qt;
+  #qt.style.name = "adwaita";
   gtk.enable = true;
   gtk.theme.package = theme;
   gtk.theme.name = "Nordic";
@@ -78,6 +82,10 @@ in
       #client.focused #eb52eb #eb52eb #eb52eb #eb52eb;
       bars = [{ command = "waybar"; }];      
     };
+    extraConfig = ''
+    client.focused #eb52eb #eb52eb #eb52eb #eb52eb
+    '';
+    
     extraSessionCommands = ''
       export GTK_USE_PORTAL=1 
       export XDG_SESSION_TYPE=wayland
@@ -85,8 +93,8 @@ in
       export XDG_CURRENT_DESKTOP=sway
       export MOZ_ENABLE_WAYLAND=1
       export CLUTTER_BACKEND=wayland
-      export QT_QPA_PLATFORM=wayland-egl
       export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+      export QT_QPA_PLATFORM=wayland-egl
       export ECORE_EVAS_ENGINE=wayland-egl
       export ELM_ENGINE=wayland_egl
       export SDL_VIDEODRIVER=wayland

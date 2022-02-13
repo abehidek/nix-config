@@ -4,7 +4,7 @@
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [ wofi xwayland alacritty wl-clipboard swayidle waybar wlr-randr wdisplays mako autotiling waypipe swaylock-effects swaylock-fancy ];
+    extraPackages = with pkgs; [ wofi xwayland alacritty wl-clipboard swayidle waybar wlr-randr wdisplays mako autotiling waypipe swaylock-effects swaylock-fancy drm_info ];
   };
   xdg.portal = {
     enable = true;

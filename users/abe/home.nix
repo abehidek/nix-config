@@ -30,6 +30,8 @@ in
     github-desktop
     exodus
     firefox
+    virtualbox
+    #libsForQt5.qtstyleplugins
   ];
   home.file = {
     # ".config/sway/config".text = import ../../../testing/sway.sh;
