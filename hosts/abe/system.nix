@@ -8,9 +8,12 @@
   imports =
   [ # Include the results of the hardware scan.
     ./hardware.nix
-    ../../modules/wm/swaysys.nix
-    # ../../modules/wm/sway.nix
-    #./hmmodule.nix
+
+    # Modules used by the system
+    ../../modules/wm/sway.nix # Sway Window Manager
+    ../../modules/gtk # GTK Theming 
+    ../../modules/xdg # XDG Settings
+    ../../modules/users/abe.nix # Home Manager 
   ];
 
   # Use the systemd-boot EFI boot loader.
