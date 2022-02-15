@@ -2,11 +2,12 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 32, // Waybar height
+    "height": 35, // Waybar height
     // "width": 120, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
-    "modules-center": ["sway/window"],
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    // "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
+    // "modules-center": ["sway/window"],
     "modules-right": ["tray","pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery", "battery#bat2", "clock"],
     // Modules configuration
      "sway/workspaces": {
@@ -16,12 +17,15 @@
          "format": "  {icon}  ",
          //"format":"{icon}",
          "format-icons": {
-             "1": "",
-             "2": "",
-             "3": "",
-             "10": "",
-             "4": "",
-             "5": "",
+             "1": "壱",
+             "2": "弐",
+             "3": "参",
+             "4": "肆",
+             "5": "伍",
+             "6": "陸",
+             "7": "漆",
+             "8": "捌",
+             "9": "玖",
              "focused": "",
              "default": ""
          }

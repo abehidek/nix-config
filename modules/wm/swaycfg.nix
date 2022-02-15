@@ -77,13 +77,20 @@ in
 
       # theming
       output."*" = { bg = "${wallpaper} fill"; };
-      gaps.outer = 5;
-      gaps.inner = 5;
+      gaps.outer = 9;
+      gaps.inner = 7;
       #client.focused #eb52eb #eb52eb #eb52eb #eb52eb;
       bars = [{ command = "waybar"; }];      
     };
     extraConfig = ''
+    default_border pixel 3
+    default_floating_border pixel 3
     client.focused #eb52eb #eb52eb #eb52eb #eb52eb
+    bindsym Mod4+Control+Shift+Right move workspace to output right
+    bindsym Mod4+Control+Shift+Left move workspace to output left
+    bindsym Mod4+Control+Shift+Down move workspace to output down
+    bindsym Mod4+Control+Shift+Up move workspace to output up
+
     '';
     
     extraSessionCommands = ''
