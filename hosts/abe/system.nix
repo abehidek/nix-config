@@ -9,6 +9,8 @@
   [ # Include the results of the hardware scan.
     ./hardware.nix
     ../../modules/wm/swaysys.nix
+    # ../../modules/wm/sway.nix
+    #./hmmodule.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -71,6 +73,7 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     vim wget git nnn htop
+    #chromium 
     brave gnome.nautilus vscode
     gnome.seahorse gnome.gnome-keyring libsecret
     brightnessctl
@@ -78,10 +81,19 @@
     xdg-utils
     virtualbox
     libsForQt5.dolphin
+    ungoogled-chromium
     # libsForQt5.qt5.qtwayland
   ];
+
+  nixpkgs.config.chromium.commandLineArgs = "--enable-features=VaapiVideoDecoder";
+
+
+
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "abe" ];
+
   #programs.qt5ct.enable = true;
-  fonts.fonts = with pkgs; [ font-awesome fira-code fira-code-symbols ];
+  fonts.fonts = with pkgs; [ nerdfonts font-awesome fira-code fira-code-symbols ];
 
   xdg.mime.removedAssociations = {
     "inode/directory" = "code.desktop";

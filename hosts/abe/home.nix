@@ -30,9 +30,9 @@ in
     github-desktop
     exodus
     firefox
-    virtualbox
     #libsForQt5.qtstyleplugins
   ];
+
   home.file = {
     ".config/waybar/config".text = import ../../modules/waybar/waybar.sh;
     ".config/waybar/style.css".text = import ../../modules/waybar/style.css;
