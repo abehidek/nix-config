@@ -29,14 +29,14 @@ in
     nixpkgs.config.allowUnfree = true;
     home.packages = with pkgs;  [
       neofetch
-      github-desktop
+      github-desktop 
+      # jetbrains.pycharm-community 
       exodus
-      firefox
-      pcmanfm
-      vlc
+      firefox vlc
+      signal-desktop
+
       #libsForQt5.qtstyleplugins
     ];
-
     home.file = {
       ".config/waybar/config".text = import ../../modules/waybar/waybar.sh;
       ".config/waybar/style.css".text = import ../../modules/waybar/style.css;
