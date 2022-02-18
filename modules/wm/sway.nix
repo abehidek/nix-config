@@ -3,7 +3,7 @@
 programs.sway = {
   enable = true;
   wrapperFeatures.gtk = true;
-  extraPackages = with pkgs; [ wofi xwayland alacritty wl-clipboard swayidle waybar wlr-randr wdisplays mako autotiling waypipe swaylock-effects swaylock-fancy drm_info ];
+  extraPackages = with pkgs; [ wofi xwayland alacritty wl-clipboard swayidle waybar wlr-randr wdisplays mako autotiling waypipe swaylock-effects swaylock-fancy drm_info phwmon ];
 };
 xdg.portal = {
   enable = true;
@@ -37,6 +37,10 @@ in
       { command = "${import-gsettingsScript}/bin/import-gsettings"; always = true; }
       { command = "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"; }
       { command = "swayidle -w before-sleep '${pkgs.swaylock-fancy}/bin/swaylock-fancy'"; }
+      # { command = "pacmd 'set-default-source alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0001.hw_sofhdadsp_6__source'"; }
+      { command = "pacmd 'set-default-source alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0002.hw_sofhdadsp_6__source'"; }
+      # { command = "pacmd 'set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0001.hw_sofhdadsp__sink'"; }
+      { command = "pacmd 'set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0002.hw_sofhdadsp__sink'"; }
 
     ];
     menu = "${pkgs.wofi}/bin/wofi --show run swaymsg exec --";
@@ -56,12 +60,12 @@ in
     modifier = "Mod4";
     keybindings = let
       mod = "Mod4";
-      audio = "exec ${pkgs.pulseaudio-ctl}/bin/pulseaudio-ctl";
+      audio = "exec ${pkgs.pamixer}/bin/pamixer";
       light = "exec ${pkgs.brightnessctl}/bin/brightnessctl";
     in lib.mkOptionDefault {
-      XF86AudioRaiseVolume = "${audio} up 5";
-      XF86AudioLowerVolume = "${audio} down 5";
-      XF86AudioMute = "${audio} mute";
+      XF86AudioRaiseVolume = "${audio} -i 5";
+      XF86AudioLowerVolume = "${audio} -d 5";
+      XF86AudioMute = "${audio} -t";
       XF86AudioMicMute = "${audio} mute-input";
       XF86MonBrightnessDown = "${light} set 5%-";
       XF86MonBrightnessUp = "${light} set +5%";
@@ -76,7 +80,9 @@ in
       natural_scroll = "enabled";
       scroll_method = "two_finger";
     };
-
+    input."type:tablet_tool" = {
+      map_to_output = "eDP-1";
+    };
     # theming
     output."*" = { bg = "${wallpaper} fill"; };
     gaps.outer = 9;
@@ -92,8 +98,9 @@ in
   bindsym Mod4+Control+Shift+Left move workspace to output left
   bindsym Mod4+Control+Shift+Down move workspace to output down
   bindsym Mod4+Control+Shift+Up move workspace to output up
-
+  
   '';
+  # input "type:tablet_tool" map_to_region 0 1080 1600 900
   
   extraSessionCommands = ''
     export GTK_USE_PORTAL=1 

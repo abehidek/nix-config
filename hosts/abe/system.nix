@@ -10,10 +10,11 @@
     ./hardware.nix
 
     # Modules used by the system
-    ../../modules/wm/sway.nix # Sway Window Manager
-    ../../modules/gtk # GTK Theming 
-    ../../modules/xdg # XDG Settings
     ../../modules/users/abe.nix # Home Manager 
+    ../../modules/wm/sway.nix # Sway Window Manager
+    # ../../modules/gtk # GTK Theming 
+    ../../modules/xdg # XDG Settings
+    ../../modules/development # Dev settings
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -55,20 +56,43 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
+  # sound.enable = true;
+  # hardware.pulseaudio.enable = false;
+  # hardware.pulseaudio.systemWide = true; 
+  systemd.services.mpd.environment = {
+      # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
+      XDG_RUNTIME_DIR = "/run/user/1000"; # User-id 1000 must match above user. MPD will look inside this directory for the PipeWire socket.
+  };
+  security.rtkit.enable = true;
   services = {
     xserver.libinput.enable = true;
     gnome.gnome-keyring.enable = true;
     pipewire.enable = true;
+    pipewire.alsa.enable = true;
+    pipewire.alsa.support32Bit = true;
+    pipewire.pulse.enable = true;
+    # xserver.wacom.enable = true;
+    mpd = {
+      enable = true;
+      musicDirectory = "/home/abe/Música";
+      user = "abe";
+      extraConfig = ''
+        audio_output {
+          type "pipewire"
+          name "My PipeWire Output"
+        }
+      '';
+    };
+    jack = {
+      jackd.enable = true;
+    };
   };
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.abe = {
     isNormalUser = true;
     initialPassword = "password";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "jackaudio" ]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
@@ -76,24 +100,19 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     vim wget git nnn htop
-    #chromium 
     brave gnome.nautilus vscode
     gnome.seahorse gnome.gnome-keyring libsecret
     brightnessctl
     pulseaudio-ctl playerctl pavucontrol
     xdg-utils
-    virtualbox
     libsForQt5.dolphin
     ungoogled-chromium
+    mpg123 ffmpeg libmpeg2 libmad libdv a52dec faac faad2 flac jasper lame libtheora libvorbis xorg.libXv opusfile wavpack x264 xvidcore
+    # libwacom xf86_input_wacom
+    # xorg.xinput xinput_calibrator foot
     # libsForQt5.qt5.qtwayland
   ];
-
   nixpkgs.config.chromium.commandLineArgs = "--enable-features=VaapiVideoDecoder";
-
-
-
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "abe" ];
 
   #programs.qt5ct.enable = true;
   fonts.fonts = with pkgs; [ nerdfonts font-awesome fira-code fira-code-symbols ];
