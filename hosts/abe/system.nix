@@ -21,11 +21,15 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  hardware.opengl.extraPackages = [
-    pkgs.intel-compute-runtime
-  ];
-
-  hardware.cpu.intel.updateMicrocode = true;
+  hardware = {
+    cpu.intel.updateMicrocode = true;
+    opengl = {
+      enable = true;
+      driSupport = true;
+      extraPackages = [ pkgs.intel-compute-runtime ];
+    };
+    
+  };
 
   networking.hostName = "abe-nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -55,15 +59,13 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = false;
-  # hardware.pulseaudio.systemWide = true; 
   systemd.services.mpd.environment = {
       # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
       XDG_RUNTIME_DIR = "/run/user/1000"; # User-id 1000 must match above user. MPD will look inside this directory for the PipeWire socket.
   };
+  
   security.rtkit.enable = true;
+
   services = {
     xserver.libinput.enable = true;
     gnome.gnome-keyring.enable = true;
@@ -92,7 +94,7 @@
   users.users.abe = {
     isNormalUser = true;
     initialPassword = "password";
-    extraGroups = [ "wheel" "jackaudio" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "jackaudio" "networkmanager" ]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
@@ -112,6 +114,7 @@
     # xorg.xinput xinput_calibrator foot
     # libsForQt5.qt5.qtwayland
   ];
+  
   nixpkgs.config.chromium.commandLineArgs = "--enable-features=VaapiVideoDecoder";
 
   #programs.qt5ct.enable = true;
