@@ -12,7 +12,7 @@
     # Modules used by the system
     ../../modules/users/abe.nix # Home Manager 
     ../../modules/wm/sway.nix # Sway Window Manager
-    # ../../modules/gtk # GTK Theming 
+    ../../modules/gtk # GTK Theming 
     ../../modules/xdg # XDG Settings
     ../../modules/development # Dev settings
   ];
