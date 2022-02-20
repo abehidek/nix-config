@@ -28,7 +28,7 @@
       driSupport = true;
       extraPackages = [ pkgs.intel-compute-runtime ];
     };
-    
+    bluetooth.enable = false;
   };
 
   networking.hostName = "abe-nixos"; # Define your hostname.
@@ -69,10 +69,14 @@
   services = {
     xserver.libinput.enable = true;
     gnome.gnome-keyring.enable = true;
-    pipewire.enable = true;
-    pipewire.alsa.enable = true;
-    pipewire.alsa.support32Bit = true;
-    pipewire.pulse.enable = true;
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
     # xserver.wacom.enable = true;
     mpd = {
       enable = true;
@@ -84,9 +88,6 @@
           name "My PipeWire Output"
         }
       '';
-    };
-    jack = {
-      jackd.enable = true;
     };
   };
   
@@ -101,22 +102,16 @@
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    vim wget git nnn htop
-    brave gnome.nautilus vscode
+    vim wget git nnn htop vscode
     gnome.seahorse gnome.gnome-keyring libsecret
-    brightnessctl
-    pulseaudio-ctl playerctl pavucontrol
+    brightnessctl pulseaudio-ctl playerctl pavucontrol
     xdg-utils
-    libsForQt5.dolphin
-    ungoogled-chromium
-    mpg123 ffmpeg libmpeg2 libmad libdv a52dec faac faad2 flac jasper lame libtheora libvorbis xorg.libXv opusfile wavpack x264 xvidcore
+    ffmpeg libmpeg2 libmad libdv a52dec faac faad2 flac jasper lame libtheora libvorbis xorg.libXv opusfile wavpack x264 xvidcore smpeg
     # libwacom xf86_input_wacom
     # xorg.xinput xinput_calibrator foot
     # libsForQt5.qt5.qtwayland
   ];
   
-  nixpkgs.config.chromium.commandLineArgs = "--enable-features=VaapiVideoDecoder";
-
   #programs.qt5ct.enable = true;
   fonts.fonts = with pkgs; [ nerdfonts font-awesome fira-code fira-code-symbols ];
 

@@ -6,7 +6,7 @@ in
   imports = [
     (import "${home-manager}/nixos")
   ];
-
+  nixpkgs.config.chromium.commandLineArgs = "--enable-features=VaapiVideoDecoder";
   home-manager.users.abe = {
     # Home Manager needs a bit of information about you and the
     # paths it should manage.
@@ -25,16 +25,14 @@ in
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
-
     nixpkgs.config.allowUnfree = true;
     home.packages = with pkgs;  [
       neofetch
       github-desktop 
       # jetbrains.pycharm-community 
-      exodus
-      firefox vlc
-      signal-desktop
-
+      exodus signal-desktop vlc
+      ungoogled-chromium brave firefox
+      gnome.nautilus libsForQt5.dolphin
       #libsForQt5.qtstyleplugins
     ];
     home.file = {
