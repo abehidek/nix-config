@@ -13,6 +13,7 @@
     ../../modules/users/abe.nix # Home Manager 
     ../../modules/wm/sway.nix # Sway Window Manager
     ../../modules/gtk # GTK Theming 
+    ../../modules/qt # QT Theming
     ../../modules/xdg # XDG Settings
     ../../modules/development # Dev settings
   ];
@@ -95,29 +96,22 @@
   users.users.abe = {
     isNormalUser = true;
     initialPassword = "password";
-    extraGroups = [ "wheel" "jackaudio" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" "audio" "jackaudio" "networkmanager" ]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    vim wget git nnn htop vscode
+    vim wget git nnn htop
     gnome.seahorse gnome.gnome-keyring libsecret
     brightnessctl pulseaudio-ctl playerctl pavucontrol
-    xdg-utils
-    ffmpeg libmpeg2 libmad libdv a52dec faac faad2 flac jasper lame libtheora libvorbis xorg.libXv opusfile wavpack x264 xvidcore smpeg
+    # ffmpeg libmpeg2 libmad libdv a52dec faac faad2 flac jasper lame libtheora libvorbis xorg.libXv opusfile wavpack x264 xvidcore smpeg
     # libwacom xf86_input_wacom
     # xorg.xinput xinput_calibrator foot
-    # libsForQt5.qt5.qtwayland
   ];
   
-  #programs.qt5ct.enable = true;
   fonts.fonts = with pkgs; [ nerdfonts font-awesome fira-code fira-code-symbols ];
-
-  xdg.mime.removedAssociations = {
-    "inode/directory" = "code.desktop";
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

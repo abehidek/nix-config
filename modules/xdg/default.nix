@@ -1,11 +1,15 @@
 { pkgs, ... }:
 {
-
+environment.systemPackages = [ pkgs.xdg-utils ];
 xdg = {
   portal = {
     enable = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-wlr xdg-desktop-portal-gtk ];
     gtkUsePortal = true;
+  };
+  mime.defaultApplications = {
+    "image/jpeg" = "chromium-browser.desktop";
+    "inode/directory" = "org.gnome.Nautilus.desktop";
   };
 };
 
@@ -18,14 +22,5 @@ in
   configHome = "${homeDirectory}/.config";
   dataHome = "${homeDirectory}/.local/share";
   cacheHome = "${homeDirectory}/.cache";
-  
-  mimeApps.defaultApplications = {
-    "inode/directory" = "org.gnome.Nautilus.desktop";
-    # "" = "nautilus.desktop"
-    # env XDG_UTILS_DEBUG_LEVEL=10  xdg-mime query default inode/directory
-  };
-  mimeApps.associations.removed = { 
-    "inode/directory" = "code.desktop"; 
-  };
 };
 }

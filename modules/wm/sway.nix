@@ -4,7 +4,12 @@
 programs.sway = {
   enable = true;
   wrapperFeatures.gtk = true;
-  extraPackages = with pkgs; [ wofi xwayland alacritty wl-clipboard swayidle waybar wlr-randr wdisplays mako autotiling waypipe swaylock-effects swaylock-fancy drm_info phwmon ];
+  extraPackages = with pkgs; [ 
+    wofi xwayland alacritty wl-clipboard 
+    swayidle waybar wlr-randr wdisplays 
+    mako autotiling waypipe swaylock-effects 
+    swaylock-fancy drm_info phwmon 
+  ];
 };
 
 home-manager.users.abe.wayland.windowManager.sway =
@@ -108,6 +113,7 @@ in
     export CLUTTER_BACKEND=wayland
     export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
     export QT_QPA_PLATFORM=wayland-egl
+    export QT_QPA_PLATFORMTHEME=qt5ct
     export ECORE_EVAS_ENGINE=wayland-egl
     export ELM_ENGINE=wayland_egl
     export SDL_VIDEODRIVER=wayland
@@ -116,4 +122,6 @@ in
     export SSH_AUTH_SOCK=/run/user/1000/gnupg/S.gpg-agent.ssh
   '';
 };
+# export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+# export QT_QPA_PLATFORM=wayland-egl
 }

@@ -7,6 +7,7 @@ in
     (import "${home-manager}/nixos")
   ];
   nixpkgs.config.chromium.commandLineArgs = "--enable-features=VaapiVideoDecoder";
+  
   home-manager.users.abe = {
     # Home Manager needs a bit of information about you and the
     # paths it should manage.
@@ -28,12 +29,10 @@ in
     nixpkgs.config.allowUnfree = true;
     home.packages = with pkgs;  [
       neofetch
-      github-desktop 
-      # jetbrains.pycharm-community 
+      github-desktop vscode  
       exodus signal-desktop vlc
-      ungoogled-chromium brave firefox
-      gnome.nautilus libsForQt5.dolphin
-      #libsForQt5.qtstyleplugins
+      ungoogled-chromium brave #firefox
+      gnome.nautilus #libsForQt5.dolphin
     ];
     home.file = {
       ".config/waybar/config".text = import ../../modules/waybar/waybar.sh;

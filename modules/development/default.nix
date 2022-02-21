@@ -2,11 +2,11 @@
 {
   programs.java = { enable = true; package = pkgs.jdk; };
   environment = {
-    # variables.JAVA_HOME = "/lib/java";
+    variables.JDK_HOME = "${pkgs.jdk}";
     systemPackages = with pkgs; [
-      eclipses.eclipse-java 
-      # jetbrains.idea-community
-      # jdk
+      # eclipses.eclipse-java 
+      jetbrains.idea-community
+      # jetbrains.pycharm-community
     ];
   };
 
