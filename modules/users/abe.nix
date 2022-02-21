@@ -34,6 +34,7 @@ in
       ungoogled-chromium brave #firefox
       gnome.nautilus #libsForQt5.dolphin
     ];
+    services.dropbox.enable = true;
     home.file = {
       ".config/waybar/config".text = import ../../modules/waybar/waybar.sh;
       ".config/waybar/style.css".text = import ../../modules/waybar/style.css;

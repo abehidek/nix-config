@@ -35,6 +35,7 @@ in
   config = {
     # startup programs and scripts
     startup = [
+      { command = "dropbox start";}
       { command = "${pkgs.autotiling}/bin/autotiling";}
       { command = "${import-gsettingsScript}/bin/import-gsettings"; always = true; }
       { command = "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"; }
