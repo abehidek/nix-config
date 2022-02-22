@@ -46,7 +46,7 @@ in
       { command = "pacmd 'set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0002.hw_sofhdadsp__sink'"; }
 
     ];
-    menu = "${pkgs.wofi}/bin/wofi --show run swaymsg exec --";
+    menu = "${pkgs.rofi}/bin/rofi -show combi -combi-modi 'run,window,ssh' -modi combi";
     terminal = "${pkgs.alacritty}/bin/alacritty";
 
     # screens
