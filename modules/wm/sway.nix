@@ -49,6 +49,7 @@ in
     # screens
     output."eDP-1" = {
       pos = "0 1080";
+      #scale = "1.25";
       resolution = "--custom 1600x900";
     };
     output."HDMI-A-1" = {
@@ -80,7 +81,7 @@ in
       natural_scroll = "enabled";
       scroll_method = "two_finger";
     };
-    input."type:tablet_tool" = {
+    input."type:touch" = {
       map_to_output = "eDP-1";
     };
     # theming
@@ -99,7 +100,6 @@ in
     bindsym Mod4+Control+Shift+Down move workspace to output down
     bindsym Mod4+Control+Shift+Up move workspace to output up
   '';
-  # input "type:tablet_tool" map_to_region 0 1080 1600 900
   
   extraSessionCommands = ''
     export GTK_USE_PORTAL=1 

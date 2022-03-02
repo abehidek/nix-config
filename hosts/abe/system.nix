@@ -30,6 +30,7 @@
       extraPackages = [ pkgs.intel-compute-runtime ];
     };
     bluetooth.enable = false;
+    pulseaudio.enable = false;
   };
 
   networking.hostName = "abe-nixos"; # Define your hostname.
