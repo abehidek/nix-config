@@ -29,8 +29,8 @@ in
     nixpkgs.config.allowUnfree = true;
     home.packages = with pkgs;  [
       neofetch
-      github-desktop vscode  
-      exodus signal-desktop vlc
+      github-desktop vscode
+      exodus signal-desktop vlc ksnip
       ungoogled-chromium brave #firefox
       gnome.nautilus #libsForQt5.dolphin
     ];

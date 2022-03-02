@@ -28,10 +28,7 @@ in
 {
   enable = true;
   wrapperFeatures.gtk = true;
-  #qt.enable = true;
-  #qt.platformTheme = "gnome";
-  #qt.style.package = pkgs.adwaita-qt;
-  #qt.style.name = "adwaita";
+
   config = {
     # startup programs and scripts
     startup = [
@@ -46,7 +43,7 @@ in
       { command = "pacmd 'set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0002.hw_sofhdadsp__sink'"; }
 
     ];
-    menu = "${pkgs.rofi}/bin/rofi -show combi -combi-modi 'run,window,ssh' -modi combi";
+    menu = "${pkgs.wofi}/bin/wofi --show run swaymsg exec --";
     terminal = "${pkgs.alacritty}/bin/alacritty";
 
     # screens
@@ -94,14 +91,13 @@ in
     bars = [{ command = "waybar"; }];      
   };
   extraConfig = ''
-  default_border pixel 3
-  default_floating_border pixel 3
-  client.focused #eb52eb #eb52eb #eb52eb #eb52eb
-  bindsym Mod4+Control+Shift+Right move workspace to output right
-  bindsym Mod4+Control+Shift+Left move workspace to output left
-  bindsym Mod4+Control+Shift+Down move workspace to output down
-  bindsym Mod4+Control+Shift+Up move workspace to output up
-  
+    default_border pixel 3
+    default_floating_border pixel 3
+    client.focused #eb52eb #eb52eb #eb52eb #eb52eb
+    bindsym Mod4+Control+Shift+Right move workspace to output right
+    bindsym Mod4+Control+Shift+Left move workspace to output left
+    bindsym Mod4+Control+Shift+Down move workspace to output down
+    bindsym Mod4+Control+Shift+Up move workspace to output up
   '';
   # input "type:tablet_tool" map_to_region 0 1080 1600 900
   
