@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz";
+  unstable = import
+    (builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz)
+    { config = config.nixpkgs.config; };
 in
 {
   imports = [
@@ -31,8 +34,7 @@ in
       neofetch
       github-desktop vscode
       exodus signal-desktop vlc ksnip
-      ungoogled-chromium brave #firefox
-      gnome.nautilus #libsForQt5.dolphin
+      ungoogled-chromium brave libreoffice #firefox
     ];
     services.dropbox.enable = true;
     home.file = {
