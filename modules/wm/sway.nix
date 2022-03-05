@@ -5,7 +5,7 @@ programs.sway = {
   enable = true;
   wrapperFeatures.gtk = true;
   extraPackages = with pkgs; [ 
-    xwayland alacritty wl-clipboard 
+    xwayland wl-clipboard 
     swayidle waybar wlr-randr wdisplays 
     mako autotiling waypipe swaylock-effects 
     swaylock-fancy drm_info phwmon 
@@ -44,7 +44,7 @@ in
 
     ];
     menu = "${pkgs.wofi}/bin/wofi --show run swaymsg exec --";
-    terminal = "${pkgs.alacritty}/bin/alacritty";
+    terminal = "${pkgs.kitty}/bin/kitty";
 
     # screens
     output."eDP-1" = {
@@ -63,6 +63,7 @@ in
       mod = "Mod4";
       audio = "exec ${pkgs.pamixer}/bin/pamixer";
       light = "exec ${pkgs.brightnessctl}/bin/brightnessctl";
+      terminal = "${pkgs.kitty}/bin/kitty";
     in lib.mkOptionDefault {
       XF86AudioRaiseVolume = "${audio} -i 5";
       XF86AudioLowerVolume = "${audio} -d 5";
@@ -71,6 +72,7 @@ in
       XF86MonBrightnessDown = "${light} set 5%-";
       XF86MonBrightnessUp = "${light} set +5%";
       "${mod}+l" = "exec ${pkgs.swaylock-fancy}/bin/swaylock-fancy";
+      "${mod}+e" = "exec ${terminal} ranger";
     };
     input."type:keyboard" = {
       xkb_layout = "br";
@@ -110,7 +112,7 @@ in
     export CLUTTER_BACKEND=wayland
     export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
     export QT_QPA_PLATFORM=wayland-egl
-    export QT_QPA_PLATFORMTHEME=qt5ct
+    export QT_QPA_PLATFORMTHEME=gtk3
     export ECORE_EVAS_ENGINE=wayland-egl
     export ELM_ENGINE=wayland_egl
     export SDL_VIDEODRIVER=wayland

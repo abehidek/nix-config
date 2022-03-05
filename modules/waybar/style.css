@@ -1,4 +1,3 @@
-''
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     border: none;
@@ -258,4 +257,3 @@ label:focus {
 #keyboard-state > label.locked {
     background: rgba(0, 0, 0, 0.2);
 }
-''

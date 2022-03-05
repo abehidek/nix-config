@@ -6,6 +6,7 @@
     systemPackages = with pkgs; [
       # eclipses.eclipse-java 
       jetbrains.idea-community
+      pythonFull
       # jetbrains.pycharm-community
     ];
   };

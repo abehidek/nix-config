@@ -38,8 +38,8 @@ in
     ];
     services.dropbox.enable = true;
     home.file = {
-      ".config/waybar/config".text = import ../../modules/waybar/waybar.sh;
-      ".config/waybar/style.css".text = import ../../modules/waybar/style.css;
+      ".config/waybar/config".source = ../../modules/waybar/waybar.sh;
+      ".config/waybar/style.css".source = ../../modules/waybar/style.css;
     };
   };
 }

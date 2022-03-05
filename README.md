@@ -14,8 +14,8 @@ Also, if someone is interest I would love to chat about this topic since I have 
 | Shell | Bash |
 |---|---|
 | WM | Sway |
-| Terminal | Alacritty |
-| Browser | Brave |
+| Terminal | Kitty |
+| Browser | Ungoogled Chromium |
 | Wallpaper | [nordic-wallpapers](https://github.com/linuxdotexe/nordic-wallpapers) |
 
 ##### Partition Scheme

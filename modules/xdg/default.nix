@@ -9,7 +9,7 @@ xdg = {
   };
   mime.defaultApplications = {
     "image/jpeg" = "chromium-browser.desktop";
-    "inode/directory" = "org.gnome.Nautilus.desktop";
+    "inode/directory" = "ranger.desktop";
   };
 };
 

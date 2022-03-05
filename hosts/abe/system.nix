@@ -16,6 +16,7 @@
     ../../modules/qt # QT Theming
     ../../modules/xdg # XDG Settings
     ../../modules/development # Dev settings
+    ../../modules/terminal
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -104,7 +105,7 @@
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    vim wget git ranger htop
+    vim wget git htop killall
     gnome.seahorse gnome.gnome-keyring libsecret
     brightnessctl pulseaudio-ctl playerctl pavucontrol
     # ffmpeg libmpeg2 libmad libdv a52dec faac faad2 flac jasper lame libtheora libvorbis xorg.libXv opusfile wavpack x264 xvidcore smpeg
