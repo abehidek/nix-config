@@ -37,9 +37,5 @@ in
       ungoogled-chromium brave libreoffice #firefox
     ];
     services.dropbox.enable = true;
-    home.file = {
-      ".config/waybar/config".source = ../../modules/waybar/waybar.sh;
-      ".config/waybar/style.css".source = ../../modules/waybar/style.css;
-    };
   };
 }

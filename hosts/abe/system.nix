@@ -6,12 +6,13 @@
 
 {
   imports =
-  [ # Include the results of the hardware scan.
+  [ # Include the results of your hardware scan.
     ./hardware.nix
 
     # Modules used by the system
-    ../../modules/users/abe.nix # Home Manager 
+    ../../users/abe.nix # Home Manager 
     ../../modules/wm/sway.nix # Sway Window Manager
+    ../../modules/waybar # Waybar settings
     ../../modules/gtk # GTK Theming 
     ../../modules/qt # QT Theming
     ../../modules/xdg # XDG Settings
