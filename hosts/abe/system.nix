@@ -21,9 +21,12 @@
   ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
+  boot = {
+    kernel.sysctl = { "fs.inotify.max_user_watches" = 524288; }; # https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+  };
+  
   hardware = {
     cpu.intel.updateMicrocode = true;
     opengl = {
@@ -35,23 +38,28 @@
     pulseaudio.enable = false;
   };
 
-  networking.hostName = "abe-nixos"; # Define your hostname.
-  networking.networkmanager.enable = true;
-  # networking.networkmanager.wifi.backend = "iwd";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking = {
+    hostName = "abe-nixos"; # Define your hostname.
+    networkmanager.enable = true;
+    # networkmanager.wifi.backend = "iwd";
+    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    # The global useDHCP flag is deprecated, therefore explicitly set to false here.
+    # Per-interface useDHCP will be mandatory in the future, so this generated config
+    # replicates the default behaviour.
+    useDHCP = false;
+    interfaces.wlp0s20f3.useDHCP = true;
+    # Configure network proxy if necessary
+    # proxy.default = "http://user:password@proxy:port/";
+    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    # Open ports in the firewall.
+    # networking.firewall.allowedTCPPorts = [ ... ];
+    # networking.firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    # networking.firewall.enable = false;
+  };
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
-
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.wlp0s20f3.useDHCP = true;
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "pt_BR.UTF-8";
@@ -60,17 +68,9 @@
     keyMap = "br-abnt2";
   };
   
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  systemd.services.mpd.environment = {
-      # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
-      XDG_RUNTIME_DIR = "/run/user/1000"; # User-id 1000 must match above user. MPD will look inside this directory for the PipeWire socket.
-  };
-  
-  security.rtkit.enable = true;
-
   services = {
+    # Enable CUPS to print documents.
+    # printing.enable = true;
     xserver.libinput.enable = true;
     gnome.gnome-keyring.enable = true;
 
@@ -94,6 +94,13 @@
       '';
     };
   };
+
+  systemd.services.mpd.environment = {
+      # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
+      XDG_RUNTIME_DIR = "/run/user/1000"; # User-id 1000 must match above user. MPD will look inside this directory for the PipeWire socket.
+  };
+  
+  security.rtkit.enable = true;
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.abe = {
@@ -128,12 +135,6 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
