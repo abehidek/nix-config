@@ -7,6 +7,7 @@
       # eclipses.eclipse-java 
       jetbrains.idea-community
       pythonFull
+      nodejs
       # jetbrains.pycharm-community
     ];
   };
