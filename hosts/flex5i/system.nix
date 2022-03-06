@@ -39,7 +39,7 @@
   };
 
   networking = {
-    hostName = "abe-nixos"; # Define your hostname.
+    hostName = "flex5i"; # Define your hostname.
     networkmanager.enable = true;
     # networkmanager.wifi.backend = "iwd";
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
