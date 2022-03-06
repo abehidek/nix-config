@@ -41,6 +41,7 @@ Also, if someone is interest I would love to chat about this topic since I have 
 - https://specific.solutions.limited/blog/wayland-sway-window-manager
 - https://rycee.gitlab.io/home-manager/options.html#opt-wayland.windowManager.sway.enable
 - https://www.reddit.com/r/swaywm/comments/hmtdr9/how_do_you_guys_change_settings_in_sway/
+- https://www.youtube.com/channel/UCSW5DqTyfOI9sUvnFoCjBlQ/videos
 
 ##### Some other dotfiles repo I use to understand better:
 - https://github.com/hlissner/dotfiles
