@@ -7,10 +7,10 @@ let
 in
 {
   enable = true;
-  gtk3.extraConfig = { gtk-application-prefer-dark-theme=1; };
+  gtk3.extraConfig = { gtk-application-prefer-dark-theme=true; };
   theme.package = theme;
   theme.name = "Nordic";
   iconTheme.package = iconTheme;
-  iconTheme.name = "Papirus";
+  iconTheme.name = "Papirus-Dark";
 };
 }

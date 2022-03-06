@@ -6,7 +6,7 @@
     systemPackages = with pkgs; [
       # eclipses.eclipse-java 
       jetbrains.idea-community
-      pythonFull
+      python310
       nodejs
       # jetbrains.pycharm-community
     ];
