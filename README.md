@@ -1,3 +1,9 @@
+# System Dotfiles
+[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
+
+[![NixOS](https://img.shields.io/badge/os-nixos-blue)](https://nixos.org/)
+[![Sway](https://img.shields.io/badge/wm-sway-green)](https://nixos.org/)
+
 ### About
 
 The whole idea of customizing your own system always is appealing to a lot of people, however, most people don't dive too much into, just change some basic configuration, but, like some other people, I wanted to customize it more and give it my identity.
