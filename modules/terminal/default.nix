@@ -8,6 +8,7 @@
       librsvg 
       mpv 
       kitty
+      xterm
       feh
     ];
   };
