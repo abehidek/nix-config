@@ -62,12 +62,17 @@
   time.timeZone = "America/Sao_Paulo";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "pt_BR.UTF-8";
+  i18n = {
+    defaultLocale = "pt_BR.UTF-8";
+  };
+  
   console = {
     font = "Lat2-Terminus16";
     keyMap = "br-abnt2";
   };
-  
+
+  nix.autoOptimiseStore = true;
+
   services = {
     # Enable CUPS to print documents.
     # printing.enable = true;
@@ -92,6 +97,31 @@
           name "My PipeWire Output"
         }
       '';
+    };
+  };
+
+  fonts = {
+    fonts = with pkgs; [ 
+      nerdfonts dejavu_fonts
+      rictydiminished-with-firacode
+      hanazono ipafont kochi-substitute
+    ];
+    fontconfig = {
+      # ultimate.enable = true;
+      defaultFonts = {
+        monospace = [
+          "DejaVu Sans Mono"
+          "IPAGothic"
+        ];
+        sansSerif = [
+          "DejaVu Sans"
+          "IPAPGothic"
+        ];
+        serif = [
+          "DejaVu Serif"
+          "IPAPMincho"
+        ];
+      };
     };
   };
 
@@ -120,8 +150,6 @@
     # libwacom xf86_input_wacom
     # xorg.xinput xinput_calibrator foot
   ];
-  
-  fonts.fonts = with pkgs; [ nerdfonts font-awesome fira-code fira-code-symbols ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
