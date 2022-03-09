@@ -7,7 +7,7 @@
 {
   imports =
   [ # Include the results of your hardware scan.
-    /etc/nixos/hardware-configuration.nix
+    ./hardware.nix
 
     # Modules used by the system
     ../../users/abe.nix # Home Manager 
@@ -16,7 +16,7 @@
     ../../modules/gtk # GTK Theming 
     ../../modules/qt # QT Theming
     ../../modules/xdg # XDG Settings
-    ../../modules/development # Dev settings
+    # ../../modules/development # Dev settings
     ../../modules/terminal
   ];
 
