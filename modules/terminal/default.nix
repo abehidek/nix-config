@@ -2,6 +2,7 @@
 {
   environment = {
     variables.EDITOR = "vim";
+    variables.TERM = "kitty";
     systemPackages = with pkgs; [
       ranger 
       file 

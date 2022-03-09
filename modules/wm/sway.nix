@@ -15,7 +15,7 @@ programs.sway = {
 home-manager.users.abe.wayland.windowManager.sway =
 let
   buildScript = import ../buildScript.nix;
-  wallpaper = /home/abe/Imagens/nordic-wallpapers/wallpapers/nixos.png ;
+  wallpaper = /home/abe/Imagens/nordic-wallpapers/wallpapers/ign_sunAndClouds.png ;
   lockScript = buildScript "lock" ../swaylock/lock {
     bg = wallpaper;
     lock = ../swaylock-effects/lock.svg;
@@ -87,15 +87,15 @@ in
     };
     # theming
     output."*" = { bg = "${wallpaper} fill"; };
-    gaps.outer = 9;
-    gaps.inner = 7;
+    gaps.outer = 10;
+    gaps.inner = 10;
     #client.focused #eb52eb #eb52eb #eb52eb #eb52eb;
     bars = [{ command = "waybar"; }];      
   };
   extraConfig = ''
     default_border pixel 3
     default_floating_border pixel 3
-    client.focused #eb52eb #eb52eb #eb52eb #eb52eb
+    client.focused #2E3440 #2E3440 #ECEFF4 #2E3440 #2E3440
     bindsym Mod4+Control+Shift+Right move workspace to output right
     bindsym Mod4+Control+Shift+Left move workspace to output left
     bindsym Mod4+Control+Shift+Down move workspace to output down
