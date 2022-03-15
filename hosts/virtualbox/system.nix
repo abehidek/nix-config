@@ -13,8 +13,7 @@
     ../../users/abe.nix # Home Manager 
     ../../modules/wm/vm-sway.nix # Sway Window Manager inside Virtualbox
     ../../modules/waybar # Waybar settings
-    ../../modules/gtk # GTK Theming 
-    ../../modules/qt # QT Theming
+    ../../modules/theme # GTK Theming 
     ../../modules/xdg # XDG Settings
     # ../../modules/development # Dev settings
     ../../modules/terminal
