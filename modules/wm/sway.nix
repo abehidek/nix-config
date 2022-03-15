@@ -4,10 +4,9 @@ imports =
 [
   # Modules used by the wm
   ../waybar # Waybar settings
-  # ../theme # Color Theme
-  ../gtk # GTK Theming 
-  ../qt # QT Theming
+  ../theme # Import Theme
   ../xdg # XDG Settings
+  # ../mpd # MPD Settings
   ../terminal # Terminal settings
 ];
 programs.sway = {
@@ -17,7 +16,8 @@ programs.sway = {
     xwayland wl-clipboard 
     swayidle waybar wlr-randr wdisplays 
     mako autotiling waypipe swaylock-effects 
-    swaylock-fancy drm_info phwmon 
+    swaylock-fancy drm_info phwmon
+    nwg-launchers
   ];
 };
 
@@ -33,7 +33,7 @@ let
   import-gsettingsScript = buildScript "import-gsettings" ../../scripts/import-gsettings.sh {
     gsettings = "${pkgs.glib}/bin/gsettings";
   };
-  theme = import ../theme;
+  theme = import ../theme/colorscheme;
 in
 {
   enable = true;
@@ -105,7 +105,9 @@ in
   extraConfig = ''
     default_border pixel 3
     default_floating_border pixel 3
-    client.focused ${theme.white} ${theme.white} ${theme.white} ${theme.white} ${theme.white}
+    client.focused ${theme.cyan} ${theme.cyan} ${theme.cyan} ${theme.cyan} ${theme.cyan}
+    client.focused_inactive ${theme.white} ${theme.white} ${theme.white} ${theme.white} ${theme.white}
+    client.unfocused ${theme.white} ${theme.white} ${theme.white} ${theme.white} ${theme.white}
     bindsym Mod4+Control+Shift+Right move workspace to output right
     bindsym Mod4+Control+Shift+Left move workspace to output left
     bindsym Mod4+Control+Shift+Down move workspace to output down
