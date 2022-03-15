@@ -1,6 +1,14 @@
-{ lib, config, pkgs, ... }:
+{ lib, pkgs, ... }:
 {
-
+imports =
+[
+  # Modules used by the wm
+  ../waybar # Waybar settings
+  ../gtk # GTK Theming 
+  ../qt # QT Theming
+  ../xdg # XDG Settings
+  ../terminal # Terminal settings
+];
 programs.sway = {
   enable = true;
   wrapperFeatures.gtk = true;
@@ -67,7 +75,7 @@ in
       XF86AudioRaiseVolume = "${audio} -i 5";
       XF86AudioLowerVolume = "${audio} -d 5";
       XF86AudioMute = "${audio} -t";
-      XF86AudioMicMute = "${audio} mute-input";
+      XF86AudioMicMute = "${audio} --default-source -t";
       XF86MonBrightnessDown = "${light} set 5%-";
       XF86MonBrightnessUp = "${light} set +5%";
       "${mod}+l" = "exec ${pkgs.swaylock-fancy}/bin/swaylock-fancy";

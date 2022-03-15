@@ -12,12 +12,7 @@
     # Modules used by the system
     ../../users/abe.nix # Home Manager 
     ../../modules/wm/sway.nix # Sway Window Manager
-    ../../modules/waybar # Waybar settings
-    ../../modules/gtk # GTK Theming 
-    ../../modules/qt # QT Theming
-    ../../modules/xdg # XDG Settings
     ../../modules/development # Dev settings
-    ../../modules/terminal
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -78,6 +73,13 @@
     # printing.enable = true;
     xserver.libinput.enable = true;
     gnome.gnome-keyring.enable = true;
+
+    tlp = {
+      enable = true;
+      settings = {
+        TLP_PERSISTENT_DEFAULT = 0;
+      };
+    };
 
     pipewire = {
       enable = true;
@@ -145,7 +147,7 @@
   environment.systemPackages = with pkgs; [
     vim wget git htop killall
     gnome.seahorse gnome.gnome-keyring libsecret
-    brightnessctl pulseaudio-ctl playerctl pavucontrol
+    brightnessctl pulseaudio-ctl playerctl pavucontrol lm_sensors
     # ffmpeg libmpeg2 libmad libdv a52dec faac faad2 flac jasper lame libtheora libvorbis xorg.libXv opusfile wavpack x264 xvidcore smpeg
     # libwacom xf86_input_wacom
     # xorg.xinput xinput_calibrator foot
