@@ -36,6 +36,7 @@ in
       exodus signal-desktop vlc ksnip
       ungoogled-chromium brave libreoffice #firefox
     ];
+    programs.ncmpcpp.enable = true;
     services.dropbox.enable = true;
   };
 }

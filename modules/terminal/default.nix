@@ -1,5 +1,7 @@
 { lib, config, pkgs, ... }:
-{
+let
+  theme = import ../theme;
+in {
   environment = {
     variables.EDITOR = "vim";
     variables.TERM = "kitty";
@@ -9,15 +11,13 @@
       librsvg 
       mpv 
       kitty
-      xterm
       feh
+      w3m
     ];
   };
+  programs.tmux.terminal = "screen-256color";
   home-manager.users.abe = {
     home = {
-      packages = with pkgs; [
-        pfetch
-      ];
       file = {
         ".config/ranger/rc.conf".source = ./rc.conf;
         ".config/ranger/rifle.conf".source = ./rifle.conf;

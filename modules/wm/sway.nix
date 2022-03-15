@@ -4,6 +4,7 @@ imports =
 [
   # Modules used by the wm
   ../waybar # Waybar settings
+  # ../theme # Color Theme
   ../gtk # GTK Theming 
   ../qt # QT Theming
   ../xdg # XDG Settings
@@ -32,6 +33,7 @@ let
   import-gsettingsScript = buildScript "import-gsettings" ../../scripts/import-gsettings.sh {
     gsettings = "${pkgs.glib}/bin/gsettings";
   };
+  theme = import ../theme;
 in
 {
   enable = true;
@@ -103,12 +105,13 @@ in
   extraConfig = ''
     default_border pixel 3
     default_floating_border pixel 3
-    client.focused #2E3440 #2E3440 #ECEFF4 #2E3440 #2E3440
+    client.focused ${theme.white} ${theme.white} ${theme.white} ${theme.white} ${theme.white}
     bindsym Mod4+Control+Shift+Right move workspace to output right
     bindsym Mod4+Control+Shift+Left move workspace to output left
     bindsym Mod4+Control+Shift+Down move workspace to output down
     bindsym Mod4+Control+Shift+Up move workspace to output up
   '';
+  #client.focused #2E3440 #2E3440 #ECEFF4 #2E3440 #2E3440
   
   extraSessionCommands = ''
     export GTK_USE_PORTAL=1 
