@@ -1,7 +1,10 @@
-{ lib, config, pkgs, ... }:
+{ config, pkgs, ... }:
 let
   colorscheme = import ../theme/colorscheme;
 in {
+  imports = [
+    ./zsh
+  ];
   environment = {
     variables.EDITOR = "vim";
     variables.TERM = "kitty";
