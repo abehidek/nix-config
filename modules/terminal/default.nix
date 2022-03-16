@@ -19,14 +19,11 @@ in {
   home-manager.users.abe = {
     home = {
       file = {
-        ".config/ranger/rc.conf".source = ./rc.conf;
-        ".config/ranger/rifle.conf".source = ./rifle.conf;
-        ".config/ranger/commands.py".source = ./commands.py;
-        ".config/ranger/scope.sh".source = ./scope.sh;
+        ".config/ranger/rc.conf".source = ./ranger/rc.conf;
+        ".config/ranger/rifle.conf".source = ./ranger/rifle.conf;
+        ".config/ranger/commands.py".source = ./ranger/commands.py;
+        ".config/ranger/scope.sh".source = ./ranger/scope.sh;
       };
-      # programs.ranger = {
-
-      # };
     };
   };
 }
