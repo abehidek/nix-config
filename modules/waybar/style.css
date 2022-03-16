@@ -6,9 +6,13 @@
     margin: 0;
 }
 
+.modules-left {
+    border-radius: 15px;
+    padding: 5 15px;
+    margin: 0 0px;
+}
+
 window#waybar {
-    background-color: transparent;
-    color: #ffffff;
     transition-duration: .5s;
 }
 
@@ -19,65 +23,16 @@ window#waybar.chromium {
 
 #workspaces button {
     padding: 0 5px;
-    background-color: transparent;
-    color: #ffffff;
     font-family: 'IPAPMincho';
     font-weight: bold;
     border-radius: 10px;
     border: none;
 }
 
-#workspaces button:hover {
-    background-color: #ECEFF4;
-    color: #2E3440;
-}
-
-#workspaces button.focused {
-    color: #88C0D0;
-}
-
-#workspaces button.urgent {
-    background-color: #BF616A;
-}
-
 #window,
 #mode
 {
     font-family: 'FiraMono Nerd Font';
-}
-
-#mode {
-    background-color: transparent;
-    color: #B48EAD;
-}
-
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#network,
-#pulseaudio,
-#custom-media,
-#tray,
-#mpd {
-    border-radius: 15px;
-    font-family: 'FiraMono Nerd Font';
-    padding: 5 15px;
-    color: #ECEFF4;
-    margin-left: 3px;
-}
-
-.modules-left {
-    border-radius: 15px;
-    padding: 5 15px;
-    background-color: #3B4252;
-    color: #ffffff;
-    margin: 0 0px;
-}
-
-.modules-right {
-    background-color: transparent;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -92,30 +47,24 @@ window#waybar.chromium {
 
 /* COMPONENTS HERE */
 
-#clock {
-    background-color: #3B4252;
-}
-
-#battery {
-    background-color: #4C566A;
-    color: #ECEFF4;
-}
-
-#battery.charging, #battery.plugged {
-    color: #ECEFF4;
-    background-color: #A3BE8C;
-}
-
-@keyframes blink {
-    to {
-        background-color: #4C566A;
-        color: #ECEFF4;
-    }
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#custom-power,
+#mpd {
+    border-radius: 15px;
+    font-family: 'FiraMono Nerd Font';
+    padding: 5 15px;
+    margin-left: 3px;
 }
 
 #battery.critical:not(.charging) {
-    background-color: #BF616A;
-    color: #ECEFF4;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -123,42 +72,15 @@ window#waybar.chromium {
     animation-direction: alternate;
 }
 
-label:focus {
+/* label:focus {
     background-color: #000000;
-}
+} */
 
-#cpu {
-    background-color: #4C566A;
-    color: #ECEFF4;
-}
-
-#memory {
-    background-color: #3B4252;
-}
-
-#disk {
+/* #disk {
     background-color: #964B00;
-}
+} */
 
-#network {
-    background-color: #3B4252;
-}
-
-#network.disconnected {
-    background-color: #BF616A;
-}
-
-#pulseaudio {
-    background-color: #4C566A;
-    color: #ECEFF4;
-}
-
-#pulseaudio.muted {
-    background-color: #EBCB8B;
-    color: #3B4252;
-}
-
-#custom-media {
+/* #custom-media {
     background-color: #66cc99;
     color: #2a5c45;
     min-width: 100px;
@@ -170,22 +92,9 @@ label:focus {
 
 #custom-media.custom-vlc {
     background-color: #ffa000;
-}
+} */
 
-#tray {
-    background-color: #2980b9;
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
-}
-
-#mpd {
+/* #mpd {
     background-color: #66cc99;
     color: #2a5c45;
 }
@@ -200,7 +109,7 @@ label:focus {
 
 #mpd.paused {
     background-color: #51a37a;
-}
+} */
 
 /* #language {
     background: #00b093;

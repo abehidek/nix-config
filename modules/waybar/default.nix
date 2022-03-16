@@ -1,18 +1,12 @@
-{ lib, config, pkgs, ... }:
+{ pkgs, ... }:
 let 
-  theme = import ../theme;
+  colorscheme = import ../theme/colorscheme;
 in 
 {
   environment = {
-    systemPackages = with pkgs; [];
+    systemPackages = with pkgs; [ nwg-launchers ];
   };
   home-manager.users.abe = {
-    home = {
-      file = {
-        # ".config/waybar/config".source = ./waybar.sh;
-        ".config/waybar/style.css".source = ./style.css;
-      };
-    };
     programs.waybar = {
         enable = true;
         settings = [{
@@ -32,7 +26,7 @@ in
             # "mpd" 
             "pulseaudio" 
             "network" "cpu" "memory" "battery" "battery#bat2"
-            "tray" ];
+            "tray" "custom/power" ];
           modules = {
             "sway/workspaces" = {
               all-outputs = true;
@@ -123,8 +117,107 @@ in
             "battery#bat2" = {
               bat = "BAT2";
             };
+            "custom/power" = {
+              format = " ";
+              on-click = "nwgbar -o 0.2";
+              escape = true;
+              tooltip = false;
+            };
           };
         }];
-      };
+        style = ''
+          ${builtins.readFile ./style.css}
+          .modules-left {
+            background-color: ${colorscheme.base01};
+            color: #ffffff;
+          }
+          .modules-right {
+            background-color: transparent;
+          }
+          window#waybar {
+            background-color: transparent;
+            color: #ffffff;
+          }
+          #workspaces button {
+            background-color: transparent;
+            color: #ffffff;
+          }
+          #workspaces button:hover {
+            background-color: ${colorscheme.base06};
+            color: ${colorscheme.base00};
+          }
+          #workspaces button.focused {
+              color: ${colorscheme.base08};
+          }
+          #workspaces button.urgent {
+              background-color: ${colorscheme.base0B};
+          }
+          #mode {
+            background-color: transparent;
+            color: ${colorscheme.base0F};
+          }
+          #clock,
+          #battery,
+          #cpu,
+          #memory,
+          #disk,
+          #network,
+          #pulseaudio,
+          #custom-media,
+          #tray,
+          #custom-power
+          #mpd {
+              color: ${colorscheme.base06};
+          }
+          #clock,
+          #memory,
+          #network {
+            background-color: ${colorscheme.base01};
+          }
+
+          #network.disconnected {
+              background-color: ${colorscheme.base0B};
+          }        
+
+          #custom-power,
+          #battery,
+          #cpu,
+          #pulseaudio {
+            background-color: ${colorscheme.base03};
+          }
+          
+          #battery.charging, #battery.plugged {
+              color: ${colorscheme.base06};
+              background-color: ${colorscheme.base0E};
+          }
+          @keyframes blink {
+              to {
+                  background-color: ${colorscheme.base03};
+                  color: ${colorscheme.base06};
+              }
+          }
+          #battery.critical:not(.charging) {
+              background-color: ${colorscheme.base0F};
+              color: ${colorscheme.base06};
+          }
+
+          #pulseaudio.muted {
+              background-color: ${colorscheme.base0D};
+              color: ${colorscheme.base01};
+          }
+          #tray {
+              background-color: ${colorscheme.base07};
+          }
+
+          #tray > .passive {
+              -gtk-icon-effect: dim;
+          }
+
+          #tray > .needs-attention {
+              -gtk-icon-effect: highlight;
+              background-color: ${colorscheme.base08};
+          }
+        '';
+    };
   };
 }
