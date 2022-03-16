@@ -1,6 +1,6 @@
 { lib, config, pkgs, ... }:
 let
-  theme = import ../theme;
+  colorscheme = import ../theme/colorscheme;
 in {
   environment = {
     variables.EDITOR = "vim";
