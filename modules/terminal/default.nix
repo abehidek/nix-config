@@ -4,6 +4,7 @@ let
 in {
   imports = [
     ./zsh
+    ./kitty
   ];
   environment = {
     variables.EDITOR = "vim";
@@ -16,6 +17,8 @@ in {
       kitty
       feh
       w3m
+      nnn
+      vifm
     ];
   };
   programs.tmux.terminal = "screen-256color";
