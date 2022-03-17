@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
 environment.systemPackages = [ pkgs.xdg-utils ];
 xdg = {
@@ -19,6 +19,7 @@ let
 in
 {
   enable = true;
+  #useDirs.enable = true;
   configHome = "${homeDirectory}/.config";
   dataHome = "${homeDirectory}/.local/share";
   cacheHome = "${homeDirectory}/.cache";

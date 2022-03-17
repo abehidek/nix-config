@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 let 
   colorscheme = import ../theme/colorscheme;
 in 
@@ -118,7 +118,8 @@ in
               bat = "BAT2";
             };
             "custom/power" = {
-              format = " ";
+              format = "{icon}";
+              format-icons = "";
               on-click = "nwgbar -o 0.2";
               escape = true;
               tooltip = false;
