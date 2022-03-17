@@ -4,6 +4,7 @@
   environment = {
     variables.JDK_HOME = "${pkgs.jdk}";
     systemPackages = with pkgs; [
+      onefetch
       # eclipses.eclipse-java 
       # jetbrains.idea-community
       #python39Full
@@ -15,13 +16,15 @@
   home-manager.users.abe = {
     programs = {
       direnv.enable = true;
-      direnv.nix-direnv.enable = true;
+      #direnv.nix-direnv.enable = true;
+
     };
+    services.lorri.enable = true;
   };
-  nix.extraOptions = ''
-    keep-outputs = true
-    keep-derivations = true
-  '';
+  # nix.extraOptions = ''
+  #   keep-outputs = true
+  #   keep-derivations = true
+  # '';
 
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "abe" ];
