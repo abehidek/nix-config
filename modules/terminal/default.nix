@@ -7,18 +7,16 @@ in {
     ./kitty
   ];
   environment = {
-    variables.EDITOR = "vim";
+    variables.EDITOR = "nvim";
     variables.TERM = "kitty";
     systemPackages = with pkgs; [
-      ranger 
+      ranger nnn vifm # File Managers
       file 
       librsvg 
       mpv 
       kitty
-      feh
-      w3m
-      nnn
-      vifm
+      feh w3m
+      neofetch
     ];
   };
   programs.tmux.terminal = "screen-256color";
@@ -31,5 +29,6 @@ in {
         ".config/ranger/scope.sh".source = ./ranger/scope.sh;
       };
     };
+    # programs.ncmpcpp.enable = true;
   };
 }

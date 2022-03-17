@@ -1,31 +1,30 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
+  imports = [
+    ../lunarvim
+  ];
   programs.java = { enable = true; package = pkgs.jdk; };
   environment = {
     variables.JDK_HOME = "${pkgs.jdk}";
     systemPackages = with pkgs; [
+      # Tools
       onefetch
-      # eclipses.eclipse-java 
-      # jetbrains.idea-community
-      #python39Full
-      #python39Packages.pillow
+      github-desktop 
+      
+      # IDE
+      vscode # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
+      
+      # Programming Languages and its Package Managers
+      # python310
       # nodejs
-      # jetbrains.pycharm-community
     ];
   };
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "abe" ];
   home-manager.users.abe = {
     programs = {
       direnv.enable = true;
-      #direnv.nix-direnv.enable = true;
-
     };
     services.lorri.enable = true;
   };
-  # nix.extraOptions = ''
-  #   keep-outputs = true
-  #   keep-derivations = true
-  # '';
-
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "abe" ];
 }

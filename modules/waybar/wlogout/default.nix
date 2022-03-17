@@ -2,9 +2,6 @@
 let
   colorscheme = import ../../theme/colorscheme;
 in {
-  environment = {
-    systemPackages = with pkgs; [];
-  };
   home-manager.users.abe = {
     home = {
       file = {

@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
@@ -17,31 +13,31 @@
 
   # Use the systemd-boot EFI boot loader.
   boot = {
-    kernel.sysctl = { "fs.inotify.max_user_watches" = 524288; }; # https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+    cleanTmpDir = true;
+    kernel.sysctl = { "fs.inotify.max_user_watches" = 524288; };
+    loader = {
+      systemd-boot.enable = true;
+      systemd-boot.editor = false;
+      efi.canTouchEfiVariables = true;
+    };
   };
   
+  # Physical hardware settings and opengl enabled for wayland
   hardware = {
     cpu.intel.updateMicrocode = true;
+    bluetooth.enable = false;
+    pulseaudio.enable = false;
+    sensor.iio.enable = true;
     opengl = {
       enable = true;
       driSupport = true;
       extraPackages = [ pkgs.intel-compute-runtime ];
     };
-    bluetooth.enable = false;
-    pulseaudio.enable = false;
-    sensor.iio.enable = true;
   };
 
   networking = {
     hostName = "flex5i"; # Define your hostname.
     networkmanager.enable = true;
-    # networkmanager.wifi.backend = "iwd";
-    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-    # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-    # Per-interface useDHCP will be mandatory in the future, so this generated config
-    # replicates the default behaviour.
     useDHCP = false;
     interfaces.wlp0s20f3.useDHCP = true;
     # Configure network proxy if necessary
@@ -54,14 +50,9 @@
     # networking.firewall.enable = false;
   };
 
-  # Set your time zone.
+  # Locales config
   time.timeZone = "America/Sao_Paulo";
-
-  # Select internationalisation properties.
-  i18n = {
-    defaultLocale = "pt_BR.UTF-8";
-  };
-  
+  i18n.defaultLocale = "pt_BR.UTF-8";
   console = {
     font = "Lat2-Terminus32";
     keyMap = "br-abnt2";
@@ -72,6 +63,7 @@
   services = {
     # Enable CUPS to print documents.
     # printing.enable = true;
+    
     xserver.libinput.enable = true;
     gnome.gnome-keyring.enable = true;
 
@@ -88,20 +80,20 @@
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
-    };
-    # xserver.wacom.enable = true;
-    
+    };    
   };
 
   fonts = {
     fonts = with pkgs; [ 
+      # Regular fonts
       (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "FiraMono" ]; }) 
       dejavu_fonts font-awesome
+      
+      # Japanese fonts
       rictydiminished-with-firacode
       hanazono ipafont kochi-substitute
     ];
     fontconfig = {
-      # ultimate.enable = true;
       defaultFonts = {
         monospace = [
           "DejaVu Sans Mono"
@@ -119,13 +111,22 @@
     };
   };
   
-  security.rtkit.enable = true;
+  # System security settings
+  security = {
+    rtkit.enable = true;
+    protectKernelImage = true;
+  };
   
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # System's users
   users.users.abe = {
     isNormalUser = true;
     initialPassword = "password";
-    extraGroups = [ "wheel" "video" "audio" "jackaudio" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    shell = pkgs.zsh;
+    extraGroups = [ 
+      "wheel" "video" "audio" 
+      "jackaudio" 
+      "networkmanager"
+    ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -161,4 +162,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
 }
-
