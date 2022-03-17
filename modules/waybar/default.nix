@@ -3,8 +3,11 @@ let
   colorscheme = import ../theme/colorscheme;
 in 
 {
+  imports = [
+    ./wlogout
+  ];
   environment = {
-    systemPackages = with pkgs; [ nwg-launchers ];
+    systemPackages = with pkgs; [ wlogout ];
   };
   home-manager.users.abe = {
     programs.waybar = {
@@ -120,7 +123,7 @@ in
             "custom/power" = {
               format = "{icon}";
               format-icons = "";
-              on-click = "nwgbar -o 0.2";
+              on-click = "${pkgs.wlogout}/bin/wlogout";
               escape = true;
               tooltip = false;
             };

@@ -56,11 +56,17 @@ window#waybar.chromium {
 #pulseaudio,
 #custom-media,
 #tray,
-#custom-power,
 #mpd {
     border-radius: 15px;
     font-family: 'FiraMono Nerd Font';
     padding: 5 15px;
+    margin-left: 3px;
+}
+
+#custom-power {
+    border-radius: 15px;
+    font-family: 'FiraMono Nerd Font';
+    padding: 5 20px;
     margin-left: 3px;
 }
 
