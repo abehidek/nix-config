@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 {
   imports = [
-    ../lunarvim
+    ../nvim
   ];
   programs.java = { enable = true; package = pkgs.jdk; };
   environment = {
@@ -24,6 +24,17 @@
   home-manager.users.abe = {
     programs = {
       direnv.enable = true;
+      git = {
+        enable = true;
+        userName = "abehidek";
+        userEmail = "hidek.abe@outlook.com";
+        extraConfig = {
+            init = { defaultBranch = "main"; };
+        };
+      };
+      gpg = {
+        enable = true;
+      };
     };
     services.lorri.enable = true;
   };
