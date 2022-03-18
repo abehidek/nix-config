@@ -10,7 +10,7 @@ in {
     variables.EDITOR = "nvim";
     variables.TERM = "kitty";
     systemPackages = with pkgs; [
-      ranger nnn vifm # File Managers
+      ranger # File Manager
       file 
       librsvg 
       mpv 
