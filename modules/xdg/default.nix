@@ -20,7 +20,12 @@ let
 in
 {
   enable = true;
-  #useDirs.enable = true;
+  userDirs = {
+    documents = "$HOME/doc";
+    download = "$HOME/dl";
+    music = "$HOME/songs";
+    desktop = "$HOME/ws";
+  };
   configHome = "${homeDirectory}/.config";
   dataHome = "${homeDirectory}/.local/share";
   cacheHome = "${homeDirectory}/.cache";
