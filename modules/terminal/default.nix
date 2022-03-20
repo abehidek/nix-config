@@ -8,15 +8,15 @@ in {
   ];
   environment = {
     variables.EDITOR = "nvim";
+    variables.VISUAL = "nvim";
     variables.TERM = "kitty";
     systemPackages = with pkgs; [
       ranger # File Manager
       file 
       librsvg 
       mpv 
-      kitty
-      feh w3m
-      neofetch
+      kitty feh
+      neofetch pfetch
     ];
   };
   programs.tmux.terminal = "screen-256color";

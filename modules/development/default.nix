@@ -9,7 +9,7 @@
     systemPackages = with pkgs; [
       # Tools
       onefetch
-      github-desktop 
+      #github-desktop 
       
       # IDE
       vscode # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
@@ -19,7 +19,7 @@
       # nodejs
     ];
   };
-  virtualisation.virtualbox.host.enable = true;
+  #virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "abe" ];
   home-manager.users.abe = {
     programs = {

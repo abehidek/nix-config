@@ -15,7 +15,7 @@ programs.sway = {
 home-manager.users.abe.wayland.windowManager.sway =
 let
   buildScript = import ../buildScript.nix;
-  wallpaper = /home/abe/Imagens/nordic-wallpapers/wallpapers/nixos.png ;
+  wallpaper = /home/abe/img/nordic-wallpapers/wallpapers/nixos.png ;
   lockScript = buildScript "lock" ../swaylock/lock {
     bg = wallpaper;
     lock = ../swaylock-effects/lock.svg;

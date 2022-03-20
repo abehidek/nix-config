@@ -24,12 +24,12 @@ in
             # "custom/media"
             "sway/window"
           ];
-          modules-center = [ "clock" ];
+          #modules-center = [ "clock" ];
           modules-right = [ 
             # "mpd" 
             "pulseaudio" 
             "network" "cpu" "memory" "battery" "battery#bat2"
-            "tray" "custom/power" ];
+            "tray" "clock" "custom/power" ];
           modules = {
             "sway/workspaces" = {
               all-outputs = true;

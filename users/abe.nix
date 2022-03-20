@@ -42,6 +42,7 @@ in
       # GUI Applications
       exodus signal-desktop vlc ksnip libreoffice
       ungoogled-chromium brave #firefox
+      gnome.nautilus
     ];
 
     # Services

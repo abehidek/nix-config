@@ -79,6 +79,11 @@
     };    
   };
 
+  environment.variables = {
+    DOTFILES="$HOME/dotfiles";
+    XDG_DATA_HOME="$HOME/.local/share";
+  };
+
   fonts = {
     fonts = with pkgs; [ 
       # Regular fonts
@@ -120,6 +125,7 @@
     vim wget git htop killall
     gnome.seahorse gnome.gnome-keyring libsecret
     brightnessctl pulseaudio-ctl playerctl pavucontrol lm_sensors
+    xdg-utils
     # ffmpeg libmpeg2 libmad libdv a52dec faac faad2 flac jasper lame libtheora libvorbis xorg.libXv opusfile wavpack x264 xvidcore smpeg
     # libwacom xf86_input_wacom
     # xorg.xinput xinput_calibrator foot
