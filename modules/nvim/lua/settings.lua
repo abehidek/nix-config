@@ -1,12 +1,20 @@
 local opt = vim.opt
 local g = vim.g
 
-dofile("/home/abe/.config/nvim/nvim-tree.lua")
+-- dofile("/home/abe/.config/nvim/nvim-tree.lua")
 -- dofile("/home/abe/.config/nvim/treesitter.lua")
-
-g.mapleader = ' '
-
 -- Indentation
+
+local telescope = require('telescope')
+
+telescope.setup {
+    pickers = {
+        find_files = {
+            hidden = true
+        }
+    }
+}
+
 opt.smartindent = true
 opt.autoindent = true
 opt.tabstop = 4
@@ -21,3 +29,4 @@ opt.cursorline = true
 opt.number = true
 
 opt.mouse = "a"
+g.mapleader = ' '
