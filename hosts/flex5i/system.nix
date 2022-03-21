@@ -50,7 +50,9 @@
   time.timeZone = "America/Sao_Paulo";
   i18n.defaultLocale = "pt_BR.UTF-8";
   console = {
-    font = "Lat2-Terminus32";
+    font = "ter-i24b";
+    packages = [ pkgs.terminus_font ];
+    earlySetup = true;
     keyMap = "br-abnt2";
   };
 
@@ -122,7 +124,7 @@
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    vim wget git htop killall
+    nano wget git htop killall
     gnome.seahorse gnome.gnome-keyring libsecret
     brightnessctl pulseaudio-ctl playerctl pavucontrol lm_sensors
     xdg-utils
