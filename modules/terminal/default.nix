@@ -16,7 +16,7 @@ in {
       librsvg 
       mpv 
       kitty feh
-      neofetch pfetch
+      onefetch neofetch pfetch lazygit
     ];
   };
   programs.tmux.terminal = "screen-256color";

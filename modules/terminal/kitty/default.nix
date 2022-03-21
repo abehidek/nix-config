@@ -9,8 +9,7 @@ in {
   home-manager.users.abe = {
     programs.kitty = {
       enable = true;
-      font.package = pkgs.fira-mono;
-      font.name = "Fira Mono";
+      font.name = "FuraMono Nerd Font";
       # theme = "Nord";
       settings = {
         window_padding_width  = 10;

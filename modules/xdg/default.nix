@@ -8,7 +8,8 @@ xdg = {
     gtkUsePortal = true;
   };
   mime.defaultApplications = {
-    #"image/jpeg" = "chromium-browser.desktop";
+    "image/jpeg" = "feh.desktop";
+    "image/png" = "feh.desktop";
     "inode/directory" = "ranger.desktop";
     "application/x-directory" = "ranger.desktop";
   };

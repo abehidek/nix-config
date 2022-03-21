@@ -8,9 +8,7 @@
     variables.JDK_HOME = "${pkgs.jdk}";
     systemPackages = with pkgs; [
       # Tools
-      onefetch
-      #github-desktop 
-      
+      # github-desktop 
       # IDE
       vscode # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
       
