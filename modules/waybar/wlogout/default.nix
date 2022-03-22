@@ -48,7 +48,8 @@ in {
             background-image: none;
           }
           window {
-            background-color: rgba(12, 12, 12, 0.1);
+            /* background-color: transparent; */
+            background-color: rgba(12, 12, 12, 0.9);
           }
           button {
             color: #FFFFFF;
@@ -61,7 +62,7 @@ in {
           }
 
           button:focus, button:active, button:hover {
-            background-color: ${colorscheme.base08};
+            background-color: ${colorscheme.base04};
             /* background-color: #3700B3; */
             outline-style: none;
           }

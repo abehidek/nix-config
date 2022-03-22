@@ -23,9 +23,9 @@ programs.sway = {
 home-manager.users.abe.wayland.windowManager.sway =
 let
   buildScript = import ../buildScript.nix;
-  wallpaper = /home/abe/img/nordic-wallpapers/wallpapers/ign_sunAndClouds.png ;
+  wallpaper = import ../theme/wallpaper.nix;
   lockScript = buildScript "lock" ../swaylock/lock {
-    bg = wallpaper;
+    bg = wallpaper.bg;
     lock = ../swaylock-effects/lock.svg;
     swaylock = "${pkgs.swaylock-effects}/bin/swaylock";
   };
@@ -96,7 +96,7 @@ in
       map_to_output = "eDP-1";
     };
     # theming
-    output."*" = { bg = "${wallpaper} fill"; };
+    output."*" = { bg = "${wallpaper.bg} fill"; };
     gaps.outer = 10;
     gaps.inner = 10;
     #client.focused #eb52eb #eb52eb #eb52eb #eb52eb;
@@ -124,7 +124,7 @@ in
     export CLUTTER_BACKEND=wayland
     export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
     export QT_QPA_PLATFORM=wayland-egl
-    export QT_QPA_PLATFORMTHEME=gtk3
+    export QT_QPA_PLATFORMTHEME=qt5ct
     export ECORE_EVAS_ENGINE=wayland-egl
     export ELM_ENGINE=wayland_egl
     export SDL_VIDEODRIVER=wayland
