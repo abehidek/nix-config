@@ -29,6 +29,11 @@ in {
         ".config/ranger/scope.sh".source = ./ranger/scope.sh;
       };
     };
+    programs.fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    
     # programs.ncmpcpp.enable = true;
   };
 }

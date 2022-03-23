@@ -8,7 +8,10 @@ in
     home = {
       file = {
         ".config/nvim/settings.lua".source = ./lua/settings.lua;
-        ".config/nvim/nvim-tree.lua".source = ./lua/nvim-tree.lua;
+        ".config/nvim/keymaps.lua".source = ./lua/keymaps.lua;
+
+        ".config/nvim/plugins/nvim-tree.lua".source = ./lua/plugins/nvim-tree.lua;
+        ".config/nvim/plugins/telescope.lua".source = ./lua/plugins/telescope.lua;
         #".config/nvim/treesitter.lua".source = ./lua/treesitter.lua;
       };
     };
@@ -17,20 +20,11 @@ in
       package = unstable.neovim-unwrapped;
       vimAlias = true;
       viAlias = true;
-
+      withRuby = true;
       withNodeJs = true;
       withPython3 = true;
-      #withRuby = true;
-
-      extraConfig = ''
-        luafile $XDG_CONFIG_HOME/nvim/settings.lua
-        colorscheme nord
-        let g:airline_theme='base16_nord'
-      '';
-
-        # nmap <C-p> :NvimTreeToggle <CR>
-        # map ; :
       plugins = with pkgs.vimPlugins; [
+        
         indent-blankline-nvim
         toggleterm-nvim
 
@@ -43,9 +37,10 @@ in
         vim-airline-clock
         vim-airline-themes
 
+        # Tree
         # nerdtree
-        nerdtree
-        nerdtree-git-plugin
+        # nerdtree-git-plugin
+        nvim-tree-lua
         
         # git
         lazygit-nvim
@@ -54,6 +49,7 @@ in
         # utils
         telescope-nvim
         vim-polyglot
+        markdown-preview-nvim
 
         # langs
         vim-elixir
@@ -61,8 +57,12 @@ in
         vim-javascript
         haskell-vim
         dart-vim-plugin
+        vim-flutter
         rust-vim
       ];
+      extraConfig = ''
+        luafile $XDG_CONFIG_HOME/nvim/settings.lua
+      '';
     };
   };
 }
