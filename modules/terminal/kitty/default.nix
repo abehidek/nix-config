@@ -9,7 +9,8 @@ in {
   home-manager.users.abe = {
     programs.kitty = {
       enable = true;
-      font.name = "FuraMono Nerd Font";
+      font.name = "FuraMono";
+      font.size = 18;
       # theme = "Nord";
       settings = {
         window_padding_width  = 10;

@@ -12,6 +12,7 @@ in
 
         ".config/nvim/plugins/nvim-tree.lua".source = ./lua/plugins/nvim-tree.lua;
         ".config/nvim/plugins/telescope.lua".source = ./lua/plugins/telescope.lua;
+        ".config/nvim/plugins/cmp.lua".source = ./lua/plugins/cmp.lua;
         #".config/nvim/treesitter.lua".source = ./lua/treesitter.lua;
       };
     };
@@ -31,6 +32,7 @@ in
         # theme
         nord-nvim
         vimade
+        vim-startify
 
         # air line
         vim-airline
@@ -50,6 +52,17 @@ in
         telescope-nvim
         vim-polyglot
         markdown-preview-nvim
+
+        # cmp
+        nvim-cmp
+        cmp-buffer
+        cmp-path
+        cmp-cmdline
+        cmp_luasnip
+
+        # snippets
+        luasnip
+        friendly-snippets
 
         # langs
         vim-elixir
