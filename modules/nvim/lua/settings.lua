@@ -54,6 +54,7 @@ for k, v in pairs(options) do
 vim.opt[k] = v
 end
 
+cmd "autocmd BufEnter * silent! lcd %:p:h"
 cmd "set whichwrap+=<,>,[,],h,l"
 cmd [[set iskeyword+=-]]
 cmd "colorscheme nord"

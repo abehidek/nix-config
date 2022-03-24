@@ -9,12 +9,11 @@ in
       file = {
         ".config/nvim/settings.lua".source = ./lua/settings.lua;
         ".config/nvim/keymaps.lua".source = ./lua/keymaps.lua;
-
         ".config/nvim/plugins/nvim-tree.lua".source = ./lua/plugins/nvim-tree.lua;
         ".config/nvim/plugins/telescope.lua".source = ./lua/plugins/telescope.lua;
         ".config/nvim/plugins/cmp.lua".source = ./lua/plugins/cmp.lua;
-        #".config/nvim/treesitter.lua".source = ./lua/treesitter.lua;
-      };
+        # ".config/nvim/treesitter.lua".source = ./lua/treesitter.lua;
+      };      
     };
     programs.neovim = {
       enable = true;
@@ -24,8 +23,7 @@ in
       withRuby = true;
       withNodeJs = true;
       withPython3 = true;
-      plugins = with pkgs.vimPlugins; [
-        
+      plugins = with unstable.vimPlugins; [
         indent-blankline-nvim
         toggleterm-nvim
 
@@ -43,6 +41,7 @@ in
         # nerdtree
         # nerdtree-git-plugin
         nvim-tree-lua
+        nvim-web-devicons
         
         # git
         lazygit-nvim
@@ -52,13 +51,17 @@ in
         telescope-nvim
         vim-polyglot
         markdown-preview-nvim
+        direnv-vim
 
-        # cmp
+        # cmp and lsp
         nvim-cmp
         cmp-buffer
         cmp-path
         cmp-cmdline
         cmp_luasnip
+
+        nvim-lspconfig
+        cmp-nvim-lsp
 
         # snippets
         luasnip
@@ -72,6 +75,13 @@ in
         dart-vim-plugin
         vim-flutter
         rust-vim
+      ];
+      extraPackages = with unstable; [
+        nodePackages.pyright
+        sumneko-lua-language-server
+        nodePackages.typescript-language-server
+        rust-analyzer
+        rnix-lsp
       ];
       extraConfig = ''
         luafile $XDG_CONFIG_HOME/nvim/settings.lua

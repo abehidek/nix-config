@@ -42,6 +42,7 @@ in
     # startup programs and scripts
     startup = [
       { command = "dropbox start";}
+      { command = "lorri daemon"; }
       { command = "${pkgs.autotiling}/bin/autotiling";}
       { command = "${import-gsettingsScript}/bin/import-gsettings"; always = true; }
       { command = "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"; }
@@ -50,7 +51,6 @@ in
       { command = "pacmd 'set-default-source alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0002.hw_sofhdadsp_6__source'"; }
       # { command = "pacmd 'set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0001.hw_sofhdadsp__sink'"; }
       { command = "pacmd 'set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0002.hw_sofhdadsp__sink'"; }
-      { command = "lorri daemon"; }
     ];
     menu = "${pkgs.wofi}/bin/wofi --show run swaymsg exec --";
     terminal = "${pkgs.kitty}/bin/kitty";
