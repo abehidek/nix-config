@@ -116,6 +116,12 @@
   
   # System security settings
   security = {
+    doas.enable = true;
+    doas.extraRules = [{ 
+        groups = [ "doas" "wheel" ]; 
+        keepEnv = true; 
+    }];
+    sudo.enable = false;
     rtkit.enable = true;
     protectKernelImage = true;
   };

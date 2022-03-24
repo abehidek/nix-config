@@ -19,7 +19,8 @@ in
     initialPassword = "password";
     shell = pkgs.zsh;
     extraGroups = [ 
-      "wheel" "video" "audio" 
+      "wheel" "doas" 
+      "video" "audio" 
       "jackaudio" 
       "networkmanager"
     ];
@@ -31,6 +32,9 @@ in
     # You can update Home Manager without changing this value. See
     # the Home Manager release notes for a list of state version
     # changes in each release.
+    imports = [
+      ./firefox.nix
+    ];
     home.stateVersion = "21.11";
     home.username = "abe";
     home.homeDirectory = "/home/abe";
@@ -42,7 +46,6 @@ in
       # GUI Applications
       exodus signal-desktop vlc ksnip libreoffice
       ungoogled-chromium brave #firefox
-      gnome.nautilus
     ];
 
     # Services
