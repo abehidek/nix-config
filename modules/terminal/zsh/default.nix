@@ -12,13 +12,15 @@ in {
   home-manager.users.abe = {
     programs.zsh = {
       enable = true;
-      initExtra = ''
+      initExtraFirst = ''
         any-nix-shell zsh --info-right | source /dev/stdin
+        source $DOTFILES/scripts/ifcd.sh
       '';
+      # 
       enableCompletion = true;
       history = {
         size = 5000;
-        path = "$HOME/.local/share/zsh/history";
+        path = "$XDG_DATA_HOME/zsh/history";
       };
       oh-my-zsh = {
         enable = true;

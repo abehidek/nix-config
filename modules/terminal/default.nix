@@ -11,12 +11,12 @@ in {
     variables.VISUAL = "nvim";
     variables.TERM = "kitty";
     systemPackages = with pkgs; [
-      ranger # File Manager
+      ranger lf# File Manager
       file 
       librsvg 
       mpv 
       kitty feh
-      onefetch neofetch pfetch lazygit
+      onefetch neofetch lazygit tree
     ];
   };
   programs.tmux.terminal = "screen-256color";
