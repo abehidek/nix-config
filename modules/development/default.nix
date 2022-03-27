@@ -3,9 +3,9 @@
   imports = [
     ../nvim
   ];
-  programs.java = { enable = true; package = pkgs.jdk; };
+  #programs.java = { enable = true; package = pkgs.jdk; };
   environment = {
-    variables.JDK_HOME = "${pkgs.jdk}";
+    # variables.JDK_HOME = "${pkgs.jdk}";
     systemPackages = with pkgs; [
       # Tools
       # github-desktop 

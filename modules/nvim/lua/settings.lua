@@ -3,12 +3,19 @@ local cmd = vim.cmd
 
 local configdir = tostring(os.getenv("XDG_CONFIG_HOME"))
 
--- dofile("/home/abe/.config/nvim/treesitter.lua")
 dofile(configdir .. "/nvim/keymaps.lua")
 
 dofile(configdir .. "/nvim/plugins/nvim-tree.lua")
 dofile(configdir .. "/nvim/plugins/telescope.lua")
 dofile(configdir .. "/nvim/plugins/cmp.lua")
+-- dofile(configdir .. "/nvim/plugins/treesitter.lua")
+
+require'nvim-treesitter.configs'.setup {
+    ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    highlight = {
+        enable = true
+    },
+}
 
 -- Indentation
 
@@ -43,7 +50,7 @@ local options = {
     relativenumber = false,                  -- set relative numbered lines
     numberwidth = 4,                         -- set number column width to 2 {default 4}
     signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
-    wrap = false,                            -- display lines as one long line
+    wrap = true,                            -- display lines as one long line
     scrolloff = 8,                           -- is one of my fav
     sidescrolloff = 8,
     --guifont = "monospace:h17",               -- the font used in graphical neovim applications

@@ -12,9 +12,13 @@ in
         ".config/nvim/plugins/nvim-tree.lua".source = ./lua/plugins/nvim-tree.lua;
         ".config/nvim/plugins/telescope.lua".source = ./lua/plugins/telescope.lua;
         ".config/nvim/plugins/cmp.lua".source = ./lua/plugins/cmp.lua;
-        # ".config/nvim/treesitter.lua".source = ./lua/treesitter.lua;
-      };      
+        ".config/nvim/plugins/treesitter.lua".source = ./lua/plugins/treesitter.lua;
+      };     
+      sessionVariables = {
+        JAVALSP = "${unstable.java-language-server}";
+      };
     };
+    
     programs.neovim = {
       enable = true;
       package = unstable.neovim-unwrapped;
@@ -24,13 +28,12 @@ in
       withNodeJs = true;
       withPython3 = true;
       plugins = with unstable.vimPlugins; [
-        indent-blankline-nvim
-        toggleterm-nvim
-
         # theme
+        indent-blankline-nvim
         nord-nvim
         vimade
         vim-startify
+        nvim-treesitter
 
         # air line
         vim-airline
@@ -52,6 +55,7 @@ in
         vim-polyglot
         markdown-preview-nvim
         direnv-vim
+        toggleterm-nvim
 
         # cmp and lsp
         nvim-cmp
@@ -59,7 +63,7 @@ in
         cmp-path
         cmp-cmdline
         cmp_luasnip
-
+        vim-lsc
         nvim-lspconfig
         cmp-nvim-lsp
 
@@ -82,6 +86,10 @@ in
         nodePackages.typescript-language-server
         rust-analyzer
         rnix-lsp
+        haskell-language-server
+        java-language-server
+        nodePackages.vue-language-server
+        clang
       ];
       extraConfig = ''
         luafile $XDG_CONFIG_HOME/nvim/settings.lua
