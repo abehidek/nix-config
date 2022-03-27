@@ -64,6 +64,7 @@
     
     xserver.libinput.enable = true;
     gnome.gnome-keyring.enable = true;
+    fstrim.enable = true;
 
     tlp = {
       enable = true;
