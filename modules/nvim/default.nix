@@ -12,13 +12,13 @@ in
         ".config/nvim/plugins/nvim-tree.lua".source = ./lua/plugins/nvim-tree.lua;
         ".config/nvim/plugins/telescope.lua".source = ./lua/plugins/telescope.lua;
         ".config/nvim/plugins/cmp.lua".source = ./lua/plugins/cmp.lua;
-        ".config/nvim/plugins/treesitter.lua".source = ./lua/plugins/treesitter.lua;
+        ".config/nvim/plugins/toggleterm.lua".source = ./lua/plugins/toggleterm.lua;
+        ".config/nvim/plugins/bufferline.lua".source = ./lua/plugins/bufferline.lua;
       };     
       sessionVariables = {
         JAVALSP = "${unstable.java-language-server}";
       };
-    };
-    
+    };   
     programs.neovim = {
       enable = true;
       package = unstable.neovim-unwrapped;
@@ -34,29 +34,25 @@ in
         vimade
         vim-startify
         nvim-treesitter
-
         # air line
         vim-airline
         vim-airline-clock
         vim-airline-themes
-
+        # buffers
+        bufferline-nvim
+        vim-bbye
         # Tree
-        # nerdtree
-        # nerdtree-git-plugin
         nvim-tree-lua
         nvim-web-devicons
-        
         # git
         lazygit-nvim
         vim-signify
-
         # utils
         telescope-nvim
-        vim-polyglot
+        # vim-polyglot
         markdown-preview-nvim
         direnv-vim
         toggleterm-nvim
-
         # cmp and lsp
         nvim-cmp
         cmp-buffer
@@ -66,19 +62,17 @@ in
         vim-lsc
         nvim-lspconfig
         cmp-nvim-lsp
-
         # snippets
         luasnip
         friendly-snippets
-
         # langs
-        vim-elixir
+        # vim-elixir
         vim-nix
         vim-javascript
-        haskell-vim
+        # haskell-vim
         dart-vim-plugin
         vim-flutter
-        rust-vim
+        # rust-vim
       ];
       extraPackages = with unstable; [
         nodePackages.pyright
@@ -97,3 +91,4 @@ in
     };
   };
 }
+

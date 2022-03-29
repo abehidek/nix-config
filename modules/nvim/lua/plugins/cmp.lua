@@ -1,12 +1,12 @@
 require("luasnip/loaders/from_vscode").lazy_load()
 require'lspconfig'.rnix.setup{}
 require'lspconfig'.pyright.setup{}
-require'lspconfig'.rust_analyzer.setup{}
+-- require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.java_language_server.setup{
   cmd = { tostring(os.getenv("JAVALSP")) .. "/share/java/java-language-server/lang_server_linux.sh" }
 }
-require'lspconfig'.hls.setup{}
+-- require'lspconfig'.hls.setup{}
 require'lspconfig'.vuels.setup{}
 require'lspconfig'.dartls.setup{
   cmd = { "dart", tostring(os.getenv("DART_SDK")) .. "/bin/snapshots/analysis_server.dart.snapshot", "--lsp" };
@@ -149,51 +149,24 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 require'lspconfig'.sumneko_lua.setup {
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
-    settings = {
-        Lua = {
-            runtime = {
-                version = 'LuaJIT',
-                path = runtime_path,
-            },
-            diagnostics = {
-                globals = {'vim'},
-            },
-            workspace = {
-                library = vim.api.nvim_get_runtime_file("", true),
-                preloadFileSize = 120
-            },
-            telemetry = {
-                enable = false,
-            },
-        },
+  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+        path = runtime_path,
+      },
+      diagnostics = {
+        globals = {'vim'},
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+        preloadFileSize = 120
+      },
+      telemetry = {
+        enable = false,
+      },
     },
+  },
 }
--- 'local runtime_path = vim.split(package.path, ';')
--- table.insert(runtime_path, "lua/?.lua")
--- table.insert(runtime_path, "lua/?/init.lua")
 
--- require'lspconfig'.sumneko_lua.setup {
---   settings = {
---     Lua = {
---       runtime = {
---         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
---         version = 'LuaJIT',
---         -- Setup your lua path
---         path = runtime_path,
---       },
---       diagnostics = {
---         -- Get the language server to recognize the `vim` global
---         globals = {'vim'},
---       },
---       workspace = {
---         -- Make the server aware of Neovim runtime files
---         library = vim.api.nvim_get_runtime_file("", true),
---       },
---       -- Do not send telemetry data containing a randomized but unique identifier
---       telemetry = {
---         enable = false,
---       },
---     },
---   },
--- }'

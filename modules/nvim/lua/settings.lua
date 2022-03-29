@@ -8,7 +8,8 @@ dofile(configdir .. "/nvim/keymaps.lua")
 dofile(configdir .. "/nvim/plugins/nvim-tree.lua")
 dofile(configdir .. "/nvim/plugins/telescope.lua")
 dofile(configdir .. "/nvim/plugins/cmp.lua")
--- dofile(configdir .. "/nvim/plugins/treesitter.lua")
+dofile(configdir .. "/nvim/plugins/toggleterm.lua")
+dofile(configdir .. "/nvim/plugins/bufferline.lua")
 
 require'nvim-treesitter.configs'.setup {
     ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -66,3 +67,4 @@ cmd "set whichwrap+=<,>,[,],h,l"
 cmd [[set iskeyword+=-]]
 cmd "colorscheme nord"
 cmd "let g:airline_theme='base16_nord'"
+-- cmd "highlight NvimTreeNormal guibg=#1C1C1C"
