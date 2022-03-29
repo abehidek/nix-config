@@ -46,6 +46,7 @@ in
       # GUI Applications
       exodus signal-desktop vlc ksnip libreoffice
       ungoogled-chromium brave #firefox
+      unstable.rpi-imager
     ];
 
     # Services

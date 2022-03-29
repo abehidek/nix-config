@@ -16,10 +16,9 @@ in {
       librsvg 
       mpv 
       kitty feh
-      onefetch neofetch lazygit tree
+      onefetch neofetch lazygit tree ncdu
     ];
   };
-  programs.tmux.terminal = "screen-256color";
   home-manager.users.abe = {
     home = {
       file = {

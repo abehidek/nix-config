@@ -30,6 +30,9 @@
             init = { defaultBranch = "main"; };
         };
       };
+      gh = {
+        enable = true;
+      };
       gpg = {
         enable = true;
       };

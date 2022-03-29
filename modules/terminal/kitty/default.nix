@@ -10,7 +10,7 @@ in {
     programs.kitty = {
       enable = true;
       font.name = "FuraMono";
-      font.size = 14;
+      font.size = 12;
       # theme = "Nord";
       settings = {
         window_padding_width  = 10;
