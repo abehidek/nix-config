@@ -56,3 +56,6 @@ Also, if someone is interest I would love to chat about this topic since I have 
 - https://github.com/alternateved/nixos-config
 - https://github.com/darch7/swaywm
 
+##### Configuring Neovim from scratch
+- https://github.com/notusknot/dotfiles-nix
+- https://www.youtube.com/c/ChrisAtMachine
