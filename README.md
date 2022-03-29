@@ -1,8 +1,9 @@
 # System Dotfiles
-[![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
+### Using:
 [![NixOS](https://img.shields.io/badge/os-nixos-blue)](https://nixos.org/)
-[![Sway](https://img.shields.io/badge/wm-sway-green)](https://swaywm.org/)
+[![Nix](https://img.shields.io/badge/lang-nix-purple)](https://builtwithnix.org/)
+[![Sway](https://img.shields.io/badge/wm-sway-green)](https://swaywm.org/) 
 
 ### About
 
