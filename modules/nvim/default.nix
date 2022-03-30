@@ -37,53 +37,59 @@ in
       withNodeJs = true;
       withPython3 = true;
       plugins = with unstable.vimPlugins; [
-        # theme
+      # -- theme and appearance
         indent-blankline-nvim
         nord-nvim
         vimade
         vim-startify
-        nvim-treesitter
-        # air line
-        vim-airline
-        vim-airline-clock
-        vim-airline-themes
-        # buffers
-        bufferline-nvim
-        vim-bbye
-        # Tree
-        nvim-tree-lua
-        nvim-web-devicons
-        # git
-        lazygit-nvim
-        vim-signify
-        # utils
-        telescope-nvim
-        telescope-media-files-nvim
-        vim-rooter        
-        # vim-polyglot
+        # -- air line
+          vim-airline
+          vim-airline-clock
+          vim-airline-themes
+      # -- utils
+        vim-rooter
         markdown-preview-nvim
         direnv-vim
         toggleterm-nvim
-        # cmp and lsp
-        nvim-cmp
-        cmp-buffer
-        cmp-path
-        cmp-cmdline
-        cmp_luasnip
-        vim-lsc
-        nvim-lspconfig
-        cmp-nvim-lsp
-        # snippets
-        luasnip
-        friendly-snippets
-        # langs
-        # vim-elixir
-        vim-nix
-        vim-javascript
-        # haskell-vim
-        dart-vim-plugin
-        vim-flutter
-        # rust-vim
+        # -- telescope
+          telescope-nvim
+          telescope-media-files-nvim
+        # -- buffers
+          bufferline-nvim
+          vim-bbye
+        # -- tree
+          nvim-tree-lua
+          nvim-web-devicons
+        # --git
+          lazygit-nvim
+          vim-signify
+      # -- language support
+        # -- cmp and lsp
+          nvim-cmp
+          cmp-buffer
+          cmp-path
+          cmp-cmdline
+          cmp_luasnip
+          vim-lsc
+          nvim-lspconfig
+          cmp-nvim-lsp
+        # -- dap
+          nvim-dap
+          telescope-dap-nvim
+        # -- highlighting
+          nvim-treesitter
+          # vim-polyglot
+        # -- snippets
+          luasnip
+          friendly-snippets
+        # -- languages
+          # vim-elixir
+          vim-nix
+          vim-javascript
+          # haskell-vim
+          dart-vim-plugin
+          vim-flutter
+          # rust-vim
       ];
       extraPackages = with unstable; [
         ueberzug ripgrep
