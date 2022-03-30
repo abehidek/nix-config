@@ -2,6 +2,15 @@
 let
   colorscheme = import ../theme/colorscheme;
   unstable = import (builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz) { config = config.nixpkgs.config; };
+  telescope-media-files-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "telescope-media-files-nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "nvim-telescope";
+      repo = "telescope-media-files.nvim";
+      rev = "master";
+      sha256 = "1ap3ijh64ynyxzbc62ijfkbwasv506i17pc65bh3w4dfpzn6rlpy";
+    };
+  };
 in
 {
   home-manager.users.abe = {
@@ -49,6 +58,8 @@ in
         vim-signify
         # utils
         telescope-nvim
+        telescope-media-files-nvim
+        vim-rooter        
         # vim-polyglot
         markdown-preview-nvim
         direnv-vim
@@ -75,6 +86,7 @@ in
         # rust-vim
       ];
       extraPackages = with unstable; [
+        ueberzug ripgrep
         nodePackages.pyright
         sumneko-lua-language-server
         nodePackages.typescript-language-server
