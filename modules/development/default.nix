@@ -3,6 +3,10 @@
   imports = [
     ../nvim
   ];
+  services = {
+    mysql.enable = true;
+    mysql.package = pkgs.mysql80;
+  };
   #programs.java = { enable = true; package = pkgs.jdk; };
   environment = {
     # variables.JDK_HOME = "${pkgs.jdk}";
