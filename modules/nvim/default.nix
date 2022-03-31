@@ -95,7 +95,13 @@ in
         ueberzug ripgrep
         nodePackages.pyright
         sumneko-lua-language-server
+        # nodePackages.typescript-language-server
+        nodePackages.typescript
         nodePackages.typescript-language-server
+        # nodePackages.eslint
+        # nodePackages.vscode-langservers-extracted
+        # yarn flow
+        # pkgs.nodePackages.stylelint
         rust-analyzer
         rnix-lsp
         haskell-language-server

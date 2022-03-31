@@ -13,6 +13,7 @@ in {
       font.size = 12;
       # theme = "Nord";
       settings = {
+        allow_remote_control = false;
         window_padding_width  = 10;
         foreground            = "#D8DEE9";
         background            = "#2E3440";

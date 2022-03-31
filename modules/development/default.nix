@@ -11,7 +11,8 @@
       # github-desktop 
       # IDE
       vscode # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
-      
+      #nodePackages.stylelint
+      nodePackages.typescript-language-server
       # Programming Languages and its Package Managers
       # python310
       # nodejs

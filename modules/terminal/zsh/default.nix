@@ -15,6 +15,7 @@ in {
       initExtraFirst = ''
         any-nix-shell zsh --info-right | source /dev/stdin
         source $DOTFILES/scripts/ifcd.sh
+        alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
       '';
       # 
       enableCompletion = true;

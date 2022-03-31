@@ -83,7 +83,7 @@ home-manager.users.abe = {
         XF86MonBrightnessDown = "${light} set 5%-";
         XF86MonBrightnessUp = "${light} set +5%";
         "${mod}+l" = "exec ${lockScript}/bin/lock";
-        "${mod}+e" = "exec ${terminal} ranger";
+        #"${mod}+e" = "exec ${terminal} ranger";
       };
       input."type:keyboard" = {
         xkb_layout = "br";

@@ -3,6 +3,8 @@ require'lspconfig'.rnix.setup{}
 require'lspconfig'.pyright.setup{}
 -- require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.tsserver.setup{}
+-- require'lspconfig'.eslint.setup{}
+--require'lspconfig'.flow.setup{}
 require'lspconfig'.java_language_server.setup{
   cmd = { tostring(os.getenv("JAVALSP")) .. "/share/java/java-language-server/lang_server_linux.sh" }
 }
