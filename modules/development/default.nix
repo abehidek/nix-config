@@ -16,7 +16,19 @@
       # IDE
       vscode # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
       #nodePackages.stylelint
+      # -- Language Servers
       nodePackages.typescript-language-server
+        ripgrep
+        nodePackages.pyright
+        sumneko-lua-language-server 
+        # pkgs.nodePackages.stylelint
+        rust-analyzer
+        rnix-lsp
+        haskell-language-server
+        nodePackages.svelte-language-server
+        java-language-server
+        # nodePackages.vue-language-server
+        clang
       # Programming Languages and its Package Managers
       # python310
       # nodejs

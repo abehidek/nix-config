@@ -3,6 +3,7 @@ require'lspconfig'.rnix.setup{}
 require'lspconfig'.pyright.setup{}
 -- require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.tsserver.setup{}
+require'lspconfig'.svelte.setup{}
 -- require'lspconfig'.eslint.setup{}
 --require'lspconfig'.flow.setup{}
 require'lspconfig'.java_language_server.setup{

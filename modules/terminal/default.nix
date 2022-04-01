@@ -11,7 +11,7 @@ in {
     variables.VISUAL = "nvim";
     variables.TERM = "kitty";
     systemPackages = with pkgs; [
-      ranger lf# File Manager
+      ranger #lf# File Manager
       file 
       librsvg 
       mpv 
