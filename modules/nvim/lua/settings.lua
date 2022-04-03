@@ -8,6 +8,7 @@ dofile(configdir .. "/nvim/keymaps.lua")
 dofile(configdir .. "/nvim/plugins/nvim-tree.lua")
 dofile(configdir .. "/nvim/plugins/telescope.lua")
 dofile(configdir .. "/nvim/plugins/cmp.lua")
+dofile(configdir .. "/nvim/plugins/lsp.lua")
 dofile(configdir .. "/nvim/plugins/toggleterm.lua")
 dofile(configdir .. "/nvim/plugins/bufferline.lua")
 
