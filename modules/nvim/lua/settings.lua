@@ -73,5 +73,6 @@ cmd "let g:airline_powerline_fonts = 1"
 cmd "set breakindent"
 cmd "set formatoptions=l"
 cmd "set lbr"
+cmd "set hidden"
 -- cmd "highlight NvimTreeNormal guibg=#1C1C1C"
 

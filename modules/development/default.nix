@@ -1,18 +1,11 @@
 { config, pkgs, ... }:
 let 
-  unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
+  unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { config.allowUnfree = true; };
 in
 {
   services = {
     mysql.enable = true;
     mysql.package = pkgs.mysql80;
-  };
-  environment = {
-    # variables.JDK_HOME = "${pkgs.jdk}";
-    systemPackages = with pkgs; [
-      # -- IDE
-      vscode # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
-    ];
   };
   #virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "abe" ];
@@ -20,6 +13,11 @@ in
     imports = [
       ../nvim
     ];
+    home = {
+      packages = with unstable; [
+        vscode # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
+      ];
+    };
     programs = {
       direnv.enable = true;
       git = {
@@ -40,3 +38,4 @@ in
     services.lorri.enable = true;
   };
 }
+
