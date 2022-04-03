@@ -82,6 +82,7 @@ in
           nvim-web-devicons
         # --git
           vim-signify
+          vim-fugitive
       # -- language support
         # -- cmp and lsp
           nvim-cmp
