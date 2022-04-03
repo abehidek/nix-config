@@ -48,6 +48,8 @@ in
       exodus signal-desktop vlc ksnip libreoffice gnome.nautilus
       ungoogled-chromium brave #firefox
       unstable.rpi-imager
+      unstable.tetrio-desktop
+      shared-mime-info
     ];
 
     # Services
