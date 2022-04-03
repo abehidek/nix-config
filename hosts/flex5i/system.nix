@@ -56,16 +56,18 @@
     keyMap = "br-abnt2";
   };
 
+  # List services that you want to enable:
   nix.autoOptimiseStore = true;
 
   services = {
     # Enable CUPS to print documents.
-    # printing.enable = true;
-    
+    # printing.enable = true; 
+    # Enable the OpenSSH daemon.
+    openssh.enable = true;
     xserver.libinput.enable = true;
     gnome.gnome-keyring.enable = true;
     fstrim.enable = true;
-
+    gvfs.enable = true;
     tlp = {
       enable = true;
       settings = {
@@ -84,7 +86,7 @@
 
   environment.variables = {
     DOTFILES="$HOME/dotfiles";
-    XDG_DATA_HOME="$HOME/.local/share";
+    # XDG_DATA_HOME="$HOME/.local/share";
   };
 
   fonts = {
@@ -131,7 +133,7 @@
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    nano wget git htop killall
+    vim wget git htop killall
     gnome.seahorse gnome.gnome-keyring libsecret
     brightnessctl pulseaudio-ctl playerctl pavucontrol lm_sensors
     xdg-utils
@@ -149,11 +151,6 @@
       enableSSHSupport = true;
     };
   };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

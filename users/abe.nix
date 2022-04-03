@@ -2,6 +2,7 @@
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz";
   unstable = import (builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz) { config = config.nixpkgs.config; };
+  homeDir = "/home/abe";
 in
 {
   imports = [
@@ -37,19 +38,20 @@ in
     ];
     home.stateVersion = "21.11";
     home.username = "abe";
-    home.homeDirectory = "/home/abe";
+    home.homeDirectory = "${homeDir}";
     programs.home-manager.enable = true;
 
     # User packages
     nixpkgs.config.allowUnfree = true;
     home.packages = with pkgs;  [
       # GUI Applications
-      exodus signal-desktop vlc ksnip libreoffice
+      exodus signal-desktop vlc ksnip libreoffice gnome.nautilus
       ungoogled-chromium brave #firefox
       unstable.rpi-imager
     ];
 
     # Services
     services.dropbox.enable = true;
+    services.dropbox.path = "${homeDir}/drop/Dropbox";
   };
 }

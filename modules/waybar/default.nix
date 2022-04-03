@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 let 
   colorscheme = import ../theme/colorscheme;
+  unstable = import (builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz) { config = config.nixpkgs.config; };
 in 
 {
   imports = [
@@ -11,7 +12,8 @@ in
   };
   home-manager.users.abe = {
     programs.waybar = {
-        enable = true;
+      enable = true;
+      package = unstable.waybar;
         settings = [{
           height = 35;
           margin-bottom = 5;
@@ -36,15 +38,24 @@ in
               disable-scroll = true;
               format = "  {icon}  ";
               format-icons = {
-                "1" = "壱";
-                "2" = "弐";
-                "3" = "参";
-                "4" = "肆";
-                "5" = "伍";
-                "6" = "陸";
-                "7" = "漆";
-                "8" = "捌";
-                "9" = "玖";
+                # "1" = "壱";
+                # "2" = "弐";
+                # "3" = "参";
+                # "4" = "肆";
+                # "5" = "伍";
+                # "6" = "陸";
+                # "7" = "漆";
+                # "8" = "捌";
+                # "9" = "玖";
+                "1" = "一";
+                "2" = "二";
+                "3" = "三";
+                "4" = "四";
+                "5" = "五";
+                "6" = "六";
+                "7" = "七";
+                "8" = "八";
+                "9" = "九";
                 focused = "";
                 urgent = "";
                 default = "";
@@ -129,6 +140,8 @@ in
             };
           };
         }];
+        # background-color: ${colorscheme.base06};
+        # color: ${colorscheme.base00};
         style = ''
           ${builtins.readFile ./style.css}
           .modules-left {
@@ -147,8 +160,6 @@ in
             color: #ffffff;
           }
           #workspaces button:hover {
-            background-color: ${colorscheme.base06};
-            color: ${colorscheme.base00};
           }
           #workspaces button.focused {
               color: ${colorscheme.base08};

@@ -67,4 +67,6 @@ cmd "set whichwrap+=<,>,[,],h,l"
 cmd [[set iskeyword+=-]]
 cmd "colorscheme nord"
 cmd "let g:airline_theme='base16_nord'"
+cmd "let g:airline_powerline_fonts = 1"
 -- cmd "highlight NvimTreeNormal guibg=#1C1C1C"
+

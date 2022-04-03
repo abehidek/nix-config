@@ -22,10 +22,13 @@ in
 {
   enable = true;
   userDirs = {
+    enable = true;
     documents = "$HOME/doc";
     download = "$HOME/dl";
     music = "$HOME/songs";
     desktop = "$HOME/ws";
+    pictures = "$HOME/img";
+    videos = "$HOME/vid";
   };
   configHome = "${homeDirectory}/.config";
   dataHome = "${homeDirectory}/.local/share";
