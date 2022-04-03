@@ -9,6 +9,7 @@ dofile(configdir .. "/nvim/plugins/nvim-tree.lua")
 dofile(configdir .. "/nvim/plugins/telescope.lua")
 dofile(configdir .. "/nvim/plugins/cmp.lua")
 dofile(configdir .. "/nvim/plugins/lsp.lua")
+dofile(configdir .. "/nvim/plugins/autopairs.lua")
 dofile(configdir .. "/nvim/plugins/toggleterm.lua")
 dofile(configdir .. "/nvim/plugins/bufferline.lua")
 
@@ -52,7 +53,7 @@ local options = {
     relativenumber = false,                  -- set relative numbered lines
     numberwidth = 4,                         -- set number column width to 2 {default 4}
     signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
-    wrap = true,                            -- display lines as one long line
+    -- wrap = true,                            -- display lines as one long line
     scrolloff = 8,                           -- is one of my fav
     sidescrolloff = 8,
     --guifont = "monospace:h17",               -- the font used in graphical neovim applications
@@ -69,5 +70,8 @@ cmd [[set iskeyword+=-]]
 cmd "colorscheme nord"
 cmd "let g:airline_theme='base16_nord'"
 cmd "let g:airline_powerline_fonts = 1"
+cmd "set breakindent"
+cmd "set formatoptions=l"
+cmd "set lbr"
 -- cmd "highlight NvimTreeNormal guibg=#1C1C1C"
 

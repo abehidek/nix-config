@@ -1,4 +1,5 @@
 { config, pkgs, ... }:
+
 let
   colorscheme = import ../theme/colorscheme;
   unstable = import (builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz) { config = config.nixpkgs.config; };
@@ -21,6 +22,7 @@ in
       ".config/nvim/plugins/telescope.lua".source = ./lua/plugins/telescope.lua;
       ".config/nvim/plugins/cmp.lua".source = ./lua/plugins/cmp.lua;
       ".config/nvim/plugins/lsp.lua".source = ./lua/plugins/lsp.lua;
+      ".config/nvim/plugins/autopairs.lua".source = ./lua/plugins/autopairs.lua;
       ".config/nvim/plugins/toggleterm.lua".source = ./lua/plugins/toggleterm.lua;
       ".config/nvim/plugins/bufferline.lua".source = ./lua/plugins/bufferline.lua;
     };     
@@ -55,57 +57,58 @@ in
     withNodeJs = true;
     withPython3 = true;
     plugins = with unstable.vimPlugins; [
-    # -- theme and appearance
-      indent-blankline-nvim
-      nord-nvim
-      vimade
-      vim-startify
-      # -- air line
-        vim-airline
-        # vim-airline-clock
-        vim-airline-themes
-    # -- utils
-      vim-rooter
-      markdown-preview-nvim
-      direnv-vim
-      toggleterm-nvim
-      # -- telescope
-        telescope-nvim
-      # -- buffers
-        bufferline-nvim
-        vim-bbye
-      # -- tree
-        nvim-tree-lua
-        nvim-web-devicons
-      # --git
-        vim-signify
-    # -- language support
-      # -- cmp and lsp
-        nvim-cmp
-        cmp-buffer
-        cmp-path
-        cmp-cmdline
-        cmp_luasnip
-        vim-lsc
-        nvim-lspconfig
-        cmp-nvim-lsp
-      # -- dap
-        # nvim-dap
-        # telescope-dap-nvim
-      # -- highlighting
-        nvim-treesitter
-        # vim-polyglot
-      # -- snippets
-        luasnip
-        friendly-snippets
-      # -- languages
-        # vim-elixir
-        vim-nix
-        vim-javascript
-        # haskell-vim
-        dart-vim-plugin
-        vim-flutter
-        # rust-vim
+      # -- theme and appearance
+        indent-blankline-nvim
+        nord-nvim
+        vimade
+        vim-startify
+        # -- air line
+          vim-airline
+          # vim-airline-clock
+          vim-airline-themes
+      # -- utils
+        vim-rooter
+        markdown-preview-nvim
+        direnv-vim
+        toggleterm-nvim
+        nvim-autopairs
+        # -- telescope
+          telescope-nvim
+        # -- buffers
+          bufferline-nvim
+          vim-bbye
+        # -- tree
+          nvim-tree-lua
+          nvim-web-devicons
+        # --git
+          vim-signify
+      # -- language support
+        # -- cmp and lsp
+          nvim-cmp
+          cmp-buffer
+          cmp-path
+          cmp-cmdline
+          cmp_luasnip
+          vim-lsc
+          nvim-lspconfig
+          cmp-nvim-lsp
+        # -- dap
+          # nvim-dap
+          # telescope-dap-nvim
+        # -- highlighting
+          nvim-treesitter
+          # vim-polyglot
+        # -- snippets
+          luasnip
+          friendly-snippets
+        # -- languages
+          # vim-elixir
+          vim-nix
+          vim-javascript
+          # haskell-vim
+          dart-vim-plugin
+          vim-flutter
+          # rust-vim
     ];
     # extraPackages = with unstable; [
       # ripgrep
@@ -125,12 +128,34 @@ in
       # nodePackages.vue-language-server
       # clang
     # ];
+    # set foldmethod=indent
     extraConfig = ''
+      set foldlevelstart=99
+      set foldmethod=expr
+      set foldexpr=FoldMethod(v:lnum)
+      function! FoldMethod(lnum)
+        "get string of current line
+        let crLine=getline(a:lnum)
+
+        " check if empty line 
+        if empty(crLine) "Empty line or end comment 
+          return -1 " so same indent level as line before 
+        endif 
+
+        " check if comment 
+        let a:data=join( map(synstack(a:lnum, 1), 'synIDattr(v:val, "name")') )
+        if a:data =~ ".*omment.*"
+          return '='
+        endif
+
+        "Otherwise return foldlevel equal to indent /shiftwidth (like if
+        "foldmethod=indent)
+        else  "return indent base fold
+          return indent(a:lnum)/&shiftwidth
+      endfunction
       if has('nvim') && executable('nvr')
         let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
-        endif
-      set foldmethod=indent       
-      set foldlevelstart=99
+      endif
       luafile $XDG_CONFIG_HOME/nvim/settings.lua
     '';
   };
