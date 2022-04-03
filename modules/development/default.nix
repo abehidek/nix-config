@@ -1,4 +1,7 @@
 { config, pkgs, ... }:
+let 
+      unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
+in
 {
   imports = [
     ../nvim
@@ -11,25 +14,28 @@
   environment = {
     # variables.JDK_HOME = "${pkgs.jdk}";
     systemPackages = with pkgs; [
-      # Tools
+      # -- Tools
       # github-desktop 
-      # IDE
+      sshfs
+      neovim-remote
+      # -- IDE
       vscode # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
-      #nodePackages.stylelint
-      # -- Language Servers
+      
+      # -- Language Servers for Neovim
       nodePackages.typescript-language-server
-        ripgrep
-        nodePackages.pyright
-        sumneko-lua-language-server 
-        # pkgs.nodePackages.stylelint
-        rust-analyzer
-        rnix-lsp
-        haskell-language-server
-        nodePackages.svelte-language-server
-        java-language-server
-        # nodePackages.vue-language-server
-        clang
-      # Programming Languages and its Package Managers
+      ripgrep
+      nodePackages.pyright
+      sumneko-lua-language-server 
+      rust-analyzer
+      rnix-lsp
+      haskell-language-server
+      nodePackages.svelte-language-server
+      java-language-server
+      unstable.nodePackages.live-server
+
+      # nodePackages.vue-language-server
+      clang
+      # -- Programming Languages and its Package Managers
       # python310
       # nodejs
     ];
