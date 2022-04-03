@@ -25,6 +25,7 @@ in
         ".config/nvim/plugins/bufferline.lua".source = ./lua/plugins/bufferline.lua;
       };     
       sessionVariables = {
+        NVIM_LISTEN_ADDRESS = "/tmp/nvim";
         JAVALSP = "${unstable.java-language-server}";
       };
     };   
@@ -61,7 +62,6 @@ in
           nvim-tree-lua
           nvim-web-devicons
         # --git
-          lazygit-nvim
           vim-signify
       # -- language support
         # -- cmp and lsp
@@ -110,7 +110,10 @@ in
         # clang
       ];
       extraConfig = ''
-        luafile $XDG_CONFIG_HOME/nvim/settings.lua
+      if has('nvim') && executable('nvr')
+        let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+      endif
+      luafile $XDG_CONFIG_HOME/nvim/settings.lua
       '';
     };
   };
