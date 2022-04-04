@@ -2,7 +2,10 @@
 
 let
   colorscheme = import ../theme/colorscheme;
-  unstable = import (builtins.fetchTarball https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz) { config = config.nixpkgs.config; };
+  unstable = import (builtins.fetchTarball
+    "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {
+      config = config.nixpkgs.config;
+    };
   # telescope-media-files-nvim = pkgs.vimUtils.buildVimPlugin {
   #   name = "telescope-media-files-nvim";
   #   src = pkgs.fetchFromGitHub {
@@ -12,8 +15,7 @@ let
   #     sha256 = "1ap3ijh64ynyxzbc62ijfkbwasv506i17pc65bh3w4dfpzn6rlpy";
   #   };
   # };
-in
-{
+in {
   home = {
     file = {
       ".config/nvim/settings.lua".source = ./lua/settings.lua;
@@ -23,10 +25,12 @@ in
       ".config/nvim/plugins/cmp.lua".source = ./lua/plugins/cmp.lua;
       ".config/nvim/plugins/lsp.lua".source = ./lua/plugins/lsp.lua;
       ".config/nvim/plugins/autopairs.lua".source = ./lua/plugins/autopairs.lua;
-      ".config/nvim/plugins/toggleterm.lua".source = ./lua/plugins/toggleterm.lua;
-      ".config/nvim/plugins/bufferline.lua".source = ./lua/plugins/bufferline.lua;
+      ".config/nvim/plugins/toggleterm.lua".source =
+        ./lua/plugins/toggleterm.lua;
+      ".config/nvim/plugins/bufferline.lua".source =
+        ./lua/plugins/bufferline.lua;
       ".config/nvim/plugins/null-ls.lua".source = ./lua/plugins/null-ls.lua;
-    };     
+    };
     sessionVariables = {
       NVIM_LISTEN_ADDRESS = "/tmp/nvim"; # To make neovim-remote work properly
       JAVALSP = "${unstable.java-language-server}";
@@ -35,25 +39,25 @@ in
       sshfs
       neovim-remote
       # -- Language Servers for Neovim
-        ripgrep # To make telescope live_grep work properly
-        sumneko-lua-language-server 
-        # rust-analyzer
-        rnix-lsp
-        # haskell-language-server
-        java-language-server
-        nodePackages.pyright
-        nodePackages.live-server
-        nodePackages.svelte-language-server
-        nodePackages.typescript-language-server
-        # nodePackages.vue-language-server
-        clang # For compiling treesitter languages
+      ripgrep # To make telescope live_grep work properly
+      sumneko-lua-language-server
+      # rust-analyzer
+      rnix-lsp
+      # haskell-language-server
+      java-language-server
+      nodePackages.pyright
+      nodePackages.live-server
+      nodePackages.svelte-language-server
+      nodePackages.typescript-language-server
+      # nodePackages.vue-language-server
+      clang # For compiling treesitter languages
       # -- Code formatters
-        stylua
-        nodePackages.prettier
-        black
-        nixfmt
+      stylua
+      nodePackages.prettier
+      black
+      nixfmt
     ];
-  };   
+  };
   programs.neovim = {
     enable = true;
     package = unstable.neovim-unwrapped;
@@ -64,80 +68,61 @@ in
     withPython3 = true;
     plugins = with unstable.vimPlugins; [
       # -- theme and appearance
-        indent-blankline-nvim
-        nord-nvim
-        vimade
-        vim-startify
-        # -- air line
-          vim-airline
-          # vim-airline-clock
-          vim-airline-themes
+      indent-blankline-nvim
+      nord-nvim
+      vimade
+      vim-startify
+      # -- air line
+      vim-airline
+      # vim-airline-clock
+      vim-airline-themes
       # -- utils
-        vim-rooter
-        markdown-preview-nvim
-        direnv-vim
-        toggleterm-nvim
-        nvim-autopairs
-        # -- telescope
-          telescope-nvim
-        # -- buffers
-          bufferline-nvim
-          vim-bbye
-        # -- tree
-          nvim-tree-lua
-          nvim-web-devicons
-        # --git
-          vim-signify
-          vim-fugitive
+      vim-rooter
+      markdown-preview-nvim
+      direnv-vim
+      toggleterm-nvim
+      nvim-autopairs
+      # -- telescope
+      telescope-nvim
+      # -- buffers
+      bufferline-nvim
+      vim-bbye
+      # -- tree
+      nvim-tree-lua
+      nvim-web-devicons
+      # --git
+      vim-signify
+      vim-fugitive
       # -- language support
-        # -- formatting
-          null-ls-nvim
-        # -- cmp and lsp
-          nvim-cmp
-          cmp-buffer
-          cmp-path
-          cmp-cmdline
-          cmp_luasnip
-          vim-lsc
-          nvim-lspconfig
-          cmp-nvim-lsp
-        # -- dap
-          # nvim-dap
-          # telescope-dap-nvim
-        # -- highlighting
-          nvim-treesitter
-          # vim-polyglot
-        # -- snippets
-          luasnip
-          friendly-snippets
-        # -- languages
-          # vim-elixir
-          vim-nix
-          vim-javascript
-          # haskell-vim
-          dart-vim-plugin
-          vim-flutter
-          # rust-vim
+      # -- formatting
+      null-ls-nvim
+      # -- cmp and lsp
+      nvim-cmp
+      cmp-buffer
+      cmp-path
+      cmp-cmdline
+      cmp_luasnip
+      vim-lsc
+      nvim-lspconfig
+      cmp-nvim-lsp
+      # -- dap
+      # nvim-dap
+      # telescope-dap-nvim
+      # -- highlighting
+      nvim-treesitter
+      # vim-polyglot
+      # -- snippets
+      luasnip
+      friendly-snippets
+      # -- languages
+      # vim-elixir
+      vim-nix
+      vim-javascript
+      # haskell-vim
+      dart-vim-plugin
+      vim-flutter
+      # rust-vim
     ];
-    # extraPackages = with unstable; [
-      # ripgrep
-      # nodePackages.pyright
-      # sumneko-lua-language-server
-      # nodePackages.typescript-language-server
-      # nodePackages.typescript
-      # nodePackages.typescript-language-server
-      # nodePackages.eslint
-      # nodePackages.vscode-langservers-extracted
-      # yarn flow
-      # pkgs.nodePackages.stylelint
-      # rust-analyzer
-      # rnix-lsp
-      # haskell-language-server
-      # java-language-server
-      # nodePackages.vue-language-server
-      # clang
-    # ];
-    # set foldmethod=indent
     extraConfig = ''
       set foldlevelstart=99
       set foldmethod=expr
@@ -169,4 +154,3 @@ in
     '';
   };
 }
-
