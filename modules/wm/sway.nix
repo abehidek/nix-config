@@ -1,7 +1,5 @@
-{ config, lib, pkgs, ... }:
-{
-  imports =
-  [
+{ config, lib, pkgs, ... }: {
+  imports = [
     # Modules used by the wm
     ../xdg # XDG Settings
     # ../mpd # MPD Settings
@@ -11,10 +9,18 @@
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [ 
-      xwayland wl-clipboard 
-      swayidle waybar wlr-randr wdisplays 
-      mako autotiling waypipe drm_info phwmon
+    extraPackages = with pkgs; [
+      xwayland
+      wl-clipboard
+      swayidle
+      waybar
+      wlr-randr
+      wdisplays
+      mako
+      autotiling
+      waypipe
+      drm_info
+      phwmon
     ];
   };
   home-manager.users.abe = {
@@ -23,8 +29,7 @@
       ../swaylock-effects
       ../theme # Import Theme
     ];
-    wayland.windowManager.sway =
-    let
+    wayland.windowManager.sway = let
       buildScript = import ../buildScript.nix;
       wallpaper = import ../theme/wallpaper.nix;
       lockScript = buildScript "lock" ../swaylock-effects/lock {
@@ -32,28 +37,42 @@
         lock = ../swaylock-effects/lock.svg;
         swaylock = "${pkgs.swaylock-effects}/bin/swaylock";
       };
-      import-gsettingsScript = buildScript "import-gsettings" ../../scripts/import-gsettings.sh {
-        gsettings = "${pkgs.glib}/bin/gsettings";
-      };
+      import-gsettingsScript =
+        buildScript "import-gsettings" ../../scripts/import-gsettings.sh {
+          gsettings = "${pkgs.glib}/bin/gsettings";
+        };
       colorscheme = import ../theme/colorscheme;
-    in
-    {
+    in {
       enable = true;
       wrapperFeatures.gtk = true;
 
       config = {
         # startup programs and scripts
         startup = [
-          { command = "dropbox start";}
+          { command = "dropbox start"; }
           { command = "lorri daemon"; }
-          { command = "${pkgs.autotiling}/bin/autotiling";}
-          { command = "${import-gsettingsScript}/bin/import-gsettings"; always = true; }
-          { command = "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"; }
-          { command = "swayidle -w before-sleep '${lockScript}/bin/lock'"; }
+          { command = "${pkgs.autotiling}/bin/autotiling"; }
+          {
+            command = "${import-gsettingsScript}/bin/import-gsettings";
+            always = true;
+          }
+          {
+            command =
+              "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP";
+          }
+          {
+            command = "swayidle -w before-sleep '${lockScript}/bin/lock'";
+          }
           # { command = "pacmd 'set-default-source alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0001.hw_sofhdadsp_6__source'"; }
-          { command = "pacmd 'set-default-source alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0002.hw_sofhdadsp_6__source'"; }
+          {
+            command =
+              "pacmd 'set-default-source alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0002.hw_sofhdadsp_6__source'";
+          }
           # { command = "pacmd 'set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0001.hw_sofhdadsp__sink'"; }
-          { command = "pacmd 'set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0002.hw_sofhdadsp__sink'"; }
+          {
+            command =
+              "pacmd 'set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0002.hw_sofhdadsp__sink'";
+          }
         ];
         menu = "${pkgs.wofi}/bin/wofi --show run swaymsg exec --";
         terminal = "${pkgs.kitty}/bin/kitty";
@@ -99,15 +118,13 @@
           natural_scroll = "enabled";
           scroll_method = "two_finger";
         };
-        input."type:touch" = {
-          map_to_output = "eDP-1";
-        };
+        input."type:touch" = { map_to_output = "eDP-1"; };
         # theming
         output."*" = { bg = "${wallpaper.bg} fill"; };
         gaps.outer = 10;
         gaps.inner = 10;
         #client.focused #eb52eb #eb52eb #eb52eb #eb52eb;
-        bars = [{ command = "waybar"; }];      
+        bars = [{ command = "waybar"; }];
       };
       extraConfig = ''
         default_border pixel 3
@@ -121,7 +138,6 @@
         bindsym Mod4+Control+Shift+Up move workspace to output up
       '';
       #client.focused #2E3440 #2E3440 #ECEFF4 #2E3440 #2E3440
-      
       extraSessionCommands = ''
         export GTK_USE_PORTAL=1 
         export XDG_SESSION_TYPE=wayland
@@ -139,8 +155,8 @@
         export NO_AT_BRIDGE=1
         export SSH_AUTH_SOCK=/run/user/1000/gnupg/S.gpg-agent.ssh
       '';
+      # export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+      # export QT_QPA_PLATFORM=wayland-egl
     };
-    # export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-    # export QT_QPA_PLATFORM=wayland-egl
   };
 }

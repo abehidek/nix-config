@@ -1,10 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-  [ # Include the results of your hardware scan.
+  imports = [ # Include the results of your hardware scan.
     ./hardware.nix
-    ../../users/abe.nix # Home Manager 
+    ../../users/abe.nix # Home Manager
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -17,7 +16,7 @@
       efi.canTouchEfiVariables = true;
     };
   };
-  
+
   # Physical hardware settings and opengl enabled for wayland
   hardware = {
     cpu.intel.updateMicrocode = true;
@@ -70,9 +69,7 @@
     gvfs.enable = true;
     tlp = {
       enable = true;
-      settings = {
-        TLP_PERSISTENT_DEFAULT = 0;
-      };
+      settings = { TLP_PERSISTENT_DEFAULT = 0; };
     };
 
     pipewire = {
@@ -81,62 +78,68 @@
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
-    };    
+    };
   };
 
   environment.variables = {
-    DOTFILES="$HOME/dotfiles";
+    DOTFILES = "$HOME/dotfiles";
     # XDG_DATA_HOME="$HOME/.local/share";
   };
 
   fonts = {
-    fonts = with pkgs; [ 
+    fonts = with pkgs; [
       # Regular fonts
-      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "FiraMono" ]; }) 
-      dejavu_fonts font-awesome
-      
+      (nerdfonts.override {
+        fonts = [ "FiraCode" "DroidSansMono" "FiraMono" ];
+      })
+      dejavu_fonts
+      font-awesome
+
       # Japanese fonts
       rictydiminished-with-firacode
-      hanazono ipafont kochi-substitute
+      hanazono
+      ipafont
+      kochi-substitute
     ];
     fontconfig = {
       defaultFonts = {
-        monospace = [
-          "DejaVu Sans Mono"
-          "IPAGothic"
-        ];
-        sansSerif = [
-          "DejaVu Sans"
-          "IPAPGothic"
-        ];
-        serif = [
-          "DejaVu Serif"
-          "IPAPMincho"
-        ];
+        monospace = [ "DejaVu Sans Mono" "IPAGothic" ];
+        sansSerif = [ "DejaVu Sans" "IPAPGothic" ];
+        serif = [ "DejaVu Serif" "IPAPMincho" ];
       };
     };
   };
-  
+
   # System security settings
   security = {
     doas.enable = true;
-    doas.extraRules = [{ 
-        groups = [ "doas" "wheel" ]; 
-        keepEnv = true;
-        persist = true;
+    doas.extraRules = [{
+      groups = [ "doas" "wheel" ];
+      keepEnv = true;
+      persist = true;
     }];
     sudo.enable = false;
     rtkit.enable = true;
     protectKernelImage = true;
   };
-  
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    vim wget git htop killall
-    gnome.seahorse gnome.gnome-keyring libsecret
-    brightnessctl pulseaudio-ctl playerctl pavucontrol lm_sensors
+    vim
+    wget
+    git
+    htop
+    killall
+    gnome.seahorse
+    gnome.gnome-keyring
+    libsecret
+    brightnessctl
+    pulseaudio-ctl
+    playerctl
+    pavucontrol
+    lm_sensors
     xdg-utils
     # ffmpeg libmpeg2 libmad libdv a52dec faac faad2 flac jasper lame libtheora libvorbis xorg.libXv opusfile wavpack x264 xvidcore smpeg
     # libwacom xf86_input_wacom

@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
-let
-  colorscheme = import ../../theme/colorscheme;
-in 
-{
+let colorscheme = import ../../theme/colorscheme;
+in {
   home = {
     file = {
       ".config/wlogout/layout".text = ''

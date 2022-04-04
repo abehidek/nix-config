@@ -1,22 +1,23 @@
 { config, pkgs, ... }:
-let
-  colorscheme = import ../theme/colorscheme;
+let colorscheme = import ../theme/colorscheme;
 in {
-  imports = [
-    ./zsh
-    ./kitty
-  ];
+  imports = [ ./zsh ./kitty ];
   environment = {
     variables.EDITOR = "nvim";
     variables.VISUAL = "nvim";
     variables.TERM = "kitty";
     systemPackages = with pkgs; [
-      ranger #lf# File Manager
-      file 
-      librsvg 
-      mpv 
-      kitty feh
-      onefetch neofetch lazygit tree ncdu
+      ranger # lf# File Manager
+      file
+      librsvg
+      mpv
+      kitty
+      feh
+      onefetch
+      neofetch
+      lazygit
+      tree
+      ncdu
     ];
   };
   home-manager.users.abe = {
@@ -32,7 +33,7 @@ in {
       enable = true;
       enableZshIntegration = true;
     };
-    
+
     # programs.ncmpcpp.enable = true;
   };
 }

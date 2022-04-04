@@ -5,15 +5,14 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-  [ # Include the results of your hardware scan.
+  imports = [ # Include the results of your hardware scan.
     ./hardware.nix
 
     # Modules used by the system
-    ../../users/abe.nix # Home Manager 
+    ../../users/abe.nix # Home Manager
     ../../modules/wm/vm-sway.nix # Sway Window Manager inside Virtualbox
     ../../modules/waybar # Waybar settings
-    ../../modules/theme # Theming 
+    ../../modules/theme # Theming
     ../../modules/xdg # XDG Settings
     # ../../modules/development # Dev settings
     ../../modules/terminal
@@ -21,11 +20,13 @@
 
   # Use the systemd-boot EFI boot loader.
   boot = {
-    kernel.sysctl = { "fs.inotify.max_user_watches" = 524288; }; # https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
+    kernel.sysctl = {
+      "fs.inotify.max_user_watches" = 524288;
+    }; # https://code.visualstudio.com/docs/setup/linux#_visual-studio-code-is-unable-to-watch-for-file-changes-in-this-large-workspace-error-enospc
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
   };
-  
+
   hardware = {
     cpu.intel.updateMicrocode = true;
     opengl = {
@@ -36,7 +37,6 @@
     bluetooth.enable = false;
     pulseaudio.enable = false;
   };
-  
 
   networking = {
     hostName = "abe-nixos-vm"; # Define your hostname.
@@ -67,7 +67,7 @@
     font = "Lat2-Terminus16";
     keyMap = "br-abnt2";
   };
-  
+
   services = {
     # Enable CUPS to print documents.
     # printing.enable = true;
@@ -96,31 +96,47 @@
   };
 
   systemd.services.mpd.environment = {
-      # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
-      XDG_RUNTIME_DIR = "/run/user/1000"; # User-id 1000 must match above user. MPD will look inside this directory for the PipeWire socket.
+    # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
+    XDG_RUNTIME_DIR =
+      "/run/user/1000"; # User-id 1000 must match above user. MPD will look inside this directory for the PipeWire socket.
   };
-  
+
   security.rtkit.enable = true;
-  
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.abe = {
     isNormalUser = true;
     initialPassword = "password";
-    extraGroups = [ "wheel" "video" "audio" "jackaudio" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"
+      "video"
+      "audio"
+      "jackaudio"
+      "networkmanager"
+    ]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    vim wget git htop killall
-    gnome.seahorse gnome.gnome-keyring libsecret
-    brightnessctl pulseaudio-ctl playerctl pavucontrol
+    vim
+    wget
+    git
+    htop
+    killall
+    gnome.seahorse
+    gnome.gnome-keyring
+    libsecret
+    brightnessctl
+    pulseaudio-ctl
+    playerctl
+    pavucontrol
     # ffmpeg libmpeg2 libmad libdv a52dec faac faad2 flac jasper lame libtheora libvorbis xorg.libXv opusfile wavpack x264 xvidcore smpeg
     # libwacom xf86_input_wacom
     # xorg.xinput xinput_calibrator foot
   ];
-  
+
   fonts.fonts = with pkgs; [ font-awesome fira-code fira-code-symbols ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -144,4 +160,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
 }
-

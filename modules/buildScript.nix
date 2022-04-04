@@ -1,6 +1,6 @@
-let
-  pkgs = import <nixpkgs> {};
-in name: src: env: pkgs.stdenv.mkDerivation {
+let pkgs = import <nixpkgs> { };
+in name: src: env:
+pkgs.stdenv.mkDerivation {
   name = name;
   script = pkgs.substituteAll (env // {
     src = src;

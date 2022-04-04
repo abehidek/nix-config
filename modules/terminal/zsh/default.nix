@@ -1,32 +1,29 @@
 { config, pkgs, ... }:
-let
-  colorscheme = import ../theme/colorscheme;
+let colorscheme = import ../theme/colorscheme;
 in {
   # imports = [
   #   ../../xdg
   # ];
-  environment = {
-    systemPackages = with pkgs; [ any-nix-shell ];
-  };
+  environment = { systemPackages = with pkgs; [ any-nix-shell ]; };
   users.defaultUserShell = pkgs.zsh;
   home-manager.users.abe = {
     programs.zsh = {
       enable = true;
       # source $DOTFILES/scripts/ifcd.sh
       initExtraFirst = ''
-      if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-          alias nvim=nvr -cc split --remote-wait +'set bufhidden=wipe'
-      fi
+        if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+            alias nvim=nvr -cc split --remote-wait +'set bufhidden=wipe'
+        fi
 
-      if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-          export VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
-          export EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
-      else
-          export VISUAL="nvim"
-          export EDITOR="nvim"
-      fi
-      any-nix-shell zsh --info-right | source /dev/stdin
-      alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+        if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+            export VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+            export EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+        else
+            export VISUAL="nvim"
+            export EDITOR="nvim"
+        fi
+        any-nix-shell zsh --info-right | source /dev/stdin
+        alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
       '';
       # 
       enableCompletion = true;
@@ -43,9 +40,13 @@ in {
       zplug = {
         enable = true;
         plugins = [
-          { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
-          { name = "supercrabtree/k"; }
-        # { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with   additional options. For the list of options, please refer to Zplug README.
+          {
+            name = "zsh-users/zsh-autosuggestions";
+          } # Simple plugin installation
+          {
+            name = "supercrabtree/k";
+          }
+          # { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with   additional options. For the list of options, please refer to Zplug README.
         ];
       };
     };
