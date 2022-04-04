@@ -18,8 +18,8 @@ null_ls.setup({
 		-- formatting.yapf,
 		formatting.stylua,
 		formatting.nixfmt,
-    formatting.shellharden,
-    diagnostics.shellcheck,
+		formatting.shellharden,
+		diagnostics.shellcheck,
 		-- diagnostics.flake8,
 	},
 })

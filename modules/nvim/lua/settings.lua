@@ -75,4 +75,34 @@ cmd("set breakindent")
 cmd("set formatoptions=l")
 cmd("set lbr")
 cmd("set hidden")
+cmd([[
+  if has('nvim') && executable('nvr')
+    let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+  endif
+]])
+cmd([[
+  set foldlevelstart=99
+  set foldmethod=expr
+  set foldexpr=FoldMethod(v:lnum)
+  function! FoldMethod(lnum)
+    "get string of current line
+    let crLine=getline(a:lnum)
+
+    " check if empty line 
+    if empty(crLine) "Empty line or end comment 
+      return -1 " so same indent level as line before 
+    endif 
+
+    " check if comment 
+    let a:data=join( map(synstack(a:lnum, 1), 'synIDattr(v:val, "name")') )
+    if a:data =~ ".*omment.*"
+      return '='
+    endif
+
+    "Otherwise return foldlevel equal to indent /shiftwidth (like if
+    "foldmethod=indent)
+    else  "return indent base fold
+      return indent(a:lnum)/&shiftwidth
+  endfunction
+]])
 -- cmd "highlight NvimTreeNormal guibg=#1C1C1C"
