@@ -122,7 +122,8 @@
     doas.enable = true;
     doas.extraRules = [{ 
         groups = [ "doas" "wheel" ]; 
-        keepEnv = true; 
+        keepEnv = true;
+        persist = true;
     }];
     sudo.enable = false;
     rtkit.enable = true;
