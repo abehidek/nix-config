@@ -21,12 +21,13 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
-keymap("n", "<leader>e", ":execute 'NvimTreeRefresh' | NvimTreeToggle<CR>", opts)
-
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
 keymap("n", "<C-Down>", ":resize -2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+
+-- Tree
+keymap("n", "<leader>e", ":execute 'NvimTreeRefresh' | NvimTreeToggle<CR>", opts)
 
 -- Bufferline
 keymap("n", "<S-l>", ":bnext<CR>", opts)
@@ -39,6 +40,9 @@ keymap("n", "<leader>f", "<cmd>Telescope find_files<CR>", opts)
 -- keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
 keymap("n", "<leader>g", "<cmd>Telescope live_grep<CR>", opts)
 
+-- Formatting
+
+keymap("n", "<S-f>", ":lua vim.lsp.buf.formatting_sync() <CR>", opts)
 -- Visual
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)

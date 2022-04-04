@@ -25,6 +25,7 @@ in
       ".config/nvim/plugins/autopairs.lua".source = ./lua/plugins/autopairs.lua;
       ".config/nvim/plugins/toggleterm.lua".source = ./lua/plugins/toggleterm.lua;
       ".config/nvim/plugins/bufferline.lua".source = ./lua/plugins/bufferline.lua;
+      ".config/nvim/plugins/null-ls.lua".source = ./lua/plugins/null-ls.lua;
     };     
     sessionVariables = {
       NVIM_LISTEN_ADDRESS = "/tmp/nvim"; # To make neovim-remote work properly
@@ -34,18 +35,23 @@ in
       sshfs
       neovim-remote
       # -- Language Servers for Neovim
-      ripgrep # To make telescope live_grep work properly
-      sumneko-lua-language-server 
-      # rust-analyzer
-      rnix-lsp
-      # haskell-language-server
-      java-language-server
-      nodePackages.pyright
-      nodePackages.live-server
-      nodePackages.svelte-language-server
-      nodePackages.typescript-language-server
-      # nodePackages.vue-language-server
-      clang
+        ripgrep # To make telescope live_grep work properly
+        sumneko-lua-language-server 
+        # rust-analyzer
+        rnix-lsp
+        # haskell-language-server
+        java-language-server
+        nodePackages.pyright
+        nodePackages.live-server
+        nodePackages.svelte-language-server
+        nodePackages.typescript-language-server
+        # nodePackages.vue-language-server
+        clang # For compiling treesitter languages
+      # -- Code formatters
+        stylua
+        nodePackages.prettier
+        black
+        nixfmt
     ];
   };   
   programs.neovim = {
@@ -84,6 +90,8 @@ in
           vim-signify
           vim-fugitive
       # -- language support
+        # -- formatting
+          null-ls-nvim
         # -- cmp and lsp
           nvim-cmp
           cmp-buffer
