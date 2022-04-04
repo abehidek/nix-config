@@ -56,6 +56,8 @@ in {
       nodePackages.prettier
       black
       nixfmt
+      shellcheck
+      shellharden
     ];
   };
   programs.neovim = {
