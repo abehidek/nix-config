@@ -1,3 +1,4 @@
+#!/bin/sh
 SCREEN="eDP-1"
 # WAYLANDINPUT=(
 #     "1003:33798:Atmel_Atmel_maXTouch_Digitizer"
@@ -30,9 +31,9 @@ function rotate {
 
     TARGET_ORIENTATION=$1
 
-    echo "Rotating to" $TARGET_ORIENTATION
+    echo "Rotating to" "$TARGET_ORIENTATION"
 
-    swaymsg output $SCREEN transform $TARGET_ORIENTATION
+    swaymsg output "$SCREEN" transform "$TARGET_ORIENTATION"
 
     for i in "${WAYLANDINPUT[@]}" 
     do
@@ -42,6 +43,6 @@ function rotate {
 }
 
 while IFS='$\n' read -r line; do
-    rotation="$(echo $line | sed -En "s/^.*orientation changed: (.*)/\1/p")"
-    [[ !  -z  $rotation  ]] && rotate_ms $rotation
+    rotation="$(echo "$line" | sed -En "s/^.*orientation changed: (.*)/\1/p")"
+    [[ !  -z  $rotation  ]] && rotate_ms "$rotation"
 done < <(stdbuf -oL monitor-sensor)
