@@ -2,7 +2,8 @@
 
 {
   imports = [ # Include the results of your hardware scan.
-    ./hardware.nix
+    # ./hardware.nix
+    /etc/nixos/hardware-configuration.nix
     ../../users/abe.nix # Home Manager
   ];
 
@@ -118,7 +119,7 @@
       keepEnv = true;
       persist = true;
     }];
-    sudo.enable = false;
+    sudo.enable = true;
     rtkit.enable = true;
     protectKernelImage = true;
   };
