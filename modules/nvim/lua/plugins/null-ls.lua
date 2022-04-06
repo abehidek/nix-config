@@ -20,7 +20,7 @@ null_ls.setup({
 		formatting.nixfmt,
 		formatting.shellharden,
 		diagnostics.shellcheck,
-    diagnostics.eslint_d,
+		-- diagnostics.eslint_d,
 		-- diagnostics.flake8,
 	},
 })

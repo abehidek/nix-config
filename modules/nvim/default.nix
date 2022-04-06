@@ -49,6 +49,7 @@ in {
       nodePackages.pyright
       nodePackages.live-server
       nodePackages.svelte-language-server
+      nodePackages.typescript-language-server
       # nodePackages.typescript-language-server
       # nodePackages.typescript
       # nodePackages.vue-language-server
@@ -61,7 +62,7 @@ in {
       nixfmt
       shellcheck
       shellharden
-      nodePackages.eslint_d
+      # nodePackages.eslint_d
     ];
   };
   programs.neovim = {
