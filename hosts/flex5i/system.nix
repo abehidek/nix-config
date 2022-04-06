@@ -34,6 +34,7 @@
   networking = {
     hostName = "flex5i"; # Define your hostname.
     networkmanager.enable = true;
+    useNetworkd = true;
     useDHCP = false;
     interfaces.wlp0s20f3.useDHCP = true;
     # Configure network proxy if necessary

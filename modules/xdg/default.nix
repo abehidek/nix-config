@@ -12,8 +12,8 @@
     mime.defaultApplications = {
       "image/jpeg" = "feh.desktop";
       "image/png" = "feh.desktop";
-      "inode/directory" = "ranger.desktop";
-      "application/x-directory" = "ranger.desktop";
+      "inode/directory" = "nautilus.desktop";
+      "application/x-directory" = "nautilus.desktop";
     };
   };
 
