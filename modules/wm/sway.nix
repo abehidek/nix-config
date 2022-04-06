@@ -21,6 +21,11 @@
       waypipe
       drm_info
       phwmon
+      grim
+      slurp
+      jq
+      libnotify
+      sway-contrib.grimshot
     ];
   };
   home-manager.users.abe = {
@@ -136,6 +141,10 @@
         bindsym Mod4+Control+Shift+Left move workspace to output left
         bindsym Mod4+Control+Shift+Down move workspace to output down
         bindsym Mod4+Control+Shift+Up move workspace to output up
+        bindsym Print+s exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify save area
+        bindsym Print+c exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify copy area
+        bindsym Mod4+Print+s exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify save active
+        bindsym Mod4+Print+c exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify copy active
       '';
       #client.focused #2E3440 #2E3440 #ECEFF4 #2E3440 #2E3440
       extraSessionCommands = ''

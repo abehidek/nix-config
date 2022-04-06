@@ -46,7 +46,6 @@ in {
       exodus
       signal-desktop
       vlc
-      ksnip
       libreoffice
       gnome.nautilus
       ungoogled-chromium

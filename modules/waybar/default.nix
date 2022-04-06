@@ -40,7 +40,6 @@ in {
         "battery#bat2"
         "tray"
         "clock"
-        "custom/power"
       ];
       modules = {
         "sway/workspaces" = {
@@ -114,6 +113,8 @@ in {
           on-click = "pavucontrol";
         };
         network = {
+          interface = "wlp0s20f3";
+          interval = "5";
           format-wifi = "{essid} ({signalStrength}%) ";
           format-ethernet = "Ethernet ";
           format-linked = "Ethernet (No IP) ";
@@ -135,13 +136,13 @@ in {
           format-icons = [ "" "" "" "" "" ];
         };
         "battery#bat2" = { bat = "BAT2"; };
-        "custom/power" = {
-          format = "{icon}";
-          format-icons = "";
-          on-click = "${pkgs.wlogout}/bin/wlogout";
-          escape = true;
-          tooltip = false;
-        };
+        # "custom/power" = {
+        #   format = "{icon}";
+        #   format-icons = "";
+        #   on-click = "${pkgs.wlogout}/bin/wlogout";
+        #   escape = true;
+        #   tooltip = false;
+        # };
       };
     }];
     # background-color: ${colorscheme.base06};
@@ -184,7 +185,6 @@ in {
       #pulseaudio,
       #custom-media,
       #tray,
-      #custom-power
       #mpd {
           color: ${colorscheme.base06};
       }
@@ -198,7 +198,6 @@ in {
           background-color: ${colorscheme.base0B};
       }        
 
-      #custom-power,
       #battery,
       #cpu,
       #pulseaudio {
