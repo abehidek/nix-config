@@ -10,12 +10,13 @@ require("lspconfig").rnix.setup({
 	end,
 })
 require("lspconfig").pyright.setup({})
-require("lspconfig").tsserver.setup({
-	on_attach = function(client)
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
-	end,
-})
+-- require("lspconfig").tsserver.setup({
+--   cmd = { "typescript-language-server", "--stdio" },
+-- 	-- on_attach = function(client)
+-- 	-- 	client.resolved_capabilities.document_formatting = false
+-- 	-- 	client.resolved_capabilities.document_range_formatting = false
+-- 	-- end,
+-- })
 require("lspconfig").svelte.setup({})
 require("lspconfig").dartls.setup({
 	cmd = { "dart", tostring(os.getenv("DART_SDK")) .. "/bin/snapshots/analysis_server.dart.snapshot", "--lsp" },

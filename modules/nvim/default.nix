@@ -30,6 +30,7 @@ in {
       ".config/nvim/plugins/bufferline.lua".source =
         ./lua/plugins/bufferline.lua;
       ".config/nvim/plugins/null-ls.lua".source = ./lua/plugins/null-ls.lua;
+      ".config/nvim/plugins/treesitter.lua".source = ./lua/plugins/treesitter.lua;
     };
     sessionVariables = {
       NVIM_LISTEN_ADDRESS = "/tmp/nvim"; # To make neovim-remote work properly
@@ -48,9 +49,10 @@ in {
       nodePackages.pyright
       nodePackages.live-server
       nodePackages.svelte-language-server
-      nodePackages.typescript-language-server
+      # nodePackages.typescript-language-server
+      # nodePackages.typescript
       # nodePackages.vue-language-server
-      clang # For compiling treesitter languages
+      # clang # For compiling treesitter languages
       # -- Code formatters
       stylua
       nodePackages.prettier
@@ -59,6 +61,7 @@ in {
       nixfmt
       shellcheck
       shellharden
+      nodePackages.eslint_d
     ];
   };
   programs.neovim = {

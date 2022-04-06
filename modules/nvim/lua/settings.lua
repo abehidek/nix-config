@@ -13,13 +13,7 @@ dofile(configdir .. "/nvim/plugins/autopairs.lua")
 dofile(configdir .. "/nvim/plugins/toggleterm.lua")
 dofile(configdir .. "/nvim/plugins/bufferline.lua")
 dofile(configdir .. "/nvim/plugins/null-ls.lua")
-
-require("nvim-treesitter.configs").setup({
-	ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-	highlight = {
-		enable = true,
-	},
-})
+dofile(configdir .. "/nvim/plugins/treesitter.lua")
 
 -- Indentation
 
