@@ -33,7 +33,7 @@ in {
       ".config/nvim/plugins/treesitter.lua".source = ./lua/plugins/treesitter.lua;
     };
     sessionVariables = {
-      NVIM_LISTEN_ADDRESS = "/tmp/nvim"; # To make neovim-remote work properly
+      NVIM_LISTEN_ADDRESS = "/tmp/nvimsocket"; # To make neovim-remote work properly
       JAVALSP = "${unstable.java-language-server}";
     };
     packages = with unstable; [
@@ -52,7 +52,7 @@ in {
       # nodePackages.typescript-language-server
       # nodePackages.typescript
       # nodePackages.vue-language-server
-      # clang # For compiling treesitter languages
+      clang # For compiling treesitter languages
       # -- Code formatters
       stylua
       nodePackages.prettier
