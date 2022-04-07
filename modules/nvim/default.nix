@@ -33,7 +33,8 @@ in {
       ".config/nvim/plugins/treesitter.lua".source = ./lua/plugins/treesitter.lua;
     };
     sessionVariables = {
-      NVIM_LISTEN_ADDRESS = "/tmp/nvimsocket"; # To make neovim-remote work properly
+      NVIM_LISTEN_ADDRESS =
+        "/tmp/nvimsocket"; # To make neovim-remote work properly
       JAVALSP = "${unstable.java-language-server}";
     };
     packages = with unstable; [
