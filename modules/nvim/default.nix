@@ -32,6 +32,7 @@ in {
       ".config/nvim/plugins/null-ls.lua".source = ./lua/plugins/null-ls.lua;
       ".config/nvim/plugins/treesitter.lua".source =
         ./lua/plugins/treesitter.lua;
+      ".config/nvim/plugins/lspsaga.lua".source = ./lua/plugins/lspsaga.lua;
     };
     sessionVariables = {
       NVIM_LISTEN_ADDRESS =
@@ -116,6 +117,7 @@ in {
       vim-lsc
       nvim-lspconfig
       cmp-nvim-lsp
+      lspsaga-nvim
       # -- dap
       # nvim-dap
       # telescope-dap-nvim

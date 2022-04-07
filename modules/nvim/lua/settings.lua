@@ -14,6 +14,7 @@ dofile(configdir .. "/nvim/plugins/toggleterm.lua")
 dofile(configdir .. "/nvim/plugins/bufferline.lua")
 dofile(configdir .. "/nvim/plugins/null-ls.lua")
 dofile(configdir .. "/nvim/plugins/treesitter.lua")
+dofile(configdir .. "/nvim/plugins/lspsaga.lua")
 
 -- Indentation
 
