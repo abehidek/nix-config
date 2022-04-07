@@ -30,7 +30,8 @@ in {
       ".config/nvim/plugins/bufferline.lua".source =
         ./lua/plugins/bufferline.lua;
       ".config/nvim/plugins/null-ls.lua".source = ./lua/plugins/null-ls.lua;
-      ".config/nvim/plugins/treesitter.lua".source = ./lua/plugins/treesitter.lua;
+      ".config/nvim/plugins/treesitter.lua".source =
+        ./lua/plugins/treesitter.lua;
     };
     sessionVariables = {
       NVIM_LISTEN_ADDRESS =
@@ -91,6 +92,7 @@ in {
       direnv-vim
       toggleterm-nvim
       nvim-autopairs
+      vim-css-color
       # -- telescope
       telescope-nvim
       # -- buffers
