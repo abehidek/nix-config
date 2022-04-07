@@ -55,6 +55,7 @@ in {
       # nodePackages.typescript
       # nodePackages.vue-language-server
       clang # For compiling treesitter languages
+      python39Packages.flake8
       # -- Code formatters
       stylua
       nodePackages.prettier

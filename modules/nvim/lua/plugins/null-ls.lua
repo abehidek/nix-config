@@ -21,6 +21,6 @@ null_ls.setup({
 		formatting.shellharden,
 		diagnostics.shellcheck,
 		-- diagnostics.eslint_d,
-		-- diagnostics.flake8,
+		diagnostics.flake8,
 	},
 })
