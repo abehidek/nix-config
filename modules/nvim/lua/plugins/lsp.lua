@@ -3,25 +3,91 @@
 -- require'lspconfig'.flow.setup{}
 -- require'lspconfig'.hls.setup{}
 -- require'lspconfig'.vuels.setup{}
-require("lspconfig").rnix.setup({
-	on_attach = function(client)
+local nvim_lsp = require("lspconfig")
+local protocol = require("vim.lsp.protocol")
+
+local function lsp_highlight_document(client)
+	if client.resolved_capabilities.document_highlight then
+		vim.api.nvim_exec(
+			[[
+      augroup lsp_document_highlight
+        autocmd! * <buffer>
+        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+    ]],
+			false
+		)
+	end
+end
+
+local on_attach = function(client, bufnr)
+	local function buf_set_keymap(...)
+		vim.api.nvim_buf_set_keymap(bufnr, ...)
+	end
+	lsp_highlight_document(client)
+	local opts = { noremap = true, silent = true }
+
+	buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+	buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+	buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+
+	if client.name == "tsserver" then
 		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
-	end,
-})
-require("lspconfig").pyright.setup({})
-require("lspconfig").tsserver.setup({
-	on_attach = function(client)
+	end
+
+	if client.name == "rnix" then
 		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
-	end,
+	end
+
+	protocol.CompletionItemKind = {
+		"", -- Text
+		"", -- Method
+		"", -- Function
+		"", -- Constructor
+		"", -- Field
+		"", -- Variable
+		"", -- Class
+		"ﰮ", -- Interface
+		"", -- Module
+		"", -- Property
+		"", -- Unit
+		"", -- Value
+		"", -- Enum
+		"", -- Keyword
+		"﬌", -- Snippet
+		"", -- Color
+		"", -- File
+		"", -- Reference
+		"", -- Folder
+		"", -- EnumMember
+		"", -- Constant
+		"", -- Struct
+		"", -- Event
+		"ﬦ", -- Operator
+		"", -- TypeParameter
+	}
+end
+
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+nvim_lsp.rnix.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
 })
-require("lspconfig").svelte.setup({})
-require("lspconfig").dartls.setup({
+nvim_lsp.pyright.setup({
+	handlers = { ["textDocument/publishDiagnostics"] = function(...) end },
+})
+nvim_lsp.tsserver.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+nvim_lsp.svelte.setup({})
+nvim_lsp.dartls.setup({
 	cmd = { "dart", tostring(os.getenv("DART_SDK")) .. "/bin/snapshots/analysis_server.dart.snapshot", "--lsp" },
 	-- cmd = { "dart", "/nix/store/z2yhwh6dq36kp271iprkk0hjr7yx6nyx-dart-2.14.3/bin/snapshots/analysis_server.dart.snapshot", "--lsp" };
 })
-require("lspconfig").java_language_server.setup({
+nvim_lsp.java_language_server.setup({
 	cmd = { tostring(os.getenv("JAVALSP")) .. "/share/java/java-language-server/lang_server_linux.sh" },
 })
 
@@ -32,7 +98,7 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require("lspconfig").sumneko_lua.setup({
+nvim_lsp.sumneko_lua.setup({
 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
 	settings = {
 		Lua = {
