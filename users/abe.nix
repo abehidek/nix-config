@@ -53,6 +53,7 @@ in {
       unstable.rpi-imager
       unstable.tetrio-desktop
       shared-mime-info
+      obsidian
     ];
 
     # Services
