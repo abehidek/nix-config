@@ -40,6 +40,10 @@ local on_attach = function(client, bufnr)
 		client.resolved_capabilities.document_formatting = false
 	end
 
+	-- if client.name == "cssls" then
+	-- client.resolved_capabilities.textDocument.completion.completionItem.snippetSupport = true
+	-- end
+
 	protocol.CompletionItemKind = {
 		"", -- Text
 		"", -- Method
@@ -70,17 +74,21 @@ local on_attach = function(client, bufnr)
 end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 nvim_lsp.rnix.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
 nvim_lsp.pyright.setup({
-	handlers = { ["textDocument/publishDiagnostics"] = function(...) end },
+	-- handlers = { ["textDocument/publishDiagnostics"] = function(...) end },
 })
 nvim_lsp.tsserver.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
+})
+nvim_lsp.cssls.setup({
+	capabilities = capabilities,
+  cmd = { "css-languageserver", "--stdio" }
 })
 nvim_lsp.svelte.setup({})
 nvim_lsp.dartls.setup({

@@ -53,6 +53,7 @@ in {
       nodePackages.live-server
       nodePackages.svelte-language-server
       nodePackages.typescript-language-server
+      nodePackages.vscode-css-languageserver-bin
       # nodePackages.typescript-language-server
       # nodePackages.typescript
       # nodePackages.vue-language-server
