@@ -6,9 +6,13 @@ in {
   home-manager.users.abe = {
     programs.kitty = {
       enable = true;
-      font.name = "FuraMono";
-      font.size = 12;
+      font.name = "FiraCode Nerd Font";
+      font.size = 16;
       # theme = "Nord";
+      extraConfig = ''
+        disable_ligatures never
+        cursor_shape beam
+      '';
       settings = {
         #allow_remote_control = false;
         background_opacity = "0.9";
