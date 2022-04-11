@@ -65,6 +65,8 @@ in {
     ];
     home.file = {
       # ".config/ulauncher/user-themes/dark_trans".source = ulauncher-theme;
+      ".local/share/applications".source = ../modules/applications;
+      ".icons".source = ../modules/icons;
     };
 
     # Services
