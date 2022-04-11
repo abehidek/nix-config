@@ -141,9 +141,9 @@
       extraConfig = ''
         default_border pixel 3
         default_floating_border pixel 3
-        client.focused ${colorscheme.cyan} ${colorscheme.cyan} ${colorscheme.cyan} ${colorscheme.cyan} ${colorscheme.cyan}
-        client.focused_inactive ${colorscheme.white} ${colorscheme.white} ${colorscheme.white} ${colorscheme.white} ${colorscheme.white}
-        client.unfocused ${colorscheme.white} ${colorscheme.white} ${colorscheme.white} ${colorscheme.white} ${colorscheme.white}
+        client.focused ${colorscheme.cyan} ${colorscheme.cyan} ${colorscheme.base00} ${colorscheme.cyan} ${colorscheme.cyan}
+        client.focused_inactive ${colorscheme.white} ${colorscheme.white} ${colorscheme.base00} ${colorscheme.white} ${colorscheme.white}
+        client.unfocused ${colorscheme.white} ${colorscheme.white} ${colorscheme.base00} ${colorscheme.white} ${colorscheme.white}
         bindsym Mod4+Control+Shift+Right move workspace to output right
         bindsym Mod4+Control+Shift+Left move workspace to output left
         bindsym Mod4+Control+Shift+Down move workspace to output down
