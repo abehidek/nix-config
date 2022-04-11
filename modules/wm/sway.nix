@@ -127,6 +127,11 @@
         };
         input."type:touch" = { map_to_output = "eDP-1"; };
         # theming
+        fonts = {
+          names = [ "FiraMono Nerd Font" ];
+          style = "Bold";
+          size = 10.0;
+        };
         output."*" = { bg = "${wallpaper.bg} fill"; };
         gaps.outer = 10;
         gaps.inner = 10;
