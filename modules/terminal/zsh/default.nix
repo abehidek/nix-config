@@ -25,6 +25,7 @@ in {
         fi
         any-nix-shell zsh --info-right | source /dev/stdin
         alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+        clear
       '';
       enableCompletion = true;
       enableSyntaxHighlighting = true;
