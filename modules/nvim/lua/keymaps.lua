@@ -14,6 +14,15 @@ vim.g.maplocalleader = " "
 --      term_mode = "t",
 --      command_mode = "c",
 
+-- Make delete really delete the text instead of cutting it
+vim.cmd('nnoremap x "_x')
+vim.cmd('nnoremap d "_d')
+vim.cmd('nnoremap D "_D')
+vim.cmd('vnoremap d "_d')
+
+vim.cmd('nnoremap <leader>d ""d')
+vim.cmd('nnoremap <leader>D ""D')
+vim.cmd('vnoremap <leader>d ""d')
 --  Normal
 --  Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
