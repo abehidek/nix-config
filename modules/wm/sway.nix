@@ -61,7 +61,7 @@
             command = "${import-gsettingsScript}/bin/import-gsettings";
             always = true;
           }
-          { command = "${pkgs.ulauncher}/bin/ulauncher --no-window"; }
+          { command = "${pkgs.ulauncher}/bin/ulauncher --hide-window"; }
           {
             command =
               "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP";
