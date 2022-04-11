@@ -7,7 +7,7 @@ in {
     programs.kitty = {
       enable = true;
       font.name = "FiraCode Nerd Font";
-      font.size = 16;
+      font.size = 14;
       # theme = "Nord";
       extraConfig = ''
         disable_ligatures never
