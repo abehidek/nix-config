@@ -14,7 +14,7 @@ in {
   home-manager.users.abe = {
     imports = [ ../nvim ];
     home = {
-      packages = with unstable;
+      packages = with pkgs;
         [
           vscode # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
         ];
