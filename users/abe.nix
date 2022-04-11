@@ -40,7 +40,7 @@ in {
     # You can update Home Manager without changing this value. See
     # the Home Manager release notes for a list of state version
     # changes in each release.
-    imports = [ ./firefox.nix ];
+    # imports = [ ./firefox.nix ];
     home.stateVersion = "21.11";
     home.username = "abe";
     home.homeDirectory = "${homeDir}";
@@ -71,6 +71,5 @@ in {
 
     # Services
     services.dropbox.enable = true;
-    services.dropbox.path = "${homeDir}/drop/Dropbox";
   };
 }
