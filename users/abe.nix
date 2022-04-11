@@ -34,7 +34,7 @@ in {
   };
 
   nixpkgs.config.chromium.commandLineArgs =
-    "--enable-features=VaapiVideoDecoder";
+    "---enable-features=UseOzonePlatform --ozone-platform=wayland -enable-features=VaapiVideoDecoder";
 
   home-manager.users.abe = {
     # You can update Home Manager without changing this value. See
