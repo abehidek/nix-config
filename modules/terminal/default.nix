@@ -27,6 +27,7 @@ in {
         lazygit
         tree
         ncdu
+        htop
       ];
     };
     programs.fzf = {

@@ -132,7 +132,6 @@
     vim
     wget
     git
-    htop
     killall
     gnome.seahorse
     gnome.gnome-keyring
