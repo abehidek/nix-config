@@ -6,19 +6,6 @@ in {
     variables.EDITOR = "nvim";
     variables.VISUAL = "nvim";
     variables.TERM = "kitty";
-    systemPackages = with pkgs; [
-      ranger # lf# File Manager
-      file
-      librsvg
-      mpv
-      kitty
-      feh
-      onefetch
-      neofetch
-      lazygit
-      tree
-      ncdu
-    ];
   };
   home-manager.users.abe = {
     home = {
@@ -28,6 +15,19 @@ in {
         ".config/ranger/commands.py".source = ./ranger/commands.py;
         ".config/ranger/scope.sh".source = ./ranger/scope.sh;
       };
+      packages = with pkgs; [
+        ranger # lf# File Manager
+        file
+        librsvg
+        mpv
+        kitty
+        feh
+        onefetch
+        neofetch
+        lazygit
+        tree
+        ncdu
+      ];
     };
     programs.fzf = {
       enable = true;
