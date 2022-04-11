@@ -23,8 +23,10 @@ vim.cmd('vnoremap d "_d')
 vim.cmd('nnoremap <leader>d ""d')
 vim.cmd('nnoremap <leader>D ""D')
 vim.cmd('vnoremap <leader>d ""d')
+
 --  Normal
 --  Better window navigation
+
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
@@ -33,6 +35,10 @@ keymap("n", "<C-Up>", ":resize +2<CR>", opts)
 keymap("n", "<C-Down>", ":resize -2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+
+-- Opening kitty terminal
+keymap("n", "<leader>t", ":! kitty --detach <CR>", opts) -- Launch kitty terminal in cwd
+keymap("n", "<leader>l", ":! kitty --detach lazygit <CR>", opts) -- Launch kitty terminal with lazygit
 
 -- Tree
 keymap("n", "<leader>e", ":execute 'NvimTreeRefresh' | NvimTreeToggle<CR>", opts)
