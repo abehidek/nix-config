@@ -61,6 +61,7 @@
             command = "${import-gsettingsScript}/bin/import-gsettings";
             always = true;
           }
+          { command = "${pkgs.ulauncher}/bin/ulauncher --no-window"; }
           {
             command =
               "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP";
@@ -79,7 +80,8 @@
               "pacmd 'set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0002.hw_sofhdadsp__sink'";
           }
         ];
-        menu = "${pkgs.wofi}/bin/wofi --show run swaymsg exec --";
+        # menu = "${pkgs.wofi}/bin/wofi --show run swaymsg exec --";
+        menu = "${pkgs.ulauncher}/bin/ulauncher-toggle";
         terminal = "${pkgs.kitty}/bin/kitty";
 
         # screens
@@ -145,6 +147,7 @@
         bindsym Print+c exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify copy area
         bindsym Mod4+Print+s exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify save active
         bindsym Mod4+Print+c exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify copy active
+        for_window [title="Ulauncher"] border none
       '';
       #client.focused #2E3440 #2E3440 #ECEFF4 #2E3440 #2E3440
       extraSessionCommands = ''

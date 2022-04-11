@@ -6,6 +6,13 @@ let
     "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {
       config = config.nixpkgs.config;
     };
+  ulauncher-theme = pkgs.fetchFromGitHub {
+    owner = "vincens2005";
+    repo = "dark_trans";
+    rev = "dbc72b7cc7aa61c68268c6435b8848b2d411091f";
+    sha256 = "0rjcdidarx37j7z0csgbj6y04j5dizkizsapcf6gqssm4rnc5ckv";
+    leaveDotGit = true;
+  };
   homeDir = "/home/abe";
 in {
   imports = [
@@ -54,7 +61,11 @@ in {
       unstable.tetrio-desktop
       shared-mime-info
       obsidian
+      ulauncher
     ];
+    home.file = {
+      # ".config/ulauncher/user-themes/dark_trans".source = ulauncher-theme;
+    };
 
     # Services
     services.dropbox.enable = true;
