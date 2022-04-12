@@ -3,18 +3,6 @@ local cmd = vim.cmd
 
 local configdir = tostring(os.getenv("XDG_CONFIG_HOME"))
 
-dofile(configdir .. "/nvim/keymaps.lua")
-
-dofile(configdir .. "/nvim/plugins/nvim-tree.lua")
-dofile(configdir .. "/nvim/plugins/telescope.lua")
-dofile(configdir .. "/nvim/plugins/cmp.lua")
-dofile(configdir .. "/nvim/plugins/lsp.lua")
-dofile(configdir .. "/nvim/plugins/autopairs.lua")
-dofile(configdir .. "/nvim/plugins/toggleterm.lua")
-dofile(configdir .. "/nvim/plugins/bufferline.lua")
-dofile(configdir .. "/nvim/plugins/null-ls.lua")
-dofile(configdir .. "/nvim/plugins/treesitter.lua")
-dofile(configdir .. "/nvim/plugins/lspsaga.lua")
 
 -- Indentation
 
@@ -60,6 +48,19 @@ for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
+
+require'colorizer'.setup()
+dofile(configdir .. "/nvim/keymaps.lua")
+dofile(configdir .. "/nvim/plugins/nvim-tree.lua")
+dofile(configdir .. "/nvim/plugins/telescope.lua")
+dofile(configdir .. "/nvim/plugins/cmp.lua")
+dofile(configdir .. "/nvim/plugins/lsp.lua")
+dofile(configdir .. "/nvim/plugins/autopairs.lua")
+dofile(configdir .. "/nvim/plugins/toggleterm.lua")
+dofile(configdir .. "/nvim/plugins/bufferline.lua")
+dofile(configdir .. "/nvim/plugins/null-ls.lua")
+dofile(configdir .. "/nvim/plugins/treesitter.lua")
+dofile(configdir .. "/nvim/plugins/lspsaga.lua")
 cmd("autocmd BufEnter * silent! lcd %:p:h")
 cmd("set whichwrap+=<,>,[,],h,l")
 cmd([[set iskeyword+=-]])

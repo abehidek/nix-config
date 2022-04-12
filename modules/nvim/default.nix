@@ -94,7 +94,8 @@ in {
       direnv-vim
       toggleterm-nvim
       nvim-autopairs
-      vim-css-color
+      # vim-css-color
+      nvim-colorizer-lua
       # -- telescope
       telescope-nvim
       # -- buffers
