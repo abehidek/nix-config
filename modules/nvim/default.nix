@@ -134,6 +134,8 @@ in {
       # vim-elixir
       vim-nix
       vim-javascript
+      vim-jsx-pretty
+      vim-jsx-typescript
       # haskell-vim
       dart-vim-plugin
       vim-flutter
