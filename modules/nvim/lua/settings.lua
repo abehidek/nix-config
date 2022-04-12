@@ -3,7 +3,6 @@ local cmd = vim.cmd
 
 local configdir = tostring(os.getenv("XDG_CONFIG_HOME"))
 
-
 -- Indentation
 
 local options = {
@@ -20,7 +19,8 @@ local options = {
 	showmode = false, -- we don't need to see things like -- INSERT -- anymore
 	showtabline = 2, -- always show tabs
 	smartcase = true, -- smart case
-	smartindent = true, -- make indenting smarter again
+	smartindent = false, -- make indenting smarter again
+  autoindent = true,
 	splitbelow = true, -- force all horizontal splits to go below current window
 	splitright = true, -- force all vertical splits to go to the right of current window
 	swapfile = false, -- creates a swapfile
@@ -30,7 +30,7 @@ local options = {
 	updatetime = 300, -- faster completion (4000ms default)
 	writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 	expandtab = true, -- convert tabs to spaces
-	shiftwidth = 2, -- the number of spaces inserted for each indentation
+  shiftwidth = 2, -- the number of spaces inserted for each indentation
 	tabstop = 2, -- insert 2 spaces for a tab
 	cursorline = true, -- highlight the current line
 	number = true, -- set numbered lines
@@ -61,6 +61,8 @@ dofile(configdir .. "/nvim/plugins/bufferline.lua")
 dofile(configdir .. "/nvim/plugins/null-ls.lua")
 dofile(configdir .. "/nvim/plugins/treesitter.lua")
 dofile(configdir .. "/nvim/plugins/lspsaga.lua")
+
+cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 cmd("autocmd BufEnter * silent! lcd %:p:h")
 cmd("set whichwrap+=<,>,[,],h,l")
 cmd([[set iskeyword+=-]])
@@ -78,7 +80,7 @@ cmd([[
 ]])
 cmd([[
   set foldlevelstart=99
-  set foldmethod=expr
+  set foldmethod=indent
   set foldexpr=FoldMethod(v:lnum)
   function! FoldMethod(lnum)
     "get string of current line
