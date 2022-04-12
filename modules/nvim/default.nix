@@ -68,7 +68,7 @@ in {
       nixfmt
       shellcheck
       shellharden
-      # nodePackages.eslint_d
+      nodePackages.eslint_d
     ];
   };
   programs.neovim = {
