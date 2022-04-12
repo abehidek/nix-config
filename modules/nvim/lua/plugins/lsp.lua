@@ -40,10 +40,6 @@ local on_attach = function(client, bufnr)
 		client.resolved_capabilities.document_formatting = false
 	end
 
-	-- if client.name == "cssls" then
-	-- client.resolved_capabilities.textDocument.completion.completionItem.snippetSupport = true
-	-- end
-
 	protocol.CompletionItemKind = {
 		"", -- Text
 		"", -- Method
@@ -89,6 +85,11 @@ nvim_lsp.tsserver.setup({
 nvim_lsp.cssls.setup({
 	capabilities = capabilities,
   cmd = { "css-languageserver", "--stdio" }
+})
+nvim_lsp.html.setup({
+  capabilities = capabilities,
+  cmd = { "html-languageserver", "--stdio"},
+  filetypes = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact" },
 })
 nvim_lsp.svelte.setup({})
 nvim_lsp.dartls.setup({

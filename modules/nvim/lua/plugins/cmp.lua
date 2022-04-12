@@ -11,6 +11,10 @@ if not snip_status_ok then
 	return
 end
 
+luasnip.filetype_extend("javascript", { "html" })
+luasnip.filetype_extend("javascriptreact", { "html" })
+luasnip.filetype_extend("typescriptreact", { "html" })
+
 local check_backspace = function()
 	local col = vim.fn.col(".") - 1
 	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
