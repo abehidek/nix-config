@@ -6,8 +6,8 @@ let
     };
 in {
   services = {
-    mysql.enable = true;
-    mysql.package = pkgs.mysql80;
+    # mysql.enable = true;
+    # mysql.package = pkgs.mysql80;
   };
   #virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "abe" ];
