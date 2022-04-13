@@ -9,6 +9,9 @@ in {
   home-manager.users.abe = {
     programs.zsh = {
       enable = true;
+      profileExtra = ''
+        [ "$(tty)" = "/dev/tty1" ] && exec sway
+      '';
       initExtraFirst = ''
         P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
         [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
@@ -26,6 +29,8 @@ in {
         any-nix-shell zsh --info-right | source /dev/stdin
         alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
         clear
+      '';
+      envExtra = ''
       '';
       enableCompletion = true;
       enableSyntaxHighlighting = true;
