@@ -76,7 +76,7 @@ nvim_lsp.rnix.setup({
 	capabilities = capabilities,
 })
 nvim_lsp.pyright.setup({
-	-- handlers = { ["textDocument/publishDiagnostics"] = function(...) end },
+	handlers = { ["textDocument/publishDiagnostics"] = function(...) end },
 })
 nvim_lsp.tsserver.setup({
 	on_attach = on_attach,
