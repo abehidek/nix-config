@@ -10,13 +10,15 @@ in {
     # mysql.package = pkgs.mysql80;
   };
   #virtualisation.virtualbox.host.enable = true;
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
   users.extraGroups.vboxusers.members = [ "abe" ];
   home-manager.users.abe = {
     imports = [ ../nvim ];
     home = {
       packages = with pkgs;
         [
-          vscode # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
+          vscode virt-manager # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
         ];
     };
     programs = {

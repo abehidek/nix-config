@@ -30,7 +30,7 @@ in {
     initialPassword = "password";
     shell = pkgs.zsh;
     extraGroups =
-      [ "wheel" "doas" "video" "audio" "jackaudio" "networkmanager" ];
+      [ "wheel" "doas" "video" "audio" "jackaudio" "networkmanager" "libvirtd" ];
   };
 
   nixpkgs.config.chromium.commandLineArgs =
