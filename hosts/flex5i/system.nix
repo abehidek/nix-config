@@ -3,8 +3,20 @@
 {
   imports = [
     ./hardware.nix
-    ../../users/abe.nix
+    # ../../users/abe.nix
+    ../../modules/wm/sway.nix # Sway Window Manager
+    ../../modules/development # Dev settings
   ];
+
+  users.users.abe = {
+    isNormalUser = true;
+    initialPassword = "password";
+    shell = pkgs.zsh;
+    extraGroups =
+      [ "wheel" "doas" "video" "audio" "jackaudio" "networkmanager" "libvirtd" ];
+  };
+  nixpkgs.config.chromium.commandLineArgs =
+    "---enable-features=UseOzonePlatform --ozone-platform=wayland -enable-features=VaapiVideoDecoder";
 
   boot = {
     cleanTmpDir = true;
