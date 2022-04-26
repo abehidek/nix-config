@@ -16,15 +16,12 @@ let
   homeDir = "/home/abe";
 in {
   imports = [
-    #  Home Manager
     (import "${home-manager}/nixos")
 
-    # Modules used by the user
     ../modules/wm/sway.nix # Sway Window Manager
     ../modules/development # Dev settings
   ];
 
-  # System's users
   users.users.abe = {
     isNormalUser = true;
     initialPassword = "password";
@@ -37,16 +34,11 @@ in {
     "---enable-features=UseOzonePlatform --ozone-platform=wayland -enable-features=VaapiVideoDecoder";
 
   home-manager.users.abe = {
-    # You can update Home Manager without changing this value. See
-    # the Home Manager release notes for a list of state version
-    # changes in each release.
-    # imports = [ ./firefox.nix ];
     home.stateVersion = "21.11";
     home.username = "abe";
     home.homeDirectory = "${homeDir}";
     programs.home-manager.enable = true;
 
-    # User packages
     nixpkgs.config.allowUnfree = true;
     home.packages = with pkgs; [
       # GUI Applications
@@ -56,8 +48,7 @@ in {
       libreoffice
       gnome.nautilus
       ungoogled-chromium
-      brave # firefox
-      unstable.rpi-imager
+      brave
       unstable.tetrio-desktop
       shared-mime-info
       obsidian
@@ -69,7 +60,6 @@ in {
       ".icons".source = ../modules/icons;
     };
 
-    # Services
     services.dropbox.enable = true;
   };
 }
