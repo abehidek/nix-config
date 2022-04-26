@@ -13,16 +13,16 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/NIXROOT";
+    device = "/dev/disk/by-label/NIXOS-ROOT";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-label/NIXBOOT";
+    device = "/dev/disk/by-label/NIXOS-BOOT";
     fsType = "vfat";
   };
 
-  swapDevices = [{ device = "/dev/disk/by-label/NIXSWAP"; }];
+  swapDevices = [{ device = "/dev/disk/by-label/NIXOS-SWAP"; }];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode =

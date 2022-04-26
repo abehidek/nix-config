@@ -1,9 +1,8 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ # Include the results of your hardware scan.
-    # ./hardware.nix
-    /etc/nixos/hardware-configuration.nix
+  imports = [
+    ./hardware.nix
     ../../users/abe.nix # Home Manager
   ];
 

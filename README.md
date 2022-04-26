@@ -32,9 +32,9 @@ Also, if someone is interest I would love to chat about this topic since I have 
 ##### Partition Scheme
 | Partition Label | Description |
 |---|---|
-| NIXBOOT | EFI partition contains basic files to load the Operating System. |
-| NIXROOT | Root partition, where linux operating system and its files is stored. |
-| NIXSWAP | Assistant and overflow space for RAM. |
+| NIXOS-BOOT | EFI partition contains basic files to load the Operating System. |
+| NIXOS-ROOT | Root partition, where linux operating system and its files is stored. |
+| NIXOS-SWAP | Assistant and overflow space for RAM. |
 
 ### Learn more about Nix and NixOS
 #### (I used these materials A LOT in order to be able to create this repo):
