@@ -45,7 +45,11 @@
     keyMap = "br-abnt2";
   };
 
-  nix.autoOptimiseStore = true;
+  nix = {
+    autoOptimiseStore = true;
+    package = pkgs.nixFlakes;
+    extraOptions = "experimental-features = nix-command flakes";
+  };
 
   services = {
     openssh.enable = true;
