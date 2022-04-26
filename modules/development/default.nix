@@ -1,10 +1,5 @@
-{ config, pkgs, ... }:
-let
-  unstable = import
-    (fetchTarball "https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz") {
-      config.allowUnfree = true;
-    };
-in {
+{ lib, config, pkgs, ... }:
+{
   services = {
     # mysql.enable = true;
     # mysql.package = pkgs.mysql80;

@@ -1,11 +1,7 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 let
   colorscheme = import ../theme/colorscheme;
-  unstable = import (builtins.fetchTarball
-    "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {
-      config = config.nixpkgs.config;
-    };
   # telescope-media-files-nvim = pkgs.vimUtils.buildVimPlugin {
   #   name = "telescope-media-files-nvim";
   #   src = pkgs.fetchFromGitHub {
@@ -37,9 +33,9 @@ in {
     sessionVariables = {
       NVIM_LISTEN_ADDRESS =
         "/tmp/nvimsocket"; # To make neovim-remote work properly
-      JAVALSP = "${unstable.java-language-server}";
+      JAVALSP = "${pkgs.java-language-server}";
     };
-    packages = with unstable; [
+    packages = with pkgs; [
       sshfs
       neovim-remote
       # -- Language Servers for Neovim
@@ -73,13 +69,13 @@ in {
   };
   programs.neovim = {
     enable = true;
-    package = unstable.neovim-unwrapped;
+    package = pkgs.neovim-unwrapped;
     vimAlias = true;
     viAlias = true;
     withRuby = true;
     withNodeJs = true;
     withPython3 = true;
-    plugins = with unstable.vimPlugins; [
+    plugins = with pkgs.vimPlugins; [
       # -- theme and appearance
       indent-blankline-nvim
       nord-nvim

@@ -1,10 +1,11 @@
 {
   description = "A very basic flake";
   inputs = {
-    nixpkgs = { url = "github:nixos/nixpkgs/nixos-21.11"; };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager = { url = github:nix-community/home-manager; inputs.nixpkgs.follows = "nixpkgs"; };
   };
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
     let 
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
@@ -12,7 +13,8 @@
     in {
       nixosConfigurations = {
         flex5i = lib.nixosSystem { 
-          inherit system; 
+          inherit system;
+          specialArgs = { inherit nixpkgs-unstable; };
           modules = [
             ./hosts/flex5i/system.nix
             home-manager.nixosModules.home-manager {

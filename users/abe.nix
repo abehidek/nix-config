@@ -1,11 +1,5 @@
 { config, pkgs, ... }:
 let
-  home-manager = builtins.fetchTarball
-    "https://github.com/nix-community/home-manager/archive/release-21.11.tar.gz";
-  unstable = import (builtins.fetchTarball
-    "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {
-      config = config.nixpkgs.config;
-    };
   ulauncher-theme = pkgs.fetchFromGitHub {
     owner = "vincens2005";
     repo = "dark_trans";
@@ -49,7 +43,7 @@ in {
       gnome.nautilus
       ungoogled-chromium
       brave
-      unstable.tetrio-desktop
+      # unstable.tetrio-desktop
       shared-mime-info
       obsidian
       ulauncher

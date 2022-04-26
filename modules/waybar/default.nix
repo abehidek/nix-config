@@ -4,19 +4,15 @@
 # environment = {
 #   systemPackages = with pkgs; [ wlogout ];
 # };
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 let
   colorscheme = import ../theme/colorscheme;
-  unstable = import (builtins.fetchTarball
-    "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {
-      config = config.nixpkgs.config;
-    };
 in {
   imports = [ ./wlogout ];
-  home.packages = with unstable; [ wlogout ];
+  home.packages = with pkgs; [ wlogout ];
   programs.waybar = {
     enable = true;
-    package = unstable.waybar;
+    package = pkgs.waybar;
     settings = [{
       height = 35;
       margin-bottom = 5;
