@@ -49,12 +49,15 @@ Also, if someone is interest I would love to chat about this topic since I have 
 - https://rycee.gitlab.io/home-manager/options.html#opt-wayland.windowManager.sway.enable
 - https://www.reddit.com/r/swaywm/comments/hmtdr9/how_do_you_guys_change_settings_in_sway/
 - https://www.youtube.com/channel/UCSW5DqTyfOI9sUvnFoCjBlQ/videos
+- https://youtu.be/AGVXJ-TIv3Y
 
 ##### Some other dotfiles repo I use to understand better:
 - https://github.com/hlissner/dotfiles
 - https://github.com/KubqoA/dotfiles
 - https://github.com/alternateved/nixos-config
 - https://github.com/darch7/swaywm
+- https://github.com/MatthiasBenaets/nixos-config
+- https://github.com/wiltaylor/dotfiles
 
 ##### Configuring Neovim from scratch
 - https://github.com/notusknot/dotfiles-nix
