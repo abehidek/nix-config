@@ -33,6 +33,7 @@
       ../waybar # Waybar settings
       ../swaylock-effects
       ../theme # Import Theme
+      ../rofi 
     ];
     wayland.windowManager.sway = let
       buildScript = import ../buildScript.nix { inherit pkgs; };
@@ -62,7 +63,7 @@
             command = "${import-gsettingsScript}/bin/import-gsettings";
             always = true;
           }
-          { command = "${pkgs.ulauncher}/bin/ulauncher --hide-window"; }
+          # { command = "${pkgs.rofi}/bin/rofi -show"; }
           {
             command =
               "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP";
@@ -81,8 +82,7 @@
               "pacmd 'set-default-sink alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi___ucm0002.hw_sofhdadsp__sink'";
           }
         ];
-        # menu = "${pkgs.wofi}/bin/wofi --show run swaymsg exec --";
-        menu = "${pkgs.ulauncher}/bin/ulauncher-toggle";
+        menu = "${unstable.rofi-wayland}/bin/rofi -show";
         terminal = "${pkgs.kitty}/bin/kitty";
 
         # screens

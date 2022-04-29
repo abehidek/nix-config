@@ -46,7 +46,6 @@ in {
       # unstable.tetrio-desktop
       shared-mime-info
       obsidian
-      ulauncher
     ];
     home.file = {
       # ".config/ulauncher/user-themes/dark_trans".source = ulauncher-theme;
