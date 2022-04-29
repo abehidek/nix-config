@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-
+{ lib, config, pkgs, unstable, ... }:
 {
   imports = [
     ./hardware.nix

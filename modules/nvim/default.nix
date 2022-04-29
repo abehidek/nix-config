@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, unstable, ... }:
 
 let
   colorscheme = import ../theme/colorscheme;
@@ -33,9 +33,9 @@ in {
     sessionVariables = {
       NVIM_LISTEN_ADDRESS =
         "/tmp/nvimsocket"; # To make neovim-remote work properly
-      JAVALSP = "${pkgs.java-language-server}";
+      JAVALSP = "${unstable.java-language-server}";
     };
-    packages = with pkgs; [
+    packages = with unstable; [
       sshfs
       neovim-remote
       # -- Language Servers for Neovim
@@ -69,13 +69,13 @@ in {
   };
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-unwrapped;
+    package = unstable.neovim-unwrapped;
     vimAlias = true;
     viAlias = true;
     withRuby = true;
     withNodeJs = true;
     withPython3 = true;
-    plugins = with pkgs.vimPlugins; [
+    plugins = with unstable.vimPlugins; [
       # -- theme and appearance
       indent-blankline-nvim
       nord-nvim

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, unstable, ... }: {
   imports = [
     # Modules used by the wm
     ../xdg # XDG Settings

@@ -1,10 +1,10 @@
-{ config, pkgs, home-manager, ...}:
+{ lib, config, pkgs, unstable, home-manager, ...}:
 {
   # home.stateVersion = "21.11";
   home.username = "abe";
   home.homeDirectory = "/home/abe";
   # programs.home-manager.enable = true;
-
+  imports = [ ../modules/nvim ];
   # nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # GUI Applications
@@ -15,10 +15,9 @@
     gnome.nautilus
     ungoogled-chromium
     brave
-    # tetrio-desktop
+    # unstable.tetrio-desktop
     shared-mime-info
     obsidian
-    ulauncher
   ];
   home.file = {
     # ".config/ulauncher/user-themes/dark_trans".source = ulauncher-theme;
