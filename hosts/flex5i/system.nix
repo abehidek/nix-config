@@ -2,7 +2,6 @@
 {
   imports = [
     ./hardware.nix
-    # ../../users/abe.nix
     ../../modules/wm/sway.nix # Sway Window Manager
     ../../modules/development # Dev settings
   ];
