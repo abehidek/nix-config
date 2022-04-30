@@ -19,6 +19,9 @@
     shared-mime-info
     obsidian
   ];
+  programs.firefox = {
+    enable = true;
+  };
   home.file = {
     # ".config/ulauncher/user-themes/dark_trans".source = ulauncher-theme;
     ".local/share/applications".source = ../modules/applications;
