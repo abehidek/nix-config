@@ -1,11 +1,7 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, unstable, ... }:
 
 let
   colorscheme = import ../theme/colorscheme;
-  unstable = import (builtins.fetchTarball
-    "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {
-      config = config.nixpkgs.config;
-    };
   # telescope-media-files-nvim = pkgs.vimUtils.buildVimPlugin {
   #   name = "telescope-media-files-nvim";
   #   src = pkgs.fetchFromGitHub {
@@ -76,9 +72,9 @@ in {
     package = unstable.neovim-unwrapped;
     vimAlias = true;
     viAlias = true;
-    withRuby = true;
-    withNodeJs = true;
-    withPython3 = true;
+    # withRuby = true;
+    # withNodeJs = true;
+    # withPython3 = true;
     plugins = with unstable.vimPlugins; [
       # -- theme and appearance
       indent-blankline-nvim

@@ -1,24 +1,21 @@
-{ config, pkgs, ... }:
-let
-  unstable = import
-    (fetchTarball "https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz") {
-      config.allowUnfree = true;
-    };
-in {
-  services = {
+{ lib, config, pkgs, unstable, ... }:
+{
+  # services = {
     # mysql.enable = true;
     # mysql.package = pkgs.mysql80;
-  };
+  # };
   #virtualisation.virtualbox.host.enable = true;
   virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.onBoot = "ignore";
   programs.dconf.enable = true;
   users.extraGroups.vboxusers.members = [ "abe" ];
   home-manager.users.abe = {
-    imports = [ ../nvim ];
+    # imports = [ ../nvim ];
     home = {
-      packages = with pkgs;
+      packages = with unstable;
         [
-          vscode virt-manager # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
+          virt-manager
+          pfetch # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
         ];
     };
     programs = {

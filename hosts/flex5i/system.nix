@@ -1,13 +1,21 @@
-{ config, pkgs, ... }:
-
+{ lib, config, pkgs, unstable, ... }:
 {
-  imports = [ # Include the results of your hardware scan.
-    # ./hardware.nix
-    /etc/nixos/hardware-configuration.nix
-    ../../users/abe.nix # Home Manager
+  imports = [
+    ./hardware.nix
+    ../../modules/wm/sway.nix # Sway Window Manager
+    ../../modules/development # Dev settings
   ];
 
-  # Use the systemd-boot EFI boot loader.
+  users.users.abe = {
+    isNormalUser = true;
+    initialPassword = "password";
+    shell = pkgs.zsh;
+    extraGroups =
+      [ "wheel" "doas" "video" "audio" "jackaudio" "networkmanager" "libvirtd" ];
+  };
+  nixpkgs.config.chromium.commandLineArgs =
+    "---enable-features=UseOzonePlatform --ozone-platform=wayland -enable-features=VaapiVideoDecoder";
+
   boot = {
     cleanTmpDir = true;
     kernel.sysctl = { "fs.inotify.max_user_watches" = 524288; };
@@ -18,7 +26,6 @@
     };
   };
 
-  # Physical hardware settings and opengl enabled for wayland
   hardware = {
     cpu.intel.updateMicrocode = true;
     bluetooth.enable = false;
@@ -32,22 +39,13 @@
   };
 
   networking = {
-    hostName = "flex5i"; # Define your hostname.
+    hostName = "flex5i";
     networkmanager.enable = true;
     useNetworkd = true;
     useDHCP = false;
     interfaces.wlp0s20f3.useDHCP = true;
-    # Configure network proxy if necessary
-    # proxy.default = "http://user:password@proxy:port/";
-    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-    # Open ports in the firewall.
-    # networking.firewall.allowedTCPPorts = [ ... ];
-    # networking.firewall.allowedUDPPorts = [ ... ];
-    # Or disable the firewall altogether.
-    # networking.firewall.enable = false;
   };
 
-  # Locales config
   time.timeZone = "America/Sao_Paulo";
   i18n.defaultLocale = "pt_BR.UTF-8";
   console = {
@@ -57,13 +55,13 @@
     keyMap = "br-abnt2";
   };
 
-  # List services that you want to enable:
-  nix.autoOptimiseStore = true;
+  nix = {
+    autoOptimiseStore = true;
+    package = pkgs.nixFlakes;
+    extraOptions = "experimental-features = nix-command flakes";
+  };
 
   services = {
-    # Enable CUPS to print documents.
-    # printing.enable = true; 
-    # Enable the OpenSSH daemon.
     openssh.enable = true;
     xserver.libinput.enable = true;
     gnome.gnome-keyring.enable = true;
@@ -85,7 +83,6 @@
 
   environment.variables = {
     DOTFILES = "$HOME/dotfiles";
-    # XDG_DATA_HOME="$HOME/.local/share";
   };
 
   fonts = {
@@ -112,7 +109,6 @@
     };
   };
 
-  # System security settings
   security = {
     doas.enable = true;
     doas.extraRules = [{
@@ -125,8 +121,6 @@
     protectKernelImage = true;
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     vim
@@ -142,13 +136,8 @@
     pavucontrol
     lm_sensors
     xdg-utils
-    # ffmpeg libmpeg2 libmad libdv a52dec faac faad2 flac jasper lame libtheora libvorbis xorg.libXv opusfile wavpack x264 xvidcore smpeg
-    # libwacom xf86_input_wacom
-    # xorg.xinput xinput_calibrator foot
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
   programs = {
     mtr.enable = true;
     gnupg.agent = {
@@ -157,11 +146,5 @@
     };
   };
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.11"; # Did you read the comment?
+  system.stateVersion = "21.11";
 }
