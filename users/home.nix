@@ -14,7 +14,7 @@
     libreoffice
     gnome.nautilus
     ungoogled-chromium
-    brave
+    # brave
     # unstable.tetrio-desktop
     shared-mime-info
     obsidian
@@ -24,7 +24,7 @@
   };
   home.file = {
     # ".config/ulauncher/user-themes/dark_trans".source = ulauncher-theme;
-    ".local/share/applications".source = ../modules/applications;
+    # ".local/share/applications".source = ../modules/applications;
     ".icons".source = ../modules/icons;
   };
 
