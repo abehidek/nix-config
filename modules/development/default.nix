@@ -14,7 +14,7 @@
     home = {
       packages = with unstable;
         [
-          vscode virt-manager
+          virt-manager
           pfetch # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
         ];
     };
