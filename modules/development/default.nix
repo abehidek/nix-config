@@ -6,6 +6,7 @@
   # };
   #virtualisation.virtualbox.host.enable = true;
   virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.onBoot = "ignore";
   programs.dconf.enable = true;
   users.extraGroups.vboxusers.members = [ "abe" ];
   home-manager.users.abe = {
