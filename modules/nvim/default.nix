@@ -72,9 +72,9 @@ in {
     package = unstable.neovim-unwrapped;
     vimAlias = true;
     viAlias = true;
-    withRuby = true;
-    withNodeJs = true;
-    withPython3 = true;
+    # withRuby = true;
+    # withNodeJs = true;
+    # withPython3 = true;
     plugins = with unstable.vimPlugins; [
       # -- theme and appearance
       indent-blankline-nvim
