@@ -12,11 +12,11 @@
     signal-desktop
     vlc
     libreoffice
-    ungoogled-chromium
     # gnome.nautilus
     pcmanfm
     # brave
     # unstable.tetrio-desktop
+    # google-chrome
     shared-mime-info
     obsidian
   ];
