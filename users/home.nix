@@ -12,8 +12,9 @@
     signal-desktop
     vlc
     libreoffice
-    gnome.nautilus
     ungoogled-chromium
+    # gnome.nautilus
+    pcmanfm
     # brave
     # unstable.tetrio-desktop
     shared-mime-info
