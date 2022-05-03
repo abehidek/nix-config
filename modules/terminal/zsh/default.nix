@@ -15,23 +15,23 @@ in {
       initExtraFirst = ''
         P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
         [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
-        if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-            alias nvim=nvr -cc split --remote-wait +'set bufhidden=wipe'
-        fi
 
-        if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-            export VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
-            export EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
-        else
-            export VISUAL="nvim"
-            export EDITOR="nvim"
-        fi
         any-nix-shell zsh --info-right | source /dev/stdin
         alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
         clear
       '';
       envExtra = ''
       '';
+      # if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+      #     export VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+      #     export EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+      # else
+      #     export VISUAL="nvim"
+      #     export EDITOR="nvim"
+      # fi
+      # if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+      #     alias nvim=nvr -cc split --remote-wait +'set bufhidden=wipe'
+      # fi
       enableCompletion = true;
       enableSyntaxHighlighting = true;
       history = {

@@ -73,11 +73,11 @@ cmd("set breakindent")
 cmd("set formatoptions=l")
 cmd("set lbr")
 cmd("set hidden")
-cmd([[
-  if has('nvim') && executable('nvr')
-    let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
-  endif
-]])
+-- cmd([[
+--   if has('nvim') && executable('nvr')
+--     let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+--   endif
+-- ]])
 cmd([[
   set foldlevelstart=99
   set foldmethod=indent
