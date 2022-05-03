@@ -1,8 +1,8 @@
 #
-#   Home-Manager config for flex5i
+#   Home-Manager config for flex5i abe user
 #
 
-{ lib, config, pkgs, unstable, ...}:
+{ lib, config, pkgs, unstable, user, ...}:
 {
   # home.stateVersion = "21.11";
   home.username = "abe";

@@ -20,12 +20,18 @@
             ./hosts/flex5i/system.nix
 
             home-manager.nixosModules.home-manager {
-              home-manager = {
+              home-manager =
+                let
+                  user = "abe";
+                in {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                extraSpecialArgs = { inherit unstable; };
+                extraSpecialArgs = { inherit unstable user; };
                 users.abe = {
-                  imports = [ ./hosts/flex5i/abe.nix ];
+                  imports = [
+                    ./hosts/flex5i/abe.nix
+                    # ./hosts
+                  ];
                 };
               };
             }
