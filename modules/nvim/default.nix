@@ -31,13 +31,12 @@ in {
       ".config/nvim/plugins/lspsaga.lua".source = ./lua/plugins/lspsaga.lua;
     };
     sessionVariables = {
-      NVIM_LISTEN_ADDRESS =
-        "/tmp/nvimsocket"; # To make neovim-remote work properly
+      # NVIM_LISTEN_ADDRESS = "/tmp/nvimsocket"; # To make neovim-remote work properly
       JAVALSP = "${unstable.java-language-server}";
     };
     packages = with unstable; [
       sshfs
-      neovim-remote
+      # neovim-remote
       # -- Language Servers for Neovim
       ripgrep # To make telescope live_grep work properly
       sumneko-lua-language-server

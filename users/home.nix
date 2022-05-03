@@ -4,7 +4,10 @@
   home.username = "abe";
   home.homeDirectory = "/home/abe";
   # programs.home-manager.enable = true;
-  imports = [ ../modules/nvim ];
+  imports = [
+    ../modules/nvim
+    ../secrets
+  ];
   # nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # GUI Applications
@@ -12,10 +15,11 @@
     signal-desktop
     vlc
     libreoffice
-    gnome.nautilus
-    ungoogled-chromium
+    # gnome.nautilus
+    pcmanfm
     # brave
     # unstable.tetrio-desktop
+    # google-chrome
     shared-mime-info
     obsidian
   ];

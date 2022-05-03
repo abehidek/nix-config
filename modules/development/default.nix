@@ -10,10 +10,10 @@
   programs.dconf.enable = true;
   users.extraGroups.vboxusers.members = [ "abe" ];
   home-manager.users.abe = {
-    # imports = [ ../nvim ];
     home = {
       packages = with unstable;
         [
+          git-crypt
           virt-manager
           pfetch # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
         ];
