@@ -10,7 +10,6 @@
   programs.dconf.enable = true;
   users.extraGroups.vboxusers.members = [ "abe" ];
   home-manager.users.abe = {
-    # imports = [ ../nvim ];
     home = {
       packages = with unstable;
         [

@@ -4,7 +4,10 @@
   home.username = "abe";
   home.homeDirectory = "/home/abe";
   # programs.home-manager.enable = true;
-  imports = [ ../modules/nvim ];
+  imports = [
+    ../modules/nvim
+    ../secrets
+  ];
   # nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # GUI Applications
