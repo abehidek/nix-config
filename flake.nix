@@ -18,6 +18,7 @@
           specialArgs = { inherit unstable; };
           modules = [
             ./hosts/flex5i/system.nix
+            ./hosts/system.nix
 
             home-manager.nixosModules.home-manager {
               home-manager =
@@ -30,7 +31,7 @@
                 users.abe = {
                   imports = [
                     ./hosts/flex5i/abe.nix
-                    # ./hosts
+                    ./hosts/home.nix
                   ];
                 };
               };
