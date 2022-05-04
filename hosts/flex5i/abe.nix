@@ -16,7 +16,7 @@
     pcmanfm
     # brave
     # unstable.tetrio-desktop
-    # google-chrome
+    google-chrome
     shared-mime-info
     obsidian
   ];
