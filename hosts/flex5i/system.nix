@@ -1,5 +1,4 @@
-{ lib, config, pkgs, unstable, ... }:
-{
+{ lib, config, pkgs, unstable, ... }: {
   imports = [
     ./hardware.nix
     ../../modules/wm/sway.nix # Sway Window Manager

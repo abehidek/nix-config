@@ -1,13 +1,19 @@
-{ lib, config, pkgs, unstable, ... }:
-{
+{ lib, config, pkgs, unstable, ... }: {
   users.users = {
     abe = {
       isNormalUser = true;
       initialPassword = "password";
       shell = pkgs.zsh;
-      extraGroups =
-        [ "wheel" "doas" "video" "audio" "jackaudio" "networkmanager" "libvirtd" ];
-      };
+      extraGroups = [
+        "wheel"
+        "doas"
+        "video"
+        "audio"
+        "jackaudio"
+        "networkmanager"
+        "libvirtd"
+      ];
+    };
   };
 
   nix = {
@@ -16,9 +22,7 @@
     extraOptions = "experimental-features = nix-command flakes";
   };
 
-  nixpkgs = {
-    config.allowUnfree = true;
-  };
+  nixpkgs = { config.allowUnfree = true; };
 
   services = {
     openssh.enable = true;
@@ -26,9 +30,7 @@
     gvfs.enable = true;
   };
 
-  environment.variables = {
-    DOTFILES = "$HOME/dotfiles";
-  };
+  environment.variables = { DOTFILES = "$HOME/dotfiles"; };
 
   programs = {
     mtr.enable = true;

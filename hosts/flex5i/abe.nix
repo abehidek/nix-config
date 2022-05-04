@@ -1,16 +1,10 @@
-#
 #   Home-Manager config for flex5i abe user
-#
 
-{ lib, config, pkgs, unstable, user, ...}:
-{
+{ lib, config, pkgs, unstable, user, ... }: {
   # home.stateVersion = "21.11";
   home.username = "abe";
   home.homeDirectory = "/home/abe";
-  imports = [
-    ../../modules/nvim
-    ../../secrets
-  ];
+  imports = [ ../../modules/nvim ../../secrets ];
   # nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # GUI Applications
@@ -26,9 +20,7 @@
     shared-mime-info
     obsidian
   ];
-  programs.firefox = {
-    enable = true;
-  };
+  programs.firefox = { enable = true; };
   home.file = {
     # ".config/ulauncher/user-themes/dark_trans".source = ulauncher-theme;
     # ".local/share/applications".source = ../modules/applications;
