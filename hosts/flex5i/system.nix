@@ -1,18 +1,10 @@
-{ lib, config, pkgs, unstable, ... }:
-{
+{ lib, config, pkgs, unstable, ... }: {
   imports = [
     ./hardware.nix
     ../../modules/wm/sway.nix # Sway Window Manager
     ../../modules/development # Dev settings
   ];
 
-  users.users.abe = {
-    isNormalUser = true;
-    initialPassword = "password";
-    shell = pkgs.zsh;
-    extraGroups =
-      [ "wheel" "doas" "video" "audio" "jackaudio" "networkmanager" "libvirtd" ];
-  };
   nixpkgs.config.chromium.commandLineArgs =
     "---enable-features=UseOzonePlatform --ozone-platform=wayland -enable-features=VaapiVideoDecoder";
 
@@ -55,12 +47,6 @@
     keyMap = "br-abnt2";
   };
 
-  nix = {
-    autoOptimiseStore = true;
-    package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
-  };
-
   services = {
     openssh.enable = true;
     xserver.libinput.enable = true;
@@ -79,10 +65,6 @@
       pulse.enable = true;
       jack.enable = true;
     };
-  };
-
-  environment.variables = {
-    DOTFILES = "$HOME/dotfiles";
   };
 
   fonts = {
@@ -119,31 +101,6 @@
     sudo.enable = true;
     rtkit.enable = true;
     protectKernelImage = true;
-  };
-
-  nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    git
-    killall
-    gnome.seahorse
-    gnome.gnome-keyring
-    libsecret
-    brightnessctl
-    pulseaudio-ctl
-    playerctl
-    pavucontrol
-    lm_sensors
-    xdg-utils
-  ];
-
-  programs = {
-    mtr.enable = true;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
   };
 
   system.stateVersion = "21.11";

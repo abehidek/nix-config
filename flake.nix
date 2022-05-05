@@ -18,12 +18,22 @@
           specialArgs = { inherit unstable; };
           modules = [
             ./hosts/flex5i/system.nix
+            ./hosts/system.nix
+
             home-manager.nixosModules.home-manager {
-              home-manager = {
+              home-manager =
+                let
+                  user = "abe";
+                in {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                extraSpecialArgs = { inherit unstable; };
-                users.abe = { imports = [ ./users/home.nix ]; };
+                extraSpecialArgs = { inherit unstable user; };
+                users.abe = {
+                  imports = [
+                    ./hosts/flex5i/abe.nix
+                    ./hosts/home.nix
+                  ];
+                };
               };
             }
           ];
