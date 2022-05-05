@@ -1,17 +1,17 @@
 { config, lib, pkgs, unstable, ... }: {
   wayland.windowManager.sway = let
-    buildScript = import ../../../../lib/buildScript.nix { inherit pkgs; };
-    wallpaper = import  ../../../themes/wallpaper;
-    lockScript = buildScript "lock" ../../utils/swaylock/lock.sh {
+    buildScript = import ../../../lib/buildScript.nix { inherit pkgs; };
+    wallpaper = import  ../../themes/wallpaper;
+    lockScript = buildScript "lock" ../utils/swaylock/lock.sh {
       bg = wallpaper.bg;
-      lock = ../../utils/swaylock/lock.svg;
+      lock = ../utils/swaylock/lock.svg;
       swaylock = "${pkgs.swaylock-effects}/bin/swaylock";
     };
     import-gsettingsScript =
-      buildScript "import-gsettings" ../../../themes/gtk/import-gsettings.sh {
+      buildScript "import-gsettings" ../../themes/gtk/import-gsettings.sh {
         gsettings = "${pkgs.glib}/bin/gsettings";
       };
-    colorscheme = import ../../../themes/colorscheme;
+    colorscheme = import ../../themes/colorscheme;
   in {
     enable = true;
     wrapperFeatures.gtk = true;

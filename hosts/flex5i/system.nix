@@ -11,7 +11,7 @@
     ../../modules/terminal/kitty
 
     # rf-modules
-    ../../rf-modules/desktop/wm/sway # Enable sway on the system
+    ../../rf-modules/desktop/sway # Enable sway on the system
   ];
 
   nixpkgs.config.chromium.commandLineArgs =
