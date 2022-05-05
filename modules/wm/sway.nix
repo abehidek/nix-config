@@ -27,8 +27,7 @@
       buildScript = import ../buildScript.nix { inherit pkgs; };
       wallpaper = import ../theme/wallpaper.nix;
       lockScript = buildScript "lock" ../swaylock-effects/lock {
-        # bg = wallpaper.bg;
-        bg = ../theme/kittyboard.png;
+        bg = wallpaper.bg;
         lock = ../swaylock-effects/lock.svg;
         swaylock = "${pkgs.swaylock-effects}/bin/swaylock";
       };
