@@ -26,7 +26,7 @@
     wayland.windowManager.sway = let
       buildScript = import ../buildScript.nix { inherit pkgs; };
       wallpaper = import ../theme/wallpaper.nix;
-      lockScript = buildScript "lock" ../swaylock-effects/lock {
+      lockScript = buildScript "lock" ../swaylock-effects/lock.sh {
         bg = wallpaper.bg;
         lock = ../swaylock-effects/lock.svg;
         swaylock = "${pkgs.swaylock-effects}/bin/swaylock";
