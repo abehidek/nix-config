@@ -13,6 +13,9 @@
     ../../modules/theme
     ../../modules/theme/gtk
     ../../modules/rofi
+
+    # rf-modules
+    ../../rf-modules/desktop/wm/sway/home.nix
   ];
   # nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [

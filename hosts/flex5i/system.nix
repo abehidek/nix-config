@@ -3,12 +3,15 @@
 { lib, config, pkgs, unstable, ... }: {
   imports = [
     ./hardware.nix
-    ../../modules/wm/sway.nix # Sway Window Manager
+    # ../../modules/wm/sway.nix # Sway Window Manager
     ../../modules/development # Dev settings
     ../../modules/xdg
     ../../modules/terminal
     ../../modules/terminal/zsh
     ../../modules/terminal/kitty
+
+    # rf-modules
+    ../../rf-modules/desktop/wm/sway # Enable sway on the system
   ];
 
   nixpkgs.config.chromium.commandLineArgs =
