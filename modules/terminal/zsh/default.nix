@@ -1,9 +1,6 @@
 { lib, config, pkgs, ... }:
 let colorscheme = import ../theme/colorscheme;
 in {
-  # imports = [
-  #   ../../xdg
-  # ];
   environment = { systemPackages = with pkgs; [ any-nix-shell ]; };
   users.defaultUserShell = pkgs.zsh;
   home-manager.users.abe = {

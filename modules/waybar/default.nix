@@ -1,14 +1,7 @@
-# imports = [
-#   ./wlogout
-# ];
-# environment = {
-#   systemPackages = with pkgs; [ wlogout ];
-# };
 { lib, config, pkgs, ... }:
 let
   colorscheme = import ../theme/colorscheme;
 in {
-  imports = [ ./wlogout ];
   home.packages = with pkgs; [ wlogout ];
   programs.waybar = {
     enable = true;

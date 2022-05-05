@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 let colorscheme = import ../theme/colorscheme;
 in {
-  imports = [ ./zsh ./kitty ];
   environment = {
     variables.EDITOR = "nvim";
     variables.VISUAL = "nvim";

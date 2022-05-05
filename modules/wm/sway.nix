@@ -1,10 +1,4 @@
 { config, lib, pkgs, unstable, ... }: {
-  imports = [
-    # Modules used by the wm
-    ../xdg # XDG Settings
-    # ../mpd # MPD Settings
-    ../terminal # Terminal settings
-  ];
   programs.qt5ct.enable = true;
   programs.sway = {
     enable = true;
@@ -29,12 +23,6 @@
     ];
   };
   home-manager.users.abe = {
-    imports = [
-      ../waybar # Waybar settings
-      ../swaylock-effects
-      ../theme # Import Theme
-      ../rofi 
-    ];
     wayland.windowManager.sway = let
       buildScript = import ../buildScript.nix { inherit pkgs; };
       wallpaper = import ../theme/wallpaper.nix;

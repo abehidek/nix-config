@@ -4,7 +4,16 @@
   # home.stateVersion = "21.11";
   home.username = "abe";
   home.homeDirectory = "/home/abe";
-  imports = [ ../../modules/nvim ../../secrets ];
+  imports = [
+    ../../modules/nvim
+    ../../secrets
+    ../../modules/waybar
+    ../../modules/waybar/wlogout
+    ../../modules/swaylock-effects
+    ../../modules/theme
+    ../../modules/theme/gtk
+    ../../modules/rofi
+  ];
   # nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # GUI Applications
