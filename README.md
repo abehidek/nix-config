@@ -58,6 +58,8 @@ Also, if someone is interest I would love to chat about this topic since I have 
 - https://github.com/darch7/swaywm
 - https://github.com/MatthiasBenaets/nixos-config
 - https://github.com/wiltaylor/dotfiles
+- https://github.com/Misterio77/nix-colors
+- https://github.com/Misterio77/nix-config
 
 ##### Configuring Neovim from scratch
 - https://github.com/notusknot/dotfiles-nix
