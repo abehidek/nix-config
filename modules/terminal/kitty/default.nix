@@ -15,7 +15,7 @@ in {
       '';
       settings = {
         #allow_remote_control = false;
-        background_opacity = "0.9";
+        # background_opacity = "0.9";
         dynamic_background_opacity = true;
         window_padding_width = 10;
         foreground = "#D8DEE9";
