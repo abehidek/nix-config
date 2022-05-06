@@ -5,7 +5,6 @@
   home.username = user;
   home.homeDirectory = "/home/${user}";
   imports = [
-    ../../modules/nvim
     ../../secrets
     ../../modules/waybar
     ../../modules/waybar/wlogout
@@ -16,6 +15,7 @@
 
     # rf-modules
     ../../rf-modules/desktop/sway/home.nix
+    ../../rf-modules/editors/neovim/home.nix
   ];
   # nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
