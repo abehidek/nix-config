@@ -1,7 +1,0 @@
-[Desktop Entry]
-MimeType=inode/directory;
-Name=ranger
-Exec=kitty ranger
-Icon=ranger.png
-Terminal=true
-Type=Application
