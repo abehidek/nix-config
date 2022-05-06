@@ -2,8 +2,8 @@
 
 { lib, config, pkgs, unstable, user, ... }: {
   # home.stateVersion = "21.11";
-  home.username = "abe";
-  home.homeDirectory = "/home/abe";
+  home.username = user;
+  home.homeDirectory = "/home/${user}";
   imports = [
     ../../modules/nvim
     ../../secrets
