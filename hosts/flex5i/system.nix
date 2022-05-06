@@ -5,6 +5,7 @@
     ./hardware.nix
 
     ../../rf-modules/hardware/audio.nix # Enables pipewire audio
+    ../../rf-modules/services/network.nix # Enables networking
     ../../rf-modules/desktop/sway # Enable sway on the system
     ../../rf-modules/dev
     ../../rf-modules/shell
@@ -34,14 +35,6 @@
       driSupport = true;
       extraPackages = [ pkgs.intel-compute-runtime ];
     };
-  };
-
-  networking = {
-    hostName = "${name}";
-    networkmanager.enable = true;
-    useNetworkd = true;
-    useDHCP = false;
-    interfaces.wlp0s20f3.useDHCP = true;
   };
 
   time.timeZone = "America/Sao_Paulo";
