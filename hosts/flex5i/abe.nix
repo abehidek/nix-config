@@ -6,8 +6,8 @@
   home.homeDirectory = "/home/${user}";
   imports = [
     ../../secrets
-    ../../modules/waybar
-    ../../modules/waybar/wlogout
+    # ../../modules/waybar
+    # ../../modules/waybar/wlogout
     ../../modules/swaylock-effects
     ../../modules/theme
     ../../modules/theme/gtk
@@ -20,6 +20,7 @@
     ../../rf-modules/shell/home.nix
     ../../rf-modules/shell/zsh/home.nix
     ../../rf-modules/shell/kitty/home.nix
+    ../../rf-modules/desktop/services/waybar/home.nix
   ];
   # nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
