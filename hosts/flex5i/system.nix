@@ -5,7 +5,6 @@
     ./hardware.nix
 
     ../../rf-modules/hardware/audio.nix # Enables pipewire audio
-    ../../rf-modules/services/network.nix # Enables networking
     ../../rf-modules/desktop/sway # Enable sway on the system
     ../../rf-modules/dev
     ../../rf-modules/shell
@@ -47,7 +46,6 @@
   };
 
   services = {
-    openssh.enable = true;
     xserver.libinput.enable = true;
     gnome.gnome-keyring.enable = true;
     fstrim.enable = true;

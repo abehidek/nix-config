@@ -1,6 +1,10 @@
 # Multiple hosts system config
 
 { lib, config, pkgs, unstable, user, ... }: {
+  imports = [
+    ../rf-modules/services/network.nix # Enables networking
+    ../rf-modules/services/ssh.nix # Enables openssh
+  ];
   users.users = {
     ${user} = {
       isNormalUser = true;
@@ -27,7 +31,6 @@
   nixpkgs = { config.allowUnfree = true; };
 
   services = {
-    openssh.enable = true;
     gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
   };
