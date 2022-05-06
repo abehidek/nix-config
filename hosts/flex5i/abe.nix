@@ -1,4 +1,4 @@
-#   Home-Manager config for flex5i abe user
+# Home-Manager config for flex5i abe user
 
 { lib, config, pkgs, unstable, user, ... }: {
   # home.stateVersion = "21.11";
@@ -16,6 +16,7 @@
     # rf-modules
     ../../rf-modules/desktop/sway/home.nix
     ../../rf-modules/editors/neovim/home.nix
+    ../../rf-modules/dev/home.nix
   ];
   # nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [

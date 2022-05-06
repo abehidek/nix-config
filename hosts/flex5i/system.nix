@@ -1,10 +1,8 @@
-#   System config for flex5i
+# System config for flex5i
 
 { lib, config, pkgs, unstable, ... }: {
   imports = [
     ./hardware.nix
-    # ../../modules/wm/sway.nix # Sway Window Manager
-    ../../modules/development # Dev settings
     ../../modules/xdg
     ../../modules/terminal
     ../../modules/terminal/zsh
@@ -12,6 +10,7 @@
 
     # rf-modules
     ../../rf-modules/desktop/sway # Enable sway on the system
+    ../../rf-modules/dev
   ];
 
   nixpkgs.config.chromium.commandLineArgs =
