@@ -4,11 +4,11 @@
   imports = [
     ./hardware.nix
 
-    ../../rf-modules/hardware/audio.nix # Enables pipewire audio
-    ../../rf-modules/desktop/sway # Enable sway on the system
-    ../../rf-modules/dev
-    ../../rf-modules/shell
-    ../../rf-modules/shell/zsh
+    ../../modules/hardware/audio.nix # Enables pipewire audio
+    ../../modules/desktop/sway # Enable sway on the system
+    ../../modules/dev
+    ../../modules/shell
+    ../../modules/shell/zsh
   ];
 
   nixpkgs.config.chromium.commandLineArgs =

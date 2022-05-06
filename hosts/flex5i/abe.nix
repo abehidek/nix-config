@@ -7,16 +7,16 @@
   imports = [
     ../../secrets
 
-    ../../rf-modules/desktop/sway/home.nix
-    ../../rf-modules/editors/neovim/home.nix
-    ../../rf-modules/dev/home.nix
-    ../../rf-modules/shell/home.nix
-    ../../rf-modules/shell/zsh/home.nix
-    ../../rf-modules/shell/kitty/home.nix
-    ../../rf-modules/desktop/services/waybar/home.nix
-    ../../rf-modules/desktop/services/rofi/home.nix
-    ../../rf-modules/desktop/utils/swaylock/home.nix
-    ../../rf-modules/themes/gtk/home.nix
+    ../../modules/desktop/sway/home.nix
+    ../../modules/editors/neovim/home.nix
+    ../../modules/dev/home.nix
+    ../../modules/shell/home.nix
+    ../../modules/shell/zsh/home.nix
+    ../../modules/shell/kitty/home.nix
+    ../../modules/desktop/services/waybar/home.nix
+    ../../modules/desktop/services/rofi/home.nix
+    ../../modules/desktop/utils/swaylock/home.nix
+    ../../modules/themes/gtk/home.nix
   ];
   # nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [

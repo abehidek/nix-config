@@ -2,8 +2,8 @@
 
 { lib, config, pkgs, unstable, user, ... }: {
   imports = [
-    ../rf-modules/services/network.nix # Enables networking
-    ../rf-modules/services/ssh.nix # Enables openssh
+    ../modules/services/network.nix # Enables networking
+    ../modules/services/ssh.nix # Enables openssh
   ];
   users.users = {
     ${user} = {
