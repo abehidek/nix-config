@@ -4,7 +4,6 @@
   imports = [
     ./hardware.nix
 
-    # rf-modules
     ../../rf-modules/desktop/sway # Enable sway on the system
     ../../rf-modules/dev
     ../../rf-modules/shell

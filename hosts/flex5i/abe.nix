@@ -6,14 +6,7 @@
   home.homeDirectory = "/home/${user}";
   imports = [
     ../../secrets
-    # ../../modules/waybar
-    # ../../modules/waybar/wlogout
-    # ../../modules/swaylock-effects
-    # ../../modules/theme
-    # ../../modules/theme/gtk
-    ../../modules/rofi
 
-    # rf-modules
     ../../rf-modules/desktop/sway/home.nix
     ../../rf-modules/editors/neovim/home.nix
     ../../rf-modules/dev/home.nix
@@ -21,6 +14,7 @@
     ../../rf-modules/shell/zsh/home.nix
     ../../rf-modules/shell/kitty/home.nix
     ../../rf-modules/desktop/services/waybar/home.nix
+    ../../rf-modules/desktop/services/rofi/home.nix
     ../../rf-modules/desktop/utils/swaylock/home.nix
     ../../rf-modules/themes/gtk/home.nix
   ];
