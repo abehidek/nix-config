@@ -8,7 +8,7 @@
     ../../secrets
     # ../../modules/waybar
     # ../../modules/waybar/wlogout
-    ../../modules/swaylock-effects
+    # ../../modules/swaylock-effects
     ../../modules/theme
     ../../modules/theme/gtk
     ../../modules/rofi
@@ -21,6 +21,7 @@
     ../../rf-modules/shell/zsh/home.nix
     ../../rf-modules/shell/kitty/home.nix
     ../../rf-modules/desktop/services/waybar/home.nix
+    ../../rf-modules/desktop/utils/swaylock/home.nix
   ];
   # nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
