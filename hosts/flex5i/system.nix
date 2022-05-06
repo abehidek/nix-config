@@ -3,14 +3,12 @@
 { lib, config, pkgs, unstable, ... }: {
   imports = [
     ./hardware.nix
-    # ../../modules/xdg
-    ../../modules/terminal
-    ../../modules/terminal/zsh
-    ../../modules/terminal/kitty
 
     # rf-modules
     ../../rf-modules/desktop/sway # Enable sway on the system
     ../../rf-modules/dev
+    ../../rf-modules/shell
+    ../../rf-modules/shell/zsh
   ];
 
   nixpkgs.config.chromium.commandLineArgs =

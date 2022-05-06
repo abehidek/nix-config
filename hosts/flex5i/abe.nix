@@ -17,6 +17,9 @@
     ../../rf-modules/desktop/sway/home.nix
     ../../rf-modules/editors/neovim/home.nix
     ../../rf-modules/dev/home.nix
+    ../../rf-modules/shell/home.nix
+    ../../rf-modules/shell/zsh/home.nix
+    ../../rf-modules/shell/kitty/home.nix
   ];
   # nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
