@@ -3,7 +3,7 @@
 { lib, config, pkgs, unstable, ... }: {
   imports = [
     ./hardware.nix
-    ../../modules/xdg
+    # ../../modules/xdg
     ../../modules/terminal
     ../../modules/terminal/zsh
     ../../modules/terminal/kitty

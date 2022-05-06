@@ -56,4 +56,21 @@
     lm_sensors
     xdg-utils
   ];
+
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+      gtkUsePortal = true;
+    };
+    mime.defaultApplications = {
+      "image/jpeg" = "feh.desktop";
+      "image/png" = "feh.desktop";
+      "inode/directory" = "nautilus.desktop";
+      "application/x-directory" = "nautilus.desktop";
+    };
+  };
 }
