@@ -1,6 +1,6 @@
 # Flex5i system config
 
-{ lib, config, pkgs, unstable, ... }: {
+{ lib, config, pkgs, unstable, name, user, ... }: {
   imports = [
     ./hardware.nix
 
@@ -37,7 +37,7 @@
   };
 
   networking = {
-    hostName = "flex5i";
+    hostName = "${name}";
     networkmanager.enable = true;
     useNetworkd = true;
     useDHCP = false;

@@ -10,7 +10,7 @@ let
 in
 nixpkgs.lib.nixosSystem rec {
   inherit system;
-  specialArgs = { inherit unstable; };
+  specialArgs = { inherit unstable name user; };
   modules = [
     # { nixpkgs.overlays = overlays; } # Apply system
     ../hosts/${name}/system.nix

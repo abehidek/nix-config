@@ -1,6 +1,8 @@
-{ lib, config, pkgs, unstable, ... }: {
+# Multiple hosts system config
+
+{ lib, config, pkgs, unstable, user, ... }: {
   users.users = {
-    abe = {
+    ${user} = {
       isNormalUser = true;
       initialPassword = "password";
       shell = pkgs.zsh;
