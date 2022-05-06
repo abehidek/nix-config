@@ -1,9 +1,10 @@
-# System config for flex5i
+# Flex5i system config
 
 { lib, config, pkgs, unstable, ... }: {
   imports = [
     ./hardware.nix
 
+    ../../rf-modules/hardware/audio.nix # Enables pipewire audio
     ../../rf-modules/desktop/sway # Enable sway on the system
     ../../rf-modules/dev
     ../../rf-modules/shell
@@ -61,14 +62,6 @@
     tlp = {
       enable = true;
       settings = { TLP_PERSISTENT_DEFAULT = 0; };
-    };
-
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
     };
   };
 
