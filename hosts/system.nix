@@ -35,8 +35,6 @@
     gvfs.enable = true;
   };
 
-  environment.variables = { DOTFILES = "$HOME/dotfiles"; };
-
   programs = {
     mtr.enable = true;
     gnupg.agent = {
@@ -45,22 +43,26 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    xterm
-    vim
-    wget
-    git
-    killall
-    gnome.seahorse
-    gnome.gnome-keyring
-    libsecret
-    brightnessctl
-    pulseaudio-ctl
-    playerctl
-    pavucontrol
-    lm_sensors
-    xdg-utils
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      xterm
+      vim
+      wget
+      git
+      killall
+      gnome.seahorse
+      gnome.gnome-keyring
+      libsecret
+      brightnessctl
+      pulseaudio-ctl
+      playerctl
+      pavucontrol
+      lm_sensors
+      xdg-utils
+    ];
+    variables.EDITOR = "vim";
+    variables.DOTFILES = "$HOME/dotfiles";
+  };
 
   xdg = {
     portal = {

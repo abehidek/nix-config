@@ -7,7 +7,6 @@
     ../../modules/hardware/audio.nix # Enables pipewire audio
     ../../modules/desktop/sway # Enable sway on the system
     ../../modules/dev
-    ../../modules/shell
     ../../modules/shell/zsh
   ];
 
