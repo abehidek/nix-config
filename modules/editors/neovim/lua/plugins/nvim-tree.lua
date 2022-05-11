@@ -34,7 +34,8 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 nvim_tree.setup({
 	disable_netrw = true,
 	hijack_netrw = true,
-	open_on_setup = false,
+	open_on_setup = true,
+  open_on_setup_file = false,
 	ignore_ft_on_setup = {
 		"startify",
 		"dashboard",
@@ -86,7 +87,8 @@ nvim_tree.setup({
 	},
 	actions = {
 		open_file = {
-			resize_window = true,
+      quit_on_open = true,
+			resize_window = false,
 		},
 	},
 	quit_on_open = 0,
