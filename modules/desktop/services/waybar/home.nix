@@ -6,11 +6,11 @@ in {
     enable = true;
     package = pkgs.waybar;
     settings = [{
-      height = 35;
-      margin-bottom = 5;
-      margin-top = 20;
-      margin-left = 20;
-      margin-right = 20;
+      height = 30;
+      margin-bottom = 3;
+      margin-top = 0;
+      margin-left = 0;
+      margin-right = 0;
       modules-left = [
         "sway/workspaces"
         "sway/mode"
@@ -138,14 +138,14 @@ in {
     style = ''
       ${builtins.readFile ./style.css}
       .modules-left {
-        background-color: ${colorscheme.base01};
+        background-color: transparent;
         color: #ffffff;
       }
       .modules-right {
         background-color: transparent;
       }
       window#waybar {
-        background-color: transparent;
+        background-color: ${colorscheme.base00};
         color: #ffffff;
       }
       #workspaces button {
@@ -155,10 +155,10 @@ in {
       #workspaces button:hover {
       }
       #workspaces button.focused {
-          color: ${colorscheme.base08};
+          color: ${colorscheme.base0F};
       }
       #workspaces button.urgent {
-          background-color: ${colorscheme.base0B};
+          background-color: ${colorscheme.base08};
       }
       #mode {
         background-color: transparent;

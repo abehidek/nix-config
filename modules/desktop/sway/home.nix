@@ -97,15 +97,15 @@
         size = 10.0;
       };
       output."*" = { bg = "${wallpaper.bg} fill"; };
-      gaps.outer = 10;
-      gaps.inner = 10;
+      gaps.outer = 4;
+      gaps.inner = 4;
       #client.focused #eb52eb #eb52eb #eb52eb #eb52eb;
       bars = [{ command = "waybar"; }];
     };
     extraConfig = ''
       default_border pixel 3
       default_floating_border pixel 3
-      client.focused ${colorscheme.base08} ${colorscheme.base08} ${colorscheme.base00} ${colorscheme.base08} ${colorscheme.base08}
+      client.focused ${colorscheme.base0F} ${colorscheme.base0F} ${colorscheme.base00} ${colorscheme.base0F} ${colorscheme.base0F}
       client.focused_inactive ${colorscheme.base04} ${colorscheme.base04} ${colorscheme.base00} ${colorscheme.base04} ${colorscheme.base04}
       client.unfocused ${colorscheme.base04} ${colorscheme.base04} ${colorscheme.base00} ${colorscheme.base04} ${colorscheme.base04}
       bindsym Mod4+Control+Shift+Right move workspace to output right
