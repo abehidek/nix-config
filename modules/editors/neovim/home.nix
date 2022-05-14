@@ -60,8 +60,8 @@ in {
   programs.neovim = {
     enable = true;
     package = unstable.neovim-unwrapped;
-    vimAlias = true;
-    viAlias = true;
+    # vimAlias = true;
+    # viAlias = true;
     # withRuby = true;
     # withNodeJs = true;
     # withPython3 = true;

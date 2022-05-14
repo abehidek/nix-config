@@ -25,12 +25,9 @@
     signal-desktop
     vlc
     libreoffice
-    # gnome.nautilus
-    pcmanfm
     # brave
     # unstable.tetrio-desktop
     google-chrome
-    shared-mime-info
     obsidian
   ];
   programs.firefox = { enable = true; };

@@ -35,8 +35,6 @@
     gvfs.enable = true;
   };
 
-  environment.variables = { DOTFILES = "$HOME/dotfiles"; };
-
   programs = {
     mtr.enable = true;
     gnupg.agent = {
@@ -45,22 +43,29 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    xterm
-    vim
-    wget
-    git
-    killall
-    gnome.seahorse
-    gnome.gnome-keyring
-    libsecret
-    brightnessctl
-    pulseaudio-ctl
-    playerctl
-    pavucontrol
-    lm_sensors
-    xdg-utils
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      xterm
+      vim
+      wget
+      git
+      killall
+      gnome.seahorse
+      gnome.gnome-keyring
+      libsecret
+      brightnessctl
+      pulseaudio-ctl
+      playerctl
+      pavucontrol
+      lm_sensors
+      xdg-utils
+      shared-mime-info
+      # GUI
+      pcmanfm
+    ];
+    variables.EDITOR = "vim";
+    variables.DOTFILES = "$HOME/dotfiles";
+  };
 
   xdg = {
     portal = {
@@ -74,8 +79,8 @@
     mime.defaultApplications = {
       "image/jpeg" = "feh.desktop";
       "image/png" = "feh.desktop";
-      "inode/directory" = "nautilus.desktop";
-      "application/x-directory" = "nautilus.desktop";
+      "inode/directory" = "pcmanfm.desktop";
+      "application/x-directory" = "pcmanfm.desktop";
     };
   };
 }

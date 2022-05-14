@@ -2,12 +2,12 @@
     /* `otf-font-awesome` is required to be installed for icons */
     border: none;
     border-radius: 0;
-    font-size: 16px;
+    font-size: 14px;
     margin: 0;
 }
 
 .modules-left {
-    border-radius: 15px;
+    /* border-radius: 15px; */
     padding: 5 15px;
     margin: 0 0px;
 }
@@ -57,17 +57,17 @@ window#waybar.chromium {
 #custom-media,
 #tray,
 #mpd {
-    border-radius: 15px;
+    border-radius: 0px;
     font-family: 'FiraMono Nerd Font';
     padding: 5 15px;
-    margin-left: 3px;
+    margin-left: 0px;
 }
 
 #custom-power {
-    border-radius: 15px;
+    border-radius: 0px;
     font-family: 'FiraMono Nerd Font';
     padding: 5 20px;
-    margin-left: 3px;
+    margin-left: 0px;
 }
 
 #battery.critical:not(.charging) {

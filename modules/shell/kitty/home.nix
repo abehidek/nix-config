@@ -4,7 +4,7 @@ in {
   programs.kitty = {
     enable = true;
     font.name = "FiraCode Nerd Font";
-    font.size = 14;
+    font.size = 12;
     # theme = "Nord";
     extraConfig = ''
       disable_ligatures never
@@ -14,7 +14,7 @@ in {
       #allow_remote_control = false;
       # background_opacity = "0.9";
       dynamic_background_opacity = true;
-      window_padding_width = 10;
+      window_padding_width = 5;
       foreground = "#D8DEE9";
       background = "#2E3440";
       selection_foreground = "#000000";

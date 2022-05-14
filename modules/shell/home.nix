@@ -21,7 +21,7 @@
       htop
     ];
     sessionVariables = {
-      TEST = "123";
+      VISUAL = "nvim";
     };
   };
   programs.fzf = {
