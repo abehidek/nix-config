@@ -29,6 +29,8 @@
     # unstable.tetrio-desktop
     google-chrome
     obsidian
+    # unstable.spacevim
+    # unstable.neovim
   ];
   programs.firefox = { enable = true; };
   home.file = {

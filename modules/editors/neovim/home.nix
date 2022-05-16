@@ -1,7 +1,6 @@
 { lib, config, pkgs, unstable, ... }:
 
-let
-  colorscheme = import ../../themes/colorscheme;
+let colorscheme = import ../../themes/colorscheme;
 in {
   home = {
     file = {
@@ -60,11 +59,6 @@ in {
   programs.neovim = {
     enable = true;
     package = unstable.neovim-unwrapped;
-    # vimAlias = true;
-    # viAlias = true;
-    # withRuby = true;
-    # withNodeJs = true;
-    # withPython3 = true;
     plugins = with unstable.vimPlugins; [
       # -- theme and appearance
       indent-blankline-nvim
@@ -111,7 +105,8 @@ in {
       # nvim-dap
       # telescope-dap-nvim
       # -- highlighting
-      nvim-treesitter
+      (unstable.vimPlugins.nvim-treesitter.withPlugins
+        (plugins: unstable.tree-sitter.allGrammars))
       # vim-polyglot
       # -- snippets
       luasnip

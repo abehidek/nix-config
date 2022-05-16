@@ -2,7 +2,7 @@
   services = {
     mpd = {
       enable = true;
-      musicDirectory = "/home/abe/Música";
+      musicDirectory = "/home/abe/songs";
       user = "abe";
       extraConfig = ''
         audio_output {
