@@ -6,6 +6,7 @@ in {
     file = {
       ".config/nvim/settings.lua".source = ./lua/settings.lua;
       ".config/nvim/keymaps.lua".source = ./lua/keymaps.lua;
+      ".config/nvim/whichkey.lua".source = ./lua/whichkey.lua;
       ".config/nvim/plugins/nvim-tree.lua".source = ./lua/plugins/nvim-tree.lua;
       ".config/nvim/plugins/telescope.lua".source = ./lua/plugins/telescope.lua;
       ".config/nvim/plugins/cmp.lua".source = ./lua/plugins/cmp.lua;
@@ -65,9 +66,7 @@ in {
       nord-nvim
       vimade
       vim-startify
-      # -- air line
       vim-airline
-      # vim-airline-clock
       vim-airline-themes
       # -- utils
       vim-rooter
@@ -75,8 +74,8 @@ in {
       direnv-vim
       toggleterm-nvim
       nvim-autopairs
-      # vim-css-color
       nvim-colorizer-lua
+      which-key-nvim
       # -- telescope
       telescope-nvim
       # -- buffers

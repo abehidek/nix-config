@@ -30,8 +30,11 @@ local on_attach = function(client, bufnr)
 
 	buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 	buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-	buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  buf_set_keymap("n", "gR", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+  buf_set_keymap("n", "<space>lt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+	buf_set_keymap("n", "<space>lr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+  buf_set_keymap("n", "<space>lR", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 
 	if client.name == "tsserver" then
 		client.resolved_capabilities.document_formatting = false
@@ -40,6 +43,10 @@ local on_attach = function(client, bufnr)
 	if client.name == "rnix" then
 		client.resolved_capabilities.document_formatting = false
 	end
+
+  if client.name == "sumneko_lua" then
+    client.resolved_capabilities.document_formatting = false
+  end
 
 	protocol.CompletionItemKind = {
 		"", -- Text
@@ -110,6 +117,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 nvim_lsp.sumneko_lua.setup({
 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+  capabilities = capabilities,
 	settings = {
 		Lua = {
 			runtime = {
