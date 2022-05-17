@@ -36,7 +36,7 @@
   };
 
   time.timeZone = "America/Sao_Paulo";
-  i18n.defaultLocale = "pt_BR.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "ter-i24b";
     packages = [ pkgs.terminus_font ];
