@@ -11,7 +11,7 @@ local mappings = {
 	h = { "<cmd>nohlsearch<CR>", "No Highlight" },
 	l = {
 		name = "LSP",
-		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+		a = { "<cmd>Lspsaga code_action<cr>", "Code Action" },
 		g = {
 			"<cmd>Telescope lsp_document_diagnostics<cr>",
 			"Document Diagnostics",
@@ -31,17 +31,17 @@ local mappings = {
 		f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
 		i = { "<cmd>LspInfo<cr>", "Info" },
 		j = {
-			"<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
+			"<cmd>Lspsaga diagnostic_jump_next<CR>",
 			"Next Diagnostic",
 		},
 		k = {
-			"<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
+			"<cmd>Lspsaga diagnostic_jump_prev<cr>",
 			"Prev Diagnostic",
 		},
 		l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
 		q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
 		r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
-		R = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+		R = { "<cmd>Lspsaga rename<cr>", "Rename" },
 		s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
 		S = {
 			"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
@@ -50,6 +50,10 @@ local mappings = {
 		t = {
 			"<cmd>lua vim.lsp.buf.type_definition()<CR>",
 			"Type definition",
+		},
+		e = {
+			"<cmd>Lspsaga show_line_diagnostics<CR>",
+			"Line Diagnostics",
 		},
 	},
 	g = {
