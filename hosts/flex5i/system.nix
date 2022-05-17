@@ -10,8 +10,8 @@
     ../../modules/shell/zsh
   ];
 
-  nixpkgs.config.chromium.commandLineArgs =
-    "---enable-features=UseOzonePlatform --ozone-platform=wayland -enable-features=VaapiVideoDecoder";
+  # nixpkgs.config.chromium.commandLineArgs =
+    # "---enable-features=UseOzonePlatform --ozone-platform=wayland -enable-features=VaapiVideoDecoder";
 
   boot = {
     cleanTmpDir = true;
