@@ -61,7 +61,8 @@
       xdg-utils
       shared-mime-info
       # GUI
-      pcmanfm
+      # pcmanfm
+      unstable.cinnamon.nemo
     ];
     variables.EDITOR = "vim";
     variables.DOTFILES = "$HOME/dotfiles";
@@ -79,8 +80,8 @@
     mime.defaultApplications = {
       "image/jpeg" = "feh.desktop";
       "image/png" = "feh.desktop";
-      "inode/directory" = "pcmanfm.desktop";
-      "application/x-directory" = "pcmanfm.desktop";
+      "inode/directory" = "nemo.desktop";
+      "application/x-directory" = "nemo.desktop";
     };
   };
 }

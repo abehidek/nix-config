@@ -116,7 +116,7 @@
       bindsym Print+c exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify copy area
       bindsym Mod4+Print+s exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify save active
       bindsym Mod4+Print+c exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify copy active
-      bindsym Mod4+p exec ${pkgs.pcmanfm}/bin/pcmanfm
+      bindsym Mod4+p exec ${unstable.cinnamon.nemo}/bin/nemo
       for_window [title="Ulauncher"] border none
     '';
     #client.focused #2E3440 #2E3440 #ECEFF4 #2E3440 #2E3440

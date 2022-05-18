@@ -3,7 +3,6 @@
     packages = with unstable; [
       git-crypt
       virt-manager
-      pfetch
       # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
       unstable.sublime4
     ];
