@@ -20,11 +20,9 @@ in {
       ".config/nvim/plugins/treesitter.lua".source =
         ./lua/plugins/treesitter.lua;
       ".config/nvim/plugins/lspsaga.lua".source = ./lua/plugins/lspsaga.lua;
+      ".config/nvim/git.lua".source = ./lua/git.lua;
     };
-    sessionVariables = {
-      # NVIM_LISTEN_ADDRESS = "/tmp/nvimsocket"; # To make neovim-remote work properly
-      JAVALSP = "${unstable.java-language-server}";
-    };
+    sessionVariables = { JAVALSP = "${unstable.java-language-server}"; };
     packages = with unstable; [
       sshfs
       # neovim-remote
@@ -66,8 +64,8 @@ in {
       nord-nvim
       vimade
       vim-startify
-      vim-airline
-      vim-airline-themes
+      # vim-airline
+      # vim-airline-themes
       # -- utils
       vim-rooter
       markdown-preview-nvim
@@ -85,7 +83,7 @@ in {
       nvim-tree-lua
       nvim-web-devicons
       # --git
-      vim-signify
+      gitsigns-nvim
       vim-fugitive
       # -- language support
       # -- formatting
@@ -96,20 +94,16 @@ in {
       cmp-path
       cmp-cmdline
       cmp_luasnip
-      vim-lsc
+      # vim-lsc
       nvim-lspconfig
       cmp-nvim-lsp
       lspsaga-nvim
-      # -- dap
-      # nvim-dap
-      # telescope-dap-nvim
-      # -- highlighting
-      (unstable.vimPlugins.nvim-treesitter.withPlugins
-        (plugins: unstable.tree-sitter.allGrammars))
-      # vim-polyglot
       # -- snippets
       luasnip
       friendly-snippets
+      # -- highlighting
+      (unstable.vimPlugins.nvim-treesitter.withPlugins
+        (plugins: unstable.tree-sitter.allGrammars))
       # -- languages
       # vim-elixir
       vim-nix
@@ -117,8 +111,6 @@ in {
       vim-jsx-pretty
       vim-jsx-typescript
       # haskell-vim
-      dart-vim-plugin
-      vim-flutter
       # rust-vim
     ];
     extraConfig = ''
