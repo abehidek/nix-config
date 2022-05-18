@@ -25,13 +25,10 @@ in {
     sessionVariables = { JAVALSP = "${unstable.java-language-server}"; };
     packages = with unstable; [
       sshfs
-      # neovim-remote
-      # -- Language Servers for Neovim
       ripgrep # To make telescope live_grep work properly
+      # -- Language Servers for Neovim
       sumneko-lua-language-server
-      # rust-analyzer
       rnix-lsp
-      # haskell-language-server
       java-language-server
       nodePackages.pyright
       nodePackages.live-server
@@ -39,12 +36,7 @@ in {
       nodePackages.typescript-language-server
       nodePackages.vscode-css-languageserver-bin
       nodePackages.vscode-html-languageserver-bin
-      # nodePackages.typescript-language-server
-      # nodePackages.typescript
-      # nodePackages.vue-language-server
-      clang # For compiling treesitter languages
       python39Packages.flake8
-      # -- Code formatters
       stylua
       nodePackages.prettier
       nodePackages.eslint
@@ -52,7 +44,6 @@ in {
       nixfmt
       shellcheck
       shellharden
-      # nodePackages.eslint_d
     ];
   };
   programs.neovim = {
@@ -94,7 +85,6 @@ in {
       cmp-path
       cmp-cmdline
       cmp_luasnip
-      # vim-lsc
       nvim-lspconfig
       cmp-nvim-lsp
       lspsaga-nvim
@@ -104,13 +94,13 @@ in {
       # -- highlighting
       (unstable.vimPlugins.nvim-treesitter.withPlugins
         (plugins: unstable.tree-sitter.allGrammars))
-      # -- languages
+      # -- highlighting and lang indent
       # vim-elixir
       vim-nix
       vim-javascript
       vim-jsx-pretty
       vim-jsx-typescript
-      # haskell-vim
+      haskell-vim
       # rust-vim
     ];
     extraConfig = ''
