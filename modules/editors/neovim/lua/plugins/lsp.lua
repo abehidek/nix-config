@@ -1,7 +1,6 @@
 -- require'lspconfig'.rust_analyzer.setup{}
 -- require'lspconfig'.tailwindcss.setup{}
 -- require'lspconfig'.flow.setup{}
--- require'lspconfig'.hls.setup{}
 -- require'lspconfig'.vuels.setup{}
 local nvim_lsp = require("lspconfig")
 local protocol = require("vim.lsp.protocol")
@@ -75,31 +74,41 @@ end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+nvim_lsp.hls.setup{} -- Haskell LSP
+
 nvim_lsp.rnix.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
+
 nvim_lsp.pyright.setup({
 	handlers = { ["textDocument/publishDiagnostics"] = function(...) end },
 })
+
 nvim_lsp.tsserver.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
+
 nvim_lsp.cssls.setup({
 	capabilities = capabilities,
   cmd = { "css-languageserver", "--stdio" }
 })
+
 nvim_lsp.html.setup({
   capabilities = capabilities,
   cmd = { "html-languageserver", "--stdio"},
   filetypes = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact" },
 })
+
 nvim_lsp.svelte.setup({})
+
 nvim_lsp.dartls.setup({
 	cmd = { "dart", tostring(os.getenv("DART_SDK")) .. "/bin/snapshots/analysis_server.dart.snapshot", "--lsp" },
 	-- cmd = { "dart", "/nix/store/z2yhwh6dq36kp271iprkk0hjr7yx6nyx-dart-2.14.3/bin/snapshots/analysis_server.dart.snapshot", "--lsp" };
 })
+
 nvim_lsp.java_language_server.setup({
 	cmd = { tostring(os.getenv("JAVALSP")) .. "/share/java/java-language-server/lang_server_linux.sh" },
 })
