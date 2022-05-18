@@ -20,6 +20,7 @@ in {
       ".config/nvim/plugins/treesitter.lua".source =
         ./lua/plugins/treesitter.lua;
       ".config/nvim/plugins/lspsaga.lua".source = ./lua/plugins/lspsaga.lua;
+      ".config/nvim/plugins/lualine.lua".source = ./lua/plugins/lualine.lua;
       ".config/nvim/git.lua".source = ./lua/git.lua;
     };
     sessionVariables = { JAVALSP = "${unstable.java-language-server}"; };
@@ -55,8 +56,7 @@ in {
       nord-nvim
       vimade
       vim-startify
-      # vim-airline
-      # vim-airline-themes
+      lualine-nvim
       # -- utils
       vim-rooter
       markdown-preview-nvim

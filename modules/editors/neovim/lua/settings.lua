@@ -62,6 +62,7 @@ dofile(configdir .. "/nvim/plugins/bufferline.lua")
 dofile(configdir .. "/nvim/plugins/null-ls.lua")
 dofile(configdir .. "/nvim/plugins/treesitter.lua")
 dofile(configdir .. "/nvim/plugins/lspsaga.lua")
+dofile(configdir .. "/nvim/plugins/lualine.lua")
 
 cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o")
 cmd("autocmd BufEnter * silent! lcd %:p:h")
