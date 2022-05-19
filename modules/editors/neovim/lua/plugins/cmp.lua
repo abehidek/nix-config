@@ -5,6 +5,10 @@ local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
 	return
 end
+local cmp_tabnine_ok, tabnine = pcall(require, "cmp_tabnine.config")
+if not cmp_tabnine_ok then
+	return
+end
 
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
@@ -49,6 +53,19 @@ local kind_icons = {
 	TypeParameter = "",
 }
 -- find more here: https://www.nerdfonts.com/cheat-sheet
+
+tabnine:setup({
+	max_lines = 1000,
+	max_num_results = 20,
+	sort = true,
+	run_on_every_keystroke = true,
+	snippet_placeholder = "..",
+	ignored_file_types = { -- default is not to ignore
+		-- uncomment to ignore in lua:
+		-- lua = true
+	},
+	show_prediction_strength = false,
+})
 
 cmp.setup({
 	snippet = {
@@ -106,6 +123,7 @@ cmp.setup({
 			vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
 			vim_item.menu = ({
 				luasnip = "[Snippet]",
+				cmp_tabnine = "[Tabnine]",
 				nvim_lsp = "[LSP]",
 				buffer = "[Buffer]",
 				path = "[Path]",
@@ -115,6 +133,7 @@ cmp.setup({
 	},
 	sources = {
 		{ name = "nvim_lsp" },
+		{ name = "cmp_tabnine" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
 		{ name = "path" },
@@ -123,12 +142,12 @@ cmp.setup({
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = false,
 	},
-  window = {
-    completion = cmp.config.window.bordered(),
-    documentation = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-    },
-  },
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = {
+			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+		},
+	},
 
 	experimental = {
 		ghost_text = true,

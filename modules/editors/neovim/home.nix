@@ -85,6 +85,7 @@ in {
       cmp-path
       cmp-cmdline
       cmp_luasnip
+      cmp-tabnine
       nvim-lspconfig
       cmp-nvim-lsp
       lspsaga-nvim
