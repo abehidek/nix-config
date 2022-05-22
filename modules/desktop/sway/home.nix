@@ -97,8 +97,8 @@
         size = 10.0;
       };
       output."*" = { bg = "${wallpaper.bg} fill"; };
-      gaps.outer = 4;
-      gaps.inner = 4;
+      gaps.outer = 0;
+      gaps.inner = 2;
       #client.focused #eb52eb #eb52eb #eb52eb #eb52eb;
       bars = [{ command = "waybar"; }];
     };

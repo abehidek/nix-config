@@ -7,7 +7,7 @@ in {
     package = pkgs.waybar;
     settings = [{
       height = 30;
-      margin-bottom = 3;
+      margin-bottom = 2;
       margin-top = 0;
       margin-left = 0;
       margin-right = 0;
