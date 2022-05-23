@@ -55,7 +55,7 @@ in {
       indent-blankline-nvim
       nord-nvim
       gruvbox-nvim
-      vimade
+      # vimade
       vim-startify
       lualine-nvim
       # -- utils

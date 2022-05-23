@@ -70,6 +70,7 @@ cmd("set whichwrap+=<,>,[,],h,l")
 cmd([[set iskeyword+=-]])
 vim.opt.background = "dark"
 cmd("colorscheme gruvbox")
+cmd("highlight clear SignColumn")
 cmd("let g:airline_theme='base16_nord'")
 cmd("let g:airline_powerline_fonts = 1")
 cmd("set breakindent")
