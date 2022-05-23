@@ -4,7 +4,6 @@
       git-crypt
       virt-manager
       # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
-      unstable.sublime4
       pkgs.beekeeper-studio
     ];
   };
