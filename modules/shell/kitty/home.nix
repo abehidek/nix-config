@@ -8,6 +8,7 @@ in {
     extraConfig = ''
       disable_ligatures never
       cursor_shape beam
+      placement_strategy top-left
     '';
     settings = {
       #allow_remote_control = false;
