@@ -46,7 +46,6 @@
   environment = {
     systemPackages = with pkgs; [
       xterm
-      vim
       wget
       git
       killall

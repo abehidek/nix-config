@@ -9,6 +9,7 @@
 
     ../../modules/desktop/sway/home.nix
     ../../modules/editors/neovim/home.nix
+    ../../modules/editors/vim/home.nix
     ../../modules/dev/home.nix
     ../../modules/shell/home.nix
     ../../modules/shell/zsh/home.nix
