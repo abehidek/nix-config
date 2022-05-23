@@ -68,7 +68,8 @@ cmd("autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions
 cmd("autocmd BufEnter * silent! lcd %:p:h")
 cmd("set whichwrap+=<,>,[,],h,l")
 cmd([[set iskeyword+=-]])
-cmd("colorscheme nord")
+vim.opt.background = "dark"
+cmd("colorscheme gruvbox")
 cmd("let g:airline_theme='base16_nord'")
 cmd("let g:airline_powerline_fonts = 1")
 cmd("set breakindent")
