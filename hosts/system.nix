@@ -59,7 +59,7 @@
       xdg-utils
       shared-mime-info
       # GUI
-      # pcmanfm
+      pcmanfm
       unstable.cinnamon.nemo
     ];
     variables.EDITOR = "vim";
