@@ -10,4 +10,9 @@
   users.extraGroups.vboxusers.members = [ "abe" ];
   services.lorri.enable = true;
   services.lorri.package = unstable.lorri;
+  services.mongodb = {
+    enable = true;
+  };
+
+  environment = { systemPackages = with pkgs; [ mongodb-compass insomnia ]; };
 }
