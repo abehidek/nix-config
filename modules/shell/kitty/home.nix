@@ -7,7 +7,7 @@ in {
     font.size = 12;
     extraConfig = ''
       disable_ligatures never
-      cursor_shape beam
+      cursor_shape block
       placement_strategy top-left
     '';
     settings = {
