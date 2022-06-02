@@ -20,7 +20,7 @@
       # startup programs and scripts
       startup = [
         { command = "dropbox start"; }
-        { command = "lorri daemon"; }
+        # { command = "lorri daemon"; }
         { command = "${pkgs.autotiling}/bin/autotiling"; }
         {
           command = "${import-gsettingsScript}/bin/import-gsettings";

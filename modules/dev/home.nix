@@ -18,5 +18,4 @@
     gh = { enable = true; };
     gpg = { enable = true; };
   };
-  services.lorri.enable = true;
 }

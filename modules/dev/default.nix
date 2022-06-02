@@ -8,4 +8,6 @@
   virtualisation.libvirtd.onBoot = "ignore";
   programs.dconf.enable = true;
   users.extraGroups.vboxusers.members = [ "abe" ];
+  services.lorri.enable = true;
+  services.lorri.package = unstable.lorri;
 }
