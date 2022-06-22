@@ -29,5 +29,5 @@ in
 
   networking.hostName = "wsl";
 
-  environment.systemPackages = with pkgs; [ neovim neofetch pfetch git lazygit ];
+  environment.systemPackages = with pkgs; [ neovim neofetch pfetch git lazygit ranger htop tree ];
 }
