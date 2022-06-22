@@ -16,5 +16,11 @@
         system = "x86_64-linux";
         user = "abe";
       };
+      nixosConfigurations.wsl = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./wsl.nix
+        ];
+      };
     };
 }
