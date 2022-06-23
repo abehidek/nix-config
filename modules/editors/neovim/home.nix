@@ -28,7 +28,7 @@ in {
       sshfs
       ripgrep # To make telescope live_grep work properly
       # -- Language Servers for Neovim
-      sumneko-lua-language-server
+      pkgs.sumneko-lua-language-server
       rnix-lsp
       java-language-server
       nodePackages.pyright
@@ -106,7 +106,7 @@ in {
       # rust-vim
     ];
     extraConfig = ''
-      luafile $XDG_CONFIG_HOME/nvim/settings.lua
+      luafile /home/abe/.config/nvim/settings.lua
     '';
   };
 }

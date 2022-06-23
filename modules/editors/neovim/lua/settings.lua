@@ -1,8 +1,8 @@
 local opt = vim.opt
 local cmd = vim.cmd
 
-local configdir = tostring(os.getenv("XDG_CONFIG_HOME"))
-
+-- local configdir = tostring(os.getenv("XDG_CONFIG_HOME"))
+local configdir = "/home/abe/.config"
 -- Indentation
 
 local options = {

@@ -9,6 +9,8 @@ in
     "${modulesPath}/profiles/minimal.nix"
 
     nixos-wsl.nixosModules.wsl
+
+    ../../modules/shell/zsh
   ];
 
   wsl = {
@@ -29,5 +31,5 @@ in
 
   networking.hostName = "wsl";
 
-  environment.systemPackages = with pkgs; [ neovim neofetch pfetch git lazygit ranger htop tree wget nodejs nodePackages.npm ];
+  environment.systemPackages = with pkgs; [ neofetch pfetch git lazygit ranger htop tree wget nodejs nodePackages.npm ];
 }
