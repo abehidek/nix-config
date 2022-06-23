@@ -16,11 +16,16 @@
         system = "x86_64-linux";
         user = "abe";
       };
-      nixosConfigurations.wsl = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/wsl/system.nix
-        ];
-      };
+      #nixosConfigurations.wsl = nixpkgs.lib.nixosSystem {
+      #  system = "x86_64-linux";
+      #  modules = [
+      #    ./hosts/wsl/system.nix
+      #  ];
+      #};
+      nixosConfigurations.wsl = mkHost "wsl" rec {
+        inherit home-manager nixpkgs nixpkgs-unstable;
+	system = "x86_64-linux";
+	user = "abe";
+      }; 
     };
 }

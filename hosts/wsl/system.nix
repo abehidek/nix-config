@@ -18,14 +18,14 @@ in
     startMenuLaunchers = true;
 
     # Enable integration with Docker Desktop (needs to be installed)
-    # docker.enable = true;
+    docker.enable = true;
   };
 
   # Enable nix flakes
-  nix.package = pkgs.nixFlakes;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
+  # nix.package = pkgs.nixFlakes;
+  # nix.extraOptions = ''
+  #   experimental-features = nix-command flakes
+  # '';
 
   networking.hostName = "wsl";
 

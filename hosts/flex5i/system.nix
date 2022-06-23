@@ -9,6 +9,9 @@
     ../../modules/dev
     ../../modules/shell/zsh
 
+    ../../modules/services/network.nix # Enables networking
+    ../../modules/services/ssh.nix # Enables openssh
+
     ./hello.nix
   ];
 

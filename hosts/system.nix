@@ -1,10 +1,6 @@
 # Multiple hosts system config
 
 { lib, config, pkgs, unstable, user, ... }: {
-  imports = [
-    ../modules/services/network.nix # Enables networking
-    ../modules/services/ssh.nix # Enables openssh
-  ];
   users.users = {
     ${user} = {
       isNormalUser = true;
