@@ -8,7 +8,14 @@
     ../../modules/desktop/sway # Enable sway on the system
     ../../modules/dev
     ../../modules/shell/zsh
+
+    ./hello.nix
   ];
+
+  services.hello = {
+    enable = true;
+    greeter = "Abe";
+  };
 
   # nixpkgs.config.chromium.commandLineArgs =
     # "---enable-features=UseOzonePlatform --ozone-platform=wayland -enable-features=VaapiVideoDecoder";
