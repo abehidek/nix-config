@@ -1,9 +1,12 @@
-# System Dotfiles
+# Systems Dotfiles
 
 ### Using:
 [![NixOS](https://img.shields.io/badge/os-nixos-blue)](https://nixos.org/)
+![WSL](https://img.shields.io/badge/os-wsl2-lightgrey)
 [![Nix](https://img.shields.io/badge/lang-nix-purple)](https://builtwithnix.org/)
-[![Sway](https://img.shields.io/badge/wm-sway-green)](https://swaywm.org/) 
+[![Sway](https://img.shields.io/badge/wm-sway-lightblue)](https://swaywm.org/)
+[![Neovim](https://img.shields.io/badge/editor-neovim-green)](https://neovim.io/)
+[![Zsh](https://img.shields.io/badge/shell-zsh-black)](https://www.zsh.org/)
 
 ### About
 
@@ -22,11 +25,12 @@ Also, if someone is interest I would love to chat about this topic since I have 
 ### System
 ##### Details
 
-| Shell | Bash |
+| Name | Detail |
 |---|---|
+| Shell | Zsh |
 | WM | Sway |
 | Terminal | Kitty |
-| Browser | Ungoogled Chromium |
+| Browser | Firefox |
 | Wallpaper | [nordic-wallpapers](https://github.com/linuxdotexe/nordic-wallpapers) |
 
 ##### Partition Scheme
