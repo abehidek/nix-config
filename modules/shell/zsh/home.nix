@@ -27,7 +27,7 @@
     enableSyntaxHighlighting = true;
     history = {
       size = 5000;
-      path = "$XDG_DATA_HOME/zsh/history";
+      path = ".local/share/zsh/history";
     };
     oh-my-zsh = {
       enable = true;
