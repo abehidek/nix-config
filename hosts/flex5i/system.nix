@@ -13,6 +13,41 @@
   # nixpkgs.config.chromium.commandLineArgs =
     # "---enable-features=UseOzonePlatform --ozone-platform=wayland -enable-features=VaapiVideoDecoder";
 
+  environment = {
+    systemPackages = with pkgs; [
+      gnome.seahorse
+      gnome.gnome-keyring
+      libsecret
+      brightnessctl
+      pulseaudio-ctl
+      playerctl
+      pavucontrol
+      lm_sensors
+      xdg-utils
+      shared-mime-info
+      # GUI
+      pcmanfm
+      unstable.cinnamon.nemo
+    ];
+  };
+
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+      gtkUsePortal = true;
+    };
+    mime.defaultApplications = {
+      "image/jpeg" = "feh.desktop";
+      "image/png" = "feh.desktop";
+      "inode/directory" = "nemo.desktop";
+      "application/x-directory" = "nemo.desktop";
+    };
+  };
+
   boot = {
     cleanTmpDir = true;
     kernel.sysctl = { "fs.inotify.max_user_watches" = 524288; };

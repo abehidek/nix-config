@@ -7,16 +7,21 @@
   imports = [
     ../../secrets
 
-    ../../modules/desktop/sway/home.nix
+
     ../../modules/editors/neovim/home.nix
     ../../modules/editors/vim/home.nix
+
     ../../modules/dev/home.nix
+
     ../../modules/shell/home.nix
     ../../modules/shell/zsh/home.nix
     ../../modules/shell/kitty/home.nix
+
+    ../../modules/desktop/sway/home.nix
     ../../modules/desktop/services/waybar/home.nix
     ../../modules/desktop/services/rofi/home.nix
     ../../modules/desktop/utils/swaylock/home.nix
+
     ../../modules/themes/gtk/home.nix
   ];
   # nixpkgs.config.allowUnfree = true;

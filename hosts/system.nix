@@ -30,11 +30,6 @@
 
   nixpkgs = { config.allowUnfree = true; };
 
-  services = {
-    gnome.gnome-keyring.enable = true;
-    gvfs.enable = true;
-  };
-
   programs = {
     mtr.enable = true;
     gnupg.agent = {
@@ -48,38 +43,8 @@
       wget
       git
       killall
-      gnome.seahorse
-      gnome.gnome-keyring
-      libsecret
-      brightnessctl
-      pulseaudio-ctl
-      playerctl
-      pavucontrol
-      lm_sensors
-      xdg-utils
-      shared-mime-info
-      # GUI
-      pcmanfm
-      unstable.cinnamon.nemo
     ];
     variables.EDITOR = "vim";
     variables.DOTFILES = "$HOME/dotfiles";
-  };
-
-  xdg = {
-    portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
-      ];
-      gtkUsePortal = true;
-    };
-    mime.defaultApplications = {
-      "image/jpeg" = "feh.desktop";
-      "image/png" = "feh.desktop";
-      "inode/directory" = "nemo.desktop";
-      "application/x-directory" = "nemo.desktop";
-    };
   };
 }
