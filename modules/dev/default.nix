@@ -11,9 +11,13 @@
   services.lorri.enable = true;
   services.lorri.package = unstable.lorri;
   services.mongodb = {
-    enable = true;
+    enable = false;
     package = pkgs.mongodb-3_6;
   };
 
-  environment = { systemPackages = with pkgs; [ mongodb-3_6 mongodb-compass insomnia ]; };
+  environment = { systemPackages = with pkgs; [ 
+    # mongodb-3_6 mongodb-compass 
+    insomnia 
+  ]; 
+  };
 }

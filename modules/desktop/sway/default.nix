@@ -14,7 +14,6 @@
       autotiling
       waypipe
       drm_info
-      phwmon
       grim
       slurp
       jq

@@ -31,7 +31,7 @@
     };
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "web-search" "copydir" "dirhistory" ];
+      plugins = [ "git" "web-search" "copypath" "dirhistory" ];
     };
     zplug = {
       enable = true;

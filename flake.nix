@@ -1,7 +1,7 @@
 {
   description = "A very basic flake";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -24,8 +24,8 @@
       #};
       nixosConfigurations.wsl = mkHost "wsl" rec {
         inherit home-manager nixpkgs nixpkgs-unstable;
-	system = "x86_64-linux";
-	user = "abe";
+	      system = "x86_64-linux";
+	      user = "abe";
       }; 
     };
 }

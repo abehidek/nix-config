@@ -7,10 +7,12 @@ let
     inherit system;
     config.allowUnfree = true;
   };
+  currentSystemName = name;
+  currentSystem = system;
 in
 nixpkgs.lib.nixosSystem rec {
   inherit system;
-  specialArgs = { inherit unstable name user; };
+  specialArgs = { inherit unstable name user currentSystem currentSystemName; };
   modules = [
     # { nixpkgs.overlays = overlays; } # Apply system
     ../hosts/${name}/system.nix
@@ -30,9 +32,5 @@ nixpkgs.lib.nixosSystem rec {
 
   # We expose some extra arguments so that our modules can parameterize
   # better based on these values.
-  extraArgs = {
-    currentSystemName = name;
-    currentSystem = system;
-  };
 }
 
