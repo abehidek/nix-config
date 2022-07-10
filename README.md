@@ -23,6 +23,17 @@ Don't expect these dotfiles to work since there are a lot of factors to include,
 Also, if someone is interest I would love to chat about this topic since I have so much to learn.
 
 ### System
+
+##### Screenshots
+
+![image1](assets/readme/rice00.png)
+![image2](assets/readme/rice01.png)
+![image3](assets/readme/rice02.png)
+![image4](assets/readme/rice03.png)
+![image5](assets/readme/rice04.png)
+![image6](assets/readme/rice05.png)
+![image7](assets/readme/rice06.png)
+
 ##### Details
 
 | Name | Detail |
@@ -31,7 +42,9 @@ Also, if someone is interest I would love to chat about this topic since I have 
 | WM | Sway |
 | Terminal | Kitty |
 | Browser | Firefox |
-| Wallpaper | [nordic-wallpapers](https://github.com/linuxdotexe/nordic-wallpapers) |
+| Wallpaper | [frenzy-exists wallpapers](https://github.com/FrenzyExists/wallpapers) |
+
+> Planning on moving to xmonad because X11 compatibility.
 
 ##### Partition Scheme
 | Partition Label | Description |
