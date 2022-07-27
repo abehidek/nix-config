@@ -16,12 +16,12 @@
     ../../rf-modules/docker.nix
   ];
 
-  services.docker = {
+  modules.docker = {
     enable = true;
     user = "abe";
   };
 
-  services.hello = {
+  modules.hello = {
     enable = true;
     greeter = "Abe";
   };

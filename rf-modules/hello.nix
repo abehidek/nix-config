@@ -1,9 +1,9 @@
 
 { lib, config, pkgs, unstable, name, user, ... }:
 with lib;
-let cfg = config.services.hello;
+let cfg = config.modules.hello;
 in {
-  options.services.hello = {
+  options.modules.hello = {
     enable = mkEnableOption "hello service";
     greeter = mkOption {
       type = types.str;

@@ -1,9 +1,9 @@
 
 { lib, config, pkgs, unstable, name, user, ... }:
 with lib;
-let cfg = config.services.docker;
+let cfg = config.modules.docker;
 in {
-  options.services.docker = {
+  options.modules.docker = {
     enable = mkEnableOption "Docker Virtualisation";
     user = mkOption {
       type = types.str;
