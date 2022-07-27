@@ -12,8 +12,14 @@
     ../../modules/services/network.nix # Enables networking
     ../../modules/services/ssh.nix # Enables openssh
 
-    ./hello.nix
+    ../../rf-modules/hello.nix
+    ../../rf-modules/docker.nix
   ];
+
+  services.docker = {
+    enable = true;
+    user = "abe";
+  };
 
   services.hello = {
     enable = true;
