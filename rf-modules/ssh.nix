@@ -4,8 +4,7 @@ with lib;
 let cfg = config.modules.ssh;
 in {
   options.modules.ssh = {
-    enable = mkEnableOption "SSH service";
-    default = false;
+    enable = utils.mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {

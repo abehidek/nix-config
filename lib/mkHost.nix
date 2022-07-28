@@ -9,10 +9,11 @@ let
   };
   currentSystemName = name;
   currentSystem = system;
+  lib = nixpkgs.lib.extend (self: super: { utils = import ./utils.nix { inherit nixpkgs; lib = self; }; });
 in
-nixpkgs.lib.nixosSystem rec {
+lib.nixosSystem rec {
   inherit system;
-  specialArgs = { inherit unstable name user currentSystem currentSystemName; };
+  specialArgs = { inherit lib unstable name user currentSystem currentSystemName; };
   modules = [
     # { nixpkgs.overlays = overlays; } # Apply system
     ../hosts/${name}/system.nix

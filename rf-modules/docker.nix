@@ -4,11 +4,8 @@ with lib;
 let cfg = config.modules.docker;
 in {
   options.modules.docker = {
-    enable = mkEnableOption "Docker Virtualisation";
-    user = mkOption {
-      type = types.str;
-      default = "";
-    };
+    enable = utils.mkBoolOpt false;
+    user = utils.mkOpt types.str "";
   };
 
   config = mkIf cfg.enable {
