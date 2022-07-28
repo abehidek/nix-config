@@ -10,11 +10,13 @@
     ../../modules/shell/zsh
 
     ../../modules/services/network.nix # Enables networking
-    ../../modules/services/ssh.nix # Enables openssh
 
     ../../rf-modules/hello.nix
     ../../rf-modules/docker.nix
+    ../../rf-modules/ssh.nix
   ];
+
+  modules.ssh = { enable = true; };
 
   modules.docker = {
     enable = true;
