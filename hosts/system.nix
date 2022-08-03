@@ -1,23 +1,6 @@
 # Multiple hosts system config
 
-{ lib, config, pkgs, unstable, user, ... }: {
-  users.users = {
-    ${user} = {
-      isNormalUser = true;
-      initialPassword = "password";
-      shell = pkgs.zsh;
-      extraGroups = [
-        "wheel"
-        "doas"
-        "video"
-        "audio"
-        "jackaudio"
-        "networkmanager"
-        "libvirtd"
-      ];
-    };
-  };
-
+{ lib, config, pkgs, unstable, ... }: {
   nix = {
     autoOptimiseStore = true;
     package = pkgs.nixFlakes;

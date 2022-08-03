@@ -1,6 +1,6 @@
 # Flex5i system config
 
-{ lib, config, pkgs, unstable, name, user, ... }: {
+{ lib, config, pkgs, unstable, name, ... }: {
   imports = [
     ./hardware.nix
 
@@ -19,7 +19,7 @@
   modules.ssh = { enable = true; };
 
   modules.docker = {
-    enable = true;
+    enable = false;
     user = "abe";
   };
 

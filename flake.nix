@@ -14,12 +14,12 @@
       nixosConfigurations.flex5i = mkHost "flex5i" rec {
         inherit home-manager nixpkgs nixpkgs-unstable;
         system = "x86_64-linux";
-        user = "abe";
+        system-modules = import ./hosts/flex5i/modules.nix;
       };
       nixosConfigurations.wsl = mkHost "wsl" rec {
         inherit home-manager nixpkgs nixpkgs-unstable;
-	      system = "x86_64-linux";
-	      user = "abe";
-      }; 
+        system = "x86_64-linux";
+        system-modules = import ./hosts/flex5i/modules.nix;
+      };
     };
 }
