@@ -21,5 +21,10 @@
         system = "x86_64-linux";
         system-modules = import ./hosts/flex5i/modules.nix;
       };
+      nixosConfigurations.ssd = mkHost "ssd" rec {
+        inherit home-manager nixpkgs nixpkgs-unstable;
+        system = "x86_64-linux";
+        system-modules = import ./hosts/ssd/modules.nix;
+      };
     };
 }
