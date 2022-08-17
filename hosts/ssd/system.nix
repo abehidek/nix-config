@@ -1,6 +1,6 @@
 # Flex5i system config
 
-{ lib, config, pkgs, unstable, name, ... }: {
+{ lib, config, pkgs, unstable, name, nix-gaming, ... }: {
   imports = [
     ./hardware.nix
   ];
@@ -36,9 +36,9 @@
   services.xserver.libinput.enable = true;
 
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    git elixir nodejs yarn python310 
+    vim wget
+    git elixir nodejs yarn python310
+    nix-gaming.packages.${pkgs.system}.osu-stable 
   ];
 
   virtualisation.docker.enable = true;
