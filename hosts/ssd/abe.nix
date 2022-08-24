@@ -11,5 +11,6 @@
     vscodium
     tetrio-desktop
     osu-lazer
+    obsidian
   ];
 }
