@@ -6,11 +6,16 @@
     # GUI Applications
     exodus
     firefox
-    thunderbird
     neofetch
     vscodium
-    tetrio-desktop
-    osu-lazer
     obsidian
+    lazygit
   ];
+  programs = {
+    git = {
+      enable = true;
+      userEmail = "hidek.abe@outlook.com";
+      userName = "abehidek";
+    };
+  };
 }

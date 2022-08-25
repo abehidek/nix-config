@@ -38,7 +38,6 @@
   environment.systemPackages = with pkgs; [
     vim wget
     git elixir nodejs yarn python310
-    nix-gaming.packages.${pkgs.system}.osu-stable
     dbeaver insomnia
   ];
 
