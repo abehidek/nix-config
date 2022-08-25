@@ -3,7 +3,16 @@
 { lib, config, pkgs, unstable, name, nix-gaming, ... }: {
   imports = [
     ./hardware.nix
+    ../../rf-modules/ssh.nix
+    ../../rf-modules/docker.nix
   ];
+
+  modules.ssh = { enable = true; };
+  
+  modules.docker = {
+    enable = true;
+    user = "abe";
+  };
 
   boot.loader = {
     grub = {
@@ -40,8 +49,6 @@
     git elixir nodejs yarn python310
     dbeaver insomnia
   ];
-
-  virtualisation.docker.enable = true;
 
   system.stateVersion = "22.05";
 }
