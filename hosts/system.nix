@@ -3,8 +3,7 @@
 { lib, config, pkgs, unstable, ... }: {
   nix = {
     autoOptimiseStore = true;
-    package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
+    settings.experimental-features = ["nix-command" "flakes"];  
   };
 
   nixpkgs = { config.allowUnfree = true; };
