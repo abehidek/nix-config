@@ -12,15 +12,21 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.supportedFilesystems = [ "ntfs" ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/dd555386-3e4f-4576-945c-ad9bbfad8737";
+    { device = "/dev/disk/by-label/NIXOS";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/FF4B-9832";
+    { device = "/dev/disk/by-label/BOOT";
       fsType = "vfat";
+    };
+
+  fileSystems."/shared" =
+    { device = "/dev/disk/by-label/SHARED";
+      fsType = "ntfs";
     };
 
   swapDevices = [ ];
