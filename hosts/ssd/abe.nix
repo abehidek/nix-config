@@ -16,6 +16,14 @@
       enable = true;
       userEmail = "hidek.abe@outlook.com";
       userName = "abehidek";
+      extraConfig = {
+        core = {
+          filemode = false;
+        };
+        safe = {
+          directory = "/shared/ws/zettelkasten";
+        };
+      };
     };
   };
 }
