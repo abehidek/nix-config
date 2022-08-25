@@ -3,13 +3,8 @@
     ../../modules/editors/neovim/home.nix
   ];
   home.packages = with pkgs; [
-    # GUI Applications
     exodus
-    firefox
-    neofetch
-    vscodium
     obsidian
-    lazygit
   ];
   programs = {
     git = {

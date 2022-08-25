@@ -45,9 +45,15 @@
   services.xserver.libinput.enable = true;
 
   environment.systemPackages = with pkgs; [
-    vim wget
-    git elixir nodejs yarn python310
-    dbeaver insomnia
+    # GUI
+    firefox
+    # Development
+    vscodium vim helix
+    dbeaver insomnia lazygit
+    wget git inotify-tools
+    elixir nodejs yarn python310
+    # Misc
+    neofetch
   ];
 
   system.stateVersion = "22.05";
