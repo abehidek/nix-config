@@ -5,7 +5,13 @@
     ./hardware.nix
     ../../rf-modules/ssh.nix
     ../../rf-modules/docker.nix
+    ../../rf-modules/vscodium.nix
   ];
+
+  modules.vscodium = {
+    enable = true;
+    enableVSCodeMarketPlace = true;
+  };
 
   modules.ssh = { enable = true; };
   
@@ -48,7 +54,7 @@
     # GUI
     firefox
     # Development
-    vscodium vim helix
+    vim helix
     dbeaver insomnia lazygit
     wget git inotify-tools
     elixir nodejs yarn python310
