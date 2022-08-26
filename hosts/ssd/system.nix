@@ -10,7 +10,6 @@
 
   modules.vscodium = {
     enable = true;
-    enableVSCodeMarketPlace = true;
   };
 
   modules.ssh = { enable = true; };
