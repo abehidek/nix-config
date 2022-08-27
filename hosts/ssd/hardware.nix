@@ -14,6 +14,17 @@
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [ "ntfs" ];
 
+  boot.loader = {
+    grub = {
+      enable = true;
+      version = 2;
+      efiSupport = true;
+      efiInstallAsRemovable = true;
+      device = "nodev";
+    };
+    efi = { efiSysMountPoint = "/boot"; };
+  };
+
   fileSystems."/" =
     { device = "/dev/disk/by-label/NIXOS";
       fsType = "ext4";

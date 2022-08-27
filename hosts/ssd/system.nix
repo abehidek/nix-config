@@ -19,17 +19,6 @@
     user = "abe";
   };
 
-  boot.loader = {
-    grub = {
-      enable = true;
-      version = 2;
-      efiSupport = true;
-      efiInstallAsRemovable = true;
-      device = "nodev";
-    };
-    efi = { efiSysMountPoint = "/boot"; };
-  };
-
   networking = { 
     hostName = "ssd"; 
     networkmanager.enable = true;
