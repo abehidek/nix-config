@@ -7,7 +7,6 @@ name: { nixpkgs, home-manager, unstable }:
       abe = {
         isNormalUser = true;
         initialPassword = "password";
-        shell = pkgs.bash;
         extraGroups = [
           "wheel" "video" "audio" "networkmanager" "docker"
         ];
