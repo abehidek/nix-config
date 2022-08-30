@@ -1,6 +1,6 @@
 # Flex5i system config
 
-{ lib, config, pkgs, unstable, name, ... }: {
+{ inputs, lib, config, pkgs, unstable, name, ... }: {
   imports = [
     ./hardware.nix
 
@@ -33,6 +33,7 @@
 
   environment = {
     systemPackages = with pkgs; [
+      inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
       gnome.seahorse
       gnome.gnome-keyring
       libsecret

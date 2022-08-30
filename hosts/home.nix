@@ -1,5 +1,7 @@
-{ lib, config, pkgs, unstable, user, ... }:
-let homeDir = "/home/${user}";
+{ args, user, ... }:
+let
+  inherit (args) lib config pkgs unstable;
+  homeDir = "/home/${user}";
 in {
   home.username = "${user}";
   home.homeDirectory = "${homeDir}";

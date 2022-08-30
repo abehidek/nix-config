@@ -1,11 +1,12 @@
 # Home-Manager config for flex5i abe user
 
-{ lib, config, pkgs, unstable, user, ... }: {
+args@{ lib, config, pkgs, unstable, ... }: {
   # home.stateVersion = "21.11";
-  home.username = user;
-  home.homeDirectory = "/home/${user}";
+  home.username = "abe";
+  home.homeDirectory = "/home/abe";
   imports = [
     # ../../secrets
+    (import ../home.nix { inherit args; user = "abe"; })
 
 
     ../../modules/editors/neovim/home.nix
