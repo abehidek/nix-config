@@ -10,11 +10,6 @@
     ../../modules/shell/zsh
 
     ../../modules/services/network.nix # Enables networking
-
-    ../../rf-modules/hello.nix
-    ../../rf-modules/docker.nix
-    ../../rf-modules/ssh.nix
-    ../../rf-modules/desktop
   ];
 
   modules.desktop = {
@@ -25,7 +20,7 @@
   modules.ssh = { enable = true; };
 
   modules.docker = {
-    enable = false;
+    enable = true;
     user = "abe";
   };
 
