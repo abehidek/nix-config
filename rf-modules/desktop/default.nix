@@ -2,54 +2,44 @@
 with lib;
 let cfg = config.modules.desktop;
 in {
+  imports = [
+    ./hyprland
+    ./sway
+    ./kde.nix
+  ];
+
   options.modules.desktop = {
     enable = mkEnableOption "Install a Graphic Interface";
-    environment = mkOption {
-      type = types.enum ["sway" "xmonad" "hyprland" "kde" "hyprland"];
-      default = "sway";
-      description = ''
-        Define the type of the graphic interface protocol, it may be x11 or wayland
-      '';
+    auto-startup = mkOption {
+      type = types.submodule {
+        options = {
+          enable = mkEnableOption "Enable automatic environment startup through display manager or console script";
+          type = mkOption {
+            type = types.enum ["console" "sddm"];
+          };
+          environment = mkOption {
+            type = types.enum ["Hyprland" "sway"];
+          }; 
+        };
+      };
     };
   };
 
-  config = mkIf cfg.enable {
-    # programs.qt5ct.enable = true;
-    services.xserver = mkIf (cfg.environment == "kde") {
-      enable = true;
-      displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = true;
-    };
-    environment.loginShellInit = mkIf (cfg.environment == "hyprland") ''
-      if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-        exec Hyprland
-      fi
-    '';
-    programs = {
-      hyprland = mkIf (cfg.environment == "hyprland") {
-        enable= true;
-      };
-      sway = mkIf (cfg.environment == "sway")  {
-        enable = true;
-        wrapperFeatures.gtk = true;
-        extraPackages = with pkgs; [
-          xwayland
-          wl-clipboard
-          swayidle
-          waybar
-          wlr-randr
-          wdisplays
-          mako
-          autotiling
-          waypipe
-          drm_info
-          grim
-          slurp
-          jq
-          libnotify
-          sway-contrib.grimshot
-        ];
-      };
-    };
-  };
+  config = mkIf cfg.enable (mkMerge [
+    (mkIf cfg.auto-startup.enable (mkMerge [
+      (mkIf (cfg.auto-startup.type == "console") {
+        environment.loginShellInit = ''
+        if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+          exec ${cfg.auto-startup.environment}
+        fi
+        '';
+      })
+      (mkIf (cfg.auto-startup.type == "sddm") {
+        services.xserver = {
+          enable = true;
+          displayManager.sddm.enable = true;        
+        };
+      })
+    ]))
+  ]);
 }

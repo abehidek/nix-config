@@ -15,10 +15,10 @@ args@{ lib, config, pkgs, unstable, ... }: {
     ../../modules/shell/zsh/home.nix
     ../../modules/shell/kitty/home.nix
 
-    ../../modules/desktop/sway/home.nix
-    ../../modules/desktop/services/waybar/home.nix
+    # ../../modules/desktop/sway/home.nix
+    # ../../modules/desktop/services/waybar/home.nix
     ../../modules/desktop/services/rofi/home.nix
-    ../../modules/desktop/utils/swaylock/home.nix
+    # ../../modules/desktop/utils/swaylock/home.nix
 
     ../../modules/themes/gtk/home.nix
   ];
