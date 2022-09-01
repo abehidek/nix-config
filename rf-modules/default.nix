@@ -7,5 +7,6 @@
     ./zsh.nix
     ./desktop
     ./shell
+    ./hardware
   ];
 }

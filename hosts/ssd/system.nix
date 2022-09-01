@@ -5,6 +5,11 @@
     ./hardware.nix
   ];
 
+  modules.hardware = {
+    audio.enable = true;
+    audio.users = ["abe"];
+  };
+
   modules.shell = {
     zsh.enable = true;
     tmux.enable = true;
@@ -42,8 +47,9 @@
 
   services.xserver.layout = "us";
 
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  
+  # sound.enable = true;
+  # hardware.pulseaudio.enable = true;
   services.xserver.libinput.enable = true;
 
   environment.systemPackages = with pkgs; [
