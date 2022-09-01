@@ -5,7 +5,7 @@
     ./hardware.nix
 
     ../../modules/hardware/audio.nix # Enables pipewire audio
-    ../../modules/desktop/sway # Enable sway on the system
+    # ../../modules/desktop/sway # Enable sway on the system
     ../../modules/dev
     ../../modules/shell/zsh
 
@@ -14,7 +14,13 @@
     ../../rf-modules/hello.nix
     ../../rf-modules/docker.nix
     ../../rf-modules/ssh.nix
+    ../../rf-modules/desktop
   ];
+
+  modules.desktop = {
+    enable = true;
+    environment = "sway";
+  };
 
   modules.ssh = { enable = true; };
 
