@@ -3,10 +3,15 @@
 { lib, config, pkgs, unstable, name, nix-gaming, ... }: {
   imports = [
     ./hardware.nix
-    ../../rf-modules/ssh.nix
-    ../../rf-modules/docker.nix
-    ../../rf-modules/vscodium.nix
   ];
+
+  modules.desktop = {
+    kde.enable = true;
+    auto-startup = {
+      enable = true;
+      type = "sddm";
+    };
+  };
 
   modules.vscodium = {
     enable = true;
@@ -28,10 +33,6 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  services.xserver.enable = true;
-
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.layout = "us";
 
   sound.enable = true;

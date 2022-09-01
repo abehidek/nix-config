@@ -13,13 +13,12 @@
   ];
 
   modules.desktop = {
-    enable = true;
+    hyprland.enable = true;
     auto-startup = {
       enable = true;
       type = "console";
       environment = "Hyprland";
     };
-    hyprland.enable = true;
   };
 
   modules.ssh = { enable = true; };

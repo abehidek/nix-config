@@ -9,7 +9,6 @@ in {
   ];
 
   options.modules.desktop = {
-    enable = mkEnableOption "Install a Graphic Interface";
     auto-startup = mkOption {
       type = types.submodule {
         options = {
@@ -25,7 +24,7 @@ in {
     };
   };
 
-  config = mkIf cfg.enable (mkMerge [
+  config = (mkMerge [
     (mkIf cfg.auto-startup.enable (mkMerge [
       (mkIf (cfg.auto-startup.type == "console") {
         environment.loginShellInit = ''
