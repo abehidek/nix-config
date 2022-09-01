@@ -1,9 +1,13 @@
-{ lib, config, pkgs, unstable, user, ... }: {
+# Home-Manager config for ssd abe user
+
+args@{ lib, config, pkgs, unstable, ... }: {
+  home.stateVersion = "22.05";
   imports = [
+    (import ../home.nix { inherit args; user = "abe"; })
     ../../modules/editors/neovim/home.nix
   ];
   home.packages = with pkgs; [
-    exodus
+    # exodus
     obsidian
   ];
   programs.zsh = {
@@ -12,7 +16,7 @@
     enableSyntaxHighlighting = true;
     history = {
       size = 5000;
-      path = ".local/share/zsh/history";
+      path = "$HOME/.local/share/zsh/history";
     };
     oh-my-zsh = {
       enable = true;

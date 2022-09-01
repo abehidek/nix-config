@@ -2,12 +2,9 @@
 
 args@{ lib, config, pkgs, unstable, ... }: {
   home.stateVersion = "21.11";
-  home.username = "abe";
-  home.homeDirectory = "/home/abe";
   imports = [
-    # ../../secrets
     (import ../home.nix { inherit args; user = "abe"; })
-
+    # ../../secrets
 
     ../../modules/editors/neovim/home.nix
     ../../modules/editors/vim/home.nix
