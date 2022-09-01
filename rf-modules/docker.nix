@@ -5,11 +5,18 @@ let cfg = config.modules.docker;
 in {
   options.modules.docker = {
     enable = utils.mkBoolOpt false;
-    user = utils.mkOpt types.str "";
+    users = mkOption {
+      type = types.listOf (types.str);
+    };
   };
 
-  config = mkIf cfg.enable {
+  config = let forAllUsers = lib.genAttrs (cfg.users); in mkIf cfg.enable {
     virtualisation.docker.enable = true;
-    users.users.${cfg.user}.extraGroups = ["docker"];
+    users.users = forAllUsers (user: let 
+      extraGroups = self."${user}".extraGroups;
+      in {
+        extraGroups = ["docker"];
+      }
+    );
   };
 }

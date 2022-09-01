@@ -33,7 +33,7 @@
   
   modules.docker = {
     enable = true;
-    user = "abe";
+    users = ["abe"];
   };
 
   networking = { 
