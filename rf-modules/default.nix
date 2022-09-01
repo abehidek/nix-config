@@ -6,5 +6,6 @@
     ./vscodium.nix
     ./zsh.nix
     ./desktop
+    ./shell
   ];
 }

@@ -5,6 +5,13 @@
     ./hardware.nix
   ];
 
+  modules.shell = {
+    zsh.enable = true;
+    tmux.enable = true;
+    direnv.enable = true;
+    direnv.preventGC = true;
+  };
+
   modules.desktop = {
     kde.enable = true;
     auto-startup = {
