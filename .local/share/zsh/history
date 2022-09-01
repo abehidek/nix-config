@@ -1,0 +1,11 @@
+: 1662041367:0;sudo nixos-rebuild switch --flake .#ssd
+: 1662041380:0;sudo nixos-rebuild switch --flake .#flex5i
+: 1662040871:0;ls
+: 1662040873:0;cd dotfiles/
+: 1662040876:380;lazygit
+: 1662041287:186;nvim .
+: 1662041476:0;codium .
+: 1662051677:0;sudo nixos-rebuild switch --flake .#flex5i
+: 1662051807:0;ls
+: 1662051810:11;ranger
+: 1662051823:0;codium .

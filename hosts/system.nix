@@ -2,7 +2,7 @@
 
 { lib, config, pkgs, unstable, ... }: {
   nix = {
-    autoOptimiseStore = true;
+    settings.auto-optimise-store = true;
     settings.experimental-features = ["nix-command" "flakes"];  
   };
 

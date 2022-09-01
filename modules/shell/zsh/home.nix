@@ -1,9 +1,9 @@
 { lib, config, pkgs, ... }: {
   programs.zsh = {
     enable = true;
-    profileExtra = ''
-      [ "$(tty)" = "/dev/tty1" ] && exec sway
-    '';
+    # profileExtra = ''
+    #   [ "$(tty)" = "/dev/tty1" ] && exec Hyprland
+    # '';
     initExtraFirst = ''
       P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
       [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"

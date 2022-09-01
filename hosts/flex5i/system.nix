@@ -14,7 +14,7 @@
 
   modules.desktop = {
     enable = true;
-    environment = "sway";
+    environment = "hyprland";
   };
 
   modules.ssh = { enable = true; };
@@ -58,7 +58,7 @@
         xdg-desktop-portal-wlr
         xdg-desktop-portal-gtk
       ];
-      gtkUsePortal = true;
+      # gtkUsePortal = true;
     };
     mime.defaultApplications = {
       "image/jpeg" = "feh.desktop";

@@ -1,7 +1,7 @@
 # Home-Manager config for flex5i abe user
 
 args@{ lib, config, pkgs, unstable, ... }: {
-  # home.stateVersion = "21.11";
+  home.stateVersion = "21.11";
   home.username = "abe";
   home.homeDirectory = "/home/abe";
   imports = [
@@ -28,9 +28,12 @@ args@{ lib, config, pkgs, unstable, ... }: {
   # nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # GUI Applications
-    exodus
+    # exodus
     signal-desktop
     vlc
+    helix
+    wofi
+    dolphin
     libreoffice
     # brave
     # unstable.tetrio-desktop

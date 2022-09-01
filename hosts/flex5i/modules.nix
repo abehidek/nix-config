@@ -8,6 +8,7 @@ name: { inputs, nixpkgs, home-manager, unstable }:
     home-manager.users.abe = import ./abe.nix;
   }
   ../system.nix ./system.nix
+  inputs.hyprland.nixosModules.default
   ({ lib, config, pkgs, ...}: {
     users.users = {
       abe = {
