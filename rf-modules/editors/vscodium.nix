@@ -1,8 +1,8 @@
 { lib, config, pkgs, unstable, name, user, ... }:
 with lib;
-let cfg = config.modules.vscodium;
+let cfg = config.modules.editors.vscodium;
 in {
-  options.modules.vscodium = {
+  options.modules.editors.vscodium = {
     enable = mkEnableOption "Install VSCodium";
   };
 

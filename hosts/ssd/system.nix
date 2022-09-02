@@ -34,8 +34,10 @@
         type = "sddm";
       };
     };
-    vscodium = {
-      enable = true;
+    editors = {
+      vscodium = {
+        enable = true;
+      };
     };
   };
 
