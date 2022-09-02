@@ -79,6 +79,7 @@ Also, if someone is interest I would love to chat about this topic since I have 
 - https://github.com/Misterio77/nix-config
 - https://github.com/shaunsingh/nix-darwin-dotfiles
 - https://github.com/kclejeune/system
+- https://github.com/sebastiant/dotfiles
 
 ##### Configuring Neovim from scratch
 - https://github.com/notusknot/dotfiles-nix
