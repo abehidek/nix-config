@@ -20,6 +20,13 @@
       direnv.enable = true;
       direnv.preventGC = true;
     };
+    services = {
+      docker = {
+        enable = true;
+        users = ["abe"];
+      };
+      ssh = { enable = true; };
+    };
     desktop = {
       kde.enable = true;
       auto-startup = {
@@ -29,11 +36,6 @@
     };
     vscodium = {
       enable = true;
-    };
-    ssh = { enable = true; };
-    docker = {
-      enable = true;
-      users = ["abe"];
     };
   };
 
