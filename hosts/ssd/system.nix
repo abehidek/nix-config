@@ -5,51 +5,41 @@
     ./hardware.nix
   ];
 
-  modules.hardware = {
-    audio.enable = true;
-    audio.users = ["abe"];
-  };
-
-  modules.shell = {
-    zsh.enable = true;
-    tmux.enable = true;
-    direnv.enable = true;
-    direnv.preventGC = true;
-  };
-
-  modules.desktop = {
-    kde.enable = true;
-    auto-startup = {
+  modules = {
+    hardware = {
+      audio.enable = true;
+      audio.users = ["abe"];
+      network = {
+        hostName = "ssd";
+        useNetworkManager = true;
+      };
+    };
+    shell = {
+      zsh.enable = true;
+      tmux.enable = true;
+      direnv.enable = true;
+      direnv.preventGC = true;
+    };
+    desktop = {
+      kde.enable = true;
+      auto-startup = {
+        enable = true;
+        type = "sddm";
+      };
+    };
+    vscodium = {
       enable = true;
-      type = "sddm";
+    };
+    ssh = { enable = true; };
+    docker = {
+      enable = true;
+      users = ["abe"];
     };
   };
 
-  modules.vscodium = {
-    enable = true;
-  };
-
-  modules.ssh = { enable = true; };
-  
-  modules.docker = {
-    enable = true;
-    users = ["abe"];
-  };
-
-  networking = { 
-    hostName = "ssd"; 
-    networkmanager.enable = true;
-  };
-
   time.timeZone = "America/Sao_Paulo";
-
   i18n.defaultLocale = "en_US.UTF-8";
-
   services.xserver.layout = "us";
-
-  
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
   services.xserver.libinput.enable = true;
 
   environment.systemPackages = with pkgs; [
