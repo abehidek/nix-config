@@ -3,9 +3,15 @@
 args@{ lib, config, pkgs, unstable, ... }: {
   home.stateVersion = "22.05";
   imports = [
-    (import ../home.nix { inherit args; user = "abe"; })
     ../../modules/editors/neovim/home.nix
   ];
+
+  hm-modules = {
+    shell = {
+      direnv.enableForUser = true;
+    };
+  };
+
   home.packages = with pkgs; [
     # exodus
     obsidian

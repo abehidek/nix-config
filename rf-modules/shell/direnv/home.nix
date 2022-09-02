@@ -1,14 +1,17 @@
-{ lib, config, pkgs, unstable, name, user, ... }:
+{ lib, config, pkgs, ... }:
 with lib;
-let cfg = config.modules.shell.direnv;
+let cfg = config.hm-modules.shell.direnv;
 in {
   imports = [];
 
-  options.modules.shell.direnv = {
+  options.hm-modules.shell.direnv = {
+    enableForUser = mkEnableOption "Enable direnv for user";
   };
 
-  config = (mkMerge [
-    { 
+  config = mkIf cfg.enableForUser (mkMerge [
+    {
+      programs.direnv.enable = true;
+      programs.direnv.nix-direnv.enable = true;
     }
   ]);
 }

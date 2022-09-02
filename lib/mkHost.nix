@@ -14,7 +14,7 @@ lib.nixosSystem rec {
   inherit system;
   specialArgs = { inherit inputs lib unstable name; };
   modules = system-modules name rec {
-    inherit inputs nixpkgs home-manager unstable;
+    inherit inputs lib nixpkgs home-manager unstable;
   } ++ [ ../rf-modules ];
 
   # We expose some extra arguments so that our modules can parameterize

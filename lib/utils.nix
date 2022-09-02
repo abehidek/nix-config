@@ -15,4 +15,12 @@ rec {
     type = types.bool;
     example = true;
   };
+
+  mkHomeManager = name: {homeManagerModule, ...}: args@{pkgs, unstable, ...}: {
+    imports = [
+      (import homeManagerModule)
+      ../rf-modules/home.nix
+      (import ../hosts/home.nix { inherit args; user = "abe"; })
+    ];
+  };
 }

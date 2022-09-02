@@ -5,7 +5,7 @@ let
 in {
   home.username = "${user}";
   home.homeDirectory = "${homeDir}";
-  home.packages = with pkgs; [ obs-studio ];
+  home.packages = with pkgs; [ obs-studio cbonsai ];
   xdg = {
     enable = true;
     userDirs = {
