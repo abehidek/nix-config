@@ -8,6 +8,19 @@ args@{ lib, config, pkgs, unstable, ... }: {
 
   hm-modules = {
     shell = {
+      zsh = {
+        historySize = 5000;
+        nixShellCompat = true;
+        powerlevel10k = {
+          enable = true;
+          riceFolder = ../../config/p10k;
+          instantPrompt = true;
+        };
+        oh-my-zsh = {
+          enable = true;
+          plugins = [ "git" "web-search" "copypath" "dirhistory" ];
+        };
+      };
       direnv.enableForUser = true;
     };
   };
@@ -16,26 +29,6 @@ args@{ lib, config, pkgs, unstable, ... }: {
     # exodus
     obsidian
   ];
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    enableSyntaxHighlighting = true;
-    history = {
-      size = 5000;
-      path = "$HOME/.local/share/zsh/history";
-    };
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" "web-search" "copypath" "dirhistory" ];
-    };
-    zplug = {
-      enable = true;
-      plugins = [
-        { name = "zsh-users/zsh-autosuggestions"; }
-        { name = "supercrabtree/k"; }
-      ];
-    };
-  };
   programs = {
     git = {
       enable = true;

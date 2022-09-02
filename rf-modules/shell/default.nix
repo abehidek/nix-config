@@ -1,6 +1,6 @@
 { lib, config, pkgs, unstable, name, user, ... }: {
   imports = [
-    ./zsh.nix
+    ./zsh
     ./direnv
     ./tmux.nix
   ];
