@@ -3,7 +3,7 @@ with lib;
 let cfg = config.hm-modules.desktop;
 in {
   imports = [
-    # ./hyprland
+    ./hyprland/home.nix
     # ./sway
     ./term/home.nix
   ];

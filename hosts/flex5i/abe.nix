@@ -37,6 +37,7 @@ args@{ lib, config, pkgs, unstable, ... }: {
       direnv.enableForUser = true;
     };
     desktop = {
+      hyprland.rice = true;
       term = {
         kitty.enable = true;
       };

@@ -22,7 +22,6 @@ lib.nixosSystem rec {
   inherit system;
   specialArgs = { inherit inputs lib unstable name; };
   modules = [
-    inputs.hyprland.nixosModules.default
     ../hosts/system.nix
     ../hosts/${name}/system.nix
     ../rf-modules
@@ -40,7 +39,7 @@ lib.nixosSystem rec {
     home-manager.nixosModules.home-manager {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.extraSpecialArgs = { inherit unstable; };
+      home-manager.extraSpecialArgs = { inherit unstable inputs; };
       home-manager.users = forAllUsers (user: mkHome { inherit user name; } );
     }
   ];
