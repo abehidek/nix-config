@@ -11,7 +11,7 @@ args@{ lib, config, pkgs, unstable, ... }: {
 
     ../../modules/dev/home.nix
 
-    ../../modules/shell/home.nix
+    # ../../modules/shell/home.nix
     # ../../modules/shell/zsh/home.nix
     # ../../modules/shell/kitty/home.nix
 
@@ -37,6 +37,8 @@ args@{ lib, config, pkgs, unstable, ... }: {
           plugins = [ "git" "web-search" "copypath" "dirhistory" ];
         };
       };
+      fzf.enable = true;
+      ranger.enable = true;
       direnv.enableForUser = true;
     };
     desktop = {
@@ -47,6 +49,17 @@ args@{ lib, config, pkgs, unstable, ... }: {
   };
   # nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
+    # CLI
+    file
+    librsvg
+    mpv
+    feh
+    onefetch
+    neofetch
+    lazygit
+    tree
+    ncdu
+    htop
     # GUI Applications
     # exodus
     signal-desktop
@@ -62,6 +75,9 @@ args@{ lib, config, pkgs, unstable, ... }: {
     # unstable.spacevim
     # unstable.neovim
   ];
+  home.sessionVariables = {
+    VISUAL = "nvim";
+  };
   programs.firefox = { enable = true; };
   home.file = {
     # ".config/ulauncher/user-themes/dark_trans".source = ulauncher-theme;
