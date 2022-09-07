@@ -4,6 +4,5 @@
     ./shell
     ./hardware
     ./services
-    ./editors
   ];
 }

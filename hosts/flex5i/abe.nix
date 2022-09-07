@@ -44,6 +44,7 @@ args@{ lib, config, pkgs, unstable, ... }: {
     };
     editors = {
       vim.enable = true;
+      vscodium.enable = true;
     };
   };
   home.packages = with pkgs; [

@@ -39,16 +39,10 @@
         environment = "Hyprland";
       };
     };
-    editors = {
-      vscodium = {
-        enable = true;
-      };
-    };
   };
 
   environment = {
     systemPackages = with pkgs; [
-      inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
       gnome.seahorse
       gnome.gnome-keyring
       libsecret

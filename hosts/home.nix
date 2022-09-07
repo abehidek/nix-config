@@ -1,13 +1,15 @@
 { args, user, ... }:
 let
-  inherit (args) lib config pkgs unstable;
-  homeDir = "/home/${user}";
+  inherit (args) lib config pkgs;
+  homePath = "/home/${user}";
 in {
-  home.username = "${user}";
-  home.homeDirectory = "${homeDir}";
-  home.packages = with pkgs; [ obs-studio cbonsai ];
+  home.username = user;
+  home.homeDirectory = homePath;
   xdg = {
     enable = true;
+    configHome = "${homePath}/.config";
+    dataHome = "${homePath}/.local/share";
+    cacheHome = "${homePath}/.cache";
     userDirs = {
       enable = true;
       documents = "$HOME/doc";
@@ -17,8 +19,5 @@ in {
       pictures = "$HOME/img";
       videos = "$HOME/vid";
     };
-    configHome = "${homeDir}/.config";
-    dataHome = "${homeDir}/.local/share";
-    cacheHome = "${homeDir}/.cache";
   };
 }
