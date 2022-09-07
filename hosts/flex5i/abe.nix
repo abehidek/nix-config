@@ -13,7 +13,7 @@ args@{ lib, config, pkgs, unstable, ... }: {
 
     ../../modules/shell/home.nix
     # ../../modules/shell/zsh/home.nix
-    ../../modules/shell/kitty/home.nix
+    # ../../modules/shell/kitty/home.nix
 
     # ../../modules/desktop/sway/home.nix
     # ../../modules/desktop/services/waybar/home.nix
@@ -38,6 +38,11 @@ args@{ lib, config, pkgs, unstable, ... }: {
         };
       };
       direnv.enableForUser = true;
+    };
+    desktop = {
+      term = {
+        kitty.enable = true;
+      };
     };
   };
   # nixpkgs.config.allowUnfree = true;

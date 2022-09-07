@@ -3,7 +3,6 @@
 { inputs, lib, config, pkgs, unstable, name, ... }: {
   imports = [
     ./hardware.nix
-    # ../../modules/dev
   ];
 
   modules = {

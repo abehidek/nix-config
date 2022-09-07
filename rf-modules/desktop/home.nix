@@ -1,13 +1,14 @@
 { lib, config, pkgs, unstable, name, user, ... }:
 with lib;
-let cfg = config.modules.desktop;
+let cfg = config.hm-modules.desktop;
 in {
   imports = [
-    ./hyprland
-    ./sway
+    # ./hyprland
+    # ./sway
+    ./term/home.nix
   ];
 
-  options.modules.desktop = {
+  options.hm-modules.desktop = {
   };
 
   config = (mkMerge [
