@@ -16,12 +16,14 @@
     };
   };
   outputs = inputs:
-    let mkHost = import ./lib/mkHost.nix;
+    let
+      mkHost = import ./lib/mkHost.nix; 
+      mkMachine = import ./lib/mkMachine.nix;
     in {
-      nixosConfigurations.flex5i = mkHost "flex5i" rec {
+      nixosConfigurations.flex5i = mkMachine "flex5i" rec {
         inherit inputs;
         system = "x86_64-linux";
-        system-modules = import ./hosts/flex5i/modules.nix;
+        users = ["abe" "eba"];
       };
       nixosConfigurations.wsl = mkHost "wsl" rec {
         inherit inputs;
