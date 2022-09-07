@@ -1,8 +1,7 @@
 name: { inputs, lib, nixpkgs, home-manager, unstable }:
 [
   # { nixpkgs.overlays = overlays; } # Apply system overlay
-  home-manager.nixosModules.home-manager 
-  {
+  home-manager.nixosModules.home-manager {
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
     home-manager.extraSpecialArgs = { inherit unstable; };

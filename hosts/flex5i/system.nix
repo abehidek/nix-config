@@ -3,38 +3,45 @@
 { inputs, lib, config, pkgs, unstable, name, ... }: {
   imports = [
     ./hardware.nix
-
-    ../../modules/hardware/audio.nix # Enables pipewire audio
-    # ../../modules/desktop/sway # Enable sway on the system
-    ../../modules/dev
-    ../../modules/shell/zsh
-
-    ../../modules/services/network.nix # Enables networking
+    # ../../modules/dev
   ];
 
-  modules.desktop = {
-    hyprland.enable = true;
-    auto-startup = {
-      enable = true;
-      type = "console";
-      environment = "Hyprland";
+  modules = {
+    hardware = {
+      audio.enable = true;
+      audio.users = ["abe"];
+      network = {
+        hostName = "flex5i";
+        useNetworkManager = true;
+      };
+    };
+    shell = {
+      zsh.enable = true;
+      tmux.enable = true;
+      direnv.enable = true;
+      direnv.preventGC = true;
+    };
+    services = {
+      docker = {
+        enable = true;
+        users = ["abe"];
+      };
+      ssh = { enable = true; };
+    };
+    desktop = {
+      hyprland.enable = true;
+      auto-startup = {
+        enable = true;
+        type = "console";
+        environment = "Hyprland";
+      };
+    };
+    editors = {
+      vscodium = {
+        enable = true;
+      };
     };
   };
-
-  modules.ssh = { enable = true; };
-
-  modules.docker = {
-    enable = true;
-    users = ["abe"];
-  };
-
-  modules.hello = {
-    enable = true;
-    greeter = "Abe";
-  };
-
-  # nixpkgs.config.chromium.commandLineArgs =
-    # "---enable-features=UseOzonePlatform --ozone-platform=wayland -enable-features=VaapiVideoDecoder";
 
   environment = {
     systemPackages = with pkgs; [
@@ -50,8 +57,6 @@
       xdg-utils
       shared-mime-info
       # GUI
-      pcmanfm
-      unstable.cinnamon.nemo
     ];
   };
 
@@ -64,12 +69,12 @@
       ];
       # gtkUsePortal = true;
     };
-    mime.defaultApplications = {
-      "image/jpeg" = "feh.desktop";
-      "image/png" = "feh.desktop";
-      "inode/directory" = "nemo.desktop";
-      "application/x-directory" = "nemo.desktop";
-    };
+    # mime.defaultApplications = {
+    #   "image/jpeg" = "feh.desktop";
+    #   "image/png" = "feh.desktop";
+    #   "inode/directory" = "nemo.desktop";
+    #   "application/x-directory" = "nemo.desktop";
+    # };
   };
 
   boot = {

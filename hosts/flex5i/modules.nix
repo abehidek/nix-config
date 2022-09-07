@@ -1,11 +1,13 @@
-name: { inputs, nixpkgs, home-manager, unstable }:
+name: { inputs, lib, nixpkgs, home-manager, unstable }:
 [
   # { nixpkgs.overlays = overlays; } # Apply system overlay
   home-manager.nixosModules.home-manager {
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
     home-manager.extraSpecialArgs = { inherit unstable; };
-    home-manager.users.abe = import ./abe.nix;
+    home-manager.users.abe = lib.utils.mkHomeManager "abe" {
+      homeManagerModule = ./abe.nix;
+    };
   }
   ../system.nix ./system.nix
   inputs.hyprland.nixosModules.default
@@ -14,7 +16,6 @@ name: { inputs, nixpkgs, home-manager, unstable }:
       abe = {
         isNormalUser = true;
         initialPassword = "password";
-        shell = pkgs.zsh;
         extraGroups = [
           "wheel" "doas" "video"
           "audio" "jackaudio"
