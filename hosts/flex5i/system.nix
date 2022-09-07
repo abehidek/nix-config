@@ -44,7 +44,6 @@
         enable = true;
       };
     };
-    # to do dev
   };
 
   environment = {
@@ -60,7 +59,6 @@
       lm_sensors
       xdg-utils
       shared-mime-info
-      # GUI
     ];
   };
 
@@ -71,14 +69,7 @@
         xdg-desktop-portal-wlr
         xdg-desktop-portal-gtk
       ];
-      # gtkUsePortal = true;
     };
-    # mime.defaultApplications = {
-    #   "image/jpeg" = "feh.desktop";
-    #   "image/png" = "feh.desktop";
-    #   "inode/directory" = "nemo.desktop";
-    #   "application/x-directory" = "nemo.desktop";
-    # };
   };
 
   boot = {
@@ -148,12 +139,6 @@
   };
 
   security = {
-    doas.enable = true;
-    doas.extraRules = [{
-      groups = [ "doas" "wheel" ];
-      keepEnv = true;
-      persist = true;
-    }];
     sudo.enable = true;
     rtkit.enable = true;
     protectKernelImage = true;
