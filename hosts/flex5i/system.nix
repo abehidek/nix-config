@@ -16,7 +16,7 @@
     };
     shell = {
       zsh.enable = true;
-      tmux.enable = true;
+      tmux.enable = false;
       direnv.enable = true;
       direnv.preventGC = true;
     };

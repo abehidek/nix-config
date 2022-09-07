@@ -2,5 +2,6 @@
   imports = [
     ./vim.nix
     ./vscodium.nix
+    ./helix.nix
   ];
 }

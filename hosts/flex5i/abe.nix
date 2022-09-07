@@ -4,7 +4,6 @@ args@{ lib, config, pkgs, unstable, ... }: {
   home.stateVersion = "21.11";
   imports = [
     # ../../secrets
-    # ../../modules/editors/neovim/home.nix
     # ../../modules/desktop/sway/home.nix
     # ../../modules/desktop/services/waybar/home.nix
     # ../../modules/desktop/services/rofi/home.nix
@@ -45,9 +44,11 @@ args@{ lib, config, pkgs, unstable, ... }: {
     editors = {
       vim.enable = true;
       vscodium.enable = true;
+      helix.enable = true;
     };
   };
   home.packages = with pkgs; [
+    rustc cargo rustfmt clippy rust-analyzer gcc
     git-crypt
     beekeeper-studio
     file
@@ -64,15 +65,14 @@ args@{ lib, config, pkgs, unstable, ... }: {
     # exodus
     signal-desktop
     vlc
-    helix
     wofi
     dolphin
-    libreoffice
+    # libreoffice
     google-chrome
     obsidian
   ];
   home.sessionVariables = {
-    VISUAL = "nvim";
+    VISUAL = "hx";
   };
   programs.firefox = { enable = true; };
   services.dropbox.enable = true;
