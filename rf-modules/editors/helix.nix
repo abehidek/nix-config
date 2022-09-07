@@ -13,6 +13,7 @@ in {
     (mkIf cfg.enable {
       programs.helix = {
         enable = true;
+        package = pkgs.helix;
         languages = [
           { name = "rust"; auto-format = true; }
         ];

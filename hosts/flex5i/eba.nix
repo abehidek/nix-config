@@ -60,7 +60,7 @@ args@{ lib, config, pkgs, unstable, ... }: {
     tree
     ncdu
     htop
-    gnome.nautilus
+    # gnome.nautilus
     # exodus
     signal-desktop
     vlc
