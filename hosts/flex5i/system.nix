@@ -26,6 +26,10 @@
         enable = true;
         users = ["abe"];
       };
+      virt-manager = {
+        enable = true;
+        auto-startup = false;
+      };
       ssh = { enable = true; };
     };
     desktop = {
@@ -41,6 +45,7 @@
         enable = true;
       };
     };
+    # to do dev
   };
 
   environment = {

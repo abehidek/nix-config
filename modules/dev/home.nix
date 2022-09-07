@@ -2,7 +2,6 @@
   home = {
     packages = with unstable; [
       git-crypt
-      virt-manager
       # eclipses.eclipse-java jetbrains.idea-community jetbrains.pycharm-community
       pkgs.beekeeper-studio
       unstable.vscodium
