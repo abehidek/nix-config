@@ -3,13 +3,12 @@
 args@{ lib, config, pkgs, unstable, ... }: {
   home.stateVersion = "21.11";
   imports = [
-    (import ../home.nix { inherit args; user = "abe"; })
     # ../../secrets
 
     ../../modules/editors/neovim/home.nix
     ../../modules/editors/vim/home.nix
 
-    ../../modules/dev/home.nix
+    # ../../modules/dev/home.nix
 
     # ../../modules/shell/home.nix
     # ../../modules/shell/zsh/home.nix
@@ -23,6 +22,13 @@ args@{ lib, config, pkgs, unstable, ... }: {
     ../../modules/themes/gtk/home.nix
   ];
   hm-modules = {
+    services = {
+      git = {
+        enable = true;
+        defaultBranch = "main";
+      };
+      gpg.enable = true;
+    };
     shell = {
       zsh = {
         historySize = 5000;
@@ -50,6 +56,8 @@ args@{ lib, config, pkgs, unstable, ... }: {
   # nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # CLI
+    git-crypt
+    beekeeper-studio
     file
     librsvg
     mpv

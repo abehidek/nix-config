@@ -2,5 +2,6 @@
   imports = [
     ./shell/home.nix
     ./desktop/home.nix
+    ./services/home.nix
   ];
 }
