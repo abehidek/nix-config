@@ -6,6 +6,7 @@ in {
     ./hyprland/home.nix
     # ./sway
     ./term/home.nix
+    ./waybar.nix
   ];
 
   options.hm-modules.desktop = {

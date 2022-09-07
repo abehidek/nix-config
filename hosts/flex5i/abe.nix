@@ -38,6 +38,7 @@ args@{ lib, config, pkgs, unstable, ... }: {
     };
     desktop = {
       hyprland.rice = true;
+      waybar.enable = true;
       term = {
         kitty.enable = true;
       };

@@ -17,9 +17,14 @@ let
     ];
   };
   forAllUsers = lib.genAttrs (users);
+  pkgs = import nixpkgs {
+    inherit system;
+    config = { allowUnfree = true; };
+    overlays = import ../overlays;
+  };
 in
 lib.nixosSystem rec {
-  inherit system;
+  inherit pkgs system;
   specialArgs = { inherit inputs lib unstable name; };
   modules = [
     ../hosts/system.nix
