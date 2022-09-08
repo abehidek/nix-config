@@ -34,11 +34,6 @@
         type = "sddm";
       };
     };
-    editors = {
-      vscodium = {
-        enable = true;
-      };
-    };
   };
 
   time.timeZone = "America/Sao_Paulo";

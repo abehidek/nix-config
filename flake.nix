@@ -18,7 +18,6 @@
   };
   outputs = inputs:
     let
-      mkHost = import ./lib/mkHost.nix; 
       mkMachine = import ./lib/mkMachine.nix;
     in {
       nixosConfigurations.flex5i = mkMachine "flex5i" rec {
@@ -26,15 +25,10 @@
         system = "x86_64-linux";
         users = ["abe" "eba"];
       };
-      nixosConfigurations.wsl = mkHost "wsl" rec {
+      nixosConfigurations.ssd = mkMachine "ssd" rec {
         inherit inputs;
         system = "x86_64-linux";
-        system-modules = import ./hosts/flex5i/modules.nix;
-      };
-      nixosConfigurations.ssd = mkHost "ssd" rec {
-        inherit inputs;
-        system = "x86_64-linux";
-        system-modules = import ./hosts/ssd/modules.nix;
+        users = ["abe"];
       };
     };
 }

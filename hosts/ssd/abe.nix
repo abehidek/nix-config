@@ -1,12 +1,20 @@
 # Home-Manager config for ssd abe user
 
-args@{ lib, config, pkgs, unstable, ... }: {
+args@{ inputs, lib, config, pkgs, unstable, ... }: {
   home.stateVersion = "22.05";
+  colorScheme = inputs.nix-colors.colorSchemes.solarized-dark;
   imports = [
     ../../modules/editors/neovim/home.nix
   ];
 
   hm-modules = {
+    services = {
+      git = {
+        enable = true;
+        defaultBranch = "main";
+      };
+      gpg.enable = true;
+    };
     shell = {
       zsh = {
         historySize = 5000;
@@ -21,7 +29,14 @@ args@{ lib, config, pkgs, unstable, ... }: {
           plugins = [ "git" "web-search" "copypath" "dirhistory" ];
         };
       };
+      fzf.enable = true;
+      ranger.enable = true;
       direnv.enableForUser = true;
+    };
+    editors = {
+      vim.enable = true;
+      vscodium.enable = true;
+      helix.enable = true;
     };
   };
 
@@ -31,9 +46,6 @@ args@{ lib, config, pkgs, unstable, ... }: {
   ];
   programs = {
     git = {
-      enable = true;
-      userEmail = "hidek.abe@outlook.com";
-      userName = "abehidek";
       extraConfig = {
         core = {
           filemode = false;
