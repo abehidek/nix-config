@@ -23,6 +23,14 @@ in {
         # background_opacity = "0.9";
         dynamic_background_opacity = true;
         window_padding_width = 0;
+        # map = "kitty_mod+enter launch --cwd=current";
+        # map = "kitty_mod+t new_tab_with_cwd";
+
+        map = ''
+          kitty_mod+enter launch --cwd=current
+          map kitty_mod+t new_tab_with_cwd
+        '';
+
         foreground = "#${colors.base05}";
         background = "#${colors.base00}";
         selection_foreground = "#${colors.base00}";
