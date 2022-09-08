@@ -40,6 +40,7 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
     desktop = {
       hyprland.rice = true;
       waybar.enable = true;
+      rofi.enable = true;
       term = {
         kitty.enable = true;
       };
@@ -52,6 +53,8 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
   };
   home.packages = with pkgs; [
     rustc cargo rustfmt clippy rust-analyzer gcc
+    nodejs-16_x nodePackages.typescript-language-server yarn
+    rnix-lsp
     git-crypt
     beekeeper-studio
     file

@@ -90,7 +90,8 @@ in {
         bind=SUPER,M,exit,
         bind=SUPER,E,exec,dolphin
         bind=SUPER,V,togglefloating,
-        bind=SUPER,R,exec,wofi --show drun -o DP-3
+        # bind=SUPER,R,exec,wofi --show drun -o DP-3
+        bind=SUPER,R,exec,rofi -show drun -o DP-3
         bind=SUPER,P,pseudo,
 
         bind=SUPER,left,movefocus,l

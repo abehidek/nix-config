@@ -7,6 +7,7 @@ in {
     # ./sway
     ./term/home.nix
     ./waybar.nix
+    ./rofi.nix
   ];
 
   options.hm-modules.desktop = {
