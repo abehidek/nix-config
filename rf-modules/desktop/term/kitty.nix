@@ -1,8 +1,8 @@
 { lib, config, pkgs, unstable, name, user, ... }:
 with lib;
 let 
-cfg = config.hm-modules.desktop.term.kitty;
-inherit (config.colorscheme) colors;
+  cfg = config.hm-modules.desktop.term.kitty;
+  inherit (config.colorscheme) colors;
 in {
   options.hm-modules.desktop.term.kitty = {
     enable = mkEnableOption false;
