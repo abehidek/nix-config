@@ -2,7 +2,7 @@
 
 args@{ inputs, lib, config, pkgs, unstable, ... }: {
   home.stateVersion = "21.11";
-  colorScheme = inputs.nix-colors.colorSchemes.dracula;
+  colorScheme = inputs.nix-colors.colorSchemes.solarized-dark;
   imports = [
     # ../../secrets
     # ../../modules/desktop/sway/home.nix

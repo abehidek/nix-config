@@ -1,7 +1,8 @@
 # Home-Manager config for flex5i eba user
 
-args@{ lib, config, pkgs, unstable, ... }: {
+args@{ inputs, lib, config, pkgs, unstable, ... }: {
   home.stateVersion = "21.11";
+  colorScheme = inputs.nix-colors.colorSchemes.dracula;
   imports = [
     # ../../secrets
     # ../../modules/editors/neovim/home.nix
