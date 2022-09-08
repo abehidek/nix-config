@@ -5,9 +5,6 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
   colorScheme = inputs.nix-colors.colorSchemes.solarized-dark;
   imports = [
     # ../../secrets
-    # ../../modules/desktop/sway/home.nix
-    # ../../modules/desktop/services/waybar/home.nix
-    # ../../modules/desktop/services/rofi/home.nix
     # ../../modules/desktop/utils/swaylock/home.nix
     # ../../modules/themes/gtk/home.nix
   ];
@@ -41,6 +38,8 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
       hyprland.rice = true;
       waybar.enable = true;
       rofi.enable = true;
+      swaylock.enable = true;
+      wallpaper.path = ../../assets/wallpapers/walking.jpg;
       term = {
         kitty.enable = true;
       };

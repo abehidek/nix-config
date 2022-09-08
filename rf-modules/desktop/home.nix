@@ -8,6 +8,8 @@ in {
     ./term/home.nix
     ./waybar.nix
     ./rofi.nix
+    ./swaylock.nix
+    ./wallpaper.nix
   ];
 
   options.hm-modules.desktop = {
