@@ -140,8 +140,6 @@ in {
           # };
         };
       }];
-      # background-color: ${colorscheme.base06};
-      # color: ${colorscheme.base00};
       style = ''
         * {
           /* `otf-font-awesome` is required to be installed for icons */
@@ -322,8 +320,7 @@ in {
           background-color: transparent;
           color: #ffffff;
         }
-        #workspaces button:hover {
-        }
+        #workspaces button.active,
         #workspaces button.focused {
           color: #${colors.base0F};
         }

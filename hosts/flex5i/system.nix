@@ -15,7 +15,10 @@
       };
     };
     shell = {
-      zsh.enable = true;
+      zsh = {
+        enable = true;
+        defaultShellUsers = ["abe" "eba"];
+      };
       tmux.enable = true;
       direnv.enable = true;
       direnv.preventGC = true;
