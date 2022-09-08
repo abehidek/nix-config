@@ -11,6 +11,7 @@ let
   lib = nixpkgs.lib.extend (self: super: { utils = import ./utils.nix { inherit nixpkgs; lib = self; }; });
   mkHome = {user, name}: args@{pkgs, unstable, ...}: {
     imports = [
+      inputs.nix-colors.homeManagerModule
       (import ../hosts/${name}/${user}.nix)
       ../rf-modules/home.nix
       (import ../hosts/home.nix { inherit args user; })
