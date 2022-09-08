@@ -43,8 +43,15 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
   home.packages = with pkgs; [
     # exodus
     obsidian
+    dbeaver insomnia lazygit
+    inotify-tools
+    elixir nodejs yarn python310
+    neofetch
   ];
+  services.dropbox.enable = true;
+
   programs = {
+    firefox = { enable = true; };
     git = {
       extraConfig = {
         core = {

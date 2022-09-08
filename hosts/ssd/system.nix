@@ -41,17 +41,7 @@
   services.xserver.layout = "us";
   services.xserver.libinput.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    # GUI
-    firefox
-    # Development
-    vim helix
-    dbeaver insomnia lazygit
-    wget git inotify-tools
-    elixir nodejs yarn python310
-    # Misc
-    neofetch
-  ];
+  environment.systemPackages = with pkgs; [];
 
   system.stateVersion = "22.05";
 }
