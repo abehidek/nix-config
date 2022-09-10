@@ -79,6 +79,14 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
   home.sessionVariables = {
     VISUAL = "hx";
   };
-  programs.firefox = { enable = true; };
+  programs.firefox = {
+    enable = true;
+    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+      forceWayland = true;
+      extraPolicies = {
+        ExtensionSettings = {};
+      };
+    };
+  };
   services.dropbox.enable = true;
 }
