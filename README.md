@@ -1,4 +1,4 @@
-# Systems Dotfiles
+# Systems Dotfile
 
 ### Using:
 [![NixOS](https://img.shields.io/badge/os-nixos-blue)](https://nixos.org/)
