@@ -16,6 +16,9 @@ in {
         enable= true;
       };
     };
+    environment.systemPackages = with pkgs; [
+      wl-clipboard
+    ];
     security.pam.services.swaylock = {};
   };
 }
