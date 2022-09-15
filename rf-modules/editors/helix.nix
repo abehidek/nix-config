@@ -17,6 +17,12 @@ in {
         languages = [
           { name = "rust"; auto-format = true; }
         ];
+        settings = {
+          theme = "base16";
+          keys.normal = {
+            y = ":clipboard-yank";
+          };
+        };
       };
     })
   ]);
