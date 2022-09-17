@@ -1,10 +1,14 @@
-# Home-Manager config for flex5i abe user
+# Home-Manager config for flex5i eba user
 
 args@{ inputs, lib, config, pkgs, unstable, ... }: {
   home.stateVersion = "21.11";
-  colorScheme = inputs.nix-colors.colorSchemes.solarized-dark;
+  colorScheme = inputs.nix-colors.colorSchemes.dracula;
   imports = [
     # ../../secrets
+    # ../../modules/editors/neovim/home.nix
+    # ../../modules/desktop/sway/home.nix
+    # ../../modules/desktop/services/waybar/home.nix
+    # ../../modules/desktop/services/rofi/home.nix
     # ../../modules/desktop/utils/swaylock/home.nix
     # ../../modules/themes/gtk/home.nix
   ];
@@ -35,11 +39,6 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
       direnv.enableForUser = true;
     };
     desktop = {
-      hyprland.rice = true;
-      waybar.enable = true;
-      rofi.enable = true;
-      swaylock.enable = true;
-      wallpaper.path = ../../assets/wallpapers/walking.jpg;
       term = {
         kitty.enable = true;
       };
@@ -47,13 +46,9 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
     editors = {
       vim.enable = true;
       vscodium.enable = true;
-      helix.enable = true;
     };
   };
   home.packages = with pkgs; [
-    rustc cargo rustfmt clippy rust-analyzer gcc
-    nodejs-16_x nodePackages.typescript-language-server yarn
-    rnix-lsp
     git-crypt
     beekeeper-studio
     file
@@ -70,29 +65,17 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
     # exodus
     signal-desktop
     vlc
+    helix
     wofi
     dolphin
-    # libreoffice
+    libreoffice
     google-chrome
     obsidian
+    hello
   ];
-
-  qt = {
-    enable = true;
-    platformTheme = "gtk";
-  };
-
   home.sessionVariables = {
-    VISUAL = "hx";
+    VISUAL = "nvim";
   };
-  programs.firefox = {
-    enable = true;
-    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-      forceWayland = true;
-      extraPolicies = {
-        ExtensionSettings = {};
-      };
-    };
-  };
+  programs.firefox = { enable = true; };
   services.dropbox.enable = true;
 }

@@ -1,9 +1,9 @@
 
 { lib, config, pkgs, unstable, name, user, ... }:
 with lib;
-let cfg = config.modules.ssh;
+let cfg = config.modules.services.ssh;
 in {
-  options.modules.ssh = {
+  options.modules.services.ssh = {
     enable = utils.mkBoolOpt false;
   };
 

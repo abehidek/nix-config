@@ -1,35 +1,48 @@
 # Flex5i system config
 
-{ lib, config, pkgs, unstable, name, user, ... }: {
+{ inputs, lib, config, pkgs, unstable, name, ... }: {
   imports = [
     ./hardware.nix
-
-    ../../modules/hardware/audio.nix # Enables pipewire audio
-    ../../modules/desktop/sway # Enable sway on the system
-    ../../modules/dev
-    ../../modules/shell/zsh
-
-    ../../modules/services/network.nix # Enables networking
-
-    ../../rf-modules/hello.nix
-    ../../rf-modules/docker.nix
-    ../../rf-modules/ssh.nix
   ];
 
-  modules.ssh = { enable = true; };
-
-  modules.docker = {
-    enable = true;
-    user = "abe";
+  modules = {
+    hardware = {
+      audio.enable = true;
+      audio.users = ["abe"];
+      network = {
+        hostName = "flex5i";
+        useNetworkManager = true;
+      };
+    };
+    shell = {
+      zsh = {
+        enable = true;
+        defaultShellUsers = ["abe" "eba"];
+      };
+      tmux.enable = true;
+      direnv.enable = true;
+      direnv.preventGC = true;
+    };
+    services = {
+      docker = {
+        enable = true;
+        users = ["abe"];
+      };
+      virt-manager = {
+        enable = true;
+        auto-startup = false;
+      };
+      ssh = { enable = true; };
+    };
+    desktop = {
+      hyprland.enable = true;
+      auto-startup = {
+        enable = true;
+        type = "console";
+        environment = "Hyprland";
+      };
+    };
   };
-
-  modules.hello = {
-    enable = true;
-    greeter = "Abe";
-  };
-
-  # nixpkgs.config.chromium.commandLineArgs =
-    # "---enable-features=UseOzonePlatform --ozone-platform=wayland -enable-features=VaapiVideoDecoder";
 
   environment = {
     systemPackages = with pkgs; [
@@ -43,26 +56,13 @@
       lm_sensors
       xdg-utils
       shared-mime-info
-      # GUI
-      pcmanfm
-      unstable.cinnamon.nemo
     ];
   };
 
   xdg = {
     portal = {
       enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
-      ];
-      gtkUsePortal = true;
-    };
-    mime.defaultApplications = {
-      "image/jpeg" = "feh.desktop";
-      "image/png" = "feh.desktop";
-      "inode/directory" = "nemo.desktop";
-      "application/x-directory" = "nemo.desktop";
+      wlr.enable = true;
     };
   };
 
@@ -133,12 +133,6 @@
   };
 
   security = {
-    doas.enable = true;
-    doas.extraRules = [{
-      groups = [ "doas" "wheel" ];
-      keepEnv = true;
-      persist = true;
-    }];
     sudo.enable = true;
     rtkit.enable = true;
     protectKernelImage = true;

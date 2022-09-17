@@ -1,27 +1,9 @@
 # Multiple hosts system config
 
-{ lib, config, pkgs, unstable, user, ... }: {
-  users.users = {
-    ${user} = {
-      isNormalUser = true;
-      initialPassword = "password";
-      shell = pkgs.zsh;
-      extraGroups = [
-        "wheel"
-        "doas"
-        "video"
-        "audio"
-        "jackaudio"
-        "networkmanager"
-        "libvirtd"
-      ];
-    };
-  };
-
+{ lib, config, pkgs, unstable, ... }: {
   nix = {
-    autoOptimiseStore = true;
-    package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
+    settings.auto-optimise-store = true;
+    settings.experimental-features = ["nix-command" "flakes"];  
   };
 
   nixpkgs = { config.allowUnfree = true; };
