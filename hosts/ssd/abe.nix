@@ -1,6 +1,9 @@
 # Home-Manager config for ssd abe user
 
-args@{ inputs, lib, config, pkgs, unstable, ... }: {
+args@{ inputs, lib, config, pkgs, unstable, ... }: 
+let
+  my-pocketbase = pkgs.callPackage ../../pkgs/pocketbase.nix {};
+in {
   home.stateVersion = "22.05";
   colorScheme = inputs.nix-colors.colorSchemes.solarized-dark;
   imports = [
@@ -42,11 +45,12 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
 
   home.packages = with pkgs; [
     # exodus
-    obsidian
+    obsidian vlc
     dbeaver insomnia lazygit
     inotify-tools
     elixir nodejs yarn python310
     neofetch
+    my-pocketbase
   ];
   services.dropbox.enable = true;
 
