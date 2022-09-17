@@ -76,6 +76,12 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
     google-chrome
     obsidian
   ];
+
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+  };
+
   home.sessionVariables = {
     VISUAL = "hx";
   };
