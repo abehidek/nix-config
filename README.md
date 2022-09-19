@@ -37,6 +37,7 @@ Also, if someone is interest I would love to chat about this topic since I have 
 - [ ] Understand better overlays and new nix flake commands.
 - [ ] Proper flake config for Raspberry Pi 400 (as a server) and WSL (as dev env).
 - [ ] Create some useful eww widgets.
+- [ ] Decrease the number of installed packages and RAM consumption
 
 ### Details
 
