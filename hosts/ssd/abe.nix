@@ -6,11 +6,13 @@ let
 in {
   home.stateVersion = "22.05";
   colorScheme = inputs.nix-colors.colorSchemes.solarized-dark;
-  imports = [
-    ../../modules/editors/neovim/home.nix
-  ];
+  # imports = [ ../../modules/editors/neovim/home.nix ];
 
   hm-modules = {
+    desktop = {
+      term.kitty.enable = true;
+      rofi.enable = true;
+    };
     services = {
       git = {
         enable = true;
