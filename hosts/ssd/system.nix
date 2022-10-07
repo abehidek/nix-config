@@ -43,8 +43,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
   services.xserver.layout = "us";
   services.xserver.libinput.enable = true;
-
-  environment.systemPackages = with pkgs; [];
+  services.fstrim.enable = true;
 
   system.stateVersion = "22.05";
 }
