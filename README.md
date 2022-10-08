@@ -28,6 +28,7 @@ Also, if someone is interest I would love to chat about this topic since I have 
 
 ### Roadmap
 
+- [ ] Install [Lunacy](https://flathub.org/apps/details/com.icons8.Lunacy) through flatpak using [declarative-nix-flatpak](https://github.com/yawnt/declarative-nix-flatpak)
 - [ ] Move to xmonad due to better compatibility provided X11.
 - [ ] Proper GTK and QT theming based on the nix-colors base16 colorscheme.
 - [ ] Config public SSH keys on hosts.
@@ -47,17 +48,21 @@ Also, if someone is interest I would love to chat about this topic since I have 
 - SSD (240GB External SSD)
 
 #### Flex5i Partition Scheme (UEFI)
-| Partition Label | Description |
-|---|---|
-| NIXOS-BOOT | EFI partition contains basic files to load the Operating System. |
-| NIXOS-ROOT | Root partition, where linux operating system and its files is stored. |
-| NIXOS-SWAP | Assistant and overflow space for RAM. |
+
+| Partition Label | Description                                                           |
+| --------------- | --------------------------------------------------------------------- |
+| NIXOS-BOOT      | EFI partition contains basic files to load the Operating System.      |
+| NIXOS-ROOT      | Root partition, where linux operating system and its files is stored. |
+| NIXOS-SWAP      | Assistant and overflow space for RAM.                                 |
 
 #### SSD Partition Scheme (UEFI)
+
 // todo
 
 ## Learn more about Nix and NixOS
+
 ### Some docs, blog posts and videos about Nix and NixOS
+
 - https://linktr.ee/nixos
 - https://nixos.wiki/wiki/Sway
 - https://wiki.archlinux.org/title/Sway
@@ -72,6 +77,7 @@ Also, if someone is interest I would love to chat about this topic since I have 
 - https://gvolpe.com/blog/xmonad-polybar-nixos/#rofi
 
 ### Some other dotfiles repo I use to understand better:
+
 - https://github.com/hlissner/dotfiles
 - https://github.com/KubqoA/dotfiles
 - https://github.com/alternateved/nixos-config
@@ -85,5 +91,6 @@ Also, if someone is interest I would love to chat about this topic since I have 
 - https://github.com/sebastiant/dotfiles
 
 ### Configuring Neovim from scratch
+
 - https://github.com/notusknot/dotfiles-nix
 - https://www.youtube.com/c/ChrisAtMachine
