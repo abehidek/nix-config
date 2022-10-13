@@ -19,6 +19,9 @@ in {
         ];
         settings = {
           theme = "base16";
+          editor.file-picker = {
+            hidden = false;
+          };
           keys.normal = {
             y = ":clipboard-yank";
           };
