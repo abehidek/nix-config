@@ -175,7 +175,7 @@ in {
         #window,
         #mode
         {
-          font-family: 'FiraMono Nerd Font';
+          font-family: 'FiraCode Nerd Font';
         }
 
         /* If workspaces is the leftmost module, omit left margin */
@@ -201,14 +201,14 @@ in {
         #tray,
         #mpd {
           border-radius: 0px;
-          font-family: 'FiraMono Nerd Font';
+          font-family: 'FiraCode Nerd Font';
           padding: 5 15px;
           margin-left: 0px;
         }
 
         #custom-power {
           border-radius: 0px;
-          font-family: 'FiraMono Nerd Font';
+          font-family: 'FiraCode Nerd Font';
           padding: 5 20px;
           margin-left: 0px;
         }
