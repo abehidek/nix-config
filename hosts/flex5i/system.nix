@@ -101,7 +101,7 @@
     xserver.libinput.enable = true;
     gnome.gnome-keyring.enable = true;
     fstrim.enable = true;
-    gvfs.enable = true;
+    gvfs.enable = false;
     tlp = {
       enable = true;
       settings = { TLP_PERSISTENT_DEFAULT = 0; };
