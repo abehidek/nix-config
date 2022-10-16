@@ -104,7 +104,11 @@
     gvfs.enable = false;
     tlp = {
       enable = true;
-      settings = { TLP_PERSISTENT_DEFAULT = 0; };
+      settings = {
+        TLP_PERSISTENT_DEFAULT = 0;
+        CPU_MAX_PERF_ON_AC=100;
+        CPU_MAX_PERF_ON_BAT=30;
+      };
     };
   };
 
