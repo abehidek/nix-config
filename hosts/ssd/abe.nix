@@ -25,7 +25,7 @@ in {
         historySize = 5000;
         nixShellCompat = true;
         powerlevel10k = {
-          enable = true;
+          enable = false;
           riceFolder = ../../config/p10k;
           instantPrompt = true;
         };
@@ -57,6 +57,10 @@ in {
   services.dropbox.enable = true;
 
   programs = {
+    starship = {
+      enable = true;
+      enableZshIntegration = true;
+    };
     firefox = { enable = true; };
     git = {
       extraConfig = {

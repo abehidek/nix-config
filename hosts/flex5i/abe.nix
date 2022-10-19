@@ -21,7 +21,7 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
         historySize = 5000;
         nixShellCompat = true;
         powerlevel10k = {
-          enable = true;
+          enable = false;
           riceFolder = ../../config/p10k;
           instantPrompt = true;
         };
@@ -85,12 +85,15 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
   home.sessionVariables = {
     VISUAL = "hx";
   };
-  programs.firefox = {
-    enable = true;
-    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-      forceWayland = true;
-      extraPolicies = {
-        ExtensionSettings = {};
+  programs= {
+    starship = { enable = true; };
+    firefox = {
+      enable = true;
+      package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+        forceWayland = true;
+        extraPolicies = {
+          ExtensionSettings = {};
+        };
       };
     };
   };
