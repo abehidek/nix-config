@@ -43,7 +43,10 @@
   i18n.defaultLocale = "en_US.UTF-8";
   services.xserver.layout = "us";
   services.xserver.libinput.enable = true;
+  services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
   services.fstrim.enable = true;
+
+  environment.systemPackages = with pkgs; [ displaylink ];
 
   system.stateVersion = "22.05";
 }

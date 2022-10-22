@@ -11,7 +11,7 @@
   boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "usbhid" "uas" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ evdi ];
   boot.supportedFilesystems = [ "ntfs" ];
 
   boot.loader = {
