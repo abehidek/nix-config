@@ -52,7 +52,8 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
   };
   home.packages = with pkgs; [
     rustc cargo rustfmt clippy rust-analyzer gcc
-    nodejs-16_x nodePackages.typescript-language-server yarn
+    nodejs-16_x nodePackages.typescript-language-server
+    (yarn.override { nodejs = nodejs-16_x;  })
     rnix-lsp
     git-crypt
     beekeeper-studio
