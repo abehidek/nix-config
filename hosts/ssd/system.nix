@@ -40,8 +40,9 @@
   };
 
   time.timeZone = "America/Sao_Paulo";
-  i18n.defaultLocale = "en_US.UTF-8";
-  services.xserver.layout = "us";
+  i18n.defaultLocale = "pt_BR.UTF-8";
+  services.xserver.layout = "us,br";
+  services.xserver.xkbVariant = "intl,abnt2";
   services.xserver.libinput.enable = true;
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
   services.fstrim.enable = true;
