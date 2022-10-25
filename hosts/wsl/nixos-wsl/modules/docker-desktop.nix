@@ -1,13 +1,17 @@
 { config, lib, pkgs, ... }:
 with builtins; with lib; {
 
-  options.wsl.docker = with types; {
+  imports = [
+    (mkRenamedOptionModule [ "wsl" "docker" ] [ "wsl" "docker-desktop" ])
+  ];
+
+  options.wsl.docker-desktop = with types; {
     enable = mkEnableOption "Docker Desktop integration";
   };
 
   config =
     let
-      cfg = config.wsl.docker;
+      cfg = config.wsl.docker-desktop;
     in
     mkIf (config.wsl.enable && cfg.enable) {
 
@@ -19,7 +23,7 @@ with builtins; with lib; {
       systemd.services.docker-desktop-proxy = {
         description = "Docker Desktop proxy";
         script = ''
-          ${config.wsl.automountPath}/wsl/docker-desktop/docker-desktop-proxy -docker-desktop-root ${config.wsl.automountPath}/wsl/docker-desktop
+          ${config.wsl.automountPath}/wsl/docker-desktop/docker-desktop-user-distro proxy --docker-desktop-root ${config.wsl.automountPath}/wsl/docker-desktop
         '';
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
