@@ -31,7 +31,6 @@ lib.nixosSystem rec {
     ../hosts/system.nix
     ../hosts/${name}/system.nix
     ../rf-modules
-    inputs.vscode-server.nixosModule
     ({ lib, config, pkgs, ...}: {
       users.users = forAllUsers (user: {
         isNormalUser = true;

@@ -1,12 +1,8 @@
-{ lib, pkgs, config, modulesPath, ... }:
-
-with lib;
-let
-  nixos-wsl = import ./nixos-wsl;
-in
+{ inputs, lib, pkgs, config, modulesPath, ... }: with lib;
 {
   imports = [
-    nixos-wsl.nixosModules.wsl
+    inputs.nixos-wsl.nixosModules.wsl
+    inputs.vscode-server.nixosModule
   ];
 
   wsl = {
