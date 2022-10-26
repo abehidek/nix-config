@@ -4,8 +4,8 @@
 
 [![NixOS](https://img.shields.io/badge/os-nixos-blue)](https://nixos.org/)
 [![Nix](https://img.shields.io/badge/lang-nix-lightblue)](https://builtwithnix.org/)
-[![Sway](https://img.shields.io/badge/wm-hyprland-darkblue)](https://swaywm.org/)
-[![Neovim](https://img.shields.io/badge/editor-helix-purple)](https://neovim.io/)
+[![Hyprland](https://img.shields.io/badge/wm-hyprland-darkblue)](https://swaywm.org/)
+[![Helix](https://img.shields.io/badge/editor-helix-purple)](https://helix-editor.com/)
 [![Zsh](https://img.shields.io/badge/shell-zsh-black)](https://www.zsh.org/)
 
 </div>
@@ -32,9 +32,10 @@ Also, if someone is interest I would love to chat about this topic since I have 
 - [ ] Move to xmonad due to better compatibility provided X11.
 - [ ] Proper GTK and QT theming based on the nix-colors base16 colorscheme.
 - [ ] Config public SSH keys on hosts.
-- [ ] Config properly zsh.
+- [x] Config properly zsh.
 - [x] Try out Hyprland.
 - [x] Migrate old module style to proper configurable NixOS modules.
+- [x] Setup NixOS WSL2 properly
 - [ ] Understand better overlays and new nix flake commands.
 - [ ] Proper flake config for Raspberry Pi 400 (as a server) and WSL (as dev env).
 - [ ] Create some useful eww widgets.
@@ -46,6 +47,7 @@ Also, if someone is interest I would love to chat about this topic since I have 
 
 - Flex5i (Ideapad laptop)
 - SSD (240GB External SSD)
+- WSL2 NixOS (Main Desktop)
 
 #### Flex5i Partition Scheme (UEFI)
 
