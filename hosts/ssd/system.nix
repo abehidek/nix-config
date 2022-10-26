@@ -46,8 +46,10 @@
   services.xserver.libinput.enable = true;
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
   services.fstrim.enable = true;
+  programs.adb.enable = true;
+  users.users.abe.extraGroups = ["adbusers"];
 
-  environment.systemPackages = with pkgs; [ displaylink ];
+  environment.systemPackages = with pkgs; [ displaylink android-studio  ];
 
   system.stateVersion = "22.05";
 }
