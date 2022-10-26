@@ -46,6 +46,8 @@ in
   };
   
   environment.systemPackages = with pkgs; [ helix git lazygit ranger ];
+  
+  services.vscode-server.enable = true;
 
   system.stateVersion = "22.05";
 }

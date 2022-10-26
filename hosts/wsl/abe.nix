@@ -37,7 +37,7 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
     };
     editors = {
       vim.enable = true;
-      vscodium.enable = true;
+      vscodium.enable = false;
       helix.enable = true;
     };
   };

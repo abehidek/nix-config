@@ -15,6 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = github:misterio77/nix-colors;
+    vscode-server.url = "github:msteen/nixos-vscode-server";
   };
   outputs = inputs:
     let
