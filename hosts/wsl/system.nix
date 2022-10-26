@@ -6,11 +6,7 @@ let
 in
 {
   imports = [
-    "${modulesPath}/profiles/minimal.nix"
-
     nixos-wsl.nixosModules.wsl
-
-    ../../modules/shell/zsh
   ];
 
   wsl = {
@@ -19,17 +15,37 @@ in
     defaultUser = "abe";
     startMenuLaunchers = true;
 
+    # Enable native Docker support
+    # docker-native.enable = true;
+
     # Enable integration with Docker Desktop (needs to be installed)
-    docker.enable = true;
+    # docker-desktop.enable = true;
+
   };
+      
+  modules.desktop = {              
+    auto-startup.enable = false;
+  };
+      
+  modules.hardware = {
+    network = {
+      hostName = "ssd";
+      useNetworkManager = false;
+    };
+  }; 
 
   # Enable nix flakes
   # nix.package = pkgs.nixFlakes;
   # nix.extraOptions = ''
   #   experimental-features = nix-command flakes
   # '';
+  
+  nix = {
+    settings.auto-optimise-store = true;
+    settings.experimental-features = ["nix-command" "flakes"];  
+  };
+  
+  environment.systemPackages = with pkgs; [ helix git lazygit ranger ];
 
-  networking.hostName = "wsl";
-
-  environment.systemPackages = with pkgs; [ neofetch pfetch git lazygit ranger htop tree wget nodejs nodePackages.npm ];
+  system.stateVersion = "22.05";
 }

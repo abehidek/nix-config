@@ -30,5 +30,10 @@
         system = "x86_64-linux";
         users = ["abe"];
       };
+      nixosConfigurations.wsl = mkMachine "wsl" rec {
+        inherit inputs;
+        system = "x86_64-linux";
+        users = ["abe"];
+      };
     };
 }
