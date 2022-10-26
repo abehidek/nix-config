@@ -8,7 +8,10 @@ in {
     hostName = mkOption {
       type = types.str;
     };
-    useNetworkManager = utils.mkBoolOpt true;
+    useNetworkManager = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = (mkMerge [

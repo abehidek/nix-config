@@ -23,27 +23,11 @@ in
 
   };
       
-  modules.desktop = {              
-    auto-startup.enable = false;
-  };
-      
   modules.hardware = {
     network = {
       hostName = "ssd";
-      useNetworkManager = false;
     };
   }; 
-
-  # Enable nix flakes
-  # nix.package = pkgs.nixFlakes;
-  # nix.extraOptions = ''
-  #   experimental-features = nix-command flakes
-  # '';
-  
-  nix = {
-    settings.auto-optimise-store = true;
-    settings.experimental-features = ["nix-command" "flakes"];  
-  };
   
   environment.systemPackages = with pkgs; [ helix git lazygit ranger ];
   
