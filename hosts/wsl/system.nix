@@ -16,14 +16,28 @@
 
     # Enable integration with Docker Desktop (needs to be installed)
     # docker-desktop.enable = true;
-
   };
-      
-  modules.hardware = {
-    network = {
-      hostName = "ssd";
+
+  modules = {
+    hardware = {
+      network = {
+        hostName = "ssd";
+      };
     };
-  }; 
+    shell = {
+      zsh = {
+        enable = true;
+        defaultShellUsers = ["abe"];
+      };
+      tmux.enable = true;
+      direnv.enable = true;
+      direnv.preventGC = true;
+    };
+    services = {
+      ssh = { enable = true; };
+    };
+  };
+
   
   environment.systemPackages = with pkgs; [ helix git lazygit ranger ];
   
