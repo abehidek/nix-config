@@ -12,14 +12,19 @@
     startMenuLaunchers = true;
 
     # Enable native Docker support
-    docker-native.enable = true;
-    docker-native.addToDockerGroup = true;
+    # docker-native.enable = true;
+    # docker-native.addToDockerGroup = true;
 
     # Enable integration with Docker Desktop (needs to be installed)
     # docker-desktop.enable = true;
   };
 
-  virtualisation.docker.extraOptions = "--iptables=false";
+  # virtualisation.docker.extraOptions = "--iptables=false";
+
+  virtualisation.docker.package = (pkgs.docker.override { iptables = pkgs.iptables-legacy; });
+  virtualisation.docker.enable = true;
+
+  users.groups.docker.members = ["abe"];
 
   modules = {
     hardware = {
@@ -42,7 +47,7 @@
   };
 
   
-  environment.systemPackages = with pkgs; [ helix git lazygit ranger ];
+  environment.systemPackages = with pkgs; [ helix git lazygit ranger docker-compose ];
   
   services.vscode-server.enable = true;
 
