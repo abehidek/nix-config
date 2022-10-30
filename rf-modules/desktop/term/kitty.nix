@@ -22,7 +22,7 @@ in {
         #allow_remote_control = false;
         # background_opacity = "0.9";
         dynamic_background_opacity = true;
-        window_padding_width = 0;
+        window_padding_width = 10;
         # map = "kitty_mod+enter launch --cwd=current";
         # map = "kitty_mod+t new_tab_with_cwd";
 
