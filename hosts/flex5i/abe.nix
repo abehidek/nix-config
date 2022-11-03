@@ -51,6 +51,7 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
     };
   };
   home.packages = with pkgs; [
+    inotify-tools elixir
     rustc cargo rustfmt clippy rust-analyzer gcc
     nodejs-16_x nodePackages.typescript-language-server
     (yarn.override { nodejs = nodejs-16_x;  })
