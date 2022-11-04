@@ -90,6 +90,15 @@ in {
         #windowrule=pseudo,abc
         #windowrule=monitor 0,xyz
 
+        bind=ALT,R,submap,resize # will switch to a submap called resize
+        submap=resize # will start a submap called "resize"
+          binde=,right,resizeactive,10 0
+          binde=,left,resizeactive,-10 0
+          binde=,up,resizeactive,0 -10
+          binde=,down,resizeactive,0 10
+          binde=,escape,submap,reset # use reset to go back to the global submap
+        submap=reset # will reset the submap, meaning end the current one and return to the global one.
+
         # example binds
         bind=SUPER,Q,exec,kitty
         bind=SUPER,RETURN,exec,alacritty
