@@ -56,6 +56,7 @@
       lm_sensors
       xdg-utils
       shared-mime-info
+      android-studio
     ];
   };
 
@@ -141,6 +142,9 @@
     rtkit.enable = true;
     protectKernelImage = true;
   };
+
+  programs.adb.enable = true;
+  users.users.abe.extraGroups = ["adbusers"];
 
   system.stateVersion = "21.11";
 }
