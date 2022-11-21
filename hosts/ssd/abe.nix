@@ -48,7 +48,7 @@ in {
   home.packages = with pkgs; [
     # exodus
     obsidian vlc lbry
-    dbeaver insomnia lazygit
+    dbeaver insomnia lazygit vulnix
     inotify-tools
     elixir nodejs yarn python310
     neofetch
