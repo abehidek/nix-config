@@ -39,8 +39,8 @@ in {
       direnv.enableForUser = true;
     };
     editors = {
-      vim.enable = true;
-      vscodium.enable = true;
+      # vim.enable = true;
+      # vscodium.enable = true;
       helix.enable = true;
     };
   };
@@ -57,6 +57,9 @@ in {
   services.dropbox.enable = true;
 
   programs = {
+    vscode = {
+      enable = true;
+    };
     starship = {
       enable = true;
       enableZshIntegration = true;
