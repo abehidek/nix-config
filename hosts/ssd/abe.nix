@@ -51,7 +51,7 @@ in {
     dbeaver insomnia lazygit vulnix
     inotify-tools
     elixir nodejs yarn python310
-    neofetch
+    neofetch discord
     my-pocketbase
   ];
   services.dropbox.enable = true;
