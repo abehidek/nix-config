@@ -45,8 +45,8 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
       };
     };
     editors = {
-      vim.enable = true;
-      vscodium.enable = true;
+      vim.enable = false;
+      vscodium.enable = false;
       helix.enable = true;
     };
   };
@@ -88,6 +88,7 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
     VISUAL = "hx";
   };
   programs= {
+    vscode = { enable = true; };
     starship = { enable = true; };
     firefox = {
       enable = true;
