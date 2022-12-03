@@ -93,7 +93,7 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
     firefox = {
       enable = true;
       package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-        forceWayland = true;
+        # forceWayland = true;
         extraPolicies = {
           ExtensionSettings = {};
         };
