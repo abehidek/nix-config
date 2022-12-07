@@ -1,14 +1,33 @@
-<div align="center">
+<h1 align="center">
+  <br>
   <img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/521e1b0a899074ca7a701c17e357c63c13d54133/logo/nix-snowflake.svg" width="100px" height="100px" alt="nix snowflake logo" />
-  <h1>Systems Dotfiles</h1>
+  <br>
+  Systems Dotfiles
+  <br>
+</h1>
 
-[![NixOS](https://img.shields.io/badge/os-nixos-blue)](https://nixos.org/)
-[![Nix](https://img.shields.io/badge/lang-nix-lightblue)](https://builtwithnix.org/)
-[![Hyprland](https://img.shields.io/badge/wm-hyprland-darkblue)](https://swaywm.org/)
-[![Helix](https://img.shields.io/badge/editor-helix-purple)](https://helix-editor.com/)
-[![Zsh](https://img.shields.io/badge/shell-zsh-black)](https://www.zsh.org/)
+<h4 align="center">One config. One setup. One place</h4>
 
-</div>
+<p align="center">
+  <a href="https://nixos.org"><img src="https://img.shields.io/badge/os-nixos-blue" alt="NixOS"></a>
+  <a href="https://builtwithnix.org"><img src="https://img.shields.io/badge/lang-nix-lightblue" alt="Nix"></a>
+  <a href="https://swaywm.org"><img src="https://img.shields.io/badge/wm-hyprland-darkblue" alt="Hyprland"></a>
+  <a href="https://helix-editor.com"><img src="https://img.shields.io/badge/editor-helix-purple" alt="Helix"></a>
+  <a href="https://www.zsh.org"><img src="https://img.shields.io/badge/shell-zsh-black" alt="Zsh"></a>
+</p>
+
+<p align="center">
+  <a href="#about">About</a> •
+  <a href="#key-features">Key Features</a> •
+  <a href="#system-details">System Details</a> •
+  <!-- <a href="#getting-started">Getting Started</a> • -->
+  <a href="#faq">FAQ</a> •
+  <a href="#roadmap">Roadmap</a> •
+  <!-- <a href="#support">Support</a> • -->
+  <a href="#license">License</a>
+</p>
+
+<!-- ![screenshot](screenshots/1.jpg) -->
 
 ## About
 
@@ -24,9 +43,64 @@ This repo contains all dotfiles to create an identical system to which I'm using
 Don't expect these dotfiles to work since there are a lot of factors to include, but instead, try to adapt it to your machine.
 Also, if someone is interest I would love to chat about this topic since I have so much to learn.
 
-## System
+## Key Features
 
-### Roadmap
+- Multiple host configurations (laptop, bootable ssd and WSL2)
+- Configured wayland desktop environments (Hyprland and Sway)
+- Commonly used modules for configuring system.
+- Home manager configuration as a NixOS system module (allows to rebuild the system once instead of twice)
+  - Each user has it's own Home manager configuration file labeled as the user name.
+  - Home manager modules for configuring each application in user space.
+- Secrets management using GPG.
+
+## System Details
+
+### Avaiable hosts:
+
+- Flex5i (Ideapad laptop)
+- SSD (240GB External SSD)
+- WSL2 NixOS (Main Desktop)
+
+### Flex5i Partition Scheme (UEFI)
+
+| Partition Label | Description                                                           |
+| --------------- | --------------------------------------------------------------------- |
+| NIXOS-BOOT      | EFI partition contains basic files to load the Operating System.      |
+| NIXOS-ROOT      | Root partition, where linux operating system and its files is stored. |
+| NIXOS-SWAP      | Assistant and overflow space for RAM.                                 |
+
+<!-- ## Getting Started
+
+All of this Nix code is avaiable to use the way you want to use, however, worth noting that not necessarily all configuration will fit in your machine.
+
+### Prerequisites
+
+If you are in the NixOS installer, you will need to setup your partition scheme as the same way of the partition scheme inside <a href="#system-details">systems details section</a>
+
+since this repository manages only NixOS configuration, you will need:
+
+- NixOS
+- Git (easily installed on the NixOS setup by using `nix-shell -p git`)
+
+### Installing and Running
+
+To access it's configuration, it's necessary to first clone this repository in your machine.
+
+```bash
+# Clone this repository
+$ git clone https://github.com/abehidek/dotfiles
+
+# Go into the repository
+$ cd dotfiles
+``` -->
+
+## FAQ
+
+### Is it any good?
+
+[yes.](https://news.ycombinator.com/item?id=3067434)
+
+## Roadmap
 
 - [ ] Install [Lunacy](https://flathub.org/apps/details/com.icons8.Lunacy) through flatpak using [declarative-nix-flatpak](https://github.com/yawnt/declarative-nix-flatpak)
 - [ ] Move to xmonad due to better compatibility provided X11.
@@ -41,29 +115,41 @@ Also, if someone is interest I would love to chat about this topic since I have 
 - [ ] Create some useful eww widgets.
 - [ ] Decrease the number of installed packages and RAM consumption
 
-### Details
+## Emailware
 
-#### Avaiable hosts:
+This project is an [emailware](https://en.wiktionary.org/wiki/emailware). Meaning, if you liked using this app or it has helped you in any way, I'd like you send me an email at <hidek.abe@outlook.com> about anything you'd want to say about this software. I'd really appreciate it!
 
-- Flex5i (Ideapad laptop)
-- SSD (240GB External SSD)
-- WSL2 NixOS (Main Desktop)
+## Contributing
 
-#### Flex5i Partition Scheme (UEFI)
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-| Partition Label | Description                                                           |
-| --------------- | --------------------------------------------------------------------- |
-| NIXOS-BOOT      | EFI partition contains basic files to load the Operating System.      |
-| NIXOS-ROOT      | Root partition, where linux operating system and its files is stored. |
-| NIXOS-SWAP      | Assistant and overflow space for RAM.                                 |
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
 
-#### SSD Partition Scheme (UEFI)
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-// todo
+<!-- ## Support
 
-## Learn more about Nix and NixOS
+You can also support us by:
 
-### Some docs, blog posts and videos about Nix and NixOS
+<p align="left">
+  <a href="https://www.buymeacoffee.com" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a> &nbsp &nbsp
+  <a href="https://www.patreon.com">
+    <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+  </a>
+</p> -->
+
+## License
+
+MIT.
+
+## Acknowledgments
+
+These sources helped me to accomplish this project.
 
 - https://linktr.ee/nixos
 - https://nixos.wiki/wiki/Sway
@@ -78,7 +164,7 @@ Also, if someone is interest I would love to chat about this topic since I have 
 - https://youtu.be/AGVXJ-TIv3Y
 - https://gvolpe.com/blog/xmonad-polybar-nixos/#rofi
 
-### Some other dotfiles repo I use to understand better:
+## You may also like...
 
 - https://github.com/hlissner/dotfiles
 - https://github.com/KubqoA/dotfiles
@@ -92,7 +178,8 @@ Also, if someone is interest I would love to chat about this topic since I have 
 - https://github.com/kclejeune/system
 - https://github.com/sebastiant/dotfiles
 
-### Configuring Neovim from scratch
+---
 
-- https://github.com/notusknot/dotfiles-nix
-- https://www.youtube.com/c/ChrisAtMachine
+> [abehidek.me](https://abehidek.me) &nbsp;&middot;&nbsp;
+> GitHub [@abehidek](https://github.com/abehidek) &nbsp;&middot;&nbsp;
+> Twitter [@guilhermehabe](https://twitter.com/guilhermehabe)
