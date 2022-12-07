@@ -65,6 +65,7 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
     onefetch
     neofetch
     lazygit
+    commitizen
     tree
     ncdu
     htop
