@@ -25,7 +25,7 @@
       nixosConfigurations.flex5i = mkMachine "flex5i" rec {
         inherit inputs;
         system = "x86_64-linux";
-        users = ["abe" "eba"];
+        users = ["abe"];
       };
       nixosConfigurations.ssd = mkMachine "ssd" rec {
         inherit inputs;

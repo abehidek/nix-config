@@ -17,7 +17,7 @@
     shell = {
       zsh = {
         enable = true;
-        defaultShellUsers = ["abe" "eba"];
+        defaultShellUsers = ["abe"];
       };
       tmux.enable = true;
       direnv.enable = true;
