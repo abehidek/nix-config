@@ -23,6 +23,8 @@ in {
         # exec-once=${swaylock} -i ${wallpaper.path}
         exec-once=waybar
         exec-once=${swaybg} -i ${wallpaper.path} --mode fill
+        exec-once=obsidian
+        exec-once=firefox --new-window https://workflowy.com
 
         monitor=,preferred,auto,1
 
