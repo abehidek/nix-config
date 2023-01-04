@@ -44,7 +44,7 @@ in {
         }
 
         general {
-            main_mod=SUPER
+            # main_mod=SUPER
 
             gaps_in=5
             gaps_out=20
@@ -54,7 +54,7 @@ in {
 
             apply_sens_to_raw=0 # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
 
-            damage_tracking=full # leave it on full unless you hate your GPU and want to make it suffer
+            # damage_tracking=full # leave it on full unless you hate your GPU and want to make it suffer
         }
 
         decoration {
