@@ -101,5 +101,5 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
       };
     };
   };
-  services.dropbox.enable = true;
+  services.dropbox.enable = false;
 }
