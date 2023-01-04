@@ -54,7 +54,7 @@ in {
     neofetch discord
     my-pocketbase
   ];
-  services.dropbox.enable = true;
+  # services.dropbox.enable = true;
 
   programs = {
     vscode = {
