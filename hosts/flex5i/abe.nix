@@ -102,4 +102,5 @@ args@{ inputs, lib, config, pkgs, unstable, ... }: {
     };
   };
   services.dropbox.enable = false;
+  services.udiskie.enable = true;
 }

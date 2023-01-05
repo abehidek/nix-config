@@ -103,6 +103,7 @@
     gnome.gnome-keyring.enable = true;
     fstrim.enable = true;
     gvfs.enable = false;
+    udisks2.enable = true;
     tlp = {
       enable = true;
       settings = {
