@@ -77,5 +77,8 @@ in {
     lazygit
     ncdu htop
     google-chrome
+    insomnia
+    discord
+    obsidian
   ];
 }
