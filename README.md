@@ -2,7 +2,7 @@
   <br>
   <img src="https://raw.githubusercontent.com/NixOS/nixos-artwork/521e1b0a899074ca7a701c17e357c63c13d54133/logo/nix-snowflake.svg" width="100px" height="100px" alt="nix snowflake logo" />
   <br>
-  Systems Dotfiles
+  Systems Nix Config
   <br>
 </h1>
 
@@ -177,6 +177,7 @@ These sources helped me to accomplish this project.
 - https://github.com/shaunsingh/nix-darwin-dotfiles
 - https://github.com/kclejeune/system
 - https://github.com/sebastiant/dotfiles
+- https://github.com/MatthewCroughan/nixcfg
 
 ---
 
