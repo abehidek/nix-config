@@ -1,0 +1,3 @@
+{
+  desktop = import ./desktop.nix;
+}

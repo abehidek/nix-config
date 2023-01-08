@@ -6,7 +6,8 @@
       url = "github:nix-community/home-manager"; # home-manager/release-22.05
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nix-colors.url = github:misterio77/nix-colors;
+    misterio77.url = github:misterio77/nix-config;
+    nix-colors.url = github:misterio77/nix-colors;
     # vscode-server.url = "github:msteen/nixos-vscode-server";
     # nixos-wsl.url = "github:nix-community/NixOS-WSL";
   };
@@ -20,6 +21,8 @@
   let inherit (self) outputs;
   in rec {
     nixosModules = import ./modules/system;
+
+    homeManagerModules = import ./modules/home-manager;
 
     nixosConfigurations = rec {
       flex5i = nixpkgs.lib.nixosSystem {

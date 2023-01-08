@@ -1,8 +1,43 @@
-{ user }: { inputs, lib, config, pkgs, ... }: 
+{ user }: { inputs, outputs, lib, config, pkgs, ... }:
 let
   userName = user;
   homePath = "/home/${userName}";
+  colorScheme = inputs.nix-colors.colorSchemes.solarized-dark;
 in {
+  imports = [
+    inputs.misterio77.homeManagerModules.fonts
+    inputs.nix-colors.homeManagerModule
+  ] ++ (builtins.attrValues outputs.homeManagerModules);
+
+  modules.home-manager = {
+    desktop = {
+      term.kitty = {
+        enable = true;
+        font = {
+          enable = true;
+          family = "FiraCode Nerd Font";
+          package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+        };
+        colors = {
+          enable = true;
+          base16 = colorScheme.colors;
+        };
+      };
+    };
+  };
+
+  fontProfiles = {
+    enable = true;
+    monospace = {
+      family = "FiraCode Nerd Font";
+      package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+    };
+    regular = {
+      family = "Fira Sans";
+      package = pkgs.fira;
+    };
+  };
+
   home = {
     username = userName;
     homeDirectory = homePath;

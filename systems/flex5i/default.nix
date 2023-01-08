@@ -39,7 +39,7 @@ in {
     useGlobalPkgs = true;
     useUserPackages = true;
     users = forAllUsers (user: import ./${user}.nix { inherit user; });
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs outputs; };
   };
 
   # Boot and Drivers
