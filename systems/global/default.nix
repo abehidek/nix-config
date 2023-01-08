@@ -13,4 +13,8 @@
       permitRootLogin = "no";
     };
   };
+
+  environment.shellAliases = {
+    sysc = "sudo nixos-rebuild switch --flake";
+  };
 }
