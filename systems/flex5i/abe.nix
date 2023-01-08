@@ -7,9 +7,9 @@ in {
   imports = [
     inputs.misterio77.homeManagerModules.fonts
     inputs.nix-colors.homeManagerModule
-  ] ++ (builtins.attrValues outputs.homeManagerModules);
+  ] ++ (builtins.attrValues outputs.userModules);
 
-  modules.home-manager = {
+  modules.user = {
     desktop = {
       term.kitty = {
         enable = true;

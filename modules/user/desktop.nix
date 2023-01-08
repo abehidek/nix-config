@@ -2,9 +2,9 @@
 
 with lib;
 let
-  cfg = config.modules.home-manager.desktop;
+  cfg = config.modules.user.desktop;
 in {
-  options.modules.home-manager.desktop = {
+  options.modules.user.desktop = {
     term = {
       kitty = {
         enable = mkEnableOption "Install kitty";

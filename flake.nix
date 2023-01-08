@@ -22,7 +22,7 @@
   in rec {
     nixosModules = import ./modules/system;
 
-    homeManagerModules = import ./modules/home-manager;
+    userModules = import ./modules/user;
 
     nixosConfigurations = rec {
       flex5i = nixpkgs.lib.nixosSystem {
