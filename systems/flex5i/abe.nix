@@ -3,9 +3,11 @@ let
   userName = user;
   homePath = "/home/${userName}";
 in {
-  home.stateVersion = "21.11";
-  home.username = userName;
-  home.homeDirectory = homePath;
+  home = {
+    username = userName;
+    homeDirectory = homePath;
+  };
+
   xdg = {
     enable = true;
     configHome = "${homePath}/.config";
@@ -27,33 +29,29 @@ in {
     VISUAL = "hx";
   };
 
-  programs.starship.enable = true;
-
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  # Services
-  programs.git = {
-    enable = true;
-    userName = "abehidek";
-    userEmail = "hidek.abe@outlook.com";
-    extraConfig = {
-      init.defaultBranch = "main";
-    };
-  };
-
-  programs.gpg = {
-    enable = true;
-  };
-
-  # Desktop  
   programs = {
-    vscode.enable = true;
-    firefox = {
+    starship.enable = true;
+
+    fzf = {
       enable = true;
+      enableZshIntegration = true;
     };
+
+    git = {
+      enable = true;
+      userName = "abehidek";
+      userEmail = "hidek.abe@outlook.com";
+      extraConfig = {
+        init.defaultBranch = "main";
+      };
+    };
+
+    gpg.enable = true;
+
+    vscode.enable = true;
+
+    firefox.enable = true;
+
     helix = {
       enable = true;
       package = pkgs.helix;
@@ -81,4 +79,6 @@ in {
     discord
     obsidian
   ];
+
+  home.stateVersion = "21.11";
 }
