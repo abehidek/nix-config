@@ -15,7 +15,7 @@
     nixpkgs,
     home-manager,
     ... 
-  }@inputs:
+  } @ inputs:
 
   let inherit (self) outputs;
   in rec {

@@ -95,9 +95,6 @@ in {
 
   # Desktop
   services = {
-    openssh = {
-      enable = true;
-    };
     xserver = {
       enable = true;
       displayManager.gdm.enable = true;
