@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 
 with lib;
-let 
+let
   cfg = config.modules.system.services;
 in {
   imports = [
-    ./services/virt-manager.nix
+    ./virt-manager.nix
   ];
 
   options.modules.system.services = {
@@ -21,8 +21,8 @@ in {
     };
   };
 
-  config = 
-  let 
+  config =
+  let
     forAllUsers = genAttrs (cfg.docker.users);
   in (mkMerge [
     (mkIf cfg.docker.enable {

@@ -1,4 +1,4 @@
 {
   shell = import ./shell.nix;
-  services = import ./services.nix;
+  services = import ./services;
 }
