@@ -26,6 +26,11 @@ in {
         enable = true;
         users = allUsers;
       };
+      virt-manager = {
+        enable = true;
+        users = allUsers;
+        autostart = true;
+      };
     };
   };
 
