@@ -100,6 +100,8 @@ in {
       displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
       libinput.enable = true;
+      layout = "br";
+      xkbVariant = "abnt2";
     };
     gnome.gnome-keyring.enable = true;
     fstrim.enable = true;
