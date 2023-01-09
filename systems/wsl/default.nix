@@ -67,9 +67,10 @@ in {
   };
 
   # Desktop
-  # services = {
+  services = {
   #   gnome.gnome-keyring.enable = true;
-  # };
+    openssh.ports = [ 2222  ];
+  };
 
   environment.systemPackages = with pkgs; [ 
     # Handle OS keyrings
