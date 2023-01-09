@@ -8,6 +8,12 @@ in {
     docker = {
       enable = mkEnableOption "Enables docker for all users";
       users = mkOption { type = types.listOf (types.str); };
+      package = mkOption {
+        type = types.package;
+        default = pkgs.docker;
+        description = "Docker package";
+        example = "pkgs.docker";
+      };
     };
   };
 
@@ -17,6 +23,7 @@ in {
   in (mkMerge [
     (mkIf cfg.docker.enable {
       virtualisation.docker.enable = true;
+      virtualisation.docker.package = cfg.docker.package;
       environment.systemPackages = with pkgs; [ docker-compose ];
       users.users = forAllUsers (user: {
         extraGroups = [ "docker" ];

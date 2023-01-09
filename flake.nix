@@ -8,8 +8,8 @@
     };
     misterio77.url = github:misterio77/nix-config;
     nix-colors.url = github:misterio77/nix-colors;
-    # vscode-server.url = "github:msteen/nixos-vscode-server";
-    # nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    vscode-server.url = "github:msteen/nixos-vscode-server";
   };
   outputs = {
     self,
@@ -34,6 +34,12 @@
       ssd = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [  ./systems/ssd ];
+        specialArgs = { inherit inputs outputs; };
+      };
+
+      wsl = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [ ./systems/wsl ];
         specialArgs = { inherit inputs outputs; };
       };
     };
