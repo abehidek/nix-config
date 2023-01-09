@@ -125,6 +125,7 @@ in {
 
     brightnessctl
     pulseaudio-ctl
+    xclip
     # playerctl
   ];
 
