@@ -105,15 +105,18 @@ $ cd dotfiles
 - [ ] Install [Lunacy](https://flathub.org/apps/details/com.icons8.Lunacy) through flatpak using [declarative-nix-flatpak](https://github.com/yawnt/declarative-nix-flatpak)
 - [ ] Move to xmonad due to better compatibility provided X11.
 - [ ] Proper GTK and QT theming based on the nix-colors base16 colorscheme.
-- [ ] Config public SSH keys on hosts.
+- [x] Config public SSH keys on hosts.
+- [ ] Simplify this README.
+- [x] [Refactor all this codebase and minify overall complexity](https://github.com/abehidek/nix-config/pull/4)
 - [x] Config properly zsh.
 - [x] Try out Hyprland.
 - [x] Migrate old module style to proper configurable NixOS modules.
 - [x] Setup NixOS WSL2 properly
-- [ ] Understand better overlays and new nix flake commands.
+- [ ] Use Disko for formatting disks with nix expressions.
+- [x] Understand better overlays and [new nix flake commands](https://tonyfinn.com/blog/nix-from-first-principles-flake-edition/).
 - [ ] Proper flake config for Raspberry Pi 400 (as a server) and WSL (as dev env).
 - [ ] Create some useful eww widgets.
-- [ ] Decrease the number of installed packages and RAM consumption
+- [x] Decrease the number of installed packages and RAM consumption
 
 ## Emailware
 
