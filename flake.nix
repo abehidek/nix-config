@@ -30,6 +30,12 @@
         modules = [  ./systems/flex5i ];
         specialArgs = { inherit inputs outputs; };
       };
+
+      ssd = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [  ./systems/ssd ];
+        specialArgs = { inherit inputs outputs; };
+      };
     };
   };
 }
