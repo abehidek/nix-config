@@ -32,6 +32,12 @@ in {
         autostart = true;
       };
     };
+    desktop = {
+      gnome = {
+        enable = true;
+        minimal = true;
+      };
+    };
   };
 
   users.users = forAllUsers (user: {
@@ -103,7 +109,6 @@ in {
     xserver = {
       enable = true;
       displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
       libinput.enable = true;
       layout = "br";
       xkbVariant = "abnt2";
