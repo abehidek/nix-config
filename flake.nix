@@ -1,41 +1,49 @@
 {
-  description = "A very basic flake";
+  description = "My personal NixOS configurations";
   inputs = {
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # nixpkgs/nixos-22.05
+    stable.url = "github:nixos/nixpkgs/nixos-22.11";
     home-manager = {
-      # url = "github:nix-community/home-manager/release-22.05";
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager"; # home-manager/release-22.05
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-gaming.url = github:fufexan/nix-gaming;
-    hyprland = {
-      url = "github:vaxerski/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    misterio77.url = github:misterio77/nix-config;
     nix-colors.url = github:misterio77/nix-colors;
-    vscode-server.url = "github:msteen/nixos-vscode-server";
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    vscode-server.url = "github:msteen/nixos-vscode-server";
   };
-  outputs = inputs:
-    let
-      mkMachine = import ./lib/mkMachine.nix;
-    in {
-      nixosConfigurations.flex5i = mkMachine "flex5i" rec {
-        inherit inputs;
+  outputs = {
+    self,
+    nixpkgs,
+    stable,
+    home-manager,
+    ... 
+  } @ inputs:
+
+  let inherit (self) outputs;
+  in rec {
+    nixosModules = import ./modules/system;
+
+    userModules = import ./modules/user;
+
+    nixosConfigurations = rec {
+      flex5i = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        users = ["abe"];
+        modules = [  ./systems/flex5i ];
+        specialArgs = { inherit inputs outputs; };
       };
-      nixosConfigurations.ssd = mkMachine "ssd" rec {
-        inherit inputs;
+
+      ssd = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        users = ["abe"];
+        modules = [  ./systems/ssd ];
+        specialArgs = { inherit inputs outputs; };
       };
-      nixosConfigurations.wsl = mkMachine "wsl" rec {
-        inherit inputs;
+
+      wsl = stable.lib.nixosSystem {
         system = "x86_64-linux";
-        users = ["abe"];
+        modules = [ ./systems/wsl ];
+        specialArgs = { inherit inputs outputs; };
       };
     };
+  };
 }

@@ -1,6 +1,0 @@
-[Desktop Entry]
-Name=dotfiles
-Exec=kitty --directory ~/dotfiles
-Icon=dotfiles.png
-Terminal=false
-Type=Application
