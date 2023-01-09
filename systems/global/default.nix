@@ -14,6 +14,14 @@
     };
   };
 
+  programs = {
+    mtr.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+  };
+
   environment.shellAliases = {
     sysc = "sudo nixos-rebuild switch --flake";
   };
