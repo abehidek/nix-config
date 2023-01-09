@@ -15,7 +15,7 @@ in {
     wslConf.automount.root = "/mnt";
     defaultUser = "abe";
     startMenuLaunchers = true;
-    nativeSystemd = true;
+    nativeSystemd = false;
   };
 
   services.vscode-server.enable = true;
@@ -77,5 +77,5 @@ in {
     # libsecret
   ];
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "22.11";
 }
