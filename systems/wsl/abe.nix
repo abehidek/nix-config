@@ -50,8 +50,6 @@ in {
 
     gpg.enable = true;
 
-    vscode.enable = true;
-
     helix = {
       enable = true;
       package = pkgs.helix;
