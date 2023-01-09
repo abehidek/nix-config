@@ -4,6 +4,10 @@ with lib;
 let 
   cfg = config.modules.system.services;
 in {
+  imports = [
+    ./services/virt-manager.nix
+  ];
+
   options.modules.system.services = {
     docker = {
       enable = mkEnableOption "Enables docker for all users";
