@@ -15,8 +15,10 @@
   };
 
   users.users."abe".openssh.authorizedKeys.keys = [
-    # SSD public ssh keys
+    # ssd public ssh key
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOA5zXdXt8fMb9jHJyxAutrISXSftCp4qbjwAoY09stu hidek.abe@outlook.com"
+    # flex5i public ssh key
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILvkS1l2u8X51LIkU84LtwZwhhWqMB7eU2/YLaMKiuWF hidek.abe@outlook.com"
   ];
 
   programs = {
