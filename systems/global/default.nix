@@ -32,4 +32,6 @@
   environment.shellAliases = {
     sysc = "sudo nixos-rebuild switch --flake";
   };
+
+  environment.systemPackages = with pkgs; [ wget ];
 }
