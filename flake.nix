@@ -2,6 +2,7 @@
   description = "My personal NixOS configurations";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # nixpkgs/nixos-22.05
+    stable.url = "github:nixos/nixpkgs/nixos-22.11";
     home-manager = {
       url = "github:nix-community/home-manager"; # home-manager/release-22.05
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,6 +15,7 @@
   outputs = {
     self,
     nixpkgs,
+    stable,
     home-manager,
     ... 
   } @ inputs:
@@ -37,7 +39,7 @@
         specialArgs = { inherit inputs outputs; };
       };
 
-      wsl = nixpkgs.lib.nixosSystem {
+      wsl = stable.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [ ./systems/wsl ];
         specialArgs = { inherit inputs outputs; };

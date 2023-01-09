@@ -670,6 +670,7 @@
         "nix-colors": "nix-colors_2",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_10",
+        "stable": "stable",
         "vscode-server": "vscode-server"
       }
     },
@@ -689,6 +690,22 @@
       "original": {
         "owner": "mic92",
         "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "stable": {
+      "locked": {
+        "lastModified": 1673163619,
+        "narHash": "sha256-B33PFBL64ZgTWgMnhFL3jgheAN/DjHPsZ1Ih3z0VE5I=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "8c54d842d9544361aac5f5b212ba04e4089e8efe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-22.11",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
