@@ -11,6 +11,7 @@ in {
 
   modules.system = {
     shell = {
+      tmux.enable = true;
       zsh = {
         enable = true;
         users = allUsers;
