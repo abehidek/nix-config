@@ -14,10 +14,17 @@ in {
   config = (mkMerge [
     (mkIf cfg.gnome.enable (mkMerge [
       {
+        programs.dconf.enable = true;
         services.xserver = {
           enable = true;
           desktopManager.gnome.enable = true;
         };
+        environment.systemPackages = with pkgs; [
+          gnomeExtensions.appindicator
+        ];
+        services.udev.packages = with pkgs; [
+          gnome.gnome-settings-daemon
+        ];
       }
       (mkIf cfg.gnome.minimal {
         environment.gnome.excludePackages = (with pkgs; [
