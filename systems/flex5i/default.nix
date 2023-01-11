@@ -96,6 +96,14 @@ in {
   networking = {
     networkmanager.enable = true;
     hostName = "flex5i";
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        22  # SSH
+        80  # HTTP
+        443 # HTTPS
+      ];
+    };
   };
 
   # Audio
