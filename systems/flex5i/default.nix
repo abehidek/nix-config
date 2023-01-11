@@ -140,6 +140,10 @@ in {
     };
   };
 
+  environment.sessionVariables = {
+    MOZ_USE_XINPUT2 = "1"; # improves firefox touchscreen support
+  };
+
   environment.systemPackages = with pkgs; [ 
     # Handle OS keyrings
     gnome.seahorse
