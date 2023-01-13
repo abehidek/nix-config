@@ -121,10 +121,6 @@ in {
       libinput.enable = true;
       layout = "br";
       xkbVariant = "abnt2";
-      videoDrivers = [ "displaylink" "modesetting" ];
-      displayManager.sessionCommands = ''
-        ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
-      '';
     };
     gnome.gnome-keyring.enable = true;
     fstrim.enable = true;
@@ -153,7 +149,6 @@ in {
     brightnessctl
     pulseaudio-ctl
     xclip
-    displaylink
     # playerctl
   ];
 
