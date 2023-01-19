@@ -78,10 +78,6 @@ in {
       enable = true;
       displayManager.sddm.enable = true;
       desktopManager.plasma5.enable = true;
-      videoDrivers = [
-        "displaylink"
-        "modesetting"
-      ];
       libinput.enable = true;
       layout = "us,br";
       xkbVariant = "intl,abnt2";
@@ -109,7 +105,6 @@ in {
     brightnessctl
     pulseaudio-ctl
     xclip
-    displaylink
     # playerctl
   ];
 
