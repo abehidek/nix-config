@@ -27,6 +27,12 @@ in {
         users = allUsers;
       };
     };
+    dev = {
+      android = {
+        enable = true;
+        users = [ "abe" ];
+      };
+    };
   };
 
   users.users = forAllUsers (user: {
