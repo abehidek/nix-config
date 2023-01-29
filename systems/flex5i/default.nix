@@ -35,8 +35,13 @@ in {
     };
     desktop = {
       gnome = {
-        enable = true;
+        enable = false;
         minimal = true;
+      };
+      xmonad = {
+        enable = true;
+        users = allUsers;
+        rice = true;
       };
     };
   };
@@ -126,7 +131,6 @@ in {
     xserver = {
       enable = true;
       displayManager.gdm.enable = true;
-      libinput.enable = true;
       layout = "br";
       xkbVariant = "abnt2";
       libinput = {

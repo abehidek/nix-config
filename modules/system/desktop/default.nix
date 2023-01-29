@@ -4,6 +4,10 @@ with lib;
 let
   cfg = config.modules.system.desktop;
 in {
+  imports = [
+    ./xmonad.nix
+  ];
+
   options.modules.system.desktop = {
     gnome = {
       enable = mkEnableOption "Enables gnome for all users";
