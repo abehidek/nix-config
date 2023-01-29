@@ -129,6 +129,13 @@ in {
       libinput.enable = true;
       layout = "br";
       xkbVariant = "abnt2";
+      libinput = {
+        enable = true;
+        touchpad = {
+          naturalScrolling = true;
+          accelProfile = "flat";
+        };
+      };
     };
     gnome.gnome-keyring.enable = true;
     fstrim.enable = true;
