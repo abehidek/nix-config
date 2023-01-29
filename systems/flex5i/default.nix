@@ -107,9 +107,16 @@ in {
   };
 
   # Audio
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
   sound.enable = true;
   hardware.pulseaudio = {
-    enable = true;
+    enable = false;
     extraConfig = "unload-module module-suspend-on-idle";
     support32Bit = true;
   };
