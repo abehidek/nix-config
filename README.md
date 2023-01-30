@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://nixos.org"><img src="https://img.shields.io/badge/os-nixos-blue" alt="NixOS"></a>
   <a href="https://builtwithnix.org"><img src="https://img.shields.io/badge/lang-nix-lightblue" alt="Nix"></a>
-  <a href="https://swaywm.org"><img src="https://img.shields.io/badge/wm-hyprland-darkblue" alt="Hyprland"></a>
+  <a href="https://swaywm.org"><img src="https://img.shields.io/badge/wm-xmonad-darkblue" alt="Hyprland"></a>
   <a href="https://helix-editor.com"><img src="https://img.shields.io/badge/editor-helix-purple" alt="Helix"></a>
   <a href="https://www.zsh.org"><img src="https://img.shields.io/badge/shell-zsh-black" alt="Zsh"></a>
 </p>
@@ -46,7 +46,7 @@ Also, if someone is interest I would love to chat about this topic since I have 
 ## Key Features
 
 - Multiple host configurations (laptop, bootable ssd and WSL2)
-- Configured wayland desktop environments (Hyprland and Sway)
+- Configured x11 and wayland desktop environments (Xmonad, Hyprland and Sway)
 - Commonly used modules for configuring system.
 - Home manager configuration as a NixOS system module (allows to rebuild the system once instead of twice)
   - Each user has it's own Home manager configuration file labeled as the user name.
@@ -103,7 +103,7 @@ $ cd dotfiles
 ## Roadmap
 
 - [ ] Install [Lunacy](https://flathub.org/apps/details/com.icons8.Lunacy) through flatpak using [declarative-nix-flatpak](https://github.com/yawnt/declarative-nix-flatpak)
-- [ ] Move to xmonad due to better compatibility provided X11.
+- [x] Move to xmonad due to better compatibility provided X11.
 - [ ] Proper GTK and QT theming based on the nix-colors base16 colorscheme.
 - [x] Config public SSH keys on hosts.
 - [ ] Simplify this README.
