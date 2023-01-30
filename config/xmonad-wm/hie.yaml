@@ -1,0 +1,13 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "xmonad-wm:lib"
+
+    - path: "./app/Main.hs"
+      component: "xmonad-wm:exe:xmonad-wm-exe"
+
+    - path: "./app/Paths_xmonad_wm.hs"
+      component: "xmonad-wm:exe:xmonad-wm-exe"
+
+    - path: "./test"
+      component: "xmonad-wm:test:xmonad-wm-test"

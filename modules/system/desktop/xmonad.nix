@@ -19,11 +19,17 @@ in {
   in (mkMerge [
     (mkIf cfg.xmonad.enable (mkMerge [
       {
-        services.xserver = {
-          enable = true;
-          windowManager.xmonad = {
+        programs.dconf.enable = true;
+        systemd.services.upower.enable = true; # start upower service
+        services = {
+          gnome.gnome-keyring.enable = true;
+          upower.enable = true; # install upower
+          xserver = {
             enable = true;
-            enableContribAndExtras = true;
+            windowManager.xmonad = {
+              enable = true;
+              enableContribAndExtras = true;
+            };
           };
         };
       }
@@ -35,7 +41,7 @@ in {
           xsession.windowManager.xmonad = {
             enable = true;
             enableContribAndExtras = true;
-            config = ../../../config/xmonad/xmonad.hs;
+            config = ../../../config/xmonad-wm/app/Main.hs;
           };
         });
       })
