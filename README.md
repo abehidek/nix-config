@@ -181,6 +181,7 @@ These sources helped me to accomplish this project.
 - https://github.com/kclejeune/system
 - https://github.com/sebastiant/dotfiles
 - https://github.com/MatthewCroughan/nixcfg
+- https://github.com/iguoliveira/nix-config
 
 ---
 
