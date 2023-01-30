@@ -1,6 +1,7 @@
 {
   description = "My personal NixOS configurations";
   inputs = {
+    env.url = "github:abehidek/env.nix";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # nixpkgs/nixos-22.05
     stable.url = "github:nixos/nixpkgs/nixos-22.11";
     home-manager = {
@@ -20,7 +21,10 @@
     ... 
   } @ inputs:
 
-  let inherit (self) outputs;
+  let
+    inherit (self) outputs;
+    supportedSystems = [ "x86_64-linux" ];
+    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
   in rec {
     nixosModules = import ./modules/system;
 
@@ -45,5 +49,11 @@
         specialArgs = { inherit inputs outputs; };
       };
     };
+
+    devShells = forAllSystems (system: {
+      xmonad = import ./shells/xmonad.nix { 
+        inherit nixpkgs system inputs outputs;
+      };
+    });
   };
 }
