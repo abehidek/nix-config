@@ -167,6 +167,15 @@ These sources helped me to accomplish this project.
 - https://youtu.be/AGVXJ-TIv3Y
 - https://gvolpe.com/blog/xmonad-polybar-nixos/#rofi
 
+### XMonad WM
+
+- https://gist.github.com/kodeFant/f08ffd89eab932028fe84a92aa90974f
+- https://wiki.haskell.org/Xmonad/Config_archive
+- https://www.youtube.com/playlist?list=PL5--8gKSku144jIsizdhdxq_fKTmBBGBA
+- https://www.youtube.com/watch?v=T0i65NXP5P4
+- https://github.com/gvolpe/nix-config
+- https://nixos.wiki/wiki/XMonad
+
 ## You may also like...
 
 - https://github.com/hlissner/dotfiles
