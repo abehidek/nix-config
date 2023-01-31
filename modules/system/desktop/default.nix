@@ -19,14 +19,20 @@ in {
   config = (mkMerge [
     (mkIf cfg.gnome.enable (mkMerge [
       {
+        environment = {
+          systemPackages = with pkgs; [
+            gnomeExtensions.appindicator
+            gnome.gnome-session
+          ];
+          shellAliases = {
+            logout-gnome = "gnome-session-quit";
+          };
+        };
         programs.dconf.enable = true;
         services.xserver = {
           enable = true;
           desktopManager.gnome.enable = true;
         };
-        environment.systemPackages = with pkgs; [
-          gnomeExtensions.appindicator
-        ];
         services.udev.packages = with pkgs; [
           gnome.gnome-settings-daemon
         ];
