@@ -6,6 +6,7 @@ let
 in {
   imports = [
     ./xmonad.nix
+    ./hyprland.nix
   ];
 
   options.modules.system.desktop = {

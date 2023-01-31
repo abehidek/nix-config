@@ -8,6 +8,7 @@
       url = "github:nix-community/home-manager"; # home-manager/release-22.05
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/Hyprland";
     misterio77.url = github:misterio77/nix-config;
     nix-colors.url = github:misterio77/nix-colors;
     nixos-wsl.url = "github:nix-community/NixOS-WSL";

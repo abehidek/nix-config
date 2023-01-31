@@ -43,6 +43,12 @@ in {
         users = allUsers;
         rice = true;
       };
+      hyprland = {
+        enable = true;
+        users = allUsers;
+        rice = true;
+        wallpaper = ../../rsc/kyoushitsu.jpg;
+      };
     };
   };
 
