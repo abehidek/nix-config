@@ -82,7 +82,7 @@ in {
     opengl = {
       enable = true;
       driSupport = true;
-      extraPackages = [ pkgs.intel-compute-runtime ];
+      extraPackages = with pkgs; [ intel-compute-runtime intel-media-driver libva ];
     };
   };
 
