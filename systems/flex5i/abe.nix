@@ -109,7 +109,7 @@ in {
   home.packages = with pkgs; [
     lazygit
     ncdu htop
-    google-chrome
+    chromium
     insomnia
     discord
     obsidian
