@@ -113,6 +113,7 @@ in {
     insomnia
     discord
     obsidian
+    vlc
   ];
 
   home.stateVersion = "21.11";
