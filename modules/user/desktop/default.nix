@@ -4,6 +4,10 @@ with lib;
 let
   cfg = config.modules.user.desktop;
 in {
+  imports = [
+    ./hyprland.nix
+  ];
+
   options.modules.user.desktop = {
     term = {
       kitty = {

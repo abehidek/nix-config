@@ -45,9 +45,6 @@ in {
       };
       hyprland = {
         enable = true;
-        users = allUsers;
-        rice = true;
-        wallpaper = ../../rsc/kyoushitsu.jpg;
       };
     };
   };
@@ -123,6 +120,7 @@ in {
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
   };
 
   sound.enable = true;
@@ -152,6 +150,7 @@ in {
     gvfs.enable = true;
     udisks2.enable = true;
     tlp = {
+      # enable = true; will disable this FOR NOW, wait till you see gnome
       enable = false; # needed to disable cause gnome
       settings = {
         TLP_PERSISTENT_DEFAULT = 0;

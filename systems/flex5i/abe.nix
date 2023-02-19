@@ -11,6 +11,15 @@ in {
 
   modules.user = {
     desktop = {
+      hyprland = {
+        rice = true;
+        wallpaper = ../../rsc/kyoushitsu.jpg;
+        waybar = true;
+        colors = {
+          enable = true;
+          base16 = colorScheme.colors;
+        };
+      };
       term.kitty = {
         enable = true;
         font = {

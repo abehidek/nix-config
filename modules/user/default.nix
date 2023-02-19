@@ -1,3 +1,3 @@
 {
-  desktop = import ./desktop.nix;
+  desktop = import ./desktop;
 }
