@@ -1,8 +1,9 @@
 { user }: { inputs, outputs, lib, config, pkgs, ... }:
 let
+  inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
   userName = user;
   homePath = "/home/${userName}";
-  colorScheme = inputs.nix-colors.colorSchemes.solarized-dark;
+  colorScheme = inputs.nix-colors.colorSchemes.classic-dark;
 in {
   imports = [
     inputs.misterio77.homeManagerModules.fonts
@@ -68,10 +69,21 @@ in {
     };
   };
 
-  # Shell
+  # Shell and Theme
+  systemd.user.sessionVariables = {
+    QT_QPA_PLATFORM = "wayland";
+    QT_QPA_PLATFORMTHEME = "gtk2";
+  };
+
   home.sessionVariables = {
     VISUAL = "hx";
+    EDITOR = "hx";
   };
+
+  home.file.".config/kdeglobals".text = ''
+    [Colors:View]
+    BackgroundNormal=#${colorScheme.colors.base00}
+  '';
 
   programs = {
     starship = {
@@ -122,13 +134,34 @@ in {
     };
   };
 
+  gtk = {
+    enable = true;
+    theme = {
+      name = "${colorScheme.slug}";
+      package = gtkThemeFromScheme { scheme = colorScheme; };
+    };
+    iconTheme = {
+      name = "Papirus";
+      package = pkgs.papirus-icon-theme;
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+  };
+
   # Standalone Packages
   home.packages = with pkgs; [
     lazygit
     ncdu htop
     chromium
     insomnia
-    discord
+    discord webcord
+    pcmanfm
+    libsForQt5.dolphin
+    libsForQt5.qt5.qtwayland
+    qt6.qtwayland
     obsidian
   ];
 
