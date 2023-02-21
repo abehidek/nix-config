@@ -27,6 +27,8 @@
     supportedSystems = [ "x86_64-linux" ];
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
   in rec {
+    packages = forAllSystems (system: import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; });
+
     nixosModules = import ./modules/system;
 
     userModules = import ./modules/user;
