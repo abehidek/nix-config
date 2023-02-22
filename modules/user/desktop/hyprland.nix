@@ -188,6 +188,7 @@ in {
             # '';
           });
           settings = [{
+            layer = "top";
             height = 30;
             margin-bottom = 2;
             margin-top = 0;
