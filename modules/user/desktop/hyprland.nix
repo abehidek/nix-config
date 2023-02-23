@@ -126,6 +126,10 @@ in {
             submap=reset # will reset the submap, meaning end the current one and return to the global one.
 
             # example binds
+            bind=SUPER_SHIFT,up,togglegroup,
+            bind=SUPER_SHIFT,left,changegroupactive,b
+            bind=SUPER_SHIFT,right,changegroupactive,f
+
             bind=SUPER,F,fullscreen,
             bind=SUPER,Q,exec,kitty
             bind=SUPER,RETURN,exec,alacritty
