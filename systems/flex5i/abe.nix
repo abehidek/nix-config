@@ -169,6 +169,7 @@ in {
     libsForQt5.qt5.qtwayland
     qt6.qtwayland
     obsidian
+    pavucontrol
   ];
 
   home.stateVersion = "21.11";
