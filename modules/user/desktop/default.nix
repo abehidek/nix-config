@@ -6,6 +6,7 @@ let
 in {
   imports = [
     ./hyprland.nix
+    ./theme.nix
   ];
 
   options.modules.user.desktop = {

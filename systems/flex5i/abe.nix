@@ -12,6 +12,25 @@ in {
 
   modules.user = {
     desktop = {
+      theme = {
+        enable = true;
+        gtk = {
+          enable = true;
+          theme = {
+            name = "${colorScheme.slug}";
+            package = gtkThemeFromScheme { scheme = colorScheme; };
+          };
+          icon = {
+            name = "Papirus";
+            package = pkgs.papirus-icon-theme;
+          };
+        };
+        qt = {
+          enable = true;
+          useGtkTheme = true;
+          dolphinBgColor = "#${colorScheme.colors.base00}";
+        };
+      };
       hyprland = {
         rice = true;
         # wallpaper = ../../rsc/kyoushitsu.jpg;
@@ -75,21 +94,10 @@ in {
     };
   };
 
-  # Shell and Theme
-  systemd.user.sessionVariables = {
-    QT_QPA_PLATFORM = "wayland";
-    QT_QPA_PLATFORMTHEME = "gtk2";
-  };
-
   home.sessionVariables = {
     VISUAL = "hx";
     EDITOR = "hx";
   };
-
-  home.file.".config/kdeglobals".text = ''
-    [Colors:View]
-    BackgroundNormal=#${colorScheme.colors.base00}
-  '';
 
   programs = {
     starship = {
@@ -140,23 +148,6 @@ in {
     };
   };
 
-  gtk = {
-    enable = true;
-    theme = {
-      name = "${colorScheme.slug}";
-      package = gtkThemeFromScheme { scheme = colorScheme; };
-    };
-    iconTheme = {
-      name = "Papirus";
-      package = pkgs.papirus-icon-theme;
-    };
-  };
-
-  qt = {
-    enable = true;
-    platformTheme = "gtk";
-  };
-
   # Standalone Packages
   home.packages = with pkgs; [
     # Apps
@@ -164,9 +155,6 @@ in {
     insomnia
     discord webcord
     obsidian
-
-    libsForQt5.qt5.qtwayland
-    qt6.qtwayland
 
     # Sys control
     pavucontrol
