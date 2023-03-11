@@ -66,12 +66,12 @@ in {
     cacheHome = "${homePath}/.cache";
     userDirs = {
       enable = true;
-      documents = "$HOME/doc";
-      download = "$HOME/dwl";
-      music = "$HOME/songs";
-      desktop = "$HOME/ws";
-      pictures = "$HOME/img";
-      videos = "$HOME/vid";
+      documents = "${homePath}/doc";
+      download = "${homePath}/dwl";
+      music = "${homePath}/songs";
+      desktop = "${homePath}/ws";
+      pictures = "${homePath}/img";
+      videos = "${homePath}/vid";
     };
   };
 
@@ -159,17 +159,23 @@ in {
 
   # Standalone Packages
   home.packages = with pkgs; [
-    lazygit
-    ncdu htop
+    # Apps
     chromium
     insomnia
     discord webcord
-    pcmanfm
-    libsForQt5.dolphin
+    obsidian
+
     libsForQt5.qt5.qtwayland
     qt6.qtwayland
-    obsidian
+
+    # Sys control
     pavucontrol
+    libsForQt5.dolphin
+    pcmanfm
+
+    # CLI
+    lazygit
+    ncdu htop
   ];
 
   home.stateVersion = "21.11";

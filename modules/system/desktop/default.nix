@@ -23,6 +23,8 @@ in {
           systemPackages = with pkgs; [
             gnomeExtensions.appindicator
             gnome.gnome-session
+            xclip
+            xorg.xrandr
           ];
           shellAliases = {
             logout-gnome = "gnome-session-quit";

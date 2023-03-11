@@ -32,6 +32,10 @@ in {
             };
           };
         };
+        environment.systemPackages = with pkgs; [
+          xclip
+          xorg.xrandr
+        ];
       }
       (mkIf cfg.xmonad.rice {
         home-manager.users = forAllUsers (user: {

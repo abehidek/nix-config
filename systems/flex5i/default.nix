@@ -39,7 +39,7 @@ in {
         minimal = true;
       };
       xmonad = {
-        enable = true;
+        enable = false;
         users = allUsers;
         rice = true;
       };
@@ -150,8 +150,8 @@ in {
     gvfs.enable = true;
     udisks2.enable = true;
     tlp = {
-      # enable = true; will disable this FOR NOW, wait till you see gnome
-      enable = false; # needed to disable cause gnome
+      enable = true;  # will disable this FOR NOW, wait till you see gnome
+      # enable = false;  # needed to disable cause gnome
       settings = {
         TLP_PERSISTENT_DEFAULT = 0;
         CPU_MAX_PERF_ON_AC=100;
@@ -172,7 +172,6 @@ in {
 
     brightnessctl
     pulseaudio-ctl
-    xclip
     # playerctl
   ];
 
