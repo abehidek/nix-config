@@ -4,6 +4,8 @@ with lib;
 let
   cfg = config.modules.system.desktop;
 in {
+  imports = [];
+
   options.modules.system.desktop = {
     xmonad = {
       enable = mkEnableOption "Enables xmonad for all users";

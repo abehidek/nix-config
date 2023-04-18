@@ -27,6 +27,11 @@ in {
         users = allUsers;
       };
     };
+    desktop = {
+      plasma = {
+        enable = true;
+      };
+    };
     dev = {
       android = {
         enable = true;
@@ -84,7 +89,6 @@ in {
     xserver = {
       enable = true;
       displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = true;
       libinput.enable = true;
       layout = "us,br";
       xkbVariant = "intl,abnt2";
@@ -93,14 +97,6 @@ in {
     fstrim.enable = true;
     gvfs.enable = true;
     udisks2.enable = true;
-    tlp = {
-      enable = false; # needed to disable cause gnome
-      settings = {
-        TLP_PERSISTENT_DEFAULT = 0;
-        CPU_MAX_PERF_ON_AC=100;
-        CPU_MAX_PERF_ON_BAT=30;
-      };
-    };
   };
 
   environment.systemPackages = with pkgs; [ 
@@ -111,7 +107,6 @@ in {
 
     brightnessctl
     pulseaudio-ctl
-    xclip
     # playerctl
   ];
 
