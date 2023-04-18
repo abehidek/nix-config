@@ -22,6 +22,7 @@ in {
       };
     };
     services = {
+      keyring.enable = true;
       docker = {
         enable = true;
         users = allUsers;
@@ -93,18 +94,12 @@ in {
       layout = "us,br";
       xkbVariant = "intl,abnt2";
     };
-    gnome.gnome-keyring.enable = true;
     fstrim.enable = true;
     gvfs.enable = true;
     udisks2.enable = true;
   };
 
   environment.systemPackages = with pkgs; [ 
-    # Handle OS keyrings
-    gnome.seahorse
-    gnome.gnome-keyring
-    libsecret
-
     brightnessctl
     pulseaudio-ctl
     # playerctl

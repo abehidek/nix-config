@@ -9,6 +9,9 @@ in {
   ];
 
   options.modules.system.services = {
+    keyring = {
+      enable = mkEnableOption "Enables gnome-keyring for all users";
+    };
     docker = {
       enable = mkEnableOption "Enables docker for all users";
       users = mkOption { type = types.listOf (types.str); };
@@ -25,6 +28,14 @@ in {
   let
     forAllUsers = genAttrs (cfg.docker.users);
   in (mkMerge [
+    (mkIf cfg.keyring.enable {
+      services.gnome.gnome-keyring.enable = true;
+      environment.systemPackages = with pkgs; [ 
+        gnome.seahorse
+        gnome.gnome-keyring
+        libsecret
+      ];
+    })
     (mkIf cfg.docker.enable {
       virtualisation.docker.enable = true;
       virtualisation.docker.package = cfg.docker.package;
