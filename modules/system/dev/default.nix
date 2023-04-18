@@ -8,6 +8,7 @@ in {
     android = {
       enable = mkEnableOption "Enable android development";
       users = mkOption { type = types.listOf (types.str); };
+      enableAndroidStudio = mkEnableOption "Install android studio pkg";
     };
   };
 
@@ -15,12 +16,16 @@ in {
   let
     forAllUsers = genAttrs (cfg.android.users);
   in (mkMerge [
-    (mkIf cfg.android.enable {
-      environment.systemPackages = with pkgs; [ android-studio ];
-      programs.adb.enable = true;
-      users.users = forAllUsers (user: {
-        extraGroups = [ "adbusers" ];
-      });
-    })
+    (mkIf cfg.android.enable (mkMerge[
+      {
+        programs.adb.enable = true;
+        users.users = forAllUsers (user: {
+          extraGroups = [ "adbusers" ];
+        });
+      }
+      (mkIf cfg.android.enableAndroidStudio {
+        environment.systemPackages = with pkgs; [ android-studio ];
+      })
+    ]))
   ]);
 }
