@@ -109,9 +109,10 @@ in {
   home.packages = with pkgs; [
     lazygit
     ncdu htop
+    lf
     chromium
     insomnia
-    discord
+    webcord # discord
     obsidian
     vlc
   ];

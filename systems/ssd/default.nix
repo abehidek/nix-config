@@ -35,6 +35,7 @@ in {
     };
   };
 
+  # User config & Home Manager
   users.users = forAllUsers (user: {
     isNormalUser = true;
     initialPassword = "password";
