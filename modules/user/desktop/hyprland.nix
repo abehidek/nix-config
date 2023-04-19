@@ -3,7 +3,7 @@
 with lib;
 let
   cfg = config.modules.user.desktop;
-  swww = outputs.packages.${pkgs.system}.swww;
+  swww = pkgs.swww;
 in {
   imports = [
     inputs.hyprland.homeManagerModules.default
@@ -51,12 +51,16 @@ in {
 
             monitor=,preferred,auto,1
 
+            monitor=DP-3, 1920x1080, 0x0, 1, transform, 3
+            workspace=DP-3,9
+
             input {
+                # list of all xkb https://gist.github.com/jatcwang/ae3b7019f219b8cdc6798329108c9aee
                 kb_file=
-                kb_layout=br
-                kb_variant=
-                kb_model=abnt2
-                kb_options=
+                kb_layout=br,us
+                kb_variant=abnt2,alt-intl
+                #kb_model=abnt2,nativo-us
+                kb_options=grp:win_space_toggle
                 kb_rules=
 
                 follow_mouse=1

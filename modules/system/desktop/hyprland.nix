@@ -20,7 +20,6 @@ in {
         programs.dconf.enable = true;
         systemd.services.upower.enable = true; # start upower service
         services = {
-          gnome.gnome-keyring.enable = true;
           upower.enable = true; # install upower
         };
         programs = {

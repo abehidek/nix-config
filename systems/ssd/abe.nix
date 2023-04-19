@@ -1,5 +1,6 @@
 { user }: { inputs, outputs, lib, config, pkgs, ... }:
 let
+  inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
   userName = user;
   homePath = "/home/${userName}";
   colorScheme = inputs.nix-colors.colorSchemes.dracula;
@@ -11,6 +12,34 @@ in {
 
   modules.user = {
     desktop = {
+      theme = {
+        enable = false;
+        gtk = {
+          enable = true;
+          theme = {
+            name = "${colorScheme.slug}";
+            package = gtkThemeFromScheme { scheme = colorScheme; };
+          };
+          icon = {
+            name = "Papirus";
+            package = pkgs.papirus-icon-theme;
+          };
+        };
+        qt = {
+          enable = true;
+          useGtkTheme = true;
+          dolphinBgColor = "#${colorScheme.colors.base00}";
+        };
+      };
+      hyprland = {
+        rice = true;
+        wallpaper = ../../rsc/kyoushitsu.jpg;
+        waybar = true;
+        colors = {
+          enable = true;
+          base16 = colorScheme.colors;
+        };
+      };
       term.kitty = {
         enable = true;
         font = {

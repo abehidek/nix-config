@@ -29,9 +29,7 @@ in {
       };
     };
     desktop = {
-      plasma = {
-        enable = true;
-      };
+      hyprland.enable = true;
     };
     dev = {
       android = {
@@ -54,6 +52,10 @@ in {
     users = forAllUsers (user: import ./${user}.nix { inherit user; });
     extraSpecialArgs = { inherit inputs outputs; };
   };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-21.4.0"
+  ];
 
   # Security
   security = {
