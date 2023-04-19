@@ -23,6 +23,7 @@ in {
       };
     };
     services = {
+      keyring.enable = true;
       docker = {
         enable = true;
         users = allUsers;
@@ -34,21 +35,11 @@ in {
       };
     };
     desktop = {
-      gnome = {
-        enable = false;
-        minimal = true;
-      };
-      xmonad = {
-        enable = false;
-        users = allUsers;
-        rice = true;
-      };
-      hyprland = {
-        enable = true;
-      };
+      hyprland.enable = true;
     };
   };
 
+  # User config & Home Manager
   users.users = forAllUsers (user: {
     isNormalUser = true;
     initialPassword = "password";
@@ -145,7 +136,6 @@ in {
         };
       };
     };
-    gnome.gnome-keyring.enable = true;
     fstrim.enable = true;
     gvfs.enable = true;
     udisks2.enable = true;
@@ -165,11 +155,6 @@ in {
   };
 
   environment.systemPackages = with pkgs; [ 
-    # Handle OS keyrings
-    gnome.seahorse
-    gnome.gnome-keyring
-    libsecret
-
     brightnessctl
     pulseaudio-ctl
     # playerctl
