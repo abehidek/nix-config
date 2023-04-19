@@ -132,6 +132,11 @@ in {
             bind=SUPER_SHIFT,up,togglegroup,
             bind=SUPER_SHIFT,left,changegroupactive,b
             bind=SUPER_SHIFT,right,changegroupactive,f
+            bind=SUPER_SHIFT,down,moveoutofgroup
+            bind=CTRL_SUPER,up,moveintogroup,u
+            bind=CTRL_SUPER,left,moveintogroup,l
+            bind=CTRL_SUPER,right,moveintogroup,r
+            bind=CTRL_SUPER,down,moveintogroup,d
 
             bind=SUPER,F,fullscreen,
             bind=SUPER,Q,exec,kitty
