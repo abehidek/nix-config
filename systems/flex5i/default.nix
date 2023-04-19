@@ -53,9 +53,13 @@ in {
     extraSpecialArgs = { inherit inputs outputs; };
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-21.4.0"
+  ];
+
   # Boot and Drivers
   boot = {
-    cleanTmpDir = true;
+    tmp.cleanOnBoot = true;
     kernel.sysctl = { "fs.inotify.max_user_watches" = 524288; };
     loader = {
       systemd-boot.enable = true;
