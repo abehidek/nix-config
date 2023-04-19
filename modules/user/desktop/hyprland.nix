@@ -59,7 +59,6 @@ in {
                 kb_file=
                 kb_layout=br,us
                 kb_variant=abnt2,alt-intl
-                #kb_model=abnt2,nativo-us
                 kb_options=grp:win_space_toggle
                 kb_rules=
 

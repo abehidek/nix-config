@@ -91,10 +91,11 @@ in {
   services = {
     xserver = {
       enable = true;
-      displayManager.sddm.enable = true;
+      displayManager.gdm.enable = true;
       libinput.enable = true;
       layout = "us,br";
       xkbVariant = "intl,abnt2";
+      xkbOptions = "grp:win_space_toggle";
     };
     fstrim.enable = true;
     gvfs.enable = true;
