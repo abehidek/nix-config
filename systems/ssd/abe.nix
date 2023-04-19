@@ -91,6 +91,7 @@ in {
   # Shell
   home.sessionVariables = {
     VISUAL = "hx";
+    EDITOR = "hx";
   };
 
   programs = {
@@ -136,14 +137,20 @@ in {
 
   # Standalone Packages
   home.packages = with pkgs; [
-    lazygit
-    ncdu htop
-    lf
+    # Apps
     chromium
     insomnia
     webcord # discord
     obsidian
     vlc
+
+    # Sys control
+    pavucontrol
+    pcmanfm
+
+    # CLI
+    lazygit lf
+    ncdu htop
   ];
 
   home.stateVersion = "21.11";
