@@ -33,8 +33,13 @@ in {
       };
       hyprland = {
         rice = true;
-        wallpaper = ../../rsc/kyoushitsu.jpg;
         waybar = true;
+        wallpaper = {
+          enable = true;
+          path = ../../rsc/kyoushitsu.jpg;
+          utility = "swaybg";
+        };
+        enableAnimations = false;
         colors = {
           enable = true;
           base16 = colorScheme.colors;

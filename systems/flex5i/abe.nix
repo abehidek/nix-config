@@ -33,13 +33,16 @@ in {
       };
       hyprland = {
         rice = true;
-        # wallpaper = ../../rsc/kyoushitsu.jpg;
-        wallpaper = lib.mkDefault (nixWallpaperFromScheme {
-          scheme = colorScheme;
-          width = 1920;
-          height = 1080;
-          logoScale = 4;
-        });
+        wallpaper = {
+          enable = true;
+          utility = "swww";
+          path = lib.mkDefault (nixWallpaperFromScheme {
+            scheme = colorScheme;
+            width = 1920;
+            height = 1080;
+            logoScale = 4;
+          });
+        };
         waybar = true;
         colors = {
           enable = true;
