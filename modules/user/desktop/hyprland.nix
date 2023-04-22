@@ -30,12 +30,21 @@ in {
         default = true;
         description = "Enable animations on hyprland";
       };
-      colors = {
-        enable = mkEnableOption "Enable colorscheme ricing";
-        base16 = mkOption {
-          type = types.anything;
-          description = "Bas16 colorscheme for kitty terminal";
+      font = {
+        family = mkOption {
+          type = types.str;
+          description = "Family name for UI font";
+          example = "Fira Code";
         };
+        package = mkOption {
+          type = types.package;
+          description = "Package for UI font";
+          example = "pkgs.fira-code";
+        };
+      };
+      colorScheme = mkOption {
+        type = types.anything;
+        description = "Bas16 colorscheme for kitty terminal";
       };
     };
   };
@@ -56,409 +65,267 @@ in {
           '';
         })
       ]))
-      (mkIf cfg.hyprland.waybar {
-        wayland.windowManager.hyprland.extraConfig = ''
-          exec-once=waybar
-        '';
-        programs.waybar = {
-          enable = true;
-          package = let
-            hyprctl = "${pkgs.hyprland}/bin/hyprctl";
-            waybarPatchFile = import ./workspace-patch.nix { inherit pkgs hyprctl; };
-          in pkgs.waybar.overrideAttrs (oldAttrs: {
-            mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-            patches = (oldAttrs.patches or [ ]) ++ [ waybarPatchFile ];
-            # postPatch = (oldAttrs.postPatch or "") + ''
-            #   sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
-            # '';
-          });
-          settings = [{
-            layer = "top";
-            height = 30;
-            margin-bottom = 2;
-            margin-top = 0;
-            margin-left = 0;
-            margin-right = 0;
-            modules-left = [
-              "wlr/workspaces"
-              "sway/mode"
-              # "custom/media"
-              "hyprland/window"
-            ];
-            #modules-center = [ "clock" ];
-            modules-right = [
-              # "mpd" 
-              "pulseaudio"
-              "network"
-              "cpu"
-              "memory"
-              "battery"
-              "battery#bat2"
-              "tray"
-              "clock"
-            ];
-            modules = {
-              "wlr/workspaces" = {
-                on-click = "activate";
-                all-outputs = true;
-                disable-scroll = true;
-                format = "  {icon}  ";
-                format-icons = {
-                  # "1" = "壱";
-                  # "2" = "弐";
-                  # "3" = "参";
-                  # "4" = "肆";
-                  # "5" = "伍";
-                  # "6" = "陸";
-                  # "7" = "漆";
-                  # "8" = "捌";
-                  # "9" = "玖";
-                  "1" = "一";
-                  "2" = "二";
-                  "3" = "三";
-                  "4" = "四";
-                  "5" = "五";
-                  "6" = "六";
-                  "7" = "七";
-                  "8" = "八";
-                  "9" = "九";
-                  focused = "";
-                  urgent = "";
-                  default = "";
-                };
-              };
-              "sway/mode" = { format = ''<span style="italic">{}</span>''; };
-              "hyprland/window" = {
-                format = " {}";
-              };
-              # "sway/window" = {
-              #   format = " {}";
-              #   max-length = 35;
-              #   tooltip = false;
-              # };
-              # "custom/media" = {
-              #   format = "{icon} {}";
-              #   return-type = "json";
-              #   max-length = 40;
-              #   format-icons = {
-              #     spotify = "";
-              #   };
-              #   escape = true;
-              # };
-              # CENTER MODULES
-              clock = {
-                format = "{:%H:%M - %d/%m/%Y}";
-                tooltip-format = ''
-                  <big>{:%Y %B}</big>
-                  <tt><small>{calendar}</small></tt>'';
-              };
-              # RIGHT MODULES
-              pulseaudio = {
-                scroll-step = 1;
-                format = "{volume}% {icon} {format_source}";
-                format-bluetooth = "{volume}% {icon} {format_source}";
-                format-bluetooth-muted = " {icon} {format_source}";
-                format-muted = " {format_source}";
-                format-source = "{volume}% ";
-                format-source-muted = "";
-                format-icons = {
-                  headphone = "";
-                  hands-free = "";
-                  headset = "";
-                  phone = "";
-                  portable = "";
-                  car = "";
-                  default = [ "" "" "" ];
-                };
-                on-click = "pavucontrol";
-              };
-              network = {
-                interface = "wlp0s20f3";
-                interval = "5";
-                format-wifi = "{essid} ({signalStrength}%) ";
-                format-ethernet = "Ethernet ";
-                format-linked = "Ethernet (No IP) ";
-                format-disconnected = "Disconnected ";
-                format-alt = "{bandwidthDownBits}/{bandwidthUpBits}";
-                # on-click-middle = "nm-connection-editor";
-              };
-              cpu = { format = "{usage}% "; };
-              memory = { format = "{}% "; };
-              battery = {
-                states = {
-                  warning = 30;
-                  critical = 15;
-                };
-                format = "{capacity}% {icon} ";
-                format-charging = "{capacity}% ";
-                format-plugged = "{capacity}% ";
-                format-alt = "{time} {icon}";
-                format-icons = [ "" "" "" "" "" ];
-              };
-              "battery#bat2" = { bat = "BAT2"; };
-              # "custom/power" = {
-              #   format = "{icon}";
-              #   format-icons = "";
-              #   on-click = "${pkgs.wlogout}/bin/wlogout";
-              #   escape = true;
-              #   tooltip = false;
-              # };
-            };
-          }];
-          style = ''
-            * {
-              /* `otf-font-awesome` is required to be installed for icons */
-              border: none;
-              border-radius: 0;
-              font-size: 14px;
-              margin: 0;
-            }
-
-            .modules-left {
-              /* border-radius: 15px; */
-              padding: 5 15px;
-              margin: 0 0px;
-            }
-
-            window#waybar {
-              transition-duration: .5s;
-            }
-
-            window#waybar.chromium {
-              /* background-color: #000000; */
-              border: none;
-            }
-
-            #workspaces button {
-              padding: 0 5px;
-              font-family: 'IPAPMincho';
-              font-weight: bold;
-              border-radius: 10px;
-              border: none;
-            }
-
-            #window,
-            #mode
-            {
-              font-family: 'FiraCode Nerd Font';
-            }
-
-            /* If workspaces is the leftmost module, omit left margin */
-            .modules-left > widget:first-child > #workspaces {
-              margin-left: 0;
-            }
-
-            /* If workspaces is the rightmost module, omit right margin */
-            .modules-right > widget:last-child > #workspaces {
-              margin-right: 0;
-            }
-
-            /* COMPONENTS HERE */
-
-            #clock,
-            #battery,
-            #cpu,
-            #memory,
-            #disk,
-            #network,
-            #pulseaudio,
-            #custom-media,
-            #tray,
-            #mpd {
-              border-radius: 0px;
-              font-family: 'FiraCode Nerd Font';
-              padding: 5 15px;
-              margin-left: 0px;
-            }
-
-            #custom-power {
-              border-radius: 0px;
-              font-family: 'FiraCode Nerd Font';
-              padding: 5 20px;
-              margin-left: 0px;
-            }
-
-            #battery.critical:not(.charging) {
-              animation-name: blink;
-              animation-duration: 0.5s;
-              animation-timing-function: linear;
-              animation-iteration-count: infinite;
-              animation-direction: alternate;
-            }
-
-            /* label:focus {
-              background-color: #000000;
-            } */
-
-            /* #disk {
-              background-color: #964B00;
-            } */
-
-            /* #custom-media {
-              background-color: #66cc99;
-              color: #2a5c45;
-              min-width: 100px;
-            }
-
-            #custom-media.custom-spotify {
-              background-color: #66cc99;
-            }
-
-            #custom-media.custom-vlc {
-              background-color: #ffa000;
-            } */
-
-            /* #mpd {
-              background-color: #66cc99;
-              color: #2a5c45;
-            }
-
-            #mpd.disconnected {
-              background-color: #f53c3c;
-            }
-
-            #mpd.stopped {
-              background-color: #90b1b1;
-            }
-
-            #mpd.paused {
-              background-color: #51a37a;
-            } */
-
-            /* #language {
-              background: #00b093;
-              color: #740864;
-              padding: 0 10px;
-              margin: 0 0px;
-              min-width: 20px;
-            }
-
-            #keyboard-state {
-              background: #97e1ad;
-              color: #000000;
-              padding: 0 0px;
-              margin: 0 0px;
-              min-width: 16px;
-            }
-
-            #keyboard-state > label {
-              padding: 0 0px;
-            }
-
-            #keyboard-state > label.locked {
-              background: rgba(0, 0, 0, 0.2);
-            } */
-
-            /* #idle_inhibitor {
-              background-color: #2d3436;
-            }
-
-            #idle_inhibitor.activated {
-              background-color: #ecf0f1;
-              color: #2d3436;
-            } */
-
-            /* #temperature {
-              background-color: #f0932b;
-            }
-
-            #temperature.critical {
-              background-color: #eb4d4b;
-            } */
-
-            /* #backlight {
-              background-color: #90b1b1;
-            } */
-
-            .modules-left {
-              background-color: transparent;
-              color: #ffffff;
-            }
-            .modules-right {
-              background-color: transparent;
-            }
-            window#waybar {
-              background-color: #${cfg.hyprland.colors.base16.base00};
-              color: #ffffff;
-            }
-            #workspaces button.hidden,
-            #workspaces button {
-              background-color: transparent;
-              color: #ffffff;
-            }
-            #workspaces button.active,
-            #workspaces button.focused {
-              color: #${cfg.hyprland.colors.base16.base0F};
-            }
-            #workspaces button.urgent {
-              background-color: #${cfg.hyprland.colors.base16.base08};
-            }
-            #mode {
-              background-color: transparent;
-              color: #${cfg.hyprland.colors.base16.base0F};
-            }
-            #clock,
-            #battery,
-            #cpu,
-            #memory,
-            #disk,
-            #network,
-            #pulseaudio,
-            #custom-media,
-            #tray,
-            #mpd {
-              color: #${cfg.hyprland.colors.base16.base06};
-            }
-            #clock,
-            #memory,
-            #network {
-              background-color: #${cfg.hyprland.colors.base16.base01};
-            }
-
-            #network.disconnected {
-              background-color: #${cfg.hyprland.colors.base16.base0B};
-            }        
-
-            #battery,
-            #cpu,
-            #pulseaudio {
-              background-color: #${cfg.hyprland.colors.base16.base03};
-            }
-
-            #battery.charging, #battery.plugged {
-              color: #${cfg.hyprland.colors.base16.base06};
-              background-color: #${cfg.hyprland.colors.base16.base0E};
-            }
-            @keyframes blink {
-              to {
-                background-color: #${cfg.hyprland.colors.base16.base03};
-                color: #${cfg.hyprland.colors.base16.base06};
-              }
-            }
-            #battery.critical:not(.charging) {
-              background-color: #${cfg.hyprland.colors.base16.base0F};
-              color: #${cfg.hyprland.colors.base16.base06};
-            }
-
-            #pulseaudio.muted {
-              background-color: #${cfg.hyprland.colors.base16.base0D};
-              color: #${cfg.hyprland.colors.base16.base01};
-            }
-            #tray {
-              background-color: #${cfg.hyprland.colors.base16.base07};
-            }
-
-            #tray > .passive {
-              -gtk-icon-effect: dim;
-            }
-
-            #tray > .needs-attention {
-              -gtk-icon-effect: highlight;
-              background-color: #${cfg.hyprland.colors.base16.base08};
-            }
+      (mkIf cfg.hyprland.waybar (mkMerge [
+        {
+          wayland.windowManager.hyprland.extraConfig = ''
+            exec-once=waybar
           '';
-        };
-      })
+          # Download specified font
+          fonts.fontconfig.enable = true;
+          home.packages = [ cfg.hyprland.font.package ];
+
+          programs.waybar = {
+            enable = true;
+            package = let
+              hyprctl = "${pkgs.hyprland}/bin/hyprctl";
+              waybarPatchFile = import ./workspace-patch.nix { inherit pkgs hyprctl; };
+            in pkgs.waybar.overrideAttrs (oldAttrs: {
+              mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+              patches = (oldAttrs.patches or [ ]) ++ [ waybarPatchFile ];
+              # postPatch = (oldAttrs.postPatch or "") + ''
+              #   sed -i 's/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = "hyprctl dispatch workspace " + name_;\n\tsystem(command.c_str());/g' src/modules/wlr/workspace_manager.cpp
+              # '';
+            });
+            settings = [{
+              layer = "top";
+              height = 40;
+              margin-bottom = 2;
+              margin-top = 0;
+              margin-left = 0;
+              margin-right = 0;
+              modules-left = [
+                "wlr/workspaces"
+                "hyprland/window"
+              ];
+              modules-center = [];
+              modules-right = [
+                "pulseaudio"
+                "pulseaudio#microphone"
+                "network"
+                "cpu"
+                "memory"
+                "battery"
+                "tray"
+                "clock"
+              ];
+              modules = {
+                "wlr/workspaces" = {
+                  persistent_workspaces = {
+                    "1" = [];
+                    "2" = [];
+                    "3" = [];
+                    "4" = [];
+                    "5" = [];
+                    "6" = [];
+                    "7" = [];
+                    "8" = [];
+                    "9" = [];
+                    "10" = [];
+                  };
+                  active-only = false;
+                  sort-by-number = true;
+                  on-click = "activate";
+                  all-outputs = false;
+                  disable-scroll = true;
+                  format = "  {icon}  ";
+                  format-icons = {
+                    "1" = "壱";
+                    "2" = "弐";
+                    "3" = "参";
+                    "4" = "肆";
+                    "5" = "伍";
+                    "6" = "陸";
+                    "7" = "漆";
+                    "8" = "捌";
+                    "9" = "玖";
+                    "10" = "​拾";
+                    # "1" = "一";
+                    # "2" = "二";
+                    # "3" = "三";
+                    # "4" = "四";
+                    # "5" = "五";
+                    # "6" = "六";
+                    # "7" = "七";
+                    # "8" = "八";
+                    # "9" = "九";
+                    focused = "";
+                    urgent = "";
+                    default = "";
+                  };
+                };
+                "hyprland/window" = {
+                  format = "{}";
+                };              
+                # RIGHT MODULES
+                pulseaudio = {
+                  scroll-step = 1;
+                  format = "{icon} {volume}%";
+                  format-muted = " Muted";
+                  format-bluetooth = "{icon} {volume}%";
+                  format-bluetooth-muted = "{icon}  Muted";
+                  format-icons = {
+                    headphone = "";
+                    hands-free = "";
+                    headset = "";
+                    phone = "";
+                    portable = "";
+                    car = "";
+                    default = [ "" "" "" ];
+                  };
+                  on-click = "pavucontrol";
+                };
+                "pulseaudio#microphone" = {
+                  scroll-step = 5;
+                  format = "{format_source}";
+                  format-source = " {volume}%";
+                  format-source-muted = " Muted";
+                  on-click = "pavucontrol";
+                  tooltip = false;
+                };
+                network = {
+                  interface = "wlp0s20f3";
+                  interval = "5";
+                  format-wifi = " ";
+                  format-ethernet = " ";
+                  format-linked = "(No IP)  ";
+                  format-disconnected = " ";
+                  tooltip-format = "{ifname} via {gwaddr}";
+                  tooltip-format-wifi = "{essid} ({signalStrength}%) ";
+                  tooltip-format-ethernet = "{ifname} ";
+                  tooltip-format-disconnected = "Disconnected ";
+                  # on-click-middle = "nm-connection-editor";
+                };
+                cpu = { format = "{usage}% "; };
+                memory = { format = "{}% "; };
+                battery = {
+                  states = {
+                    warning = 30;
+                    critical = 15;
+                  };
+                  format = "{capacity}% {icon} ";
+                  format-charging = "{capacity}% ";
+                  format-plugged = "{capacity}% ";
+                  format-alt = "{time} {icon}";
+                  format-icons = [ "" "" "" "" "" ];
+                };
+                tray = {
+                  icon-size = 16;
+                  spacing = 10;
+                };
+                clock = {
+                  format = "{:%d/%m %H:%M}";
+                };
+              };
+            }];
+            style = ''
+              * {
+                font-family: ${cfg.hyprland.font.family};
+                font-size: 12px;
+              }
+              
+              window#waybar { background-color: transparent; }
+
+              #workspaces {
+                background-color: transparent;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                
+                margin-right: 10px;
+                margin-left: 25px;
+              }
+
+              #workspaces button {
+                background: #${cfg.hyprland.colorScheme.base00};
+                background: radial-gradient(circle, #${cfg.hyprland.colorScheme.base00} 0%, #${cfg.hyprland.colorScheme.base00} 100%);
+                border-radius: 15px;
+                margin-right: 10px;
+                padding: 10px;
+                padding-top: 4px;
+                padding-bottom: 3px;
+                font-weight: bolder;
+                color: #${cfg.hyprland.colorScheme.base03};
+                transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.68);
+              }
+
+              @keyframes gradient_f {
+                0% {
+                  background-position: 0% 200%;
+                }
+                  50% {
+                      background-position: 200% 0%;
+                  }
+                100% {
+                  background-position: 400% 200%;
+                }
+              }
+
+              #workspaces button.active {
+                padding-right: 20px;
+                padding-left: 20px;
+                background: #${cfg.hyprland.colorScheme.base0E};
+                background: radial-gradient(circle, #${cfg.hyprland.colorScheme.base0E} 0%, #${cfg.hyprland.colorScheme.base0D} 14%, #${cfg.hyprland.colorScheme.base0C} 28%, #${cfg.hyprland.colorScheme.base0B} 42%, #${cfg.hyprland.colorScheme.base0A} 57%, #${cfg.hyprland.colorScheme.base09} 71%, #${cfg.hyprland.colorScheme.base08} 100%);
+                background-size: 400% 400%;
+                animation: gradient_f 10s ease-in-out infinite;
+                transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
+                color: #${cfg.hyprland.colorScheme.base00};
+              }
+
+              /* Center */
+
+              #window {
+                background-color: #${cfg.hyprland.colorScheme.base00};
+                border-radius: 15px;
+                color: #${cfg.hyprland.colorScheme.base05};
+                padding-right: 20px;
+                padding-left: 20px;
+                padding-top: 4px;
+                padding-bottom: 3px;
+                
+                margin-top: 10px;
+                margin-bottom: 10px;
+              }
+
+              /* Right */
+              #pulseaudio,
+              #pulseaudio.microphone,
+              #network,
+              #cpu,
+              #memory,
+              #battery,
+              #tray,
+              #clock {
+                background-color: #${cfg.hyprland.colorScheme.base05};
+                border-radius: 15px;
+                color: #${cfg.hyprland.colorScheme.base00};
+                padding-right: 20px;
+                padding-left: 20px;
+                padding-top: 4px;
+                padding-bottom: 3px;
+                font-weight: 500;
+
+                margin-top: 10px;
+                margin-bottom: 10px;
+                margin-right: 10px;
+              }
+
+              #pulseaudio { background-color: #${cfg.hyprland.colorScheme.base08}; }
+              #pulseaudio.microphone { background-color: #${cfg.hyprland.colorScheme.base09}; }
+              #network { background-color: #${cfg.hyprland.colorScheme.base0A}; }
+              #cpu { background-color: #${cfg.hyprland.colorScheme.base0B}; }
+              #memory { background-color: #${cfg.hyprland.colorScheme.base0C}; }
+              #battery { background-color: #${cfg.hyprland.colorScheme.base0D}; }
+              #tray {
+                background-color: #${cfg.hyprland.colorScheme.base00};
+                padding-bottom: 4px;
+              }
+              #clock {
+                background-color: #${cfg.hyprland.colorScheme.base05};
+                color: #${cfg.hyprland.colorScheme.base00};
+              }
+            '';
+          };
+        }
+      ]))
       (mkIf cfg.hyprland.enableAnimations {
         wayland.windowManager.hyprland = {
           extraConfig = ''
@@ -491,8 +358,6 @@ in {
           enable = true;
           extraConfig = ''
             autogenerated=0 # remove this line to get rid of the warning on top.
-
-            # exec-once=obsidian
 
             monitor=,preferred,auto,1
 
@@ -620,8 +485,6 @@ in {
           '';
         };
       }
-      (mkIf cfg.hyprland.colors.enable {
-      })
     ]))
   ]);
 }
