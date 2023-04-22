@@ -36,6 +36,10 @@ in {
     };
     desktop = {
       hyprland.enable = true;
+      displayManager.tuigreet = {
+        enable = true;
+        defaultSessionCmd = "Hyprland";
+      };
     };
   };
 
@@ -129,7 +133,6 @@ in {
   services = {
     xserver = {
       enable = true;
-      displayManager.gdm.enable = true;
       layout = "br";
       xkbVariant = "abnt2";
       libinput = {
