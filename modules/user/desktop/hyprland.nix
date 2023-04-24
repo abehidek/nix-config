@@ -12,6 +12,10 @@ in {
     hyprland = {
       rice = mkEnableOption "Rices hyprland";
       waybar = mkEnableOption "Enable waybar with rice";
+      swaylock = {
+        enable = mkEnableOption "Enable swaylock";
+        lockOnSleep = mkEnableOption "Runs swaylock before sleeping";
+      };
       wallpaper = {
         enable = mkOption {
           type = types.bool;
@@ -49,7 +53,9 @@ in {
     };
   };
 
-  config = (mkMerge [
+  config = let
+    swaylock = "${pkgs.swaylock-effects}/bin/swaylock --screenshots --indicator-radius 40 --indicator-thickness 6 --ring-color ${cfg.hyprland.colorScheme.base05} --key-hl-color ${cfg.hyprland.colorScheme.base04} --effect-blur 7x5 --effect-vignette 0.5:0.5";
+  in (mkMerge [
     (mkIf cfg.hyprland.rice (mkMerge [
       (mkIf cfg.hyprland.wallpaper.enable (mkMerge [
         (mkIf (cfg.hyprland.wallpaper.utility == "swww") {
@@ -488,6 +494,31 @@ in {
           '';
         };
       }
+      (mkIf cfg.hyprland.swaylock.enable (mkMerge [
+        {
+          home.packages = with pkgs; [ swaylock-effects grim ];
+          wayland.windowManager.hyprland.extraConfig = ''
+            bind=SUPER,l,exec,${swaylock}
+          '';
+        }
+        (mkIf cfg.hyprland.swaylock.lockOnSleep {
+          home.packages = with pkgs; [ swayidle ];
+          services.swayidle = {
+            enable = true;
+            events = [
+              { event = "before-sleep"; command = "${swaylock} -fF"; }
+              { event = "lock"; command = "${swaylock} -fF"; }
+            ];
+            # timeouts = [
+            #   {
+            #     timeout = 310;
+            #     command = "${pkgs.systemd}/bin/loginctl lock-session";
+            #   }
+            # ];
+          };
+          systemd.user.services.swayidle.Install.WantedBy = lib.mkForce [ "hyprland-session.target" ];
+        })
+      ]))
     ]))
   ]);
 }

@@ -3,7 +3,7 @@ let
   inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme nixWallpaperFromScheme;
   userName = user;
   homePath = "/home/${userName}";
-  colorScheme = inputs.nix-colors.colorSchemes.classic-dark;
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 in {
   imports = [
     inputs.misterio77.homeManagerModules.fonts
@@ -34,6 +34,10 @@ in {
       hyprland = {
         rice = true;
         waybar = true;
+        swaylock = {
+          enable = true;
+          lockOnSleep = true;
+        };
         wallpaper = {
           enable = true;
           utility = "swww";
