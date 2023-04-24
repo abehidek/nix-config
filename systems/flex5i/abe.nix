@@ -33,6 +33,7 @@ in {
       };
       hyprland = {
         rice = true;
+        waybar = true;
         wallpaper = {
           enable = true;
           utility = "swww";
@@ -43,7 +44,6 @@ in {
             logoScale = 4;
           });
         };
-        waybar = true;
         font = {
           family = "FiraCode Nerd Font";
           package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };

@@ -30,8 +30,16 @@ in {
         environment.systemPackages = with pkgs; [
           wl-clipboard
           wlr-randr
+          grim
+          slurp
         ];
         security.pam.services.swaylock = {};
+
+        # For Pipewire Screensharing
+        services.pipewire = {
+          enable = true;
+          wireplumber.enable = true;
+        };
       }
     ]))
   ]);

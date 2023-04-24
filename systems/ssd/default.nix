@@ -30,6 +30,10 @@ in {
     };
     desktop = {
       hyprland.enable = true;
+      displayManager.tuigreet = {
+        enable = true;
+        defaultSessionCmd = "Hyprland";
+      };
     };
     dev = {
       android = {
@@ -81,17 +85,25 @@ in {
   };
 
   # Audio
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    wireplumber.enable = true;
+  };
+
   sound.enable = true;
   hardware.pulseaudio = {
-    enable = true;
+    enable = false;
     extraConfig = "unload-module module-suspend-on-idle";
+    support32Bit = true;
   };
 
   # Desktop
   services = {
     xserver = {
       enable = true;
-      displayManager.gdm.enable = true;
       libinput.enable = true;
       layout = "us,br";
       xkbVariant = "intl,abnt2";

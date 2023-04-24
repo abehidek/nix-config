@@ -482,6 +482,9 @@ in {
 
             bind=SUPER,mouse_down,workspace,e+1
             bind=SUPER,mouse_up,workspace,e-1
+
+            # For Pipewire Screensharing
+            exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
           '';
         };
       }

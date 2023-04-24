@@ -40,10 +40,11 @@ in {
           utility = "swaybg";
         };
         enableAnimations = false;
-        colors = {
-          enable = true;
-          base16 = colorScheme.colors;
+        font = {
+          family = "FiraCode Nerd Font";
+          package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
         };
+        colorScheme = colorScheme.colors;
       };
       term.kitty = {
         enable = true;
