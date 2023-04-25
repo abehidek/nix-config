@@ -1,6 +1,6 @@
 { user }: { inputs, outputs, lib, config, pkgs, ... }:
 let
-  inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
+  inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme nixWallpaperFromScheme;
   userName = user;
   homePath = "/home/${userName}";
   colorScheme = inputs.nix-colors.colorSchemes.dracula;
@@ -36,7 +36,12 @@ in {
         waybar = true;
         wallpaper = {
           enable = true;
-          path = ../../rsc/kyoushitsu.jpg;
+          path = lib.mkDefault (nixWallpaperFromScheme {
+            scheme = colorScheme;
+            width = 1920;
+            height = 1080;
+            logoScale = 4;
+          });
           utility = "swaybg";
         };
         enableAnimations = false;
