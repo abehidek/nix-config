@@ -34,6 +34,10 @@ in {
       hyprland = {
         rice = true;
         waybar = true;
+        swaylock = {
+          enable = true;
+          lockOnSleep = true;
+        };
         wallpaper = {
           enable = true;
           path = lib.mkDefault (nixWallpaperFromScheme {
