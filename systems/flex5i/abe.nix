@@ -108,6 +108,9 @@ in {
   };
 
   programs = {
+    nushell = {
+      enable = true;
+    };
     starship = {
       enable = true;
       settings = {
@@ -172,6 +175,11 @@ in {
     # CLI
     lazygit
     ncdu htop
+    bat # cat cmd replacement
+    zellij # tmux replacement
+    ripgrep # grep replacement
+    wiki-tui # wikipedia
+    uutils-coreutils
   ];
 
   home.stateVersion = "21.11";
