@@ -12,10 +12,13 @@ in {
   modules.system = {
     shell = {
       tmux.enable = true;
+      nushell = {
+        enable = true;
+        defaultShellUsers = allUsers;
+      };
       zsh = {
         enable = true;
-        users = allUsers;
-        rice = true;
+        defaultShellUsers = [];
       };
       direnv = {
         enable = true;

@@ -11,6 +11,9 @@ in {
   ] ++ (builtins.attrValues outputs.userModules);
 
   modules.user = {
+    shell = {
+      zsh.rice = true;
+    };
     desktop = {
       theme = {
         enable = true;

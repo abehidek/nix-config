@@ -5,10 +5,13 @@ let
   cfg = config.modules.system.shell;
 in {
   options.modules.system.shell = {
+    nushell = {
+      enable = mkEnableOption "Enables nushell on system";
+      defaultShellUsers = mkOption { type = types.listOf (types.str); };
+    };
     zsh = {
       enable = mkEnableOption "Enables zsh";
-      users = mkOption { type = types.listOf (types.str); };
-      rice = mkEnableOption "Enables zsh home-manager rice";
+      defaultShellUsers = mkOption { type = types.listOf (types.str); };
     };
     tmux = {
       enable = mkEnableOption "Enables tmux";
@@ -22,9 +25,17 @@ in {
   config = 
   let
     for = x: genAttrs (x);
-    forAllZshUsers = for (cfg.zsh.users);
+    forAllZshUsers = for (cfg.zsh.defaultShellUsers);
     forAllDirenvUsers = for (cfg.direnv.users);
   in (mkMerge [
+    (mkIf cfg.nushell.enable (mkMerge [
+      {
+        environment.systemPackages = with pkgs; [ nushell ];
+        users.users = (for cfg.nushell.defaultShellUsers) (user: {
+          shell = pkgs.nushell;
+        });
+      }
+    ]))
     (mkIf cfg.zsh.enable (mkMerge [
       {
         programs.zsh.enable = true;
@@ -35,33 +46,6 @@ in {
           shell = pkgs.zsh;
         });
       }
-      (mkIf cfg.zsh.rice{
-        home-manager.users = forAllZshUsers (user: {
-          programs.zsh = {
-            enable = true;
-            enableCompletion = true;
-            enableSyntaxHighlighting = true;
-            history = {
-              size = 5000;
-              path = "$HOME/.local/share/zsh/history";
-            };
-            zplug = {
-              enable = true;
-              plugins = [
-                { name = "zsh-users/zsh-autosuggestions"; }
-                { name = "supercrabtree/k"; }
-              ];
-            };
-            initExtraFirst = ''
-              ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
-            '';
-            oh-my-zsh = {
-              enable = true;
-              plugins = [ "git" "web-search" "copypath" "dirhistory" ];
-            };
-          };
-        });
-      })
     ]))
     (mkIf cfg.tmux.enable {
       environment.systemPackages = with pkgs; [ tmux ];
