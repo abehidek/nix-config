@@ -11,10 +11,13 @@ in {
 
   modules.system = {
     shell = {
+      nushell = {
+        enable = true;
+        defaultShellUsers = allUsers;
+      };
       zsh = {
         enable = true;
-        users = allUsers;
-        rice = true;
+        defaultShellUsers = [];
       };
       direnv = {
         enable = true;

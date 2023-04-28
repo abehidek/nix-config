@@ -3,7 +3,7 @@ let
   inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme nixWallpaperFromScheme;
   userName = user;
   homePath = "/home/${userName}";
-  colorScheme = inputs.nix-colors.colorSchemes.dracula;
+  colorScheme = inputs.nix-colors.colorSchemes.solarized-dark;
 in {
   imports = [
     inputs.misterio77.homeManagerModules.fonts
@@ -11,6 +11,9 @@ in {
   ] ++ (builtins.attrValues outputs.userModules);
 
   modules.user = {
+    shell = {
+      zsh.rice = true;
+    };
     desktop = {
       theme = {
         enable = false;
@@ -110,6 +113,10 @@ in {
   };
 
   programs = {
+    nushell = {
+      enable = true;
+    };
+
     starship.enable = true;
 
     fzf = {
