@@ -58,15 +58,15 @@ in {
         colorScheme = colorScheme.colors;
       };
       term.kitty = {
-        enable = true;
-        font = {
           enable = true;
-          family = "FiraCode Nerd Font";
-          package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
-        };
-        colors = {
-          enable = true;
-          base16 = colorScheme.colors;
+          font = {
+            enable = true;
+            family = "FiraCode Nerd Font";
+            package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+          };
+          colors = {
+            enable = true;
+            base16 = colorScheme.colors;
         };
       };
     };
@@ -178,6 +178,8 @@ in {
     # CLI
     lazygit
     ncdu htop
+    exa # ls replacement
+    kickoff # rofi replacement
     bat # cat cmd replacement
     zellij # tmux replacement
     ripgrep # grep replacement
