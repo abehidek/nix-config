@@ -13,6 +13,7 @@ in {
       rice = mkEnableOption "Rices hyprland";
       waybar = mkEnableOption "Enable waybar with rice";
       hyprpicker = mkEnableOption "Installs hyprpicker";
+      shotman = mkEnableOption "Enables shotman";
       swaylock = {
         enable = mkEnableOption "Enable swaylock";
         lockOnSleep = mkEnableOption "Runs swaylock before sleeping";
@@ -500,6 +501,13 @@ in {
           '';
         };
       }
+      (mkIf cfg.hyprland.shotman {
+        home.packages = with pkgs; [ shotman grim slurp ];
+        wayland.windowManager.hyprland.extraConfig = ''
+          bind=SUPER,Print,exec,${pkgs.shotman}/bin/shotman --capture=output
+          bind=SUPER_SHIFT,Print,exec,${pkgs.shotman}/bin/shotman --capture=region
+        '';
+      })
       (mkIf cfg.hyprland.hyprpicker {
         home.packages = [ pkgs.hyprpicker pkgs.wl-clipboard ];
         wayland.windowManager.hyprland.extraConfig = ''

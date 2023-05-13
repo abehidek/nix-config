@@ -38,6 +38,7 @@ in {
         rice = true;
         waybar = true;
         hyprpicker = true;
+        shotman = true;
         swaylock = {
           enable = true;
           lockOnSleep = true;
