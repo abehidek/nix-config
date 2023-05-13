@@ -10,6 +10,11 @@ in {
   ];
 
   options.modules.user.desktop = {
+    notifications = {
+      mako = {
+        enable = mkEnableOption "Install mako daemon";
+      };
+    };
     term = {
       kitty = {
         enable = mkEnableOption "Install kitty";
@@ -38,6 +43,12 @@ in {
   };
 
   config = (mkMerge [
+    (mkIf cfg.notifications.mako.enable (mkMerge [
+      {
+        home.packages = [ pkgs.libnotify ];
+        services.mako.enable = true;
+      }
+    ]))
     (mkIf cfg.term.kitty.enable (mkMerge [
       {
         programs.kitty = {

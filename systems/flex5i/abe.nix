@@ -57,6 +57,9 @@ in {
         };
         colorScheme = colorScheme.colors;
       };
+      notifications = {
+        mako.enable = true;
+      };
       term.kitty = {
           enable = true;
           font = {
