@@ -112,6 +112,7 @@ in {
                 "memory"
                 "battery"
                 "tray"
+                "hyprland/language"
                 "clock"
               ];
               modules = {
@@ -218,6 +219,9 @@ in {
                   icon-size = 16;
                   spacing = 10;
                 };
+                "hyprland/language" = {
+                  format = "{}";
+                };
                 clock = {
                   format = "{:%d/%m %H:%M}";
                 };
@@ -299,6 +303,7 @@ in {
               #memory,
               #battery,
               #tray,
+              #language,
               #clock {
                 background-color: #${cfg.hyprland.colorScheme.base05};
                 border-radius: 15px;
