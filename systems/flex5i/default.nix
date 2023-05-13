@@ -39,6 +39,10 @@ in {
     };
     desktop = {
       hyprland.enable = true;
+      udiskie = {
+        enable = true;
+        users = allUsers;
+      };
       displayManager.tuigreet = {
         enable = true;
         defaultSessionCmd = "Hyprland";
@@ -148,7 +152,6 @@ in {
     };
     fstrim.enable = true;
     gvfs.enable = true;
-    udisks2.enable = true;
     tlp = {
       enable = true;  # will disable this FOR NOW, wait till you see gnome
       # enable = false;  # needed to disable cause gnome
