@@ -37,6 +37,7 @@ in {
       hyprland = {
         rice = true;
         waybar = true;
+        hyprpicker = true;
         swaylock = {
           enable = true;
           lockOnSleep = true;

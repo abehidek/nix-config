@@ -12,6 +12,7 @@ in {
     hyprland = {
       rice = mkEnableOption "Rices hyprland";
       waybar = mkEnableOption "Enable waybar with rice";
+      hyprpicker = mkEnableOption "Installs hyprpicker";
       swaylock = {
         enable = mkEnableOption "Enable swaylock";
         lockOnSleep = mkEnableOption "Runs swaylock before sleeping";
@@ -499,6 +500,12 @@ in {
           '';
         };
       }
+      (mkIf cfg.hyprland.hyprpicker {
+        home.packages = [ pkgs.hyprpicker pkgs.wl-clipboard ];
+        wayland.windowManager.hyprland.extraConfig = ''
+          bind=SUPER,i,exec,${pkgs.hyprpicker}/bin/hyprpicker --autocopy
+        '';
+      })
       (mkIf cfg.hyprland.swaylock.enable (mkMerge [
         {
           home.packages = with pkgs; [ swaylock-effects grim ];
