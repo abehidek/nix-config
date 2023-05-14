@@ -16,6 +16,9 @@ in {
       };
     };
     term = {
+      alacritty = {
+        enable = mkEnableOption "Install alacritty";
+      };
       kitty = {
         enable = mkEnableOption "Install kitty";
         font = {
@@ -47,6 +50,18 @@ in {
       {
         home.packages = [ pkgs.libnotify ];
         services.mako.enable = true;
+      }
+    ]))
+    (mkIf cfg.term.alacritty.enable (mkMerge [
+      {
+        programs.alacritty = {
+          enable = true;
+        };
+
+        xdg.configFile."alacritty/alacritty.yml".text = ''
+          # Hello
+          ${builtins.readFile ../../../config/alacritty/alacritty.yml}
+        '';
       }
     ]))
     (mkIf cfg.term.kitty.enable (mkMerge [

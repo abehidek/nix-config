@@ -62,7 +62,9 @@ in {
       notifications = {
         mako.enable = true;
       };
-      term.kitty = {
+      term = {
+        alacritty.enable = true;
+        kitty = {
           enable = true;
           font = {
             enable = true;
@@ -72,6 +74,7 @@ in {
           colors = {
             enable = true;
             base16 = colorScheme.colors;
+          };
         };
       };
     };
