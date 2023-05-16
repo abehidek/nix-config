@@ -4,7 +4,7 @@ env:
 window:
   title: Alacritty
   general: Alacritty
-  opacity: 0.5
+  opacity: 0.85
   padding:
     x: 5
     y: 5
