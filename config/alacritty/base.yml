@@ -1,0 +1,30 @@
+env:
+  TERM: xterm-256color
+
+window:
+  title: Alacritty
+  general: Alacritty
+  opacity: 0.5
+  padding:
+    x: 5
+    y: 5
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+cursor:
+  style:
+    shape: Underline
+    blinking: Always
+    blink_interval: 1000
+
+selection:
+  save_to_clipboard: false
+
+live_config_reload: true
+
+draw_bold_text_with_bright_colors: true
+
+key_bindings:
+  - { key: Return, mods: Super|Shift, action: SpawnNewInstance }

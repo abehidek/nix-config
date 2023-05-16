@@ -59,8 +59,8 @@ in {
         };
 
         xdg.configFile."alacritty/alacritty.yml".text = ''
-          # Hello
-          ${builtins.readFile ../../../config/alacritty/alacritty.yml}
+          # Alacritty config
+          ${builtins.readFile ../../../config/alacritty/base.yml}
         '';
       }
     ]))
