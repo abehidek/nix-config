@@ -18,6 +18,12 @@ in {
         enable = mkEnableOption "Enable swaylock";
         lockOnSleep = mkEnableOption "Runs swaylock before sleeping";
       };
+      terminal = mkOption {
+        type = types.str;
+        default = "alacritty";
+        example = "kitty";
+        description = "What terminal to launch on bind";
+      };
       wallpaper = {
         enable = mkOption {
           type = types.bool;
@@ -454,7 +460,7 @@ in {
             bind=CTRL_SUPER,down,moveintogroup,d
 
             bind=SUPER,F,fullscreen,
-            bind=SUPER,Q,exec,kitty
+            bind=SUPER,Q,exec,${cfg.hyprland.terminal}
             bind=SUPER,RETURN,exec,alacritty
             bind=SUPER,C,killactive,
             bind=SUPER,M,exit,
