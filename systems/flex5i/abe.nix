@@ -63,7 +63,14 @@ in {
         mako.enable = true;
       };
       term = {
-        alacritty.enable = true;
+        alacritty = {
+          enable = true;
+          font = {
+            enable = true;
+            family = "Mononoki Nerd Font";
+            package = pkgs.nerdfonts.override { fonts = [ "Mononoki" ]; };
+          };
+        };
         kitty = {
           enable = true;
           font = {
@@ -184,6 +191,8 @@ in {
     pcmanfm
 
     # CLI
+    xdg-ninja
+    tldr
     lazygit
     ncdu htop
     exa # ls replacement
