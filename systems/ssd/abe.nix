@@ -3,7 +3,7 @@ let
   inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme nixWallpaperFromScheme;
   userName = user;
   homePath = "/home/${userName}";
-  colorScheme = inputs.nix-colors.colorSchemes.solarized-dark;
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 in {
   imports = [
     inputs.misterio77.homeManagerModules.fonts
@@ -37,6 +37,8 @@ in {
       hyprland = {
         rice = true;
         waybar = true;
+        hyprpicker = true;
+        shotman = true;
         swaylock = {
           enable = true;
           lockOnSleep = true;
@@ -58,16 +60,29 @@ in {
         };
         colorScheme = colorScheme.colors;
       };
-      term.kitty = {
-        enable = true;
-        font = {
+      notifications = {
+        mako.enable = true;
+      };
+      term = {
+        alacritty = {
           enable = true;
-          family = "FiraCode Nerd Font";
-          package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+          font = {
+            enable = true;
+            family = "Iosevka Nerd Font";
+            package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
+          };
         };
-        colors = {
+        kitty = {
           enable = true;
-          base16 = colorScheme.colors;
+          font = {
+            enable = true;
+            family = "FiraCode Nerd Font";
+            package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
+          };
+          colors = {
+            enable = true;
+            base16 = colorScheme.colors;
+          };
         };
       };
     };
@@ -117,7 +132,15 @@ in {
       enable = true;
     };
 
-    starship.enable = true;
+    starship = {
+      enable = true;
+      settings = {
+        character = {
+          success_symbol = "[λ](bold green)";
+          error_symbol = "[λ](bold red)";
+        };
+      };
+    };
 
     fzf = {
       enable = true;
@@ -173,6 +196,7 @@ in {
     # CLI
     lazygit lf
     ncdu htop
+    zellij
   ];
 
   home.stateVersion = "21.11";

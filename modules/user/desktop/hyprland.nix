@@ -86,7 +86,7 @@ in {
           '';
           # Download specified font
           fonts.fontconfig.enable = true;
-          home.packages = [ cfg.hyprland.font.package ];
+          home.packages = [ cfg.hyprland.font.package pkgs.ipafont ];
 
           programs.waybar = {
             enable = true;
@@ -253,6 +253,7 @@ in {
               }
 
               #workspaces button {
+                font-family: IPAPMincho;
                 background: #${cfg.hyprland.colorScheme.base00};
                 background: radial-gradient(circle, #${cfg.hyprland.colorScheme.base00} 0%, #${cfg.hyprland.colorScheme.base00} 100%);
                 border-radius: 15px;

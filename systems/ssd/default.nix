@@ -33,6 +33,10 @@ in {
     };
     desktop = {
       hyprland.enable = true;
+      udiskie = {
+        enable = true;
+        users = allUsers;
+      };
       displayManager.tuigreet = {
         enable = true;
         defaultSessionCmd = "Hyprland";
@@ -108,13 +112,12 @@ in {
     xserver = {
       enable = true;
       libinput.enable = true;
-      layout = "us,br";
-      xkbVariant = "intl,abnt2";
+      layout = "br,us";
+      xkbVariant = "abnt2,alt-intl";
       xkbOptions = "grp:win_space_toggle";
     };
     fstrim.enable = true;
     gvfs.enable = true;
-    udisks2.enable = true;
   };
 
   environment.systemPackages = with pkgs; [ 
