@@ -41,7 +41,7 @@ in {
         shotman = true;
         swaylock = {
           enable = true;
-          lockOnSleep = true;
+          lockOnSleep = false;
         };
         wallpaper = {
           enable = true;
@@ -53,7 +53,7 @@ in {
           });
           utility = "swaybg";
         };
-        enableAnimations = false;
+        enableAnimations = true;
         font = {
           family = "FiraCode Nerd Font";
           package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };

@@ -68,6 +68,16 @@ in {
     "electron-21.4.0"
   ];
 
+  hardware = {
+    cpu.intel.updateMicrocode = true;
+    bluetooth.enable = false;
+    opengl = {
+      enable = true;
+      driSupport = true;
+      extraPackages = with pkgs; [ intel-compute-runtime intel-media-driver libva ];
+    };
+  };
+
   # Security
   security = {
     sudo.enable = true;
@@ -118,6 +128,10 @@ in {
     };
     fstrim.enable = true;
     gvfs.enable = true;
+  };
+
+  environment.sessionVariables = {
+    MOZ_USE_XINPUT2 = "1"; # improves firefox touchscreen support
   };
 
   environment.systemPackages = with pkgs; [ 
