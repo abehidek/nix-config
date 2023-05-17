@@ -68,8 +68,8 @@ in {
           enable = true;
           font = {
             enable = true;
-            family = "Iosevka Nerd Font";
-            package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
+            family = "Hack Nerd Font";
+            package = pkgs.nerdfonts.override { fonts = [ "Hack" ]; };
           };
         };
         kitty = {

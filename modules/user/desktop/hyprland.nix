@@ -202,24 +202,24 @@ in {
                   interval = "5";
                   format-wifi = " ";
                   format-ethernet = " ";
-                  format-linked = "(No IP)  ";
-                  format-disconnected = " ";
+                  format-linked = "(No IP) 󰈀 ";
+                  format-disconnected = "";
                   tooltip-format = "{ifname} via {gwaddr}";
                   tooltip-format-wifi = "{essid} ({signalStrength}%) ";
-                  tooltip-format-ethernet = "{ifname} ";
+                  tooltip-format-ethernet = "{ifname} 󰈀";
                   tooltip-format-disconnected = "Disconnected ";
                   # on-click-middle = "nm-connection-editor";
                 };
                 cpu = { format = "{usage}% "; };
-                memory = { format = "{}% "; };
+                memory = { format = "{}% 󰍛"; };
                 battery = {
                   states = {
                     warning = 30;
                     critical = 15;
                   };
                   format = "{capacity}% {icon} ";
-                  format-charging = "{capacity}% ";
-                  format-plugged = "{capacity}% ";
+                  format-charging = "{capacity}% 󰂄";
+                  format-plugged = "{capacity}% 󰂄";
                   format-alt = "{time} {icon}";
                   format-icons = [ "" "" "" "" "" ];
                 };
