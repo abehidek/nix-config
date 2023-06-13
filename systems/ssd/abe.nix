@@ -53,7 +53,7 @@ in {
           });
           utility = "swaybg";
         };
-        enableAnimations = true;
+        enableAnimations = false;
         font = {
           family = "FiraCode Nerd Font";
           package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
