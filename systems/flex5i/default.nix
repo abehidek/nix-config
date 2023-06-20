@@ -171,6 +171,11 @@ in {
       };
     };
 
+    dwm-status = {
+      enable = true;
+      order = [ "audio" "cpu_load" "backlight" "network" "battery" "time" ];
+    };
+
     picom = {
       enable = true; # Compositor
     };
