@@ -86,6 +86,7 @@ in {
     opengl = {
       enable = true;
       driSupport = true;
+      driSupport32Bit = true;
       extraPackages = with pkgs; [ intel-compute-runtime intel-media-driver libva ];
     };
   };
@@ -138,6 +139,11 @@ in {
   };
 
   # Desktop
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+  };
+
   services = {
     xserver = {
       enable = true;
