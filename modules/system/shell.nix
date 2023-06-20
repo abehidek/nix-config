@@ -31,6 +31,10 @@ in {
     (mkIf cfg.nushell.enable (mkMerge [
       {
         environment.systemPackages = with pkgs; [ nushell ];
+        environment.shells = [
+          "/run/current-system/sw/bin/nu"
+          "${pkgs.nushell}/bin/nu"
+        ];
         users.users = (for cfg.nushell.defaultShellUsers) (user: {
           shell = pkgs.nushell;
         });
