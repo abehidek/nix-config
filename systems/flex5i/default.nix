@@ -33,7 +33,7 @@ in {
         users = allUsers;
       };
       virt-manager = {
-        enable = true;
+        enable = false;
         users = allUsers;
         autostart = true;
       };
