@@ -12,6 +12,9 @@ in {
     keyring = {
       enable = mkEnableOption "Enables gnome-keyring for all users";
     };
+    polkit = {
+      enable = mkEnableOption "Enables polkit using gnome-polkit for all users";
+    };
     docker = {
       enable = mkEnableOption "Enables docker for all users";
       users = mkOption { type = types.listOf (types.str); };
@@ -28,6 +31,24 @@ in {
   let
     forAllUsers = genAttrs (cfg.docker.users);
   in (mkMerge [
+    (mkIf cfg.polkit.enable {
+      security.polkit.enable = true;
+      systemd = {
+        user.services.polkit-gnome-authentication-agent-1 = {
+          description = "polkit-gnome-authentication-agent-1";
+          wantedBy = [ "graphical-session.target" ];
+          wants = [ "graphical-session.target" ];
+          after = [ "graphical-session.target" ];
+          serviceConfig = {
+              Type = "simple";
+              ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+              Restart = "on-failure";
+              RestartSec = 1;
+              TimeoutStopSec = 10;
+            };
+        };
+      };
+    })
     (mkIf cfg.keyring.enable {
       services.gnome.gnome-keyring.enable = true;
       environment.systemPackages = with pkgs; [ 

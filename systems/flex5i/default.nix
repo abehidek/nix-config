@@ -27,6 +27,7 @@ in {
     };
     services = {
       keyring.enable = true;
+      polkit.enable = true;
       docker = {
         enable = true;
         users = allUsers;
