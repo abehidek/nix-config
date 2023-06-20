@@ -157,11 +157,12 @@ in {
         };
       };
     };
-    fstrim.enable = true;
-    gvfs.enable = true;
-    tlp = {
-      enable = true;  # will disable this FOR NOW, wait till you see gnome
-      # enable = false;  # needed to disable cause gnome
+    fstrim.enable = true; # Enables periodic SSD TRIM of mounted partitions
+
+    gvfs.enable = true; # Gnome virtual filesystem (used by gnome nautilus)
+
+    tlp = { # Optimizing linux battery life
+      enable = true;
       settings = {
         TLP_PERSISTENT_DEFAULT = 0;
         CPU_MAX_PERF_ON_AC=100;

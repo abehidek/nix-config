@@ -191,10 +191,11 @@ in {
     pcmanfm
 
     # CLI
-    xdg-ninja
-    tldr
+    xdg-ninja # checks $HOME for unwanted files and dirs
+    tldr # simplified man page
     lazygit
-    ncdu htop
+    ncdu # disk usage analyzer
+    htop
     exa # ls replacement
     kickoff # rofi replacement
     bat # cat cmd replacement
