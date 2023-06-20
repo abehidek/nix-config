@@ -11,7 +11,7 @@ in {
 
   modules.system = {
     shell = {
-      tmux.enable = true;
+      tmux.enable = false;
       nushell = {
         enable = true;
         defaultShellUsers = allUsers;
