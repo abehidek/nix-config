@@ -139,6 +139,8 @@ in {
   };
 
   # Desktop
+  programs.dconf.enable = true; # Necessary for GTK
+
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
