@@ -39,15 +39,15 @@ in {
       };
     };
     desktop = {
-      hyprland.enable = true;
+      hyprland.enable = false;
       udiskie = {
         enable = true;
         users = allUsers;
       };
       displayManager.tuigreet = {
-        enable = true;
+        enable = false;
         defaultSessionCmd = "Hyprland";
-      };
+      }; 
     };
   };
 
@@ -147,8 +147,10 @@ in {
   services = {
     xserver = {
       enable = true;
+
       layout = "br";
       xkbVariant = "abnt2";
+
       libinput = {
         enable = true;
         touchpad = {
@@ -156,7 +158,21 @@ in {
           accelProfile = "flat";
         };
       };
+
+      displayManager.lightdm.enable = true;
+
+      windowManager.dwm = {
+        enable = true;
+        package = pkgs.dwm.overrideAttrs (old: rec {
+          src = ../../config/dwm;
+        });
+      };
     };
+
+    picom = {
+      enable = true; # Compositor
+    };
+
     fstrim.enable = true; # Enables periodic SSD TRIM of mounted partitions
 
     gvfs.enable = true; # Gnome virtual filesystem (used by gnome nautilus)
@@ -179,6 +195,7 @@ in {
     brightnessctl
     pulseaudio-ctl
     # playerctl
+    rofi
   ];
 
   system.stateVersion = "21.11";

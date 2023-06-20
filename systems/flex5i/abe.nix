@@ -35,7 +35,7 @@ in {
         };
       };
       hyprland = {
-        rice = true;
+        rice = false;
         waybar = true;
         hyprpicker = true;
         shotman = true;
@@ -60,7 +60,7 @@ in {
         colorScheme = colorScheme.colors;
       };
       notifications = {
-        mako.enable = true;
+        mako.enable = false; # Wayland notification daemon
       };
       term = {
         alacritty = {
