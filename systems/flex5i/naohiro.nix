@@ -3,7 +3,6 @@ let
   inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme nixWallpaperFromScheme;
   userName = user;
   homePath = "/home/${userName}";
-  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 in {
   imports = [
     inputs.misterio77.homeManagerModules.fonts
@@ -15,53 +14,6 @@ in {
       zsh.rice = true;
     };
     desktop = {
-      theme = {
-        enable = true;
-        gtk = {
-          enable = true;
-          theme = {
-            name = "${colorScheme.slug}";
-            package = gtkThemeFromScheme { scheme = colorScheme; };
-          };
-          icon = {
-            name = "Papirus";
-            package = pkgs.papirus-icon-theme;
-          };
-        };
-        qt = {
-          enable = true;
-          useGtkTheme = true;
-          dolphinBgColor = "#${colorScheme.colors.base00}";
-        };
-      };
-      hyprland = {
-        rice = false;
-        waybar = true;
-        hyprpicker = true;
-        shotman = true;
-        swaylock = {
-          enable = true;
-          lockOnSleep = true;
-        };
-        wallpaper = {
-          enable = true;
-          utility = "swww";
-          path = lib.mkDefault (nixWallpaperFromScheme {
-            scheme = colorScheme;
-            width = 1920;
-            height = 1080;
-            logoScale = 4;
-          });
-        };
-        font = {
-          family = "FiraCode Nerd Font";
-          package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
-        };
-        colorScheme = colorScheme.colors;
-      };
-      notifications = {
-        mako.enable = false; # Wayland notification daemon
-      };
       term = {
         alacritty = {
           enable = true;
@@ -69,18 +21,6 @@ in {
             enable = true;
             family = "Mononoki Nerd Font";
             package = pkgs.nerdfonts.override { fonts = [ "Mononoki" ]; };
-          };
-        };
-        kitty = {
-          enable = true;
-          font = {
-            enable = true;
-            family = "FiraCode Nerd Font";
-            package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
-          };
-          colors = {
-            enable = true;
-            base16 = colorScheme.colors;
           };
         };
       };
@@ -111,12 +51,6 @@ in {
     cacheHome = "${homePath}/.cache";
     userDirs = {
       enable = true;
-      documents = "${homePath}/doc";
-      download = "${homePath}/dwl";
-      music = "${homePath}/songs";
-      desktop = "${homePath}/ws";
-      pictures = "${homePath}/img";
-      videos = "${homePath}/vid";
     };
     mimeApps = {
       enable = true;
@@ -188,9 +122,7 @@ in {
   home.packages = with pkgs; [
     # Apps
     chromium
-    insomnia
-    discord webcord
-    obsidian
+    irpf
 
     # Sys control
     pavucontrol
@@ -198,18 +130,9 @@ in {
     pcmanfm
 
     # CLI
-    xdg-ninja # checks $HOME for unwanted files and dirs
     tldr # simplified man page
     lazygit
     ncdu # disk usage analyzer
-    htop
-    exa # ls replacement
-    kickoff # rofi replacement
-    bat # cat cmd replacement
-    zellij # tmux replacement
-    ripgrep # grep replacement
-    wiki-tui # wikipedia
-    uutils-coreutils
   ];
 
   home.stateVersion = "21.11";

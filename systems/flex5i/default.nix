@@ -1,6 +1,6 @@
 { pkgs, inputs, outputs, lib, ... }: 
 let
-  allUsers = [ "abe" ];
+  allUsers = [ "abe" "naohiro" ];
   forAllUsers = lib.genAttrs (allUsers);
 in {
   imports = [
@@ -162,6 +162,10 @@ in {
       };
 
       displayManager.lightdm.enable = true;
+
+      desktopManager.cinnamon = {
+        enable = true;
+      };
 
       windowManager.dwm = {
         enable = true;
