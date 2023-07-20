@@ -51,6 +51,12 @@
         modules = [ ./systems/wsl ];
         specialArgs = { inherit inputs outputs; };
       };
+
+      mail = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [  ./systems/mail ];
+        specialArgs = { inherit inputs outputs; };
+      };
     };
 
     devShells = forAllSystems (system: {
