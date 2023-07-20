@@ -132,6 +132,14 @@ in {
     EDITOR = "hx";
   };
 
+  dconf.settings = {
+    "org/cinnamon/desktop/media-handling" = {
+      automount = false;
+      automount-open = false;
+      autorun-never = true;
+    };
+  };
+
   programs = {
     nushell = {
       enable = true;
@@ -184,13 +192,19 @@ in {
     };
   };
 
+  services.nextcloud-client = {
+    enable = true;
+    startInBackground = true;
+  };
+
   # Standalone Packages
   home.packages = with pkgs; [
     # Apps
     chromium
     insomnia
     discord webcord
-    obsidian
+    obsidian obs-studio
+    nextcloud-client
 
     # Sys control
     pavucontrol

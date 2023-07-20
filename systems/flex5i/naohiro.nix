@@ -66,6 +66,14 @@ in {
     EDITOR = "hx";
   };
 
+  dconf.settings = {
+    "org/cinnamon/desktop/media-handling" = {
+      automount = false;
+      automount-open = false;
+      autorun-never = true;
+    };
+  };
+
   programs = {
     nushell = {
       enable = true;

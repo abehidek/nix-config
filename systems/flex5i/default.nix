@@ -67,6 +67,7 @@ in {
 
   nixpkgs.config.permittedInsecurePackages = [
     "electron-21.4.0"
+    "electron-12.2.3"
   ];
 
   # Boot and Drivers
@@ -117,6 +118,7 @@ in {
       allowedTCPPorts = [
         22  # SSH
         80  # HTTP
+        8080
         443 # HTTPS
       ];
     };
@@ -128,6 +130,7 @@ in {
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
     wireplumber.enable = true;
   };
 
@@ -150,8 +153,9 @@ in {
     xserver = {
       enable = true;
 
-      layout = "br";
-      xkbVariant = "abnt2";
+      layout = "br,us";
+      xkbVariant = "abnt2,alt-intl";
+      xkbOptions = "grp:win_space_toggle";
 
       libinput = {
         enable = true;
@@ -204,9 +208,12 @@ in {
 
   environment.systemPackages = with pkgs; [ 
     brightnessctl
+    pulseaudio
     pulseaudio-ctl
+    qjackctl
     # playerctl
     rofi
+    gnome.dconf-editor
   ];
 
   system.stateVersion = "21.11";
