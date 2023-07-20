@@ -1,7 +1,16 @@
 { pkgs, inputs, outputs, lib, ... }:
 
 {
-  imports = [ ./hardware.nix ../global ]; # ++ (builtins.attrValues outputs.nixosModules);
+  imports = [ ./hardware.nix ../global inputs.home-manager.nixosModules.home-manager ] ++ (builtins.attrValues outputs.nixosModules);
+
+  modules.system = {
+    services = {
+      docker = {
+        enable = true;
+        users = [ "abe" ];
+      };
+    };
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -25,6 +34,7 @@
     };
 
     wireguard = {
+      enable = false;
       interfaces.wg1 = {
         ips = [ "10.0.1.3/32" ];
         privateKeyFile = "/etc/wireguard/private.key";
@@ -48,21 +58,20 @@
   users.users.abe = {
     isNormalUser = true;
     initialPassword = "password";
-    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       helix
       tree
       git
+      pfetch
     ];
   };
 
   environment.systemPackages = with pkgs; [
-    vim docker-compose openssl
+    vim openssl
   ];
 
   services.qemuGuest.enable = true;
-
-  virtualisation.docker.enable = true;
 
   system.stateVersion = "23.05"; # Did you read the comment?
 
