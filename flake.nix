@@ -8,6 +8,10 @@
       url = "github:nix-community/home-manager"; # home-manager/release-22.05
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {     
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprland.url = "github:hyprwm/Hyprland";
     misterio77.url = github:misterio77/nix-config;
     nix-colors.url = github:misterio77/nix-colors;
@@ -55,6 +59,12 @@
       mail = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [  ./systems/mail ];
+        specialArgs = { inherit inputs outputs; };
+      };
+
+      test = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [  ./systems/test ];
         specialArgs = { inherit inputs outputs; };
       };
     };

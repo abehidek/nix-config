@@ -10,11 +10,11 @@
     ...
 }: {
   default = pkgs.mkShell {
-    NIX_CONFIG = "extra-experimental-features = nix command flakes repl-flake";
+    NIX_CONFIG = "extra-experimental-features = nix-command flakes repl-flake";
     nativeBuildInputs = with pkgs; [
       nix
       git
-      gnupg
+      gnupg helix nano
     ];
   };
 }
