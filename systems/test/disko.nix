@@ -1,4 +1,5 @@
 { ... }: {
+  disko.devices = {
     disk = {
       main = {
         device = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0";
@@ -13,7 +14,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                # extraArgs = [ "-n NIXOS_ESP" ];
+                extraArgs = [ "-n NIXOS_ESP" ];
               };
             };
             NIXOS_ROOT = {
@@ -22,11 +23,12 @@
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
-                # extraArgs = [ "-L NIXOS_ROOT" ];
+                extraArgs = [ "-L NIXOS_ROOT" ];
               };
             };
           };
         };
       };
     };
+  };
 }
