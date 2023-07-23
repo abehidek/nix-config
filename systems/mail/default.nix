@@ -1,7 +1,12 @@
 { pkgs, inputs, outputs, lib, ... }:
 
 {
-  imports = [ ./hardware.nix ../global inputs.home-manager.nixosModules.home-manager ] ++ (builtins.attrValues outputs.nixosModules);
+  imports = [ 
+    ./hardware.nix 
+    ../global 
+    inputs.home-manager.nixosModules.home-manager 
+    inputs.disko.nixosModules.disko ./disko.nix
+  ] ++ (builtins.attrValues outputs.nixosModules);
 
   modules.system = {
     services = {
@@ -21,7 +26,7 @@
     networkmanager.enable = true;
 
     interfaces.ens18.ipv4.addresses = [{
-      address = "192.168.15.13";
+      address = "192.168.15.23";
       prefixLength = 24;
     }];
 
@@ -29,7 +34,6 @@
       enable = true;
       allowedTCPPorts = [
         22
-        8080
       ];
     };
 
@@ -60,15 +64,13 @@
     initialPassword = "password";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      helix
       tree
-      git
       pfetch
     ];
   };
 
   environment.systemPackages = with pkgs; [
-    vim openssl
+    vim openssl git helix
   ];
 
   services.qemuGuest.enable = true;
