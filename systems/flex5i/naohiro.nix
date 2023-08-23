@@ -111,9 +111,6 @@ in {
     helix = {
       enable = true;
       package = pkgs.helix;
-      languages = [
-        { name = "rust"; auto-format = true; }
-      ];
       settings = {
         theme = "base16";
         editor.file-picker = {

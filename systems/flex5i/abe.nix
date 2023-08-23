@@ -177,9 +177,12 @@ in {
     helix = {
       enable = true;
       package = pkgs.helix;
-      languages = [
-        { name = "rust"; auto-format = true; }
-      ];
+      languages = {
+        language = [{
+          name = "rust";
+          auto-format = true;
+        }];
+      };
       settings = {
         theme = "base16";
         editor.file-picker = {
@@ -205,6 +208,8 @@ in {
     discord webcord
     obsidian obs-studio
     nextcloud-client
+    lutris hardinfo
+    mullvad-vpn
 
     # Sys control
     pavucontrol

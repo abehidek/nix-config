@@ -18,7 +18,9 @@ in {
         programs.zsh = {
           enable = true;
           enableCompletion = true;
-          enableSyntaxHighlighting = true;
+          syntaxHighlighting = {
+            enable = true;
+          };
           history = {
             size = 5000;
             path = "$HOME/.local/share/zsh/history";
