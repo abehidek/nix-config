@@ -214,6 +214,7 @@ in {
     # playerctl
     rofi
     gnome.dconf-editor
+    inputs.devenv.packages.${pkgs.system}.default
   ];
 
   system.stateVersion = "21.11";

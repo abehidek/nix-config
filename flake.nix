@@ -17,6 +17,7 @@
     nix-colors.url = github:misterio77/nix-colors;
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     vscode-server.url = "github:msteen/nixos-vscode-server";
+    devenv.url = "github:cachix/devenv";
   };
   outputs = {
     self,
