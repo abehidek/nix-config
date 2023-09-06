@@ -210,6 +210,7 @@ in {
     nextcloud-client
     lutris hardinfo
     mullvad-vpn
+    libreoffice-qt
 
     # Sys control
     pavucontrol
