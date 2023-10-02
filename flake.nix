@@ -18,6 +18,7 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL";
     vscode-server.url = "github:msteen/nixos-vscode-server";
     devenv.url = "github:cachix/devenv";
+    nix-gaming.url = "github:fufexan/nix-gaming";
   };
   outputs = {
     self,

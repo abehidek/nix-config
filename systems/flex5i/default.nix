@@ -90,6 +90,7 @@ in {
       driSupport32Bit = true;
       extraPackages = with pkgs; [ intel-compute-runtime intel-media-driver libva ];
     };
+    opentabletdriver.enable = true;
   };
 
   # Security
@@ -215,6 +216,7 @@ in {
     rofi
     gnome.dconf-editor
     inputs.devenv.packages.${pkgs.system}.default
+    inputs.nix-gaming.packages.${pkgs.system}.osu-stable
   ];
 
   system.stateVersion = "21.11";

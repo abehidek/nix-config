@@ -208,7 +208,7 @@ in {
     discord webcord
     obsidian obs-studio
     nextcloud-client
-    lutris hardinfo
+    hardinfo
     mullvad-vpn
     libreoffice-qt
 
