@@ -211,6 +211,7 @@ in {
     hardinfo
     mullvad-vpn
     libreoffice-qt
+    portfolio
 
     # Sys control
     pavucontrol
