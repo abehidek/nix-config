@@ -212,6 +212,7 @@ in {
     mullvad-vpn
     libreoffice-qt
     portfolio
+    beekeeper-studio
 
     # Sys control
     pavucontrol
