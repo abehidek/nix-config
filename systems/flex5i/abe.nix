@@ -225,7 +225,6 @@ in {
     lazygit
     ncdu # disk usage analyzer
     htop
-    exa # ls replacement
     kickoff # rofi replacement
     bat # cat cmd replacement
     zellij # tmux replacement
