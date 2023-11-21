@@ -141,6 +141,14 @@ in {
   };
 
   programs = {
+    librewolf = {
+      enable = true;
+      settings = {
+        "identity.fxaccounts.enabled" = true;
+        "services.sync.prefs.sync.browser.uiCustomization.state" = true;
+      };
+    };
+
     nushell = {
       enable = true;
     };
