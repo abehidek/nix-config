@@ -21,7 +21,7 @@
   <a href="#key-features">Key Features</a> •
   <a href="#system-details">System Details</a> •
   <!-- <a href="#getting-started">Getting Started</a> • -->
-  <a href="#faq">FAQ</a> •
+  <!-- <a href="#faq">FAQ</a> • -->
   <a href="#roadmap">Roadmap</a> •
   <!-- <a href="#support">Support</a> • -->
   <a href="#license">License</a>
