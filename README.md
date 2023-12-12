@@ -94,11 +94,13 @@ $ git clone https://github.com/abehidek/dotfiles
 $ cd dotfiles
 ``` -->
 
+<!--
 ## FAQ
 
 ### Is it any good?
 
 [yes.](https://news.ycombinator.com/item?id=3067434)
+-->
 
 ## Roadmap
 
@@ -117,10 +119,6 @@ $ cd dotfiles
 - [ ] Proper flake config for Raspberry Pi 400 (as a server) and WSL (as dev env).
 - [ ] Create some useful eww widgets.
 - [x] Decrease the number of installed packages and RAM consumption
-
-## Emailware
-
-This project is an [emailware](https://en.wiktionary.org/wiki/emailware). Meaning, if you liked using this app or it has helped you in any way, I'd like you send me an email at <hidek.abe@outlook.com> about anything you'd want to say about this software. I'd really appreciate it!
 
 ## Contributing
 
@@ -194,6 +192,6 @@ These sources helped me to accomplish this project.
 
 ---
 
-> [abehidek.me](https://abehidek.me) &nbsp;&middot;&nbsp;
+> [hidek.xyz](https://hidek.xyz) &nbsp;&middot;&nbsp;
 > GitHub [@abehidek](https://github.com/abehidek) &nbsp;&middot;&nbsp;
 > Twitter [@guilhermehabe](https://twitter.com/guilhermehabe)
