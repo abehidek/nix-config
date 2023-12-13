@@ -1,11 +1,21 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   nix = {
     package = pkgs.nixFlakes;
+
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+
+    settings = {
+      substituters = [
+        "https://devenv.cachix.org"
+      ];
+      trusted-public-keys = [
+        "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      ];  
+    };
   };
 
   home = {
@@ -17,6 +27,7 @@
       lazygit
       zellij
       tldr
+      inputs.devenv.packages.${pkgs.system}.default
     ];
 
     stateVersion = "22.05";
