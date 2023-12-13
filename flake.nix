@@ -71,6 +71,14 @@
       };
     };
 
+    homeConfigurations = {
+      "abe@t16" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        modules = [ ./systems/t16/abe.nix ];
+        extraSpecialArgs = { inherit inputs outputs; };
+      };
+    };
+
     devShells = forAllSystems (system: {
       xmonad = import ./shells/xmonad.nix { 
         inherit nixpkgs system inputs outputs;

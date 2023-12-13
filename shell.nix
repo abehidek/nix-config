@@ -15,6 +15,7 @@
       nix
       git
       gnupg helix nano
+      home-manager
     ];
   };
 }
