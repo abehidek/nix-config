@@ -69,10 +69,16 @@
         modules = [  ./systems/test ];
         specialArgs = { inherit inputs outputs; };
       };
+
+      t16-wsl = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [  ./systems/t16 ];
+        specialArgs = { inherit inputs outputs; };
+      };
     };
 
     homeConfigurations = {
-      "abe@t16" = home-manager.lib.homeManagerConfiguration {
+      "abe@t16-wsl" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         modules = [ ./systems/t16/abe.nix ];
         extraSpecialArgs = { inherit inputs outputs; };

@@ -1,37 +1,19 @@
-{ config, pkgs, inputs, ... }:
+{ inputs, outputs, lib, config, pkgs, ... }:
 
 {
-  nix = {
-    package = pkgs.nixFlakes;
-
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-
-    settings = {
-      substituters = [
-        "https://devenv.cachix.org"
-      ];
-      trusted-public-keys = [
-        "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-      ];  
-    };
-  };
-
   home = {
     username = "abe";
     homeDirectory = "/home/abe";
-
-    packages = with pkgs; [
-      pfetch
-      lazygit
-      zellij
-      tldr
-      inputs.devenv.packages.${pkgs.system}.default
-    ];
-
     stateVersion = "22.05";
   };
+
+  home.packages = with pkgs; [
+    pfetch
+    lazygit
+    zellij
+    tldr
+    inputs.devenv.packages.${pkgs.system}.default
+  ];
 
   programs = {
     git = {
@@ -54,6 +36,7 @@
       };
       settings = {
         theme = "base16";
+        editor.true-color = true;
         editor.file-picker = {
           hidden = false;
         };
@@ -61,6 +44,14 @@
           y = ":clipboard-yank";
         };
       };
+    };
+
+    bash.enable = true;
+
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      nix-direnv.enable = true;
     };
 
     home-manager.enable = true;
