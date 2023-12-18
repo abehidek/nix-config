@@ -1,6 +1,10 @@
 { inputs, outputs, lib, config, pkgs, ... }:
 
 {
+  imports = [] ++ (builtins.attrValues outputs.userModules);
+
+  # modules.user.shell.zsh.rice = true;
+
   home = {
     username = "abe";
     homeDirectory = "/home/abe";
@@ -15,6 +19,25 @@
     inputs.devenv.packages.${pkgs.system}.default
   ];
 
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    syntaxHighlighting = {
+      enable = true;
+    };
+    history = {
+      size = 5000;
+      path = "$HOME/.local/share/zsh/history";
+    };
+    initExtraFirst = ''
+      ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
+    '';
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "web-search" "copypath" "dirhistory" ];
+    };
+  };
+
   programs = {
     git = {
       enable = true;
@@ -22,6 +45,16 @@
       userEmail = "hidek.abe@outlook.com";
       extraConfig = {
         init.defaultBranch = "main";
+      };
+    };
+
+    starship = {
+      enable = true;
+      settings = {
+        character = {
+          success_symbol = "[λ](bold green)";
+          error_symbol = "[λ](bold red)";
+        };
       };
     };
 

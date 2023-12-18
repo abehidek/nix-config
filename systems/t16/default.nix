@@ -6,11 +6,22 @@
 
     inputs.nixos-wsl.nixosModules.wsl
     inputs.home-manager.nixosModules.home-manager
-  ];
+  ] ++ (builtins.attrValues outputs.nixosModules);
+
+  modules.system = {
+    shell.zsh = {
+      enable = true;
+      defaultShellUsers = ["abe"];
+    };
+    services.docker = {
+      enable = true;
+      users = ["abe"];
+    };
+  };
 
   wsl = {
     enable = true;
-    automountPath = "/mnt";
+    wslConf.automount.root = "/mnt";
     defaultUser = "abe";
     startMenuLaunchers = true;
 

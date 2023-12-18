@@ -15,6 +15,7 @@ in {
   config = (mkMerge [
     (mkIf cfg.zsh.rice (mkMerge [
       {
+        home.packages = with pkgs; [ perl ];
         programs.zsh = {
           enable = true;
           enableCompletion = true;
