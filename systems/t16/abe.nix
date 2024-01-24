@@ -84,6 +84,7 @@
     direnv = {
       enable = true;
       enableBashIntegration = true;
+      enableFishIntegration = false;
       nix-direnv.enable = true;
     };
 
