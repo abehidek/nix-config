@@ -84,7 +84,7 @@ in {
 
   hardware = {
     cpu.intel.updateMicrocode = true;
-    bluetooth.enable = false;
+    bluetooth.enable = true;
     opengl = {
       enable = true;
       driSupport = true;
