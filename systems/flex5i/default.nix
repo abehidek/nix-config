@@ -89,7 +89,14 @@ in {
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [ intel-compute-runtime intel-media-driver libva ];
+      extraPackages = with pkgs; [ 
+        intel-compute-runtime
+        intel-media-driver
+        libva
+        vaapiVdpau
+        libvdpau-va-gl
+        (vaapiIntel.override { enableHybridCodec = true; }) 
+      ];
     };
     opentabletdriver.enable = true;
   };
