@@ -221,6 +221,8 @@ in {
     libreoffice-qt
     portfolio
     beekeeper-studio
+    exodus
+    bitwarden
 
     # Sys control
     pavucontrol
