@@ -25,7 +25,7 @@
 
   swapDevices = [{ device = "/dev/disk/by-label/NIXOS-SWAP"; }];
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
