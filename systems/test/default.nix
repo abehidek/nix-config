@@ -1,7 +1,12 @@
 { pkgs, inputs, outputs, lib, ... }:
 
 {
-  imports = [ ./hardware.nix ../global inputs.disko.nixosModules.disko ./disko.nix ];
+  imports = [
+    ./hardware.nix
+    ../global 
+    inputs.disko.nixosModules.disko
+    ./disko.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -10,11 +15,6 @@
     hostName = "test";
 
     networkmanager.enable = true;
-
-    interfaces.ens18.ipv4.addresses = [{
-      address = "192.168.15.142";
-      prefixLength = 24;
-    }];
 
     firewall = {
       enable = true;
@@ -39,6 +39,7 @@
     packages = with pkgs; [
       tree
       pfetch
+      hello
     ];
   };
 
@@ -47,6 +48,13 @@
   ];
 
   services.qemuGuest.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = lib.mkForce true;
+      PermitRootLogin = lib.mkForce "yes";
+    };
+  };
 
   system.stateVersion = "23.05"; # Did you read the comment?
 }
