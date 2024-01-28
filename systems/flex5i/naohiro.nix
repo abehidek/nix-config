@@ -13,18 +13,6 @@ in {
     shell = {
       zsh.rice = true;
     };
-    desktop = {
-      term = {
-        alacritty = {
-          enable = true;
-          font = {
-            enable = true;
-            family = "Mononoki Nerd Font";
-            package = pkgs.nerdfonts.override { fonts = [ "Mononoki" ]; };
-          };
-        };
-      };
-    };
   };
 
   fontProfiles = {

@@ -63,14 +63,6 @@ in {
         mako.enable = false; # Wayland notification daemon
       };
       term = {
-        alacritty = {
-          enable = true;
-          font = {
-            enable = true;
-            family = "Mononoki Nerd Font";
-            package = pkgs.nerdfonts.override { fonts = [ "Mononoki" ]; };
-          };
-        };
         kitty = {
           enable = true;
           font = {
@@ -146,6 +138,23 @@ in {
       settings = {
         "identity.fxaccounts.enabled" = true;
         "services.sync.prefs.sync.browser.uiCustomization.state" = true;
+      };
+    };
+
+    alacritty = {
+      enable = true;
+      settings = {
+        font = {
+          size = 14;
+          normal.family = "Mononoki Nerd Font";
+          normal.style = "Regular";
+          bold.family = "Mononoki Nerd Font";
+          bold.style = "Bold";
+          italic.family = "Mononoki Nerd Font";
+          italic.style = "Italic";
+          bold_italic.family = "Mononoki Nerd Font";
+          bold_italic.style = "Bold Italic";
+        };
       };
     };
 
@@ -241,6 +250,9 @@ in {
     ripgrep # grep replacement
     wiki-tui # wikipedia
     uutils-coreutils
+
+    # Fonts
+    (nerdfonts.override { fonts = [ "Mononoki" ]; })
   ];
 
   home.stateVersion = "21.11";

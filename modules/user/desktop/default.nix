@@ -16,22 +16,6 @@ in {
       };
     };
     term = {
-      alacritty = {
-        enable = mkEnableOption "Install alacritty";
-        font = {
-          enable = mkEnableOption "Assign a font";
-          family = mkOption {
-            type = types.str;
-            description = "Family name for monospace terminal font profile";
-            example = "Fira Code";
-          };
-          package = mkOption {
-            type = types.package;
-            description = "Package for monospace terminal font profile";
-            example = "pkgs.fira-code";
-          };
-        };
-      };
       kitty = {
         enable = mkEnableOption "Install kitty";
         font = {
@@ -65,40 +49,7 @@ in {
         services.mako.enable = true;
       }
     ]))
-    (mkIf cfg.term.alacritty.enable (mkMerge [
-      (mkIf cfg.term.alacritty.font.enable {
-        fonts.fontconfig.enable = true;
-        home.packages = [ cfg.term.alacritty.font.package ];
 
-        xdg.configFile."alacritty/alacritty.yml".text = ''
-          # Fonts
-          font:
-            size: 14
-            normal:
-              family: ${cfg.term.alacritty.font.family}
-              style: Regular
-            normal:
-              family: ${cfg.term.alacritty.font.family}
-              style: Bold
-            normal:
-              family: ${cfg.term.alacritty.font.family}
-              style: Italic
-            bold_italic:
-              family: ${cfg.term.alacritty.font.family}
-              style: Bold Italic
-        '';
-      })
-      {
-        programs.alacritty = {
-          enable = true;
-        };
-
-        xdg.configFile."alacritty/alacritty.yml".text = ''
-          # Base config
-          ${builtins.readFile ../../../config/alacritty/base.yml}
-        '';
-      }
-    ]))
     (mkIf cfg.term.kitty.enable (mkMerge [
       {
         programs.kitty = {
