@@ -47,15 +47,16 @@
         rootFsOptions = {
           acltype = "posixacl";
           canmount = "off";
-          checksum = "edonr";
+          # checksum = "edonr";
           compression = "lz4";
-          dnodesize = "auto";
+          # dnodesize = "auto";
           # encryption does not appear to work in vm test; only use on real system
-          encryption = "aes-256-gcm";
-          keyformat = "passphrase";
-          keylocation = "prompt";
+          # encryption = "aes-256-gcm";
+          # keyformat = "passphrase";
+          # keylocation = "prompt";
           normalization = "formD";
-          relatime = "on";
+          # relatime = "on";
+          atime = "off";
           xattr = "sa";
         };
         mountpoint = null;
@@ -88,11 +89,11 @@
             options.mountpoint = "legacy";
             mountpoint = "/nix";
           };
-          "safe/home" = {
-            type = "zfs_fs";
-            options.mountpoint = "legacy";
-            mountpoint = "/home";
-          };
+          # "safe/home" = {
+          #   type = "zfs_fs";
+          #   options.mountpoint = "legacy";
+          #   mountpoint = "/home";
+          # };
           "safe/persist" = {
             type = "zfs_fs";
             options.mountpoint = "legacy";

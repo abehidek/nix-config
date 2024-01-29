@@ -47,7 +47,7 @@ in {
       packages = with pkgs; [
         tree
         pfetch
-        hello
+        neofetch
       ];
     };
   };
