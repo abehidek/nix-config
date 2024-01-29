@@ -703,6 +703,21 @@
         "type": "github"
       }
     },
+    "impermanence_2": {
+      "locked": {
+        "lastModified": 1703656108,
+        "narHash": "sha256-hCSUqdFJKHHbER8Cenf5JRzjMlBjIdwdftGQsO0xoJs=",
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "rev": "033643a45a4a920660ef91caa391fbffb14da466",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "type": "github"
+      }
+    },
     "lowdown-src": {
       "flake": false,
       "locked": {
@@ -729,7 +744,7 @@
         "hyprland": "hyprland_2",
         "hyprland-plugins": "hyprland-plugins",
         "hyprwm-contrib": "hyprwm-contrib",
-        "impermanence": "impermanence",
+        "impermanence": "impermanence_2",
         "nh": "nh",
         "nix-colors": "nix-colors",
         "nix-gaming": "nix-gaming",
@@ -1327,6 +1342,7 @@
         "env": "env",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
+        "impermanence": "impermanence",
         "misterio77": "misterio77",
         "nix-colors": "nix-colors_2",
         "nix-gaming": "nix-gaming_2",

@@ -8,8 +8,16 @@
     [ (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
+  boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.initrd.kernelModules = [ ];
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs = {
+    # enableUnstable = true;
+    forceImportRoot = false;
+    devNodes = lib.mkDefault "/dev/disk/by-id";
+  };
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 

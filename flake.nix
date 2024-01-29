@@ -12,6 +12,7 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    impermanence.url = "github:nix-community/impermanence";
     hyprland.url = "github:hyprwm/Hyprland";
     misterio77.url = github:misterio77/nix-config;
     nix-colors.url = github:misterio77/nix-colors;
