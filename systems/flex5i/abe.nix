@@ -160,6 +160,13 @@ in {
 
     nushell = {
       enable = true;
+      environmentVariables = {
+        VISUAL = "hx";
+        EDITOR = "hx";
+      };
+      shellAliases = {
+        sysc = "sudo nixos-rebuild switch --flake";
+      };
     };
     starship = {
       enable = true;
