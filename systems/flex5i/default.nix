@@ -247,6 +247,7 @@ in {
     gnome.dconf-editor
     inputs.devenv.packages.${pkgs.system}.default
     inputs.nix-gaming.packages.${pkgs.system}.osu-stable
+    cifs-utils
   ];
 
   system.stateVersion = "21.11";
