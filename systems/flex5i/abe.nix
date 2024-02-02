@@ -239,6 +239,7 @@ in {
     beekeeper-studio
     exodus
     bitwarden
+    prismlauncher
 
     # Sys control
     pavucontrol
