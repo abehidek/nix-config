@@ -221,7 +221,7 @@ in {
 
     fstrim.enable = true; # Enables periodic SSD TRIM of mounted partitions
 
-    gvfs.enable = true; # Gnome virtual filesystem (used by gnome nautilus)
+    gvfs.enable = true; # Gnome virtual filesystem (used by gnome nautilus and nemo)
 
     tlp = { # Optimizing linux battery life
       enable = true;
@@ -231,6 +231,8 @@ in {
         CPU_MAX_PERF_ON_BAT=30;
       };
     };
+
+    tailscale.enable = true;
   };
 
   environment.sessionVariables = {
