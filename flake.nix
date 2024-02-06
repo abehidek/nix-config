@@ -20,6 +20,10 @@
     vscode-server.url = "github:msteen/nixos-vscode-server";
     devenv.url = "github:cachix/devenv";
     nix-gaming.url = "github:fufexan/nix-gaming";
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     self,
@@ -34,7 +38,10 @@
     supportedSystems = [ "x86_64-linux" ];
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
   in rec {
-    packages = forAllSystems (system: import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; });
+    packages = forAllSystems (system: import ./pkgs {
+      inherit inputs outputs;
+      pkgs = nixpkgs.legacyPackages.${system}; 
+    });
 
     nixosModules = import ./modules/system;
 
@@ -74,6 +81,12 @@
       t16-wsl = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [  ./systems/t16 ];
+        specialArgs = { inherit inputs outputs; };
+      };
+
+      base-lxc = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [  ./systems/base-lxc ];
         specialArgs = { inherit inputs outputs; };
       };
     };
