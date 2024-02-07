@@ -84,6 +84,12 @@
         specialArgs = { inherit inputs outputs; };
       };
 
+      portainer = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [  ./systems/portainer ];
+        specialArgs = { inherit inputs outputs; };
+      };
+
       "templates.lxc.aoi" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [  ./systems/templates/lxc/aoi ];
