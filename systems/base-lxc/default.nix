@@ -25,12 +25,11 @@
     allowedTCPPorts = [ 80 443 8080 ];
   };
 
-  services.getty.autologinUser = lib.mkDefault "root";
+  # services.getty.autologinUser = lib.mkDefault "root";
 
   programs = {
     git.enable = true;
   };
-
 
   environment = {
     variables = {
