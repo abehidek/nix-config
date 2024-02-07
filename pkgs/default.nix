@@ -1,8 +1,9 @@
-{ inputs, outputs, pkgs }: {
+{ inputs, outputs, pkgs }: rec {
   swww = pkgs.callPackage ./swww.nix {};
-  base-lxc = inputs.nixos-generators.nixosGenerate {
+
+  "template.lxc.aoi" = inputs.nixos-generators.nixosGenerate {
     system = "x86_64-linux";
-    modules = [  ../systems/base-lxc ];
+    modules = [  ../systems/templates/lxc/aoi ];
     specialArgs = { inherit inputs outputs; };
     format = "proxmox-lxc";
   };

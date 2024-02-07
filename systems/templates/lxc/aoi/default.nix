@@ -3,7 +3,7 @@
 {
   imports = [
     (modulesPath + "/virtualisation/proxmox-lxc.nix") # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/programs/git.nix
-    ../global
+    ../../../global
   ];
 
   proxmoxLXC = {
@@ -25,24 +25,22 @@
     allowedTCPPorts = [ 80 443 8080 ];
   };
 
-  # services.getty.autologinUser = lib.mkDefault "root";
-
   programs = {
     git.enable = true;
   };
 
   environment = {
-    variables = {
-      EDITOR = "hx";
-      VISUAL = "hx";
-    };
-
     systemPackages = with pkgs; [
       # tui
       helix lazygit
       # cli
-      lsof neofetch
+      lsof neofetch htop
     ];
+
+    variables = {
+      EDITOR = "hx";
+      VISUAL = "hx";
+    };
   };
 
   users.users = {
