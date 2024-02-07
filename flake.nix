@@ -84,7 +84,7 @@
         specialArgs = { inherit inputs outputs; };
       };
 
-      "template.lxc.aoi" = nixpkgs.lib.nixosSystem {
+      "templates.lxc.aoi" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [  ./systems/templates/lxc/aoi ];
         specialArgs = { inherit inputs outputs; };
