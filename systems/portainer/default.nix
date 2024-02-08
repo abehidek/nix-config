@@ -65,7 +65,7 @@
     abe = {
       isNormalUser = true;
       initialPassword = "password";
-      extraGroups = [ "wheel" "video" "audio" "docker" ];
+      extraGroups = [ "wheel" "video" "audio" "docker" "podman" ];
     };
   };
 
