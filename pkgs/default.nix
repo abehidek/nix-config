@@ -7,4 +7,11 @@
     specialArgs = { inherit inputs outputs; };
     format = "proxmox-lxc";
   };
+
+  "templates.lxc.beta" = inputs.nixos-generators.nixosGenerate {
+    system = "x86_64-linux";
+    modules = [  ../systems/templates/lxc/beta ];
+    specialArgs = { inherit inputs outputs; };
+    format = "proxmox-lxc";
+  };
 }
