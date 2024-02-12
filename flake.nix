@@ -109,6 +109,12 @@
         modules = [ ./systems/t16/abe.nix ];
         extraSpecialArgs = { inherit inputs outputs; };
       };
+
+      "root@zeta" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        modules = [ ./systems/zeta/root.nix ];
+        extraSpecialArgs = { inherit inputs outputs; };
+      };
     };
 
     devShells = forAllSystems (system: {
