@@ -90,6 +90,12 @@
         specialArgs = { inherit inputs outputs; };
       };
 
+      mem = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [  ./systems/mem ];
+        specialArgs = { inherit inputs outputs; };
+      };
+
       "templates.lxc.aoi" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [  ./systems/templates/lxc/aoi ];
