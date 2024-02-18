@@ -7,30 +7,45 @@
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
 
-  boot.extraModulePackages = [ config.boot.kernelPackages.wireguard ];
   boot.kernel.sysctl = {
-    "net.ipv4.ping_group_range" = "0 1000";
     "net.ipv4.ip_forward" = "1";
   };
 
   networking = {
     hostName = "roxy";
-    domain = "";
+    firewall = {
+      allowedTCPPorts = [ 8080 ];
+      allowedUDPPorts = [ 51820 ];
+    };
 
     wireguard.enable = true;
-    wg-quick.interfaces = {
-      wg0 = {
-        privateKeyFile = "/home/abe/wireguard/privatekey";
-        listenPort = 55107;
-        address = [ "10.100.0.1/24" ];
-        peers = [
-          # Portainer
-          {
-            publicKey = "ADp4rHQORLcQJd+kgSgcbVttRJ/0vcjPM9NX0NCTPUQ=";
-            allowedIPs = [ "10.100.0.2/24" ];
-          }
-        ];
-      };
+    wireguard.interfaces.wg0 = {
+      ips = [ "10.100.0.1/24" ];
+      listenPort = 51820;
+
+      privateKeyFile = "/home/abe/wireguard/private";
+
+      peers = [
+        # Meeru
+        {
+          publicKey = "aIpyJbTs5COlGCpYhZhwf5FibTVyxUXluafF02LMBg0=";
+          allowedIPs = [ "10.100.0.10/32" ];
+        }
+      ];
+
+      postSetup = ''
+        ${pkgs.iptables}/bin/iptables -A FORWARD -i enp1s0 -o wg0 -p tcp --syn --dport 8080 -m conntrack --ctstate NEW -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -o enp1s0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -t nat -A PREROUTING -i enp1s0 -p tcp --dport 8080 -j DNAT --to-destination 10.100.0.10
+        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o wg0 -p tcp --dport 8080 -d 10.100.0.10 -j SNAT --to-source 10.100.0.1
+      '';
+
+      postShutdown = ''
+        ${pkgs.iptables}/bin/iptables -D FORWARD -i enp1s0 -o wg0 -p tcp --syn --dport 8080 -m conntrack --ctstate NEW -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -o enp1s0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -t nat -D PREROUTING -i enp1s0 -p tcp --dport 8080 -j DNAT --to-destination 10.100.0.10
+        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o wg0 -p tcp --dport 8080 -d 10.100.0.10 -j SNAT --to-source 10.100.0.1
+      '';
     };
   };
 
@@ -40,7 +55,7 @@
   services.openssh.enable = true;
 
   environment.systemPackages = with pkgs; [
-    vim openssl helix git lazygit
+    vim openssl helix git lazygit hello lsof
   ];
 
   environment.variables = {
