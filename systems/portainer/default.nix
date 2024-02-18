@@ -19,10 +19,31 @@
   ];
 
   boot.loader.grub.enable = false;
+  boot.extraModulePackages = [ config.boot.kernelPackages.wireguard ];
+  boot.kernel.sysctl = {
+    "net.ipv4.ping_group_range" = "0 1000";
+  };
 
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [ 80 443 8080 ];
+    wireguard.enable = true;
+    wg-quick.interfaces = {
+      wg0 = {
+        privateKeyFile = "/home/abe/wireguard/privatekey";
+        address = [ "10.100.0.2/24" ];
+
+        peers = [
+          # Roxy
+          {
+            publicKey = "OhX7LDv+XDV5s0CqYNjcUbhFLjZO9zZTEWvHjKBmyXA=";
+            allowedIPs = [ "10.100.0.1/24" ];
+            endpoint = "216.238.102.51:55107";
+            persistentKeepalive = 25;
+          }
+        ];
+      };
+    };
   };
 
 
