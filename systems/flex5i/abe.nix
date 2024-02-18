@@ -240,6 +240,7 @@ in {
     exodus
     bitwarden
     prismlauncher
+    spacedrive
 
     # Sys control
     pavucontrol
