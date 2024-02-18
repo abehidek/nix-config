@@ -102,6 +102,12 @@
         specialArgs = { inherit inputs outputs; };
       };
 
+      net = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [  ./systems/net ];
+        specialArgs = { inherit inputs outputs; };
+      };
+
       "templates.lxc.aoi" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [  ./systems/templates/lxc/aoi ];
