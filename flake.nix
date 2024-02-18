@@ -108,6 +108,12 @@
         specialArgs = { inherit inputs outputs; };
       };
 
+      meeru = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [  ./systems/meeru ];
+        specialArgs = { inherit inputs outputs; };
+      };
+
       # vultr cloud compute instance installed through [nixos-infect](https://github.com/elitak/nixos-infect#vultr)
       roxy = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
