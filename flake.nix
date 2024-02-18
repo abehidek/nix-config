@@ -108,6 +108,13 @@
         specialArgs = { inherit inputs outputs; };
       };
 
+      # vultr cloud compute instance installed through [nixos-infect](https://github.com/elitak/nixos-infect#vultr)
+      roxy = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [  ./systems/roxy ];
+        specialArgs = { inherit inputs outputs; };
+      };
+
       "templates.lxc.aoi" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [  ./systems/templates/lxc/aoi ];
