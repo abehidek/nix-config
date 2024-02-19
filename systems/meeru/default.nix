@@ -24,9 +24,16 @@
   };
 
   networking = {
+    nameservers = [ "1.1.1.1" "1.0.0.1" ];
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 80 443 8080 ];
+      allowedTCPPorts = [
+        25 80 110 143
+        443 465 587
+        993 995 4190
+
+        8080 # mailcow admin
+      ];
     };
 
     wireguard.enable = true;
@@ -50,12 +57,27 @@
     git.enable = true;
   };
 
+  services.fail2ban = {
+    enable = true;
+  };
+
+  virtualisation = {
+    docker = {
+      enable = true;
+      package = pkgs.docker;
+    };
+  };
+
   environment = {
     systemPackages = with pkgs; [
       # tui
       helix lazygit hello
       # cli
       lsof neofetch htop
+      # virtualisation
+      docker-compose
+      # utils
+      openssl certbot
     ];
 
     variables = {
@@ -69,7 +91,7 @@
     abe = {
       isNormalUser = true;
       initialPassword = "password";
-      extraGroups = [ "wheel" "video" "audio" ];
+      extraGroups = [ "wheel" "video" "audio" "docker" ];
     };
   };
 
