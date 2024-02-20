@@ -24,6 +24,7 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    arion.url = github:hercules-ci/arion;
   };
   outputs = {
     self,

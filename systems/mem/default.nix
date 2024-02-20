@@ -4,6 +4,7 @@
   imports = [
     (modulesPath + "/virtualisation/proxmox-lxc.nix") # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/programs/git.nix
     ../global
+    inputs.arion.nixosModules.arion
   ];
 
   proxmoxLXC = {
@@ -89,8 +90,8 @@
       };
     };
     firewall = {
-      enable = false;
-      allowedTCPPorts = [ 80 443 8080 ];
+      enable = true;
+      allowedTCPPorts = [ 7575 ];
     };
   };
 
@@ -155,6 +156,28 @@
     docker = {
       enable = true;
       package = pkgs.docker;
+    };
+
+    arion = {
+      backend = "docker";
+      projects.homarr.settings = {
+        project.name = "homarr";
+        services.homarr.service = {
+          image = "ghcr.io/ajnart/homarr:latest";
+          container_name = "homarr";
+          restart = "unless-stopped";
+          network_mode = "host";
+          ports = [
+            "7575:7575"
+          ];
+          volumes = [
+            "/var/run/docker.sock:/var/run/docker.sock"
+            "/home/abe/homarr/configs:/app/data/configs"
+            "/home/abe/homarr/icons:/app/public/icons"
+            "/home/abe/homarr/data:/data"
+          ];
+        };
+      };
     };
   };
 
