@@ -91,7 +91,7 @@
     };
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 7575 ];
+      allowedTCPPorts = [ 7575 8080 9090 ];
     };
   };
 
@@ -152,6 +152,14 @@
     openFirewall = true;
   };
 
+  services.miniflux = {
+    enable = true;
+    adminCredentialsFile = "/home/abe/miniflux/admin-credentials";
+    config = {
+      LISTEN_ADDR = "0.0.0.0:8080";
+    };
+  };
+
   virtualisation = {
     docker = {
       enable = true;
@@ -160,6 +168,21 @@
 
     arion = {
       backend = "docker";
+      projects.linkding.settings = {
+        project.name = "linkding";
+        services.linkding.service = {
+          image = "sissbruecker/linkding:latest";
+          container_name = "\$\{LD_CONTAINER_NAME:-linkding\}";
+          restart = "unless-stopped";
+          env_file = [ "/home/abe/linkding/env" ];
+          ports = [
+            "9090:9090"
+          ];
+          volumes = [
+            "/home/abe/linkding/data:/etc/linkding/data"
+          ];
+        };
+      };
       projects.homarr.settings = {
         project.name = "homarr";
         services.homarr.service = {
