@@ -224,6 +224,10 @@ in {
     startInBackground = true;
   };
 
+  services.flameshot = {
+    enable = true;
+  };
+
   # Standalone Packages
   home.packages = with pkgs; [
     # Apps
