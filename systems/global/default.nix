@@ -3,6 +3,11 @@
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
+      trusted-users = [
+        "root"
+        "abe"
+        "@wheel"
+      ];
       substituters = [
         "https://hyprland.cachix.org"
         "https://devenv.cachix.org"
