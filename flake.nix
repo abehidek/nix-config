@@ -25,6 +25,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     arion.url = github:hercules-ci/arion;
+    playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
   };
   outputs = {
     self,
@@ -112,6 +113,12 @@
       meeru = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [  ./systems/meeru ];
+        specialArgs = { inherit inputs outputs; };
+      };
+
+      mc = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [  ./systems/mc ];
         specialArgs = { inherit inputs outputs; };
       };
 
