@@ -47,10 +47,10 @@
         ${pkgs.iptables}/bin/iptables -t nat -A PREROUTING -i enp1s0 -p tcp --dport 25 -j DNAT --to-destination 10.100.0.10
         ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o wg0 -p tcp --dport 25 -d 10.100.0.10 -j SNAT --to-source 10.100.0.1
         # Port 80
-        # ${pkgs.iptables}/bin/iptables -A FORWARD -i enp1s0 -o wg0 -p tcp --syn --dport 80 -m conntrack --ctstate NEW -j ACCEPT
-        # ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -o enp1s0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-        # ${pkgs.iptables}/bin/iptables -t nat -A PREROUTING -i enp1s0 -p tcp --dport 80 -j DNAT --to-destination 10.100.0.10
-        # ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o wg0 -p tcp --dport 80 -d 10.100.0.10 -j SNAT --to-source 10.100.0.1
+        ${pkgs.iptables}/bin/iptables -A FORWARD -i enp1s0 -o wg0 -p tcp --syn --dport 80 -m conntrack --ctstate NEW -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -o enp1s0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -t nat -A PREROUTING -i enp1s0 -p tcp --dport 80 -j DNAT --to-destination 10.100.0.10
+        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o wg0 -p tcp --dport 80 -d 10.100.0.10 -j SNAT --to-source 10.100.0.1
         # Port 110
         ${pkgs.iptables}/bin/iptables -A FORWARD -i enp1s0 -o wg0 -p tcp --syn --dport 110 -m conntrack --ctstate NEW -j ACCEPT
         ${pkgs.iptables}/bin/iptables -A FORWARD -i wg0 -o enp1s0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
@@ -100,10 +100,10 @@
         ${pkgs.iptables}/bin/iptables -t nat -D PREROUTING -i enp1s0 -p tcp --dport 25 -j DNAT --to-destination 10.100.0.10
         ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o wg0 -p tcp --dport 25 -d 10.100.0.10 -j SNAT --to-source 10.100.0.1
         # Port 80
-        # ${pkgs.iptables}/bin/iptables -D FORWARD -i enp1s0 -o wg0 -p tcp --syn --dport 80 -m conntrack --ctstate NEW -j ACCEPT
-        # ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -o enp1s0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-        # ${pkgs.iptables}/bin/iptables -t nat -D PREROUTING -i enp1s0 -p tcp --dport 80 -j DNAT --to-destination 10.100.0.10
-        # ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o wg0 -p tcp --dport 80 -d 10.100.0.10 -j SNAT --to-source 10.100.0.1
+        ${pkgs.iptables}/bin/iptables -D FORWARD -i enp1s0 -o wg0 -p tcp --syn --dport 80 -m conntrack --ctstate NEW -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -o enp1s0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+        ${pkgs.iptables}/bin/iptables -t nat -D PREROUTING -i enp1s0 -p tcp --dport 80 -j DNAT --to-destination 10.100.0.10
+        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o wg0 -p tcp --dport 80 -d 10.100.0.10 -j SNAT --to-source 10.100.0.1
         # Port 110
         ${pkgs.iptables}/bin/iptables -D FORWARD -i enp1s0 -o wg0 -p tcp --syn --dport 110 -m conntrack --ctstate NEW -j ACCEPT
         ${pkgs.iptables}/bin/iptables -D FORWARD -i wg0 -o enp1s0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
