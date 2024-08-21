@@ -20,7 +20,7 @@
       { file = "/etc/ssh/ssh_host_ed25519_key"; parentDirectory = { mode = "u=rw,g=r,o=r"; }; }
       { file = "/etc/ssh/ssh_host_rsa_key.pub"; parentDirectory = { mode = "u=rw,g=r,o=r"; }; }
       { file = "/etc/ssh/ssh_host_rsa_key"; parentDirectory = { mode = "u=rw,g=r,o=r"; }; }
-      { file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+      { file = "/etc/nix/id_rsa"; parentDirectory = { mode = "u=rwx,g=rx,o=x"; }; }
     ];
 
     users.abe = {

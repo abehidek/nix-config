@@ -11,6 +11,8 @@ in {
     ./impermanence.nix
   ];
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
@@ -30,6 +32,8 @@ in {
     Defaults  lecture="never"
   '';
 
+  virtualisation.libvirtd.enable = true;
+
   time.timeZone = "America/Sao_Paulo";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -40,17 +44,20 @@ in {
     users.abe = {
       isNormalUser = true;
       hashedPassword = hashedPwd;
-      extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
+      extraGroups = [ "wheel" "networkmanager" "video" "audio" "libvirtd" ];
       packages = with pkgs; [
         tree
-        pfetch
         neofetch
       ];
     };
   };
 
+  environment.sessionVariables = {
+    NIX_CONFIG = "extra-experimental-features = nix-command flakes repl-flake";
+  };
+
   environment.systemPackages = with pkgs; [
-    vim openssl helix git
+    vim openssl helix git htop psensor
   ];
 
   system.stateVersion = "23.05"; # Did you read the comment?

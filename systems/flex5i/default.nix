@@ -82,6 +82,8 @@ in {
     };
   };
 
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+
   hardware = {
     cpu.intel.updateMicrocode = true;
     bluetooth = {
@@ -90,8 +92,6 @@ in {
     };
     opengl = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
       extraPackages = with pkgs; [ 
         intel-compute-runtime
         intel-media-driver
@@ -115,6 +115,11 @@ in {
   time.timeZone = "America/Sao_Paulo";
   i18n = {
     defaultLocale = "en_US.UTF-8";
+    supportedLocales = [
+      "en_US.UTF-8/UTF-8"
+      "ja_JP.UTF-8/UTF-8"
+      "pt_BR.UTF-8/UTF-8"
+    ];
     extraLocaleSettings = {
       LANGUAGE ="";
       LC_ADDRESS = "pt_BR.UTF-8";
@@ -144,6 +149,8 @@ in {
     hostName = "flex5i";
     firewall = {
       enable = true;
+      trustedInterfaces = [ "p2p-wl+" ];
+      allowedUDPPorts = [ 7236 5353 ];
       allowedTCPPorts = [
         22  # SSH
         80  # HTTP
@@ -151,6 +158,7 @@ in {
         5000
         4000
         8000
+        7236 7250
         443 # HTTPS
       ];
     };
@@ -166,7 +174,6 @@ in {
     wireplumber.enable = true;
   };
 
-  sound.enable = true;
   hardware.pulseaudio = {
     enable = false;
     extraConfig = "unload-module module-suspend-on-idle";
@@ -175,9 +182,16 @@ in {
 
   # Desktop
   programs.dconf.enable = true; # Necessary for GTK
+  programs.virt-manager.enable = true;
 
   xdg.portal = {
     enable = true;
+    xdgOpenUsePortal = true;
+    extraPortals = [
+      #pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+      pkgs.xdg-desktop-portal-wlr
+    ];
     # extraPortals = with pkgs; [ xdg-desktop-portal-gtk ]; Cinnamon already adds it
   };
 
@@ -248,10 +262,13 @@ in {
     # playerctl
     rofi
     gnome.dconf-editor
+    gnome-network-displays
     inputs.devenv.packages.${pkgs.system}.default
     inputs.nix-gaming.packages.${pkgs.system}.osu-stable
     cifs-utils
   ];
+
+  fonts.packages = with pkgs; [ dejavu_fonts ipafont kochi-substitute ];
 
   system.stateVersion = "21.11";
 }

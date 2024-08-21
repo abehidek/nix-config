@@ -31,7 +31,7 @@ in {
         qt = {
           enable = true;
           useGtkTheme = true;
-          dolphinBgColor = "#${colorScheme.colors.base00}";
+          dolphinBgColor = "#${colorScheme.palette.base00}";
         };
       };
       hyprland = {
@@ -57,7 +57,7 @@ in {
           family = "FiraCode Nerd Font";
           package = pkgs.nerdfonts.override { fonts = [ "FiraCode" ]; };
         };
-        colorScheme = colorScheme.colors;
+        colorScheme = colorScheme.pallete;
       };
       notifications = {
         mako.enable = false; # Wayland notification daemon
@@ -72,7 +72,7 @@ in {
           };
           colors = {
             enable = true;
-            base16 = colorScheme.colors;
+            base16 = colorScheme.palette;
           };
         };
       };
@@ -89,6 +89,22 @@ in {
       family = "Fira Sans";
       package = pkgs.fira;
     };
+  };
+
+  fonts.fontconfig.enable = true;
+  fonts.fontconfig.defaultFonts = {
+    monospace = [
+      "FiraCode Nerd Font"
+      "IPAGothic"
+    ];
+    sansSerif = [
+      "Fira Sans"
+      "IPAPGothic"
+    ];
+    serif = [
+      "DejaVu Serif"
+      "IPAPMincho"
+    ];
   };
 
   home = {
@@ -241,10 +257,11 @@ in {
     libreoffice-qt
     portfolio
     beekeeper-studio
-    exodus
+    # exodus
     bitwarden
     prismlauncher
     spacedrive
+    floorp
 
     # Sys control
     pavucontrol
