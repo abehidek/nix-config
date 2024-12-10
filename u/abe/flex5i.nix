@@ -39,6 +39,13 @@ in
         identitiesOnly = true;
         identityFile = [ "~/.ssh/id_ed25519" ];
       };
+
+      "wsl-t16" = {
+        host = "10.0.0.39";
+        identitiesOnly = true;
+        identityFile = [ "~/.ssh/id_ed25519" ];
+        port = 2022;
+      };
     };
   };
 
