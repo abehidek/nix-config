@@ -48,6 +48,7 @@
 
   users.users."abe".openssh.authorizedKeys.keys = [
     (builtins.readFile ../k/abe/flex5i.pub)
+    (builtins.readFile ../k/abe/wsl-t16.pub)
   ];
 
   programs.mtr.enable = true;
@@ -58,7 +59,7 @@
   };
 
   environment.shellAliases = {
-    sysc = "sudo nixos-rebuild switch --flake";
+    sysc = "sudo nixos-rebuild switch --flake .#$(hostname)";
     usrc = "home-manager switch --flake";
   };
 

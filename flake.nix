@@ -20,8 +20,10 @@
     };
 
     # misc
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+
     impermanence.url = "github:nix-community/impermanence";
 
     disko.url = "github:nix-community/disko";
@@ -46,7 +48,17 @@
       all-users = import ./u/all.nix;
 
       nixosConfigurations = {
-        flex5i = lib.nixosSystem {
+        "wsl-t16" = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ ./s/wsl-t16 ];
+          specialArgs = {
+            inherit nixpkgs;
+            all = outputs.all;
+            nixos-wsl = inputs.nixos-wsl;
+          };
+        };
+
+        "flex5i" = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [ ./s/flex5i ];
           specialArgs = {

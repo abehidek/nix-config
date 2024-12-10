@@ -25,10 +25,10 @@ in
   imports = [
     home-manager.nixosModules.home-manager
     nur.modules.nixos.default
-    disko.nixosModules.disko
     (all { inherit pkgs nixpkgs; })
-    impermanence.nixosModules.impermanence
     sops-nix.nixosModules.sops
+    disko.nixosModules.disko
+    impermanence.nixosModules.impermanence
     nixos-cosmic.nixosModules.default
     nix-flatpak.nixosModules.nix-flatpak
 
