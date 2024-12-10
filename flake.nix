@@ -1,171 +1,81 @@
 {
-  description = "My personal NixOS configurations";
+  description = "hidek.xyz c NixOS ecosystem";
+
   inputs = {
-    env.url = "github:abehidek/env.nix";
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # nixpkgs/nixos-22.05
-    stable.url = "github:nixos/nixpkgs/nixos-22.11";
-    home-manager = {
-      url = "github:nix-community/home-manager"; # home-manager/release-22.05
-      inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.follows = "nixos-cosmic/nixpkgs"; # flex5i de
+
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nur.url = "github:nix-community/NUR";
+
+    # secrets
+    sops-nix.url = "github:mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-secrets = {
+      url = "git+ssh://git@github.com/abehidek/nix-secrets.git?ref=main&shallow=1";
+      flake = false;
     };
-    disko = {     
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
+    # misc
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
     impermanence.url = "github:nix-community/impermanence";
-    hyprland.url = "github:hyprwm/Hyprland";
-    misterio77.url = github:misterio77/nix-config;
-    nix-colors.url = github:misterio77/nix-colors;
-    nixos-wsl.url = "github:nix-community/NixOS-WSL";
-    vscode-server.url = "github:msteen/nixos-vscode-server";
-    devenv.url = "github:cachix/devenv";
-    nix-gaming.url = "github:fufexan/nix-gaming";
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    arion.url = github:hercules-ci/arion;
-    playit-nixos-module.url = "github:pedorich-n/playit-nixos-module";
+
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
-  outputs = {
-    self,
-    nixpkgs,
-    stable,
-    home-manager,
-    ... 
-  } @ inputs:
 
-  let
-    inherit (self) outputs;
-    supportedSystems = [ "x86_64-linux" ];
-    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-  in rec {
-    packages = forAllSystems (system: import ./pkgs {
-      inherit inputs outputs;
-      pkgs = nixpkgs.legacyPackages.${system}; 
-    });
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nur,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+      lib = nixpkgs.lib // home-manager.lib;
+    in
+    {
+      all = import ./s/all.nix;
 
-    nixosModules = import ./modules/system;
+      all-users = import ./u/all.nix;
 
-    userModules = import ./modules/user;
-
-    nixosConfigurations = rec {
-      flex5i = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [  ./systems/flex5i ];
-        specialArgs = { inherit inputs outputs; };
+      nixosConfigurations = {
+        flex5i = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ ./s/flex5i ];
+          specialArgs = {
+            inherit nixpkgs home-manager nur;
+            all = outputs.all;
+            all-users = outputs.all-users;
+            nix-secrets = inputs.nix-secrets;
+            sops-nix = inputs.sops-nix;
+            disko = inputs.disko;
+            impermanence = inputs.impermanence;
+            nixos-cosmic = inputs.nixos-cosmic;
+            nix-flatpak = inputs.nix-flatpak;
+          };
+        };
       };
 
-      ssd = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [  ./systems/ssd ];
-        specialArgs = { inherit inputs outputs; };
-      };
-
-      wsl = stable.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [ ./systems/wsl ];
-        specialArgs = { inherit inputs outputs; };
-      };
-
-      mail = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [  ./systems/mail ];
-        specialArgs = { inherit inputs outputs; };
-      };
-
-      test = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [  ./systems/test ];
-        specialArgs = { inherit inputs outputs; };
-      };
-
-      t16-wsl = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [  ./systems/t16 ];
-        specialArgs = { inherit inputs outputs; };
-      };
-
-      portainer = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [  ./systems/portainer ];
-        specialArgs = { inherit inputs outputs; };
-      };
-
-      mem = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [  ./systems/mem ];
-        specialArgs = { inherit inputs outputs; };
-      };
-
-      fin = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [  ./systems/fin ];
-        specialArgs = { inherit inputs outputs; };
-      };
-
-      net = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [  ./systems/net ];
-        specialArgs = { inherit inputs outputs; };
-      };
-
-      meeru = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [  ./systems/meeru ];
-        specialArgs = { inherit inputs outputs; };
-      };
-
-      mc = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [  ./systems/mc ];
-        specialArgs = { inherit inputs outputs; };
-      };
-
-      # vultr cloud compute instance installed through [nixos-infect](https://github.com/elitak/nixos-infect#vultr)
-      roxy = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [  ./systems/roxy ];
-        specialArgs = { inherit inputs outputs; };
-      };
-
-      mokou = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [  ./systems/mokou ];
-        specialArgs = { inherit inputs outputs; };
-      };
-
-      "templates.lxc.aoi" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [  ./systems/templates/lxc/aoi ];
-        specialArgs = { inherit inputs outputs; };
-      };
-
-      "templates.lxc.beta" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [  ./systems/templates/lxc/beta ];
-        specialArgs = { inherit inputs outputs; };
+      homeConfigurations = {
+        "abe@flex5i" = lib.homeManagerConfiguration {
+          modules = [ ./u/abe/flex5i.nix ];
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+          };
+          extraSpecialArgs = {
+            all-users = outputs.all-users;
+            nix-secrets = inputs.nix-secrets;
+            sops-nix = inputs.sops-nix;
+          };
+        };
       };
     };
-
-    homeConfigurations = {
-      "abe@t16-wsl" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
-        modules = [ ./systems/t16/abe.nix ];
-        extraSpecialArgs = { inherit inputs outputs; };
-      };
-
-      "root@zeta" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
-        modules = [ ./systems/zeta/root.nix ];
-        extraSpecialArgs = { inherit inputs outputs; };
-      };
-    };
-
-    devShells = forAllSystems (system: {
-      xmonad = import ./shells/xmonad.nix { 
-        inherit nixpkgs system inputs outputs;
-      };
-    });
-  };
 }
