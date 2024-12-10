@@ -48,18 +48,6 @@
       all-users = import ./u/all.nix;
 
       nixosConfigurations = {
-        "wsl-t16" = lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [ ./s/wsl-t16 ];
-          specialArgs = {
-            inherit nixpkgs;
-            all = outputs.all;
-            nix-secrets = inputs.nix-secrets;
-            sops-nix = inputs.sops-nix;
-            nixos-wsl = inputs.nixos-wsl;
-          };
-        };
-
         "flex5i" = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [ ./s/flex5i ];
@@ -75,11 +63,37 @@
             nix-flatpak = inputs.nix-flatpak;
           };
         };
+
+        "wsl-t16" = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ ./s/wsl-t16 ];
+          specialArgs = {
+            inherit nixpkgs home-manager;
+            all = outputs.all;
+            all-users = outputs.all-users;
+            nix-secrets = inputs.nix-secrets;
+            sops-nix = inputs.sops-nix;
+            nixos-wsl = inputs.nixos-wsl;
+          };
+        };
       };
 
       homeConfigurations = {
         "abe@flex5i" = lib.homeManagerConfiguration {
           modules = [ ./u/abe/flex5i.nix ];
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+          };
+          extraSpecialArgs = {
+            all-users = outputs.all-users;
+            nix-secrets = inputs.nix-secrets;
+            sops-nix = inputs.sops-nix;
+          };
+        };
+
+        "abe@wsl-t16" = lib.homeManagerConfiguration {
+          modules = [ ./u/abe/wsl-t16.nix ];
           pkgs = import nixpkgs {
             system = "x86_64-linux";
             config.allowUnfree = true;

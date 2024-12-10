@@ -4,9 +4,10 @@
   pkgs,
   # modulesPath,
   nixpkgs,
-  # home-manager,
+  home-manager,
   # nur,
   all,
+  all-users,
   nix-secrets,
   sops-nix,
   nixos-wsl,
@@ -15,6 +16,7 @@
 
 {
   imports = [
+    home-manager.nixosModules.home-manager
     (all { inherit pkgs nixpkgs; })
     sops-nix.nixosModules.sops
     nixos-wsl.nixosModules.default
@@ -30,7 +32,7 @@
     };
 
     secrets = {
-      "keys/ssh-abe@flex5i" = {
+      "keys/ssh-abe@wsl-t16" = {
         path = "/root/.ssh/id_ed25519"; # private repo access on "sudo nixos-rebuild switch" bc sudo runs w/ sudo user
       };
     };
@@ -50,6 +52,11 @@
     package = pkgs.nix-ld-rs; # only for NixOS 24.05
   };
 
+  environment.sessionVariables = {
+    VISUAL = "hx";
+    EDITOR = "hx";
+  };
+
   environment.systemPackages = with pkgs; [
     wget
     git
@@ -61,6 +68,13 @@
     pfetch
     neofetch
   ];
+
+  home-manager.useGlobalPkgs = true;
+  home-manager.extraSpecialArgs = {
+    inherit all-users nix-secrets sops-nix;
+  };
+
+  home-manager.users.abe = import ../../u/abe/${config.networking.hostName}.nix;
 
   system.stateVersion = "24.05";
 }
