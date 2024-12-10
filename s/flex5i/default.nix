@@ -60,6 +60,7 @@ in
     };
 
     secrets = {
+      "files/cred-hidek@hako" = { };
       "passwords/user-abe@flex5i" = { };
       "keys/ssh-abe@flex5i" = {
         path = "/root/.ssh/id_ed25519"; # private repo access on "sudo nixos-rebuild switch" bc sudo runs w/ sudo user
@@ -109,7 +110,7 @@ in
       "x-systemd.automount"
       "x-systemd.requires=network-online.target"
       "x-systemd.after=network-online.target"
-      "credentials=/home/abe/secrets/hako"
+      "credentials=${config.sops.secrets."files/cred-hidek@hako".path}"
       "uid=${toString config.users.users."abe".uid}"
       "gid=${toString config.users.groups."users".gid}"
     ];
@@ -173,7 +174,23 @@ in
     enable = true;
     update.auto.enable = false;
     uninstallUnmanaged = false;
-    packages = [ "io.github.zen_browser.zen" ];
+    update.onActivation = true;
+    remotes = [
+      {
+        name = "flathub";
+        location = "https://flathub.org/repo/flathub.flatpakrepo";
+      }
+      {
+        name = "flathub-beta";
+        location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
+      }
+    ];
+    packages = [
+      {
+        appId = "io.github.zen_browser.zen";
+        origin = "flathub";
+      }
+    ];
   };
 
   programs.nix-ld = {
