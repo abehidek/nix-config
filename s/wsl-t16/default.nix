@@ -45,6 +45,27 @@
 
   networking.hostName = "wsl-t16";
 
+  /*
+    Since WSL creates an entire virtual LAN on the host machine,
+    we need to assign a different port too the OpenSSH service,
+    which is 2022 as you can see below
+    This happens because the host machine also has SSH which listens
+    to the same port, so to avoid conflict we assign a different port
+
+    After this, get the WSL VLAN IP
+    $ wsl hostname -I
+
+    Then on the host powershell run:
+    $ New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd) for WSL' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 2022
+
+    $ netsh interface portproxy add v4tov4 listenport=2022 listenaddress=0.0.0.0 connectport=2022 connectaddress=<WSL_VLAN_IP>
+
+    Get the host LAN IP:
+    $ ipconfig
+
+    Then simply connect to WSL using
+    $ ssh <user>@<HOST_LAN_IP> -p 2022
+  */
   services.openssh.ports = [ 2022 ];
 
   programs.nix-ld = {

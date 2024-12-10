@@ -40,6 +40,10 @@ in
         identityFile = [ "~/.ssh/id_ed25519" ];
       };
 
+      /*
+        automatically using port 2022 when connecting to this host,
+        useful when building on a machine for another machine
+      */
       "wsl-t16" = {
         host = "10.0.0.39";
         identitiesOnly = true;
