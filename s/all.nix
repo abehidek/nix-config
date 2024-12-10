@@ -60,7 +60,7 @@
 
   environment.shellAliases = {
     sysc = "sudo nixos-rebuild switch --flake .#$(hostname)";
-    usrc = "home-manager switch --flake";
+    usrc = "home-manager switch --flake .#$(whoami)@$(hostname)";
   };
 
   environment.systemPackages = with pkgs; [

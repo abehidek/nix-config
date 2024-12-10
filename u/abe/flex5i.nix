@@ -54,8 +54,8 @@ in
     configFile.source = dotsPath + /nushell/config.nu;
 
     shellAliases = {
-      sysc = "sudo nixos-rebuild switch --flake";
-      usrc = "home-manager switch --flake";
+      sysc = "sudo nixos-rebuild switch --flake .#$\"(hostname)\"";
+      usrc = "home-manager switch --flake .#$\"(whoami)\"@$\"(hostname)\"";
       l = "ls -al";
     };
 
