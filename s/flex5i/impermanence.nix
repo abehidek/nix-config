@@ -7,8 +7,6 @@ let
   homeDirectories = [
     # $HOME
     "ProgramasRFB"
-    "nix-config"
-    "secrets"
     ".var"
     ".mozilla"
     ".vscode"
