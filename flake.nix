@@ -54,6 +54,8 @@
           specialArgs = {
             inherit nixpkgs;
             all = outputs.all;
+            nix-secrets = inputs.nix-secrets;
+            sops-nix = inputs.sops-nix;
             nixos-wsl = inputs.nixos-wsl;
           };
         };
