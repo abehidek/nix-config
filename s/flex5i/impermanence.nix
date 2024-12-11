@@ -79,24 +79,12 @@ in
       "/var/lib/waydroid"
       "/var/lib/flatpak"
       "/etc/NetworkManager/system-connections"
-      {
-        directory = "/var/lib/colord";
-        user = "colord";
-        group = "colord";
-        mode = "u=rwx,g=rx,o=";
-      }
     ];
     files = [
       "/etc/ssh/ssh_host_ed25519_key.pub"
       "/etc/ssh/ssh_host_ed25519_key"
       "/etc/ssh/ssh_host_rsa_key.pub"
       "/etc/ssh/ssh_host_rsa_key"
-      {
-        file = "/var/keys/secret_file";
-        parentDirectory = {
-          mode = "u=rwx,g=,o=";
-        };
-      }
     ];
     users.naohiro = {
       directories = homeDirectories;

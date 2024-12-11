@@ -18,8 +18,8 @@
 }:
 
 let
-  zpool_name = "zroot";
   device = "/dev/disk/by-id/nvme-SSSTC_CL1-4D256_SS1C86490L2BR17P6972";
+  zpool_name = "zroot";
 in
 {
   imports = [
