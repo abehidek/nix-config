@@ -22,6 +22,8 @@ let
   zpool_name = "zroot";
 in
 {
+  nixpkgs.config.allowUnfree = true;
+
   imports = [
     home-manager.nixosModules.home-manager
     nur.modules.nixos.default
@@ -173,7 +175,7 @@ in
   services.flatpak = {
     enable = true;
     update.auto.enable = false;
-    uninstallUnmanaged = false;
+    uninstallUnmanaged = true;
     update.onActivation = true;
     remotes = [
       {

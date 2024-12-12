@@ -28,6 +28,9 @@
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    microvm.url = "github:astro/microvm.nix";
+    microvm.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -48,6 +51,7 @@
       all-users = import ./u/all.nix;
 
       nixosConfigurations = {
+        # desktops
         "flex5i" = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [ ./s/flex5i ];
@@ -74,6 +78,24 @@
             nix-secrets = inputs.nix-secrets;
             sops-nix = inputs.sops-nix;
             nixos-wsl = inputs.nixos-wsl;
+          };
+        };
+
+        # servers
+        "mokou" = lib.nixosSystem {
+          /*
+            2nd home server
+            intent to use for services without
+            data integrity needs (non-important data e.g.)
+          */
+          system = "x86_64-linux";
+          modules = [ ./s/mokou ];
+          specialArgs = {
+            inherit nixpkgs;
+            all = outputs.all;
+            disko = inputs.disko;
+            impermanence = inputs.impermanence;
+            microvm = inputs.microvm;
           };
         };
       };
