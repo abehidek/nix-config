@@ -72,7 +72,8 @@
   microvm = {
     hypervisor = "qemu";
     socket = "control.socket";
-    mem = 4096;
+    mem = 512;
+    balloonMem = 512*7;
     volumes = [
       {
         mountPoint = "/var";
@@ -142,7 +143,11 @@
 
   environment.etc.machine-id.text = "9fcd46289ccf4ad0b16a048223c6ba1d";
 
-  environment.systemPackages = with pkgs; [ neofetch ];
+  environment.systemPackages = with pkgs; [
+    neofetch
+    stress
+    htop
+  ];
 
   system.stateVersion = "25.05";
 }
