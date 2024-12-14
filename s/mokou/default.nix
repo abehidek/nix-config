@@ -60,8 +60,8 @@ in
     "zfs.zfs_arc_max=${toString (512 * 1048576)}" # max of 512mb for ZFS
   ];
 
-  boot.supportedFilesystems = [ "zfs" ];
   boot.initrd.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = [ "zfs" ];
 
   boot.zfs = {
     forceImportRoot = false;
@@ -81,6 +81,8 @@ in
       script = "zfs rollback -r ${zpool_name}/local/root@empty";
     };
   };
+
+  zramSwap.enable = true;
 
   # system basics
 
@@ -105,6 +107,18 @@ in
   services.zfs = {
     autoScrub.enable = true;
     autoSnapshot.enable = true;
+  };
+
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu.package = pkgs.qemu_kvm;
+    qemu.runAsRoot = true;
+    qemu.ovmf.packages = [
+      (pkgs.OVMF.override {
+        secureBoot = true;
+        tpmSupport = true;
+      }).fd
+    ];
   };
 
   # environment & packages
@@ -137,6 +151,7 @@ in
       "video"
       "audio"
       "networkmanager"
+      "libvirtd"
     ];
   };
 

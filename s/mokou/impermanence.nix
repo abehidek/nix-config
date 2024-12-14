@@ -17,6 +17,7 @@
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
       "/var/lib/microvms/vm-test3/persist"
+      "/var/lib/libvirt"
     ];
     files = [
       "/etc/ssh/ssh_host_ed25519_key.pub"
