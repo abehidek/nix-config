@@ -86,15 +86,15 @@ in
       "/etc/ssh/ssh_host_rsa_key.pub"
       "/etc/ssh/ssh_host_rsa_key"
     ];
-    users.naohiro = {
+    users."naohiro" = {
       directories = homeDirectories;
       files = [ ".screenrc" ];
     };
-    users.nina = {
+    users."nina" = {
       directories = homeDirectories;
       files = [ ".screenrc" ];
     };
-    users.abe = {
+    users."abe" = {
       directories = homeDirectories;
       files = [
         ".screenrc"

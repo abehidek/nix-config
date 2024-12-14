@@ -35,7 +35,7 @@
     ];
   };
 
-  environment.persistence."/persist".users.abe.directories = [
+  environment.persistence."/persist".users."abe".directories = [
     # xdg-user-dirs
     "Desktop"
     # $XDG_DATA_HOME
@@ -73,7 +73,7 @@
     hypervisor = "qemu";
     socket = "control.socket";
     mem = 512;
-    balloonMem = 512*7;
+    balloonMem = 512 * 7;
     volumes = [
       {
         mountPoint = "/var";
@@ -129,7 +129,7 @@
   virtualisation.docker.enable = true;
 
   users.mutableUsers = false;
-  users.users.abe = {
+  users.users."abe" = {
     uid = 1000;
     isNormalUser = true;
     initialPassword = "password";

@@ -95,7 +95,7 @@
     inherit all-users nix-secrets sops-nix;
   };
 
-  home-manager.users.abe = import ../../u/abe/${config.networking.hostName}.nix;
+  home-manager.users."abe" = import ../../u/abe/${config.networking.hostName}.nix;
 
   system.stateVersion = "24.05";
 }

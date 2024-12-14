@@ -283,8 +283,8 @@ in
 
   sops.secrets."passwords/user-abe@flex5i".neededForUsers = true;
 
-  home-manager.users.abe = import ../../u/abe/${config.networking.hostName}.nix;
-  users.users.abe = {
+  home-manager.users."abe" = import ../../u/abe/${config.networking.hostName}.nix;
+  users.users."abe" = {
     uid = 1000;
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets."passwords/user-abe@flex5i".path;
@@ -302,7 +302,7 @@ in
     ];
   };
 
-  users.users.naohiro = {
+  users.users."naohiro" = {
     isNormalUser = true;
     initialPassword = "password";
     extraGroups = [
@@ -315,7 +315,7 @@ in
     ];
   };
 
-  users.users.nina = {
+  users.users."nina" = {
     isNormalUser = true;
     initialPassword = "password";
     extraGroups = [

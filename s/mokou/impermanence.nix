@@ -27,7 +27,7 @@
     ];
   };
 
-  environment.persistence."/persist".users.abe = {
+  environment.persistence."/persist".users."abe" = {
     directories = [
       # $HOME
       {

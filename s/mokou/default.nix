@@ -142,7 +142,7 @@ in
   ];
 
   users.mutableUsers = false;
-  users.users.abe = {
+  users.users."abe" = {
     uid = 1000;
     isNormalUser = true;
     initialPassword = "password";
