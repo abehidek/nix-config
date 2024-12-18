@@ -96,10 +96,7 @@ in
     };
     users."abe" = {
       directories = homeDirectories;
-      files = [
-        ".screenrc"
-        ".local/share/applications/waydroid.com.YoStarEN.Arknights.desktop"
-      ];
+      files = [ ".screenrc" ];
     };
   };
 }
