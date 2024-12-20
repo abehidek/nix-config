@@ -34,6 +34,8 @@
 
     nixvirt.url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
     nixvirt.inputs.nixpkgs.follows = "nixpkgs";
+
+    arion.url = "github:hercules-ci/arion";
   };
 
   outputs =
@@ -100,6 +102,21 @@
             impermanence = inputs.impermanence;
             microvm = inputs.microvm;
             nixvirt = inputs.nixvirt;
+          };
+        };
+
+        ## zeta (206)
+        "zeta.mem" = lib.nixosSystem {
+          /*
+            LXC container in `zeta` host
+            running Proxmox hypervisor
+          */
+          system = "x86_64-linux";
+          modules = [ ./s/zeta/mem.nix ];
+          specialArgs = {
+            inherit nixpkgs;
+            all = outputs.all;
+            arion = inputs.arion;
           };
         };
       };
