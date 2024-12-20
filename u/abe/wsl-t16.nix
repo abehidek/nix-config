@@ -34,5 +34,5 @@ in
     ".ssh/id_ed25519.pub".source = ../../k/abe/wsl-t16.pub;
   };
 
-  home.packages = with pkgs; [];
+  # home.packages = with pkgs; [];
 }

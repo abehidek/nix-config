@@ -93,6 +93,5 @@ in
 
   home.packages = with pkgs; [
     ani-cli
-    spacedrive
   ];
 }
