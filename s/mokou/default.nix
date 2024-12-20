@@ -181,6 +181,10 @@ in
       ];
       domains = [
         (import ./test-ubuntu24.04-01.nix { inherit pkgs nixvirt; })
+        (import ./vm-opnsense.nix {
+          inherit pkgs nixvirt;
+          name = "vm-opnsense-01";
+        })
       ];
     };
   };
