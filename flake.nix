@@ -31,6 +31,9 @@
 
     microvm.url = "github:astro/microvm.nix";
     microvm.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixvirt.url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
+    nixvirt.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -96,6 +99,7 @@
             disko = inputs.disko;
             impermanence = inputs.impermanence;
             microvm = inputs.microvm;
+            nixvirt = inputs.nixvirt;
           };
         };
       };
