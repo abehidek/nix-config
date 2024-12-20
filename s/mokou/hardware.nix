@@ -19,6 +19,7 @@
     "usbhid"
     "usb_storage"
     "sd_mod"
+    "vfio-pci" # new
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

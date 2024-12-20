@@ -60,6 +60,7 @@ in
     "elevator=none"
     "udev.log_level=3"
     "zfs.zfs_arc_max=${toString (512 * 1048576)}" # max of 512mb for ZFS
+    "intel_iommu=on"
   ];
 
   boot.initrd.supportedFilesystems = [ "zfs" ];
@@ -81,6 +82,21 @@ in
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
       script = "zfs rollback -r ${zpool_name}/local/root@empty";
+    };
+
+    services.enable_vfio = {
+      description = "Enable vfio for specific devices";
+      wantedBy = [ "initrd.target" ];
+      before = [ "systemd-udevd.service" ];
+      unitConfig.DefaultDependencies = "no";
+      serviceConfig.Type = "oneshot";
+      script = ''
+        DEVS="0000:04:00.0 0000:05:00.0"
+        for DEV in $DEVS; do
+          echo "vfio-pci" > /sys/bus/pci/devices/$DEV/driver_override
+        done
+        modprobe -i vfio-pci
+      ''; # enp4s0 enp5s0
     };
   };
 
