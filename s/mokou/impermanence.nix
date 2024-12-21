@@ -1,9 +1,12 @@
 {
+  impermanence,
   machineId,
   ...
 }:
 
 {
+  imports = [ impermanence.nixosModules.impermanence ];
+
   environment.etc.machine-id.text = machineId;
 
   environment.persistence."/persist" = {

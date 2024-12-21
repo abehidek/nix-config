@@ -1,9 +1,12 @@
 {
+  disko,
   device,
   zpool_name,
 }:
 
 {
+  imports = [ disko.nixosModules.disko ];
+
   # partition table type
   disko.devices.disk.disk1 = {
     inherit device;

@@ -6,6 +6,7 @@
   nixpkgs,
   all,
   impermanence,
+  name,
   ...
 }:
 {
@@ -14,7 +15,51 @@
     impermanence.nixosModules.impermanence
   ];
 
+  networking.hostName = name;
+
+  microvm.interfaces = [
+    {
+      type = "tap";
+      id = "vm-${name}";
+      mac = "02:00:00:00:00:01";
+    }
+  ];
+
+  # It is highly recommended to share the host's nix-store
+  # with the VMs to prevent building huge images.
+  microvm.shares = [
+    {
+      source = "/nix/store";
+      mountPoint = "/nix/.ro-store";
+      tag = "ro-store";
+      proto = "virtiofs";
+    }
+    {
+      source = "/var/lib/microvms/${name}/persist"; # before creating the vm, please create this folder beforehand
+      mountPoint = "/persist";
+      tag = "persist";
+      proto = "virtiofs";
+    }
+  ];
+
+  microvm.volumes = [
+    {
+      mountPoint = "/var";
+      image = "var.img";
+      size = 2048;
+    }
+  ];
+
+  microvm = {
+    hypervisor = "qemu";
+    socket = "control.socket";
+    mem = 512;
+    balloonMem = 512 * 7;
+  };
+
   fileSystems."/persist".neededForBoot = true;
+
+  environment.etc.machine-id.text = "9fcd46289ccf4ad0b16a048223c6ba1d";
 
   environment.persistence."/persist" = {
     enable = true;
@@ -50,46 +95,6 @@
     ".config/lazygit"
   ];
 
-  # It is highly recommended to share the host's nix-store
-  # with the VMs to prevent building huge images.
-  microvm.shares = [
-    {
-      source = "/nix/store";
-      mountPoint = "/nix/.ro-store";
-      tag = "ro-store";
-      proto = "virtiofs";
-    }
-    {
-      source = "/var/lib/microvms/vm-test3/persist";
-      mountPoint = "/persist";
-      tag = "persist";
-      proto = "virtiofs";
-    }
-  ];
-
-  # Any other configuration for your MicroVM
-  # [...]
-  microvm = {
-    hypervisor = "qemu";
-    socket = "control.socket";
-    mem = 512;
-    balloonMem = 512 * 7;
-    volumes = [
-      {
-        mountPoint = "/var";
-        image = "var.img";
-        size = 2048;
-      }
-    ];
-    interfaces = [
-      {
-        type = "tap";
-        id = "vm-test3";
-        mac = "02:00:00:00:00:01";
-      }
-    ];
-  };
-
   systemd.network = {
     enable = true;
     networks."20-lan" = {
@@ -117,8 +122,6 @@
   time.timeZone = "America/Sao_Paulo";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  networking.hostName = "vm-test3";
-
   security.sudo = {
     enable = true;
     extraConfig = ''
@@ -140,8 +143,6 @@
       "docker"
     ];
   };
-
-  environment.etc.machine-id.text = "9fcd46289ccf4ad0b16a048223c6ba1d";
 
   environment.systemPackages = with pkgs; [
     neofetch
