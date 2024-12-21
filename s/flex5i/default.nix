@@ -267,6 +267,10 @@ in
     sops
     virt-manager
 
+    # backup terminals
+    foot
+    xterm
+
     pfetch
     neofetch
     pkgs.nur.repos.mic92.hello-nur

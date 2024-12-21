@@ -4,6 +4,10 @@
 }:
 
 let
+  homeFiles = [
+    ".screenrc"
+    ".config/nushell/history.txt"
+  ];
   homeDirectories = [
     # $HOME
     "ProgramasRFB"
@@ -88,15 +92,15 @@ in
     ];
     users."naohiro" = {
       directories = homeDirectories;
-      files = [ ".screenrc" ];
+      files = homeFiles;
     };
     users."nina" = {
       directories = homeDirectories;
-      files = [ ".screenrc" ];
+      files = homeFiles;
     };
     users."abe" = {
       directories = homeDirectories;
-      files = [ ".screenrc" ];
+      files = homeFiles;
     };
   };
 }
