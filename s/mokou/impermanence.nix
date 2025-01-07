@@ -21,6 +21,7 @@
       "/etc/NetworkManager/system-connections"
       "/var/lib/libvirt"
       "/var/lib/microvms/test-mvm01/persist"
+      "/var/lib/microvms/apps/persist"
     ];
     files = [
       "/etc/ssh/ssh_host_ed25519_key.pub"

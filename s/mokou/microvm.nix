@@ -21,4 +21,13 @@
       name = "test-mvm01";
     };
   };
+
+  microvm.vms."apps" = {
+    inherit pkgs;
+    config = import ./vm/apps.nix;
+    specialArgs = {
+      inherit nixpkgs all impermanence;
+      name = "apps";
+    };
+  };
 }

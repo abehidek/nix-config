@@ -104,6 +104,7 @@ in
       matchConfig.Name = [
         "enp4s0"
         "vm-test-mvm01"
+        "vm-apps"
       ];
       networkConfig.Bridge = "enp4br0";
     };
@@ -221,6 +222,7 @@ in
     neofetch
     pfetch
     cowsay
+    lm_sensors
   ];
 
   users.mutableUsers = false;
