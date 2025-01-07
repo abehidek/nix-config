@@ -86,6 +86,14 @@ in
     enable = true;
   };
 
+  programs.zed-editor = {
+    enable = true;
+    extensions = [
+      "nix"
+      "toml"
+    ];
+  };
+
   home.file = {
     ".ssh/id_ed25519.pub".source = ../../k/abe/flex5i.pub;
     ".config/zellij/config.kdl".source = dotsPath + /zellij/config.kdl;
