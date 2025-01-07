@@ -13,7 +13,9 @@
   active = true;
   definition = nixvirt.lib.domain.writeXML {
     inherit name;
-    uuid = "bc5bf7c0-8533-4758-8e51-8bc0637fd6a6";
+    type = "kvm";
+    uuid = "bc5bf7c0-8533-4758-8e51-8bc0637fd6a9";
+    vcpu.count = 1;
     memory = {
       count = 2;
       unit = "GiB";
@@ -22,19 +24,25 @@
       source.type = "memfd";
       access.mode = "shared";
     };
-    type = "kvm";
+
     os = {
       type = "hvm";
       arch = "x86_64";
       machine = "pc-q35-9.1";
+
       boot = [
         { dev = "cdrom"; }
         { dev = "hd"; }
       ];
     };
-    features.acpi = { };
-    features.apic = { };
+
+    features = {
+      acpi = { };
+      apic = { };
+    };
+
     cpu.mode = "host-passthrough";
+
     timer = [
       {
         name = "rtc";
@@ -49,7 +57,9 @@
         present = false;
       }
     ];
+
     devices.emulator = "${pkgs.qemu}/bin/qemu-system-x86_64";
+
     devices.disk = [
       {
         type = "file";
@@ -72,12 +82,14 @@
         driver.name = "qemu";
       }
     ];
+
     devices.interface = {
       type = "bridge";
       model.type = "virtio";
-      source.bridge = "br0";
+      source.bridge = "enp4br0";
       mac.address = "52:54:00:61:7c:64";
     };
+
     devices.channel = [
       {
         type = "unix";
@@ -94,6 +106,7 @@
         };
       }
     ];
+
     devices.input = [
       {
         type = "tablet";
@@ -108,17 +121,21 @@
         bus = "ps2";
       }
     ];
+
     devices.graphics = {
       type = "spice";
       autoport = true;
       listen.type = "address";
       listen.address = "127.0.0.1";
     };
+
     devices.sound.model = "ich9";
+
     devices.audio = {
       id = 1;
       type = "spice";
     };
+
     devices.video = {
       type = "qxl";
       ram = 65536;
@@ -127,6 +144,7 @@
       heads = 1;
       primary = true;
     };
+
     devices.redirdev = [
       {
         bus = "usb";

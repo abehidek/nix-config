@@ -16,6 +16,9 @@
     qemu.package = pkgs.qemu_kvm;
     qemu.runAsRoot = true;
     qemu.ovmf.enable = true;
+    qemu.verbatimConfig = ''
+      spice_listen = "::1"
+    '';
   };
 
   virtualisation.libvirt.enable = true;
@@ -64,9 +67,9 @@
       }
     ];
     domains = [
-      (import ./vm/test-ubuntu24.04.nix {
+      (import ./vm/test-ubuntu.nix {
         inherit pkgs nixvirt;
-        name = "test-ubuntu24.04";
+        name = "test-ubuntu";
       })
       (import ./vm/opnsense.nix {
         inherit pkgs nixvirt;

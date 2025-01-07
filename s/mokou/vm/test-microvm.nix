@@ -97,24 +97,20 @@
 
   systemd.network = {
     enable = true;
-    networks."20-lan" = {
-      matchConfig.Type = "ether";
-      networkConfig = {
-        Address = [
-          "10.0.0.13/24"
-          "2001:db8::b/64"
-        ];
-        Gateway = "10.0.0.1";
-        DNS = [ "1.1.1.1" ];
-        IPv6AcceptRA = true;
-        DHCP = "no";
-      };
-    };
-
     networks."19-docker" = {
       matchConfig.Name = "veth*";
       linkConfig = {
         Unmanaged = true;
+      };
+    };
+    networks."20-lan" = {
+      matchConfig.Type = "ether";
+      networkConfig = {
+        Gateway = "10.0.0.1";
+        DNS = [ "1.1.1.1" ];
+        IPv6AcceptRA = true;
+        DHCP = "no";
+        Address = [ "10.0.0.13/24" ];
       };
     };
   };

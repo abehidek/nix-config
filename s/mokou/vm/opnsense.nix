@@ -16,15 +16,24 @@
     type = "kvm";
     uuid = "52054974-b2e3-4308-bfd0-94a78f01131b";
     vcpu.count = 2;
-    memory.count = 4;
-    memory.unit = "GiB";
-    memoryBacking.source.type = "memfd";
-    memoryBacking.access.mode = "shared";
+    memory = {
+      count = 4;
+      unit = "GiB";
+    };
+    memoryBacking = {
+      source.type = "memfd";
+      access.mode = "shared";
+    };
 
     os = {
       type = "hvm";
       arch = "x86_64";
       machine = "pc-q35-9.1";
+
+      boot = [
+        { dev = "cdrom"; }
+        { dev = "hd"; }
+      ];
 
       loader = {
         readonly = true;
@@ -32,11 +41,6 @@
         format = "raw";
         path = "/run/libvirt/nix-ovmf/OVMF_CODE.fd";
       };
-
-      boot = [
-        { dev = "cdrom"; }
-        { dev = "hd"; }
-      ];
     };
 
     features = {
@@ -89,6 +93,43 @@
         driver.name = "qemu";
         driver.type = "raw";
       }
+    ];
+
+    devices.interface = [
+      {
+        # wan
+        type = "bridge";
+        model.type = "virtio";
+        source.bridge = "enp5br0";
+        mac.address = "52:54:00:61:7c:65";
+      }
+      {
+        # new lan
+        type = "bridge";
+        model.type = "virtio";
+        source.bridge = "enp4br0";
+        mac.address = "52:54:00:61:7c:66";
+      }
+      # {
+      #   type = "ethernet";
+      #   model.type = "virtio";
+      #   target.dev = "tap0";
+      #   mac.address = "52:54:00:61:7d:66";
+      # }
+      {
+        # another new lan
+        type = "bridge";
+        model.type = "virtio";
+        source.bridge = "enp3br0";
+        mac.address = "52:54:00:61:7c:67";
+      }
+      # {
+      #   # host lan
+      #   type = "bridge";
+      #   model.type = "virtio";
+      #   source.bridge = "enp2br0";
+      #   mac.address = "52:54:00:61:7c:68";
+      # }
     ];
 
     devices.channel = [
