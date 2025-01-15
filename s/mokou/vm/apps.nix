@@ -102,6 +102,7 @@
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
+      "/var/lib/docker"
     ];
     files = [
       "/etc/ssh/ssh_host_ed25519_key.pub"
@@ -146,7 +147,7 @@
         services."beaverhabits".service = {
           image = "daya0576/beaverhabits:latest";
           container_name = "beaverhabits";
-          restart = "unless-stopped";
+          restart = "always";
           user = "${toString config.users.users."abe".uid}:${toString config.users.groups."users".gid}";
           environment."HABITS_STORAGE" = "USER_DISK";
           ports = [ "8080:8080" ];
@@ -159,7 +160,7 @@
         services."glance".service = {
           image = "glanceapp/glance";
           container_name = "glance";
-          restart = "unless-stopped";
+          restart = "always";
           ports = [ "8081:8080" ];
           volumes = [
             "/etc/timezone:/etc/timezone:ro"
