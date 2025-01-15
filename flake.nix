@@ -102,6 +102,7 @@
             impermanence = inputs.impermanence;
             microvm = inputs.microvm;
             nixvirt = inputs.nixvirt;
+            arion = inputs.arion;
           };
         };
 

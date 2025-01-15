@@ -7,6 +7,7 @@
   all,
   impermanence,
   microvm,
+  arion,
   ...
 }:
 
@@ -26,7 +27,12 @@
     inherit pkgs;
     config = import ./vm/apps.nix;
     specialArgs = {
-      inherit nixpkgs all impermanence;
+      inherit
+        nixpkgs
+        all
+        impermanence
+        arion
+        ;
       name = "apps";
     };
   };

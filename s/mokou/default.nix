@@ -14,6 +14,7 @@
   impermanence,
   microvm,
   nixvirt,
+  arion,
   ...
 }@args:
 
@@ -33,28 +34,28 @@ in
 
     (importWithArgs ./libvirt.nix { inherit nixvirt; })
     (importWithArgs ./microvm.nix {
-      inherit all impermanence microvm;
+      inherit
+        all
+        impermanence
+        microvm
+        arion
+        ;
     })
   ];
 
   # networking
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+  systemd.network.wait-online.enable = false;
+  boot.initrd.systemd.network.wait-online.enable = false;
+
   networking.useDHCP = lib.mkDefault false;
-  # networking.interfaces.enp2s0.useDHCP = lib.mkDefault true;
 
   networking = {
     networkmanager.enable = false;
     hostName = "mokou";
     hostId = "f9ed0642"; # required by ZFS
-    firewall.enable = false;
+    firewall.enable = false; # will be handled by opnsense vm
   };
-
-  systemd.network.wait-online.enable = false;
-  boot.initrd.systemd.network.wait-online.enable = false;
 
   networking.useNetworkd = true;
   systemd.network = {

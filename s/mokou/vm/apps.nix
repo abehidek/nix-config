@@ -1,11 +1,12 @@
 {
-  # config,
+  config,
   # lib,
   pkgs,
   # modulesPath,
   nixpkgs,
   all,
   impermanence,
+  arion,
   name,
   ...
 }:
@@ -13,9 +14,10 @@
   imports = [
     (all { inherit pkgs nixpkgs; })
     impermanence.nixosModules.impermanence
+    arion.nixosModules.arion
   ];
 
-  networking.hostName = name;
+  # networking
 
   microvm.interfaces = [
     {
@@ -25,8 +27,44 @@
     }
   ];
 
-  # It is highly recommended to share the host's nix-store
-  # with the VMs to prevent building huge images.
+  networking = {
+    networkmanager.enable = false;
+    hostName = name;
+    firewall.enable = false;
+  };
+
+  networking.useNetworkd = true;
+
+  systemd.network = {
+    enable = true;
+    networks."19-docker" = {
+      matchConfig.Name = "veth*";
+      linkConfig = {
+        Unmanaged = true;
+      };
+    };
+    networks."20-lan" = {
+      matchConfig.Type = "ether";
+      networkConfig = {
+        IPv6AcceptRA = true;
+        DHCP = "yes";
+      };
+    };
+  };
+
+  # hardware and boot
+
+  microvm = {
+    hypervisor = "qemu";
+    socket = "control.socket";
+    mem = 512;
+    balloonMem = 512 * 7;
+  };
+
+  /*
+    It is highly recommended to share the host's nix-store
+    with the VMs to prevent building huge images.
+  */
   microvm.shares = [
     {
       source = "/nix/store";
@@ -49,13 +87,6 @@
       size = 8192;
     }
   ];
-
-  microvm = {
-    hypervisor = "qemu";
-    socket = "control.socket";
-    mem = 512;
-    balloonMem = 512 * 7;
-  };
 
   fileSystems."/persist".neededForBoot = true;
 
@@ -81,36 +112,14 @@
   };
 
   environment.persistence."/persist".users."abe".directories = [
-    # xdg-user-dirs
-    "Desktop"
-    # $XDG_DATA_HOME
-    {
-      directory = ".local/share/keyrings";
-      mode = "0700";
-    }
-    # $XDG_STATE_HOME
     ".local/state/lazygit"
-    # $XDG_CONFIG_HOME
     ".config/sops"
     ".config/lazygit"
+    "Desktop"
+    "apps"
   ];
 
-  systemd.network = {
-    enable = true;
-    networks."19-docker" = {
-      matchConfig.Name = "veth*";
-      linkConfig = {
-        Unmanaged = true;
-      };
-    };
-    networks."20-lan" = {
-      matchConfig.Type = "ether";
-      networkConfig = {
-        IPv6AcceptRA = true;
-        DHCP = "yes";
-      };
-    };
-  };
+  # system basics
 
   time.timeZone = "America/Sao_Paulo";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -122,7 +131,58 @@
     '';
   };
 
+  # services programs
+
   virtualisation.docker.enable = true;
+
+  virtualisation.arion =
+    let
+      appPath = "/home/abe/apps";
+    in
+    {
+      backend = "docker";
+      projects."beaverhabits".settings = {
+        project.name = "beaverhabits";
+        services."beaverhabits".service = {
+          image = "daya0576/beaverhabits:latest";
+          container_name = "beaverhabits";
+          restart = "unless-stopped";
+          user = "${toString config.users.users."abe".uid}:${toString config.users.groups."users".gid}";
+          environment."HABITS_STORAGE" = "USER_DISK";
+          ports = [ "8080:8080" ];
+          volumes = [ "${appPath}/beaverhabits:/app/.user" ];
+        };
+      };
+
+      projects."glance".settings = {
+        project.name = "glance";
+        services."glance".service = {
+          image = "glanceapp/glance";
+          container_name = "glance";
+          restart = "unless-stopped";
+          ports = [ "8081:8080" ];
+          volumes = [
+            "/etc/timezone:/etc/timezone:ro"
+            "/etc/localtime:/etc/localtime:ro"
+            {
+              type = "bind";
+              source = "${appPath}/glance/glance.yml";
+              target = "/app/glance.yml";
+            }
+          ];
+        };
+      };
+    };
+
+  # environment & packages
+
+  environment.systemPackages = with pkgs; [
+    neofetch
+    stress
+    htop
+    lazygit
+    helix
+  ];
 
   users.mutableUsers = false;
   users.users."abe" = {
@@ -136,13 +196,6 @@
       "docker"
     ];
   };
-
-  environment.systemPackages = with pkgs; [
-    neofetch
-    stress
-    htop
-    lazygit
-  ];
 
   system.stateVersion = "25.05";
 }
