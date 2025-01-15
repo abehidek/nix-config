@@ -134,6 +134,8 @@ in
     hostId = "f9ed0640"; # required by ZFS
   };
 
+  services.mullvad-vpn.enable = true;
+
   security.sudo = {
     enable = true;
     extraConfig = ''
@@ -142,7 +144,7 @@ in
   };
 
   fileSystems."/home/abe/mnt/hako" = {
-    device = "//smb.hon.hidek.xyz/hako";
+    device = "//10.0.0.201/hako";
     fsType = "cifs";
     options = [
       "rw"
@@ -229,6 +231,10 @@ in
         appId = "io.github.zen_browser.zen";
         origin = "flathub";
       }
+      {
+        appId = "com.github.tchx84.Flatseal";
+        origin = "flathub";
+      }
     ];
   };
 
@@ -251,6 +257,7 @@ in
 
   environment.systemPackages = with pkgs; [
     home-manager
+    lm_sensors
     cifs-utils
     wget
     tldr
@@ -266,6 +273,7 @@ in
     age
     sops
     virt-manager
+    mullvad-vpn
 
     # backup terminals
     foot
@@ -297,6 +305,7 @@ in
       "video"
       "audio"
       "libvirtd"
+      "networkmanager"
     ];
     packages = with pkgs; [
       obsidian
