@@ -53,7 +53,7 @@
     {
       paths = import ./paths.nix;
 
-      fns = import outputs.paths.functions;
+      fns = import (outputs.paths.functions "default.nix");
 
       all = import (outputs.paths.hosts "all.nix");
 
@@ -102,6 +102,7 @@
           modules = [ (outputs.paths.hosts "mokou") ];
           specialArgs = {
             inherit nixpkgs;
+            fns = outputs.fns;
             all = outputs.all;
             disko = inputs.disko;
             impermanence = inputs.impermanence;

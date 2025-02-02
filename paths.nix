@@ -1,7 +1,7 @@
 let
   data = {
     "dots" = "dot";
-    "functions" = "f";
+    "functions" = "fn";
     "keys" = "k";
     "hosts" = "s";
     "users" = "u";

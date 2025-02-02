@@ -6,6 +6,7 @@
   nixpkgs,
   # home-manager,
   # nur,
+  fns,
   all,
   # all-users,
   # nix-secrets,
@@ -22,7 +23,7 @@ let
   device = "/dev/disk/by-id/nvme-SSD_128GB_AA000000000000000276";
   zpool_name = "mroot";
   machineId = "e8ccbf623edf4dd6aa83732a65ce08cb";
-  importWithArgs = import ../../f/importWithArgs.nix args;
+  importWithArgs = (fns.importWithArgs args);
 in
 {
   imports = [
