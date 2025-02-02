@@ -2,6 +2,7 @@
   # config,
   # lib,
   pkgs,
+  paths,
   all-users,
   nix-secrets,
   sops-nix,
@@ -10,7 +11,6 @@
 
 let
   userName = "abe";
-  dotsPath = ../../d;
 in
 {
   imports = [
@@ -60,7 +60,7 @@ in
 
   programs.nushell = {
     enable = true;
-    configFile.source = dotsPath + /nushell/config.nu;
+    configFile.source = (paths.dots "nushell/config.nu");
 
     shellAliases = {
       sysc = "sudo nixos-rebuild switch --flake .#$\"(hostname)\"";
@@ -73,7 +73,7 @@ in
       EDITOR = "hx";
     };
 
-    envFile.source = dotsPath + /nushell/env.nu;
+    envFile.source = (paths.dots "nushell/env.nu");
   };
 
   programs.starship = {
@@ -96,7 +96,7 @@ in
 
   home.file = {
     ".ssh/id_ed25519.pub".source = ../../k/abe/flex5i.pub;
-    ".config/zellij/config.kdl".source = dotsPath + /zellij/config.kdl;
+    ".config/zellij/config.kdl".source = (paths.dots "zellij/config.kdl");
   };
 
   home.packages = with pkgs; [

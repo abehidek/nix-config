@@ -6,6 +6,7 @@
   nixpkgs,
   home-manager,
   nur,
+  paths,
   all,
   all-users,
   nix-secrets,
@@ -274,6 +275,7 @@ in
     sops
     virt-manager
     mullvad-vpn
+    cbonsai
 
     # backup terminals
     foot
@@ -288,14 +290,19 @@ in
 
   home-manager.useGlobalPkgs = true;
   home-manager.extraSpecialArgs = {
-    inherit all-users nix-secrets sops-nix;
+    inherit
+      paths
+      all-users
+      nix-secrets
+      sops-nix
+      ;
   };
 
   users.mutableUsers = false;
 
   sops.secrets."passwords/user-abe@flex5i".neededForUsers = true;
 
-  home-manager.users."abe" = import ../../u/abe/${config.networking.hostName}.nix;
+  home-manager.users."abe" = import (paths.users "abe/${config.networking.hostName}.nix");
   users.users."abe" = {
     uid = 1000;
     isNormalUser = true;

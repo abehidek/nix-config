@@ -51,17 +51,22 @@
       lib = nixpkgs.lib // home-manager.lib;
     in
     {
-      all = import ./s/all.nix;
+      paths = import ./paths.nix;
 
-      all-users = import ./u/all.nix;
+      fns = import outputs.paths.functions;
+
+      all = import (outputs.paths.hosts "all.nix");
+
+      all-users = import (outputs.paths.users "all.nix");
 
       nixosConfigurations = {
         # desktops
         "flex5i" = lib.nixosSystem {
           system = "x86_64-linux";
-          modules = [ ./s/flex5i ];
+          modules = [ (outputs.paths.hosts "flex5i") ];
           specialArgs = {
             inherit nixpkgs home-manager nur;
+            paths = outputs.paths;
             all = outputs.all;
             all-users = outputs.all-users;
             nix-secrets = inputs.nix-secrets;
@@ -75,7 +80,7 @@
 
         "wsl-t16" = lib.nixosSystem {
           system = "x86_64-linux";
-          modules = [ ./s/wsl-t16 ];
+          modules = [ (outputs.paths.hosts "wsl-t16") ];
           specialArgs = {
             inherit nixpkgs home-manager;
             all = outputs.all;
@@ -94,7 +99,7 @@
             data integrity needs (non-important data e.g.)
           */
           system = "x86_64-linux";
-          modules = [ ./s/mokou ];
+          modules = [ (outputs.paths.hosts "mokou") ];
           specialArgs = {
             inherit nixpkgs;
             all = outputs.all;
@@ -113,7 +118,7 @@
             running Proxmox hypervisor
           */
           system = "x86_64-linux";
-          modules = [ ./s/zeta/mem.nix ];
+          modules = [ (outputs.paths.hosts "zeta/mem.nix") ];
           specialArgs = {
             inherit nixpkgs;
             all = outputs.all;
@@ -124,12 +129,13 @@
 
       homeConfigurations = {
         "abe@flex5i" = lib.homeManagerConfiguration {
-          modules = [ ./u/abe/flex5i.nix ];
+          modules = [ (outputs.paths.users "abe/flex5i.nix") ];
           pkgs = import nixpkgs {
             system = "x86_64-linux";
             config.allowUnfree = true;
           };
           extraSpecialArgs = {
+            paths = outputs.paths;
             all-users = outputs.all-users;
             nix-secrets = inputs.nix-secrets;
             sops-nix = inputs.sops-nix;
@@ -137,7 +143,7 @@
         };
 
         "abe@wsl-t16" = lib.homeManagerConfiguration {
-          modules = [ ./u/abe/wsl-t16.nix ];
+          modules = [ (outputs.paths.users "abe/wsl-t16.nix") ];
           pkgs = import nixpkgs {
             system = "x86_64-linux";
             config.allowUnfree = true;
