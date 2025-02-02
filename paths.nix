@@ -1,6 +1,6 @@
 let
   data = {
-    "dots" = "d";
+    "dots" = "dot";
     "functions" = "f";
     "keys" = "k";
     "hosts" = "s";
