@@ -15,7 +15,6 @@
   impermanence,
   microvm,
   nixvirt,
-  arion,
   ...
 }@args:
 
@@ -35,12 +34,7 @@ in
 
     (importWithArgs ./libvirt.nix { inherit nixvirt; })
     (importWithArgs ./microvm.nix {
-      inherit
-        all
-        impermanence
-        microvm
-        arion
-        ;
+      inherit all impermanence microvm;
     })
   ];
 
@@ -107,6 +101,11 @@ in
         "enp4s0"
         "vm-test-mvm01"
         "vm-apps"
+
+        "vm-irene-01"
+        "vm-sebas-01"
+        "vm-sebas-02"
+        "vm-ray-01"
       ];
       networkConfig.Bridge = "enp4br0";
     };

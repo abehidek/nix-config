@@ -22,6 +22,13 @@
       "/var/lib/libvirt"
       "/var/lib/microvms/test-mvm01/persist"
       "/var/lib/microvms/apps/persist"
+
+      "/var/lib/microvms/irene-01/persist"
+
+      "/var/lib/microvms/sebas-01/persist"
+      "/var/lib/microvms/sebas-02/persist"
+
+      "/var/lib/microvms/ray-01/persist"
     ];
     files = [
       "/etc/ssh/ssh_host_ed25519_key.pub"

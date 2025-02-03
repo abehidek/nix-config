@@ -21,7 +21,7 @@
     {
       type = "tap";
       id = "vm-${name}";
-      mac = "02:00:00:00:00:02";
+      mac = "02:00:00:00:00:03";
     }
   ];
 
@@ -115,7 +115,6 @@
     ".config/sops"
     ".config/lazygit"
     "Desktop"
-    "apps"
   ];
 
   # system basics
@@ -142,6 +141,7 @@
     htop
     lazygit
     helix
+    cbonsai
   ];
 
   users.mutableUsers = false;
