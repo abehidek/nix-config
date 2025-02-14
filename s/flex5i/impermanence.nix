@@ -83,6 +83,7 @@ in
       "/var/lib/waydroid"
       "/var/lib/flatpak"
       "/etc/NetworkManager/system-connections"
+      "/etc/mullvad-vpn"
     ];
     files = [
       "/etc/ssh/ssh_host_ed25519_key.pub"
