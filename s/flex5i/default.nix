@@ -276,6 +276,7 @@ in
     virt-manager
     mullvad-vpn
     cbonsai
+    dbeaver-bin
 
     # backup terminals
     foot
