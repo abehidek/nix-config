@@ -45,7 +45,7 @@ in
         useful when building on a machine for another machine
       */
       "wsl-t16" = {
-        host = "10.0.0.39";
+        host = "10.0.0.87";
         identitiesOnly = true;
         identityFile = [ "~/.ssh/id_ed25519" ];
         port = 2022;
@@ -54,8 +54,8 @@ in
   };
 
   dconf.settings."org/virt-manager/virt-manager/connections" = {
-    autoconnect = [ "qemu+ssh://abe@10.0.0.64/system" ];
-    uris = [ "qemu+ssh://abe@10.0.0.64/system" ];
+    autoconnect = [ "qemu+ssh://abe@10.0.0.89/system" ];
+    uris = [ "qemu+ssh://abe@10.0.0.89/system" ];
   };
 
   programs.nushell = {
