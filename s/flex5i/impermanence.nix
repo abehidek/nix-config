@@ -74,6 +74,9 @@ in
     enable = true;
     hideMounts = true;
     directories = [
+      # Systemd requires /usr dir to be populated
+      "/usr/systemd-placeholder"
+
       "/etc/nixos"
       "/var/log"
       "/var/lib/sops-nix"
