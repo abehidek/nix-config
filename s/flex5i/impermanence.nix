@@ -43,6 +43,7 @@ let
     ".local/share/direnv"
     ".local/share/waydroid"
     ".local/share/flatpak"
+    ".local/share/zed"
     {
       directory = ".local/share/keyrings";
       mode = "0700";
