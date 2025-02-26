@@ -83,6 +83,7 @@
           modules = [ (outputs.paths.hosts "wsl-t16") ];
           specialArgs = {
             inherit nixpkgs home-manager;
+            paths = outputs.paths;
             all = outputs.all;
             all-users = outputs.all-users;
             nix-secrets = inputs.nix-secrets;
@@ -102,6 +103,7 @@
           modules = [ (outputs.paths.hosts "mokou") ];
           specialArgs = {
             inherit nixpkgs;
+            paths = outputs.paths;
             fns = outputs.fns;
             all = outputs.all;
             disko = inputs.disko;
@@ -149,6 +151,7 @@
             config.allowUnfree = true;
           };
           extraSpecialArgs = {
+            paths = outputs.paths;
             all-users = outputs.all-users;
             nix-secrets = inputs.nix-secrets;
             sops-nix = inputs.sops-nix;

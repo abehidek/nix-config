@@ -2,6 +2,7 @@
   # config,
   # lib,
   pkgs,
+  paths,
   all-users,
   nix-secrets,
   sops-nix,
@@ -31,7 +32,7 @@ in
   };
 
   home.file = {
-    ".ssh/id_ed25519.pub".source = ../../k/abe/wsl-t16.pub;
+    ".ssh/id_ed25519.pub".source = paths.keys "abe/wsl-t16.pub";
   };
 
   # home.packages = with pkgs; [];

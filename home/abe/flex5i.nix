@@ -95,8 +95,8 @@ in
   };
 
   home.file = {
-    ".ssh/id_ed25519.pub".source = ../../k/abe/flex5i.pub;
-    ".config/zellij/config.kdl".source = (paths.dots "zellij/config.kdl");
+    ".ssh/id_ed25519.pub".source = paths.keys "abe/flex5i.pub";
+    ".config/zellij/config.kdl".source = paths.dots "zellij/config.kdl";
   };
 
   home.packages = with pkgs; [

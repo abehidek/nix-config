@@ -6,6 +6,7 @@
   nixpkgs,
   # home-manager,
   # nur,
+  # paths,
   fns,
   all,
   # all-users,

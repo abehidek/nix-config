@@ -2,9 +2,9 @@ let
   data = {
     "dots" = "dot";
     "functions" = "fn";
-    "keys" = "k";
-    "hosts" = "s";
-    "users" = "u";
+    "keys" = "key";
+    "hosts" = "host";
+    "users" = "home";
   };
 in
 builtins.mapAttrs (

@@ -3,6 +3,7 @@
   # lib,
   pkgs,
   nixpkgs,
+  paths,
   ...
 }:
 
@@ -39,8 +40,8 @@
   };
 
   users.users."abe".openssh.authorizedKeys.keys = [
-    (builtins.readFile ../k/abe/flex5i.pub)
-    (builtins.readFile ../k/abe/wsl-t16.pub)
+    (builtins.readFile (paths.keys "abe/flex5i.pub"))
+    (builtins.readFile (paths.keys "abe/wsl-t16.pub"))
   ];
 
   programs.mtr.enable = true;

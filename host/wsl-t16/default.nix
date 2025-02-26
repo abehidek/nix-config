@@ -6,6 +6,7 @@
   nixpkgs,
   home-manager,
   # nur,
+  paths,
   all,
   all-users,
   nix-secrets,
@@ -17,7 +18,7 @@
 {
   imports = [
     home-manager.nixosModules.home-manager
-    (all { inherit pkgs nixpkgs; })
+    (all { inherit pkgs nixpkgs paths; })
     sops-nix.nixosModules.sops
     nixos-wsl.nixosModules.default
   ];
@@ -92,10 +93,15 @@
 
   home-manager.useGlobalPkgs = true;
   home-manager.extraSpecialArgs = {
-    inherit all-users nix-secrets sops-nix;
+    inherit
+      paths
+      all-users
+      nix-secrets
+      sops-nix
+      ;
   };
 
-  home-manager.users."abe" = import ../../u/abe/${config.networking.hostName}.nix;
+  home-manager.users."abe" = import (paths.users "abe/${config.networking.hostName}.nix");
 
   system.stateVersion = "24.05";
 }

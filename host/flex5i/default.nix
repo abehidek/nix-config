@@ -28,7 +28,7 @@ in
   imports = [
     home-manager.nixosModules.home-manager
     nur.modules.nixos.default
-    (all { inherit pkgs nixpkgs; })
+    (all { inherit pkgs nixpkgs paths; })
     sops-nix.nixosModules.sops
     disko.nixosModules.disko
     impermanence.nixosModules.impermanence
@@ -278,6 +278,7 @@ in
     mullvad-vpn
     cbonsai
     dbeaver-bin
+    cowsay
 
     # backup terminals
     foot
