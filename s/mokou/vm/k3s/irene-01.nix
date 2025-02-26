@@ -1,5 +1,5 @@
 {
-  config,
+  # config,
   # lib,
   pkgs,
   # modulesPath,
@@ -28,7 +28,15 @@
   networking = {
     networkmanager.enable = false;
     hostName = name;
-    firewall.enable = false;
+  };
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      5432 # postgresql
+      6443 # k3s
+    ];
+    allowedUDPPorts = [ 6443 ];
   };
 
   networking.useNetworkd = true;
@@ -101,6 +109,7 @@
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
       "/var/lib/docker"
+      "/var/lib/postgresql"
     ];
     files = [
       "/etc/ssh/ssh_host_ed25519_key.pub"
@@ -131,7 +140,51 @@
 
   # services programs
 
-  virtualisation.docker.enable = true;
+  services.nginx = {
+    enable = true;
+    config = ''
+      events {}
+
+      stream {
+        upstream k3s_servers {
+          server 10.0.0.107:6443;
+          server 10.0.0.108:6443;
+        }
+
+        server {
+          listen      6443;
+          proxy_pass  k3s_servers;
+        }
+      }
+    '';
+  };
+
+  services.postgresql =
+    let
+      userName = "k3s";
+      userPwd = "password";
+    in
+    {
+      enable = true;
+      ensureDatabases = [ userName ];
+      enableTCPIP = true;
+      authentication = pkgs.lib.mkOverride 10 ''
+        #...
+        #type database DBuser origin-address auth-method
+        local all      all     trust
+        # ipv4
+        host  all      all     127.0.0.1/32   trust
+        host  all      all     10.0.0.48/24   trust
+        # ipv6
+        host all       all     ::1/128        trust
+      '';
+      initialScript = pkgs.writeText "backend-initScript" ''
+        CREATE ROLE ${userName} WITH LOGIN PASSWORD '${userPwd}' CREATEDB;
+        CREATE DATABASE ${userName};
+        GRANT ALL PRIVILEGES ON DATABASE ${userName} TO ${userName};
+        GRANT ALL ON SCHEMA public TO k3s;
+      '';
+    };
 
   # environment & packages
 
@@ -141,7 +194,6 @@
     htop
     lazygit
     helix
-    cbonsai
   ];
 
   users.mutableUsers = false;
@@ -153,7 +205,6 @@
       "wheel"
       "video"
       "audio"
-      "docker"
     ];
   };
 

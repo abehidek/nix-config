@@ -1,5 +1,5 @@
 {
-  config,
+  # config,
   # lib,
   pkgs,
   # modulesPath,
@@ -7,6 +7,8 @@
   all,
   impermanence,
   name,
+  machineId,
+  macAddress,
   ...
 }:
 {
@@ -21,7 +23,7 @@
     {
       type = "tap";
       id = "vm-${name}";
-      mac = "02:00:00:00:00:04";
+      mac = macAddress;
     }
   ];
 
@@ -88,7 +90,7 @@
 
   fileSystems."/persist".neededForBoot = true;
 
-  environment.etc.machine-id.text = "9fcd46289ccf4ad0b16a048223c6ba2d";
+  environment.etc.machine-id.text = machineId;
 
   environment.persistence."/persist" = {
     enable = true;
@@ -101,6 +103,7 @@
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
       "/var/lib/docker"
+      "/etc/rancher/node"
     ];
     files = [
       "/etc/ssh/ssh_host_ed25519_key.pub"
@@ -130,6 +133,20 @@
   };
 
   # services programs
+
+  services.k3s =
+    let
+      ireneUrl = "10.0.0.105";
+    in
+    {
+      enable = true;
+      role = "agent";
+      token = "K105a23cc8c7eec8ba132bacedabac8959f55c474cc957a7997a959a9a8b0743091::server:66e6c4f057884c8b78e2fb7fa5962952";
+      serverAddr = "https://${ireneUrl}:6443";
+      extraFlags = toString [
+        "--server https://${ireneUrl}:6443"
+      ];
+    };
 
   virtualisation.docker.enable = true;
 

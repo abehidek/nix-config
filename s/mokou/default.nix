@@ -102,10 +102,13 @@ in
         "vm-test-mvm01"
         "vm-apps"
 
+        # k3s
         "vm-irene-01"
         "vm-sebas-01"
         "vm-sebas-02"
         "vm-ray-01"
+        "vm-ray-02"
+        "vm-ray-03"
       ];
       networkConfig.Bridge = "enp4br0";
     };
@@ -131,7 +134,7 @@ in
   # hardware and boot
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 5;
+  boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
 

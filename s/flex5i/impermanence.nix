@@ -15,6 +15,7 @@ let
     ".mozilla"
     ".vscode"
     ".zen"
+    ".kube"
     {
       directory = ".gnupg";
       mode = "0700";

@@ -29,6 +29,8 @@
       "/var/lib/microvms/sebas-02/persist"
 
       "/var/lib/microvms/ray-01/persist"
+      "/var/lib/microvms/ray-02/persist"
+      "/var/lib/microvms/ray-03/persist"
     ];
     files = [
       "/etc/ssh/ssh_host_ed25519_key.pub"

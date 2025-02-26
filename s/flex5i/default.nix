@@ -321,6 +321,7 @@ in
       discord
       bitwarden
       irpf
+      kubectl
     ];
   };
 

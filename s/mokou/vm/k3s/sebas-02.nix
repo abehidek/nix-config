@@ -1,5 +1,5 @@
 {
-  config,
+  # config,
   # lib,
   pkgs,
   # modulesPath,
@@ -130,6 +130,24 @@
   };
 
   # services programs
+
+  services.k3s =
+    let
+      ireneUrl = "10.0.0.105";
+      dbUrl = "postgres://k3s:password@${ireneUrl}:5432/k3s";
+    in
+    {
+      enable = true;
+      role = "server";
+      token = "K105a23cc8c7eec8ba132bacedabac8959f55c474cc957a7997a959a9a8b0743091::server:66e6c4f057884c8b78e2fb7fa5962952";
+      extraFlags = toString [
+        "--write-kubeconfig-mode \"0644\""
+        "--node-taint CriticalAddonsOnly=true:NoExecute"
+        "--tls-san ${ireneUrl}"
+        "--server https://${ireneUrl}:6443"
+        "--datastore-endpoint ${dbUrl}"
+      ];
+    };
 
   virtualisation.docker.enable = true;
 
