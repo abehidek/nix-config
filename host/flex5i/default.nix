@@ -164,6 +164,8 @@ in
   services.desktopManager.cosmic.enable = true;
   services.displayManager.cosmic-greeter.enable = true;
 
+  security.polkit.enable = true;
+
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
@@ -279,6 +281,7 @@ in
     cbonsai
     dbeaver-bin
     cowsay
+    gparted
 
     # backup terminals
     foot
