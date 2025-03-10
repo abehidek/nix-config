@@ -87,6 +87,8 @@ in
     };
   };
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   zramSwap.enable = true;
 
   # sops
@@ -326,6 +328,7 @@ in
       bitwarden
       irpf
       kubectl
+      rpi-imager
     ];
   };
 
