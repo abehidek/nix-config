@@ -5,6 +5,8 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs.follows = "nixos-cosmic/nixpkgs"; # flex5i de
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -113,6 +115,22 @@
           };
         };
 
+        "kaiki" = lib.nixosSystem {
+          /*
+            3rd home server (lab)
+            used for quickly experimentation without messing
+            with other working services
+          */
+          system = "aarch64-linux";
+          modules = [ (outputs.paths.hosts "kaiki") ];
+          specialArgs = {
+            inherit nixpkgs;
+            paths = outputs.paths;
+            nixos-hardware = inputs.nixos-hardware;
+            all = outputs.all;
+          };
+        };
+
         ## zeta (206)
         "zeta.mem" = lib.nixosSystem {
           /*
@@ -159,5 +177,8 @@
           };
         };
       };
+
+      packages.x86_64-linux."kaiki-image-sd-card" =
+        outputs.nixosConfigurations."kaiki".config.system.build.sdImage;
     };
 }
