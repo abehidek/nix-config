@@ -51,6 +51,8 @@
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
+      supportedSystems = [ "x86_64-linux" ];
+      forAllSystems = lib.genAttrs supportedSystems;
     in
     {
       paths = import ./paths.nix;
@@ -178,7 +180,12 @@
         };
       };
 
-      packages.x86_64-linux."kaiki-image-sd-card" =
-        outputs.nixosConfigurations."kaiki".config.system.build.sdImage;
+      packages = forAllSystems (system: {
+        "kaiki-image-sd-card" = outputs.nixosConfigurations."kaiki".config.system.build.sdImage;
+      });
+
+      devShells = forAllSystems (system: {
+        "k3s" = import (outputs.paths.devs "k3s.nix") { inherit nixpkgs system; };
+      });
     };
 }

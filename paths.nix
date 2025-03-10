@@ -1,5 +1,6 @@
 let
   data = {
+    "devs" = "dev";
     "dots" = "dot";
     "functions" = "fn";
     "keys" = "key";
