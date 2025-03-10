@@ -1,0 +1,10 @@
+repositories:
+  - name: metallb
+    url: https://metallb.github.io/metallb
+---
+releases:
+  # Load balancer
+  - name: metallb
+    chart: metallb/metallb
+    namespace: metallb-system
+    version: 0.14.9
