@@ -123,6 +123,7 @@
           modules = [ (outputs.paths.hosts "zeta/mem.nix") ];
           specialArgs = {
             inherit nixpkgs;
+            paths = outputs.paths;
             all = outputs.all;
             arion = inputs.arion;
           };

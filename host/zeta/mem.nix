@@ -4,6 +4,7 @@
   pkgs,
   modulesPath,
   nixpkgs,
+  paths,
   all,
   arion,
   ...
@@ -19,7 +20,7 @@
 
   imports = [
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
-    (all { inherit pkgs nixpkgs; })
+    (all { inherit pkgs nixpkgs paths; })
 
     arion.nixosModules.arion
   ];
