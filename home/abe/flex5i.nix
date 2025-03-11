@@ -92,6 +92,11 @@ in
       "nix"
       "toml"
     ];
+    userSettings."theme" = {
+      "mode" = "dark";
+      "dark" = "One Dark";
+      "light" = "Solarized Light";
+    };
   };
 
   home.file = {
