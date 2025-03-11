@@ -147,6 +147,7 @@
         "--write-kubeconfig-mode \"0644\""
         "--node-taint CriticalAddonsOnly=true:NoExecute"
         "--tls-san ${ireneUrl}"
+        "--disable traefik"
         "--server https://${ireneUrl}:6443"
         "--datastore-endpoint ${dbUrl}"
       ];
