@@ -4,6 +4,7 @@
   pkgs,
   # modulesPath,
   nixpkgs,
+  paths,
   all,
   impermanence,
   name,
@@ -13,7 +14,7 @@
 }:
 {
   imports = [
-    (all { inherit pkgs nixpkgs; })
+    (all { inherit pkgs nixpkgs paths; })
     impermanence.nixosModules.impermanence
   ];
 

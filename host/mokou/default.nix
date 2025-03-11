@@ -6,7 +6,7 @@
   nixpkgs,
   # home-manager,
   # nur,
-  # paths,
+  paths,
   fns,
   all,
   # all-users,
@@ -27,7 +27,7 @@ let
 in
 {
   imports = [
-    (all { inherit pkgs nixpkgs; })
+    (all { inherit pkgs nixpkgs paths; })
     ./hardware.nix
 
     (import ./disko.nix { inherit disko device zpool_name; })
@@ -35,7 +35,7 @@ in
 
     (importWithArgs ./libvirt.nix { inherit nixvirt; })
     (importWithArgs ./microvm.nix {
-      inherit all impermanence microvm;
+      inherit paths all impermanence microvm;
     })
   ];
 

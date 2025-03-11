@@ -4,14 +4,17 @@
   pkgs,
   # modulesPath,
   nixpkgs,
+  paths,
   all,
   impermanence,
   name,
+  machineId,
+  macAddress,
   ...
 }:
 {
   imports = [
-    (all { inherit pkgs nixpkgs; })
+    (all { inherit pkgs nixpkgs paths; })
     impermanence.nixosModules.impermanence
   ];
 
@@ -21,14 +24,22 @@
     {
       type = "tap";
       id = "vm-${name}";
-      mac = "02:00:00:00:00:05";
+      mac = macAddress;
     }
   ];
 
   networking = {
     networkmanager.enable = false;
     hostName = name;
-    firewall.enable = false;
+  };
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      5432 # postgresql
+      6443 # k3s
+    ];
+    allowedUDPPorts = [ 6443 ];
   };
 
   networking.useNetworkd = true;
@@ -88,7 +99,7 @@
 
   fileSystems."/persist".neededForBoot = true;
 
-  environment.etc.machine-id.text = "9fcd46289ccf4ad0b16a048223c6ba2d";
+  environment.etc.machine-id.text = machineId;
 
   environment.persistence."/persist" = {
     enable = true;
@@ -101,6 +112,7 @@
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
       "/var/lib/docker"
+      "/var/lib/postgresql"
     ];
     files = [
       "/etc/ssh/ssh_host_ed25519_key.pub"
@@ -131,25 +143,51 @@
 
   # services programs
 
-  services.k3s =
+  services.nginx = {
+    enable = true;
+    config = ''
+      events {}
+
+      stream {
+        upstream k3s_servers {
+          server 10.0.0.107:6443;
+          server 10.0.0.108:6443;
+        }
+
+        server {
+          listen      6443;
+          proxy_pass  k3s_servers;
+        }
+      }
+    '';
+  };
+
+  services.postgresql =
     let
-      ireneUrl = "10.0.0.105";
-      dbUrl = "postgres://k3s:password@${ireneUrl}:5432/k3s";
+      userName = "k3s";
+      userPwd = "password";
     in
     {
       enable = true;
-      role = "server";
-      token = "K105a23cc8c7eec8ba132bacedabac8959f55c474cc957a7997a959a9a8b0743091::server:66e6c4f057884c8b78e2fb7fa5962952";
-      extraFlags = toString [
-        "--write-kubeconfig-mode \"0644\""
-        "--node-taint CriticalAddonsOnly=true:NoExecute"
-        "--tls-san ${ireneUrl}"
-        "--server https://${ireneUrl}:6443"
-        "--datastore-endpoint ${dbUrl}"
-      ];
+      ensureDatabases = [ userName ];
+      enableTCPIP = true;
+      authentication = pkgs.lib.mkOverride 10 ''
+        #...
+        #type database DBuser origin-address auth-method
+        local all      all     trust
+        # ipv4
+        host  all      all     127.0.0.1/32   trust
+        host  all      all     10.0.0.48/24   trust
+        # ipv6
+        host all       all     ::1/128        trust
+      '';
+      initialScript = pkgs.writeText "backend-initScript" ''
+        CREATE ROLE ${userName} WITH LOGIN PASSWORD '${userPwd}' CREATEDB;
+        CREATE DATABASE ${userName};
+        GRANT ALL PRIVILEGES ON DATABASE ${userName} TO ${userName};
+        GRANT ALL ON SCHEMA public TO k3s;
+      '';
     };
-
-  virtualisation.docker.enable = true;
 
   # environment & packages
 
@@ -159,7 +197,6 @@
     htop
     lazygit
     helix
-    cbonsai
   ];
 
   users.mutableUsers = false;
@@ -171,7 +208,6 @@
       "wheel"
       "video"
       "audio"
-      "docker"
     ];
   };
 

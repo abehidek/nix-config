@@ -4,14 +4,17 @@
   pkgs,
   # modulesPath,
   nixpkgs,
+  paths,
   all,
   impermanence,
   name,
+  machineId,
+  macAddress,
   ...
 }:
 {
   imports = [
-    (all { inherit pkgs nixpkgs; })
+    (all { inherit pkgs nixpkgs paths; })
     impermanence.nixosModules.impermanence
   ];
 
@@ -21,7 +24,7 @@
     {
       type = "tap";
       id = "vm-${name}";
-      mac = "02:00:00:00:00:02";
+      mac = macAddress;
     }
   ];
 
@@ -88,7 +91,7 @@
 
   fileSystems."/persist".neededForBoot = true;
 
-  environment.etc.machine-id.text = "9fcd46289ccf4ad0b16a048223c6ba2d";
+  environment.etc.machine-id.text = machineId;
 
   environment.persistence."/persist" = {
     enable = true;
@@ -115,7 +118,6 @@
     ".config/sops"
     ".config/lazygit"
     "Desktop"
-    "apps"
   ];
 
   # system basics
@@ -132,6 +134,24 @@
 
   # services programs
 
+  services.k3s =
+    let
+      ireneUrl = "10.0.0.105";
+      dbUrl = "postgres://k3s:password@${ireneUrl}:5432/k3s";
+    in
+    {
+      enable = true;
+      role = "server";
+      token = "K105a23cc8c7eec8ba132bacedabac8959f55c474cc957a7997a959a9a8b0743091::server:66e6c4f057884c8b78e2fb7fa5962952";
+      extraFlags = toString [
+        "--write-kubeconfig-mode \"0644\""
+        "--node-taint CriticalAddonsOnly=true:NoExecute"
+        "--tls-san ${ireneUrl}"
+        "--server https://${ireneUrl}:6443"
+        "--datastore-endpoint ${dbUrl}"
+      ];
+    };
+
   virtualisation.docker.enable = true;
 
   # environment & packages
@@ -142,6 +162,7 @@
     htop
     lazygit
     helix
+    cbonsai
   ];
 
   users.mutableUsers = false;
