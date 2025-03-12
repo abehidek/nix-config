@@ -14,11 +14,17 @@ let
 in
 pkgs.mkShell {
   name = "helmfile devShell";
+
   nativeBuildInputs = with pkgs; [
     bashInteractive
   ];
+
   buildInputs = [
     my-helm
     my-helmfile
   ];
+
+  shellHook = ''
+    cd ./k3s
+  '';
 }
