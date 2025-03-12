@@ -136,6 +136,10 @@ in
     networkmanager.enable = true;
     hostName = "flex5i";
     hostId = "f9ed0640"; # required by ZFS
+    extraHosts = ''
+      10.0.20.1 nginx03.k3s.lan
+    '';
+
   };
 
   services.mullvad-vpn.enable = true;
