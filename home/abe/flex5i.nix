@@ -87,6 +87,10 @@ in
     enable = true;
   };
 
+  programs.feh = {
+    enable = true;
+  };
+
   programs.zed-editor = {
     enable = true;
     extensions = [
