@@ -54,6 +54,7 @@
   environment.shellAliases = {
     sysc = "sudo nixos-rebuild switch --flake .#$(hostname)";
     usrc = "home-manager switch --flake .#$(whoami)@$(hostname)";
+    k = "kubectl";
   };
 
   environment.systemPackages = with pkgs; [

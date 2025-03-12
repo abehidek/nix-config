@@ -66,6 +66,7 @@ in
       sysc = "sudo nixos-rebuild switch --flake .#$\"(hostname)\"";
       usrc = "home-manager switch --flake .#$\"(whoami)\"@$\"(hostname)\"";
       l = "ls -al";
+      k = "kubectl";
     };
 
     environmentVariables = {
