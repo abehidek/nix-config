@@ -67,7 +67,7 @@
     hypervisor = "qemu";
     socket = "control.socket";
     mem = 512;
-    balloonMem = 512 * 7;
+    balloonMem = 512 * 3;
   };
 
   /*

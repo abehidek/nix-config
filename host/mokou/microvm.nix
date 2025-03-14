@@ -52,18 +52,6 @@
     };
   };
 
-  microvm.vms."ray-03" = {
-    inherit pkgs;
-    config = import ./vm/ray.nix;
-    specialArgs = {
-      inherit nixpkgs paths all;
-      impermanence = impermanence;
-      name = "ray-03";
-      machineId = "f9d3269bd6d942c7bd1c810e468141ed";
-      macAddress = "ea:c7:19:bd:65:cc";
-    };
-  };
-
   # k3s server
   microvm.vms."sebas-01" = {
     inherit pkgs;
