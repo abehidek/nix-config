@@ -3,12 +3,14 @@ repositories:
     url: https://metallb.github.io/metallb
   - name: ingress-nginx
     url: https://kubernetes.github.io/ingress-nginx
+  - name: longhorn
+    url: https://charts.longhorn.io
 ---
 releases:
   # Load balancer
   - name: metallb
-    chart: metallb/metallb
     namespace: metallb-system
+    chart: metallb/metallb
     version: 0.14.9
 
   # Ingress for LAN
@@ -18,3 +20,9 @@ releases:
     version: 4.12.0
     values:
       - ./values/nginx-internal.values.yml
+
+  # Distributed storage
+  - name: longhorn
+    namespace: longhorn-system
+    chart: longhorn/longhorn
+    version: 1.8.1

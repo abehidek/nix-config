@@ -135,6 +135,16 @@
 
   # services programs
 
+  # For longhorn
+  systemd.tmpfiles.rules = [
+    "L+ /usr/local/bin - - - - /run/current-system/sw/bin/"
+  ];
+
+  services.openiscsi = {
+    enable = true;
+    name = "iqn.2025-03.com.open-iscsi:${name}";
+  };
+
   services.k3s =
     let
       ireneUrl = "10.0.0.105";

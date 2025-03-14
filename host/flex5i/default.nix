@@ -138,6 +138,7 @@ in
     hostId = "f9ed0640"; # required by ZFS
     extraHosts = ''
       10.0.20.1 nginx03.k3s.lan
+      10.0.20.1 longhorn.k3s.lan
     '';
 
   };
