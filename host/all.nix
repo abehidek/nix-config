@@ -57,6 +57,11 @@
     k = "kubectl";
   };
 
+  environment.variables = {
+    EDITOR = "hx";
+    VISUAL = "hx";
+  };
+
   environment.systemPackages = with pkgs; [
     wget
     cachix
