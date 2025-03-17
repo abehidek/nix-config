@@ -265,6 +265,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    nixos-rebuild-ng
     home-manager
     lm_sensors
     cifs-utils
