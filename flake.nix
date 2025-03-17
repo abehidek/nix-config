@@ -38,6 +38,8 @@
     nixvirt.inputs.nixpkgs.follows = "nixpkgs";
 
     arion.url = "github:hercules-ci/arion";
+
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
   outputs =
@@ -128,8 +130,30 @@
           specialArgs = {
             inherit nixpkgs;
             paths = outputs.paths;
+            fns = outputs.fns;
             nixos-hardware = inputs.nixos-hardware;
             all = outputs.all;
+            nix-secrets = inputs.nix-secrets;
+            sops-nix = inputs.sops-nix;
+            # impermanence for kaiki nodes
+            impermanence = inputs.impermanence;
+            microvm = inputs.microvm;
+          };
+        };
+
+        ## zeta (200)
+        "zeta.net" = lib.nixosSystem {
+          /*
+            LXC container in `zeta` host
+            running Proxmox hypervisor
+          */
+          system = "x86_64-linux";
+          modules = [ (outputs.paths.hosts "zeta/mem.nix") ];
+          specialArgs = {
+            inherit nixpkgs;
+            paths = outputs.paths;
+            all = outputs.all;
+            arion = inputs.arion;
           };
         };
 
@@ -187,5 +211,21 @@
       devShells = forAllSystems (system: {
         "k3s" = import (outputs.paths.devs "k3s.nix") { inherit nixpkgs system; };
       });
+
+      deploy.nodes = {
+        "kaiki" = {
+          hostname = "10.0.1.2";
+          sshUser = "abe";
+          remoteBuild = true;
+          profiles.system = {
+            user = "root";
+            path = inputs.deploy-rs.lib."aarch64-linux".activate.nixos self.nixosConfigurations."kaiki";
+          };
+        };
+      };
+
+      checks = builtins.mapAttrs (
+        system: deployLib: deployLib.deployChecks self.deploy
+      ) inputs.deploy-rs.lib;
     };
 }
