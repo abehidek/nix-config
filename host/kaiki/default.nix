@@ -10,8 +10,8 @@
   fns,
   nixos-hardware,
   all,
-  # nix-secrets,
-  # sops-nix,
+  nix-secrets,
+  sops-nix,
   impermanence,
   microvm,
   ...
@@ -27,7 +27,7 @@ in
     nixos-hardware.nixosModules.raspberry-pi-4
 
     (all { inherit pkgs nixpkgs paths; })
-    # sops-nix.nixosModules.sops
+    sops-nix.nixosModules.sops
 
     (importWithArgs ./microvm.nix {
       inherit paths all impermanence;
@@ -48,19 +48,19 @@ in
 
   # sops
 
-  # sops = {
-  #   defaultSopsFile = "${builtins.toString nix-secrets}/secrets.yaml";
-  #   validateSopsFiles = false;
-  #   age = {
-  #     sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-  #     generateKey = true;
-  #     keyFile = "/var/lib/sops-nix/key.txt";
-  #   };
+  sops = {
+    defaultSopsFile = "${builtins.toString nix-secrets}/secrets.yaml";
+    validateSopsFiles = false;
+    age = {
+      sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      generateKey = true;
+      keyFile = "/var/lib/sops-nix/key.txt";
+    };
 
-  #   secrets = {
-  #     "passwords/wifi-abe-userland" = { };
-  #   };
-  # };
+    secrets = {
+      "passwords/wifi-abe-userland" = { };
+    };
+  };
 
   # networking
 
@@ -78,10 +78,10 @@ in
   networking.wireless = {
     enable = true;
     userControlled.enable = true;
-    # secretsFile = config.sops.secrets."passwords/wifi-abe-userland".path;
-    # networks = {
-    #   "abe-userland".pskRaw = "ext:psk_abe-userland";
-    # };
+    secretsFile = config.sops.secrets."passwords/wifi-abe-userland".path;
+    networks = {
+      "abe-userland".pskRaw = "ext:psk_abe-userland";
+    };
   };
 
   networking.useNetworkd = true;
@@ -147,6 +147,7 @@ in
     helix
     htop
     hello
+    lazygit
   ];
 
   # users and home-manager
