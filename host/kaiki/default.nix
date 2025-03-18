@@ -67,7 +67,8 @@ in
   systemd.network.wait-online.enable = false;
   boot.initrd.systemd.network.wait-online.enable = false;
 
-  networking.useDHCP = lib.mkDefault true;
+  networking.useDHCP = lib.mkDefault false;
+  networking.interfaces."wlan0".useDHCP = lib.mkDefault true;
 
   networking = {
     networkmanager.enable = false;
@@ -93,21 +94,22 @@ in
       Kind = "bridge";
     };
 
-    # networks."30-wlan0" = {
-    #   matchConfig.Name = "wlan0";
-    #   networkConfig.Bridge = "br0";
-    #   linkConfig.RequiredForOnline = "enslaved";
-    # };
-    # networks."30-vm-suzuki-01" = {
-    #   matchConfig.Name = "vm-suzuki-01";
-    #   networkConfig.Bridge = "br0";
-    #   linkConfig.RequiredForOnline = "enslaved";
-    # };
-    # networks."40-br0" = {
-    #   matchConfig.Name = "br0";
-    #   bridgeConfig = { };
-    #   linkConfig.RequiredForOnline = "routable";
-    # };
+    networks."30-end0" = {
+      matchConfig.Name = "end0";
+      networkConfig.Bridge = "br0";
+      linkConfig.RequiredForOnline = "enslaved";
+    };
+    networks."30-vm-suzuki-01" = {
+      matchConfig.Name = "vm-suzuki-01";
+      networkConfig.Bridge = "br0";
+      linkConfig.RequiredForOnline = "enslaved";
+    };
+    networks."40-br0" = {
+      matchConfig.Name = "br0";
+      bridgeConfig = { };
+      networkConfig.DHCP = "yes";
+      linkConfig.RequiredForOnline = "routable";
+    };
   };
 
   # hardware and boot
@@ -131,9 +133,11 @@ in
   time.timeZone = "America/Sao_Paulo";
   i18n.defaultLocale = "en_US.UTF-8";
 
+  # services programs
+
   programs.git.enable = true;
 
-  # services programs
+  security.polkit.enable = true;
 
   services.openssh.enable = true;
 
@@ -146,7 +150,6 @@ in
     pfetch
     helix
     htop
-    hello
     lazygit
   ];
 

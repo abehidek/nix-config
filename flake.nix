@@ -214,7 +214,8 @@
 
       deploy.nodes = {
         "kaiki" = {
-          hostname = "10.0.1.2";
+          hostname = "10.0.1.1"; # 1G eth cable
+          # hostname = "10.0.1.2"; # 2.4Ghz wifi
           sshUser = "abe";
           remoteBuild = true;
           profiles.system = {
