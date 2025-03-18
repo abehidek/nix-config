@@ -126,18 +126,17 @@
             with other working services
           */
           system = "aarch64-linux";
-          modules = [ (outputs.paths.hosts "kaiki") ];
+          modules = [ (outputs.paths.hosts "kaiki/kaiki.nix") ];
           specialArgs = {
             inherit nixpkgs;
             paths = outputs.paths;
-            fns = outputs.fns;
             nixos-hardware = inputs.nixos-hardware;
             all = outputs.all;
             nix-secrets = inputs.nix-secrets;
             sops-nix = inputs.sops-nix;
-            # impermanence for kaiki nodes
-            impermanence = inputs.impermanence;
+            impermanence = inputs.impermanence; # impermanence for kaiki vms
             microvm = inputs.microvm;
+            suzuki = outputs.vms."suzuki";
           };
         };
 
@@ -211,6 +210,10 @@
       devShells = forAllSystems (system: {
         "k3s" = import (outputs.paths.devs "k3s.nix") { inherit nixpkgs system; };
       });
+
+      vms = {
+        "suzuki" = import (outputs.paths.vms "suzuki.nix");
+      };
 
       deploy.nodes = {
         "kaiki" = {

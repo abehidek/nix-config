@@ -4,35 +4,26 @@
   pkgs,
   # modulesPath,
   nixpkgs,
-  # home-manager,
-  # nur,
   paths,
-  fns,
   nixos-hardware,
   all,
   nix-secrets,
   sops-nix,
-  impermanence,
-  microvm,
+  # impermanence,
+  # microvm
+  # suzuki
   ...
-}@args:
-let
-  importWithArgs = (fns.importWithArgs args);
-in
+}:
+
 {
   imports = [
+    (all { inherit pkgs nixpkgs paths; })
     "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
     "${nixpkgs}/nixos/modules/installer/sd-card/sd-image.nix"
-
     nixos-hardware.nixosModules.raspberry-pi-4
-
-    (all { inherit pkgs nixpkgs paths; })
     sops-nix.nixosModules.sops
 
-    (importWithArgs ./microvm.nix {
-      inherit paths all impermanence;
-      microvm = microvm;
-    })
+    ./microvm.nix
   ];
 
   disabledModules = [

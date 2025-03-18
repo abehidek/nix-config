@@ -6,6 +6,7 @@ let
     "keys" = "key";
     "hosts" = "host";
     "users" = "home";
+    "vms" = "host/vm";
   };
 in
 builtins.mapAttrs (

@@ -18,23 +18,52 @@
     impermanence.nixosModules.impermanence
   ];
 
-  # networking
+  # microvm-guest opts
 
-  microvm.interfaces = [
-    {
-      type = "tap";
-      id = "vm-${name}";
-      mac = macAddress;
-    }
-  ];
-
-  networking = {
-    networkmanager.enable = false;
-    hostName = name;
-    firewall.enable = false;
+  microvm = {
+    hypervisor = "qemu";
+    socket = "control.socket";
+    mem = 512;
+    balloonMem = 512 * 3;
+    interfaces = [
+      {
+        type = "tap";
+        id = "vm-${name}";
+        mac = macAddress;
+      }
+    ];
+    volumes = [
+      {
+        mountPoint = "/var";
+        image = "var.img";
+        size = 8192;
+      }
+    ];
+    shares = [
+      {
+        source = "/nix/store";
+        mountPoint = "/nix/.ro-store";
+        tag = "ro-store";
+        proto = "virtiofs";
+      }
+      {
+        source = "/var/lib/microvms/${name}/persist"; # before creating the vm, please create this folder beforehand
+        mountPoint = "/persist";
+        tag = "persist";
+        proto = "virtiofs";
+      }
+    ];
   };
 
-  networking.useNetworkd = true;
+  # networking
+
+  networking = {
+    hostName = name;
+    networkmanager.enable = false;
+    firewall.enable = false;
+    useNetworkd = true;
+  };
+
   systemd.network = {
     enable = true;
     networks."19-docker" = {
@@ -51,42 +80,6 @@
       };
     };
   };
-
-  # hardware and boot
-
-  microvm = {
-    hypervisor = "qemu";
-    socket = "control.socket";
-    mem = 512;
-    balloonMem = 512 * 3;
-  };
-
-  /*
-    It is highly recommended to share the host's nix-store
-    with the VMs to prevent building huge images.
-  */
-  microvm.shares = [
-    {
-      source = "/nix/store";
-      mountPoint = "/nix/.ro-store";
-      tag = "ro-store";
-      proto = "virtiofs";
-    }
-    {
-      source = "/var/lib/microvms/${name}/persist"; # before creating the vm, please create this folder beforehand
-      mountPoint = "/persist";
-      tag = "persist";
-      proto = "virtiofs";
-    }
-  ];
-
-  microvm.volumes = [
-    {
-      mountPoint = "/var";
-      image = "var.img";
-      size = 8192;
-    }
-  ];
 
   fileSystems."/persist".neededForBoot = true;
 

@@ -5,9 +5,13 @@
   # modulesPath,
   nixpkgs,
   paths,
+  # nixos-hardware,
   all,
+  # nix-secrets,
+  # sops-nix,
   impermanence,
   microvm,
+  suzuki,
   ...
 }:
 
@@ -17,7 +21,7 @@
   # k3s worker
   microvm.vms."suzuki-01" = {
     inherit pkgs;
-    config = import ./suzuki.nix;
+    config = suzuki;
     specialArgs = {
       inherit nixpkgs paths all;
       impermanence = impermanence;
