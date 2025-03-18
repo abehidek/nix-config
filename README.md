@@ -1,7 +1,6 @@
 these are the existing systems that I still need to migrate:
 
 - [ ] zeta.meeru
-- [ ] zeta.portainer
 - [x] zeta.mem
 - [ ] zeta.fin
 - [ ] zeta.net

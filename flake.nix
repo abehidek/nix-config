@@ -149,12 +149,13 @@
           };
         };
 
+        /*
+          LXC containers in `zeta` host
+          running Proxmox hypervisor
+        */
+
         ## zeta (200)
         "zeta.net" = lib.nixosSystem {
-          /*
-            LXC container in `zeta` host
-            running Proxmox hypervisor
-          */
           system = "x86_64-linux";
           modules = [ (outputs.paths.hosts "zeta/mem.nix") ];
           specialArgs = {
@@ -165,12 +166,19 @@
           };
         };
 
+        ## zeta (205)
+        "zeta.fin" = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ (outputs.paths.hosts "zeta/fin.nix") ];
+          specialArgs = {
+            inherit nixpkgs;
+            paths = outputs.paths;
+            all = outputs.all;
+          };
+        };
+
         ## zeta (206)
         "zeta.mem" = lib.nixosSystem {
-          /*
-            LXC container in `zeta` host
-            running Proxmox hypervisor
-          */
           system = "x86_64-linux";
           modules = [ (outputs.paths.hosts "zeta/mem.nix") ];
           specialArgs = {
