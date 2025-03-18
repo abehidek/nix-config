@@ -6,6 +6,7 @@
   # nixpkgs,
   # home-manager,
   # nur,
+  # modules,
   # paths,
   # all,
   # all-users,

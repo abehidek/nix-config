@@ -6,6 +6,7 @@
   nixpkgs,
   home-manager,
   nur,
+  modules,
   paths,
   all,
   all-users,
@@ -29,12 +30,19 @@
     sops-nix.nixosModules.sops
     nixos-cosmic.nixosModules.default
     nix-flatpak.nixosModules.nix-flatpak
+    modules.host.system
 
     (all { inherit pkgs nixpkgs paths; })
     ./disko.nix
     ./hardware.nix
     ./impermanence.nix
   ];
+
+  # hidekxyz
+
+  hidekxyz.system = {
+    hostname = "flex5i";
+  };
 
   # nix build opts
   nixpkgs.config.allowUnfree = true;
@@ -111,9 +119,6 @@
 
   # system basics
 
-  time.timeZone = "America/Sao_Paulo";
-  i18n.defaultLocale = "en_US.UTF-8";
-
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
@@ -132,7 +137,6 @@
 
   networking = {
     networkmanager.enable = true;
-    hostName = "flex5i";
     hostId = "f9ed0640"; # required by ZFS
     extraHosts = ''
       10.0.20.1 nginx03.k3s.lan

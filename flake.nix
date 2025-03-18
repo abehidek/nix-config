@@ -76,6 +76,7 @@
           modules = [ (outputs.paths.hosts "flex5i") ];
           specialArgs = {
             inherit nixpkgs home-manager nur;
+            modules = outputs.modules;
             paths = outputs.paths;
             all = outputs.all;
             all-users = outputs.all-users;
