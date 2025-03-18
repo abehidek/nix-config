@@ -65,6 +65,10 @@
 
       all-users = import (outputs.paths.users "all.nix");
 
+      modules = {
+        host = import ./mod;
+      };
+
       nixosConfigurations = {
         # desktops
         "flex5i" = lib.nixosSystem {
