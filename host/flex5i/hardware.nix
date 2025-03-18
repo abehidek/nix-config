@@ -3,6 +3,22 @@
   lib,
   # pkgs,
   modulesPath,
+  # nixpkgs,
+  # home-manager,
+  # nur,
+  # paths,
+  # all,
+  # all-users,
+  # nix-secrets,
+  # sops-nix,
+  # disko,
+  # impermanence,
+  # nixos-cosmic,
+  # nix-flatpak,
+
+  # id-machine,
+  # id-disk,
+  # name-zpool,
   ...
 }:
 

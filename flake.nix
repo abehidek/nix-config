@@ -81,6 +81,10 @@
             impermanence = inputs.impermanence;
             nixos-cosmic = inputs.nixos-cosmic;
             nix-flatpak = inputs.nix-flatpak;
+
+            id-machine = "0c9ff5c1b06f402f8095327b7633e332";
+            id-disk = "/dev/disk/by-id/nvme-SSSTC_CL1-4D256_SS1C86490L2BR17P6972";
+            name-zpool = "zroot";
           };
         };
 

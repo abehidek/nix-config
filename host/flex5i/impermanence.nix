@@ -1,5 +1,24 @@
 {
-  machineId,
+  # config,
+  # lib,
+  # pkgs,
+  # modulesPath,
+  # nixpkgs,
+  # home-manager,
+  # nur,
+  # paths,
+  # all,
+  # all-users,
+  # nix-secrets,
+  # sops-nix,
+  # disko,
+  impermanence,
+  # nixos-cosmic,
+  # nix-flatpak,
+
+  id-machine,
+  # id-disk,
+  # name-zpool,
   ...
 }:
 
@@ -70,8 +89,13 @@ let
   ];
 in
 {
-  environment.etc.machine-id.text = machineId;
+  imports = [ impermanence.nixosModules.impermanence ];
 
+  # required for impermanence to work
+  fileSystems."/persist".neededForBoot = true;
+  environment.etc.machine-id.text = id-machine;
+
+  # opts
   environment.persistence."/persist" = {
     enable = true;
     hideMounts = true;

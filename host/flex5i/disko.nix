@@ -1,11 +1,33 @@
 {
-  device,
-  zpool_name,
+  # config,
+  # lib,
+  # pkgs,
+  # modulesPath,
+  # nixpkgs,
+  # home-manager,
+  # nur,
+  # paths,
+  # all,
+  # all-users,
+  # nix-secrets,
+  # sops-nix,
+  disko,
+  # impermanence,
+  # nixos-cosmic,
+  # nix-flatpak,
+
+  # id-machine,
+  id-disk,
+  name-zpool,
+  ...
 }:
 
+# Do not modify this file!, disko doesn't support fs changes and this file only runs once (when formatting disk)
 {
+  imports = [ disko.nixosModules.disko ];
+
   disko.devices.disk.disk1 = {
-    inherit device;
+    device = id-disk;
     type = "disk";
     content.type = "gpt";
     content.partitions = {
@@ -31,13 +53,13 @@
         size = "100%";
         content = {
           type = "zfs";
-          pool = zpool_name;
+          pool = name-zpool;
         };
       };
     };
   };
 
-  disko.devices.zpool.${zpool_name} = {
+  disko.devices.zpool.${name-zpool} = {
     type = "zpool";
     mountpoint = null;
     rootFsOptions = {
@@ -69,7 +91,7 @@
         options.mountpoint = "legacy";
         mountpoint = "/";
 
-        postCreateHook = "zfs snapshot ${zpool_name}/local/root@empty";
+        postCreateHook = "zfs snapshot ${name-zpool}/local/root@empty";
       };
       "local/nix" = {
         type = "zfs_fs";

@@ -11,86 +11,83 @@
   all-users,
   nix-secrets,
   sops-nix,
-  disko,
-  impermanence,
+  # disko,
+  # impermanence,
   nixos-cosmic,
   nix-flatpak,
+
+  # id-machine,
+  # id-disk,
+  name-zpool,
   ...
 }:
 
-let
-  device = "/dev/disk/by-id/nvme-SSSTC_CL1-4D256_SS1C86490L2BR17P6972";
-  zpool_name = "zroot";
-in
 {
-  nixpkgs.config.allowUnfree = true;
-
   imports = [
     home-manager.nixosModules.home-manager
     nur.modules.nixos.default
-    (all { inherit pkgs nixpkgs paths; })
     sops-nix.nixosModules.sops
-    disko.nixosModules.disko
-    impermanence.nixosModules.impermanence
     nixos-cosmic.nixosModules.default
     nix-flatpak.nixosModules.nix-flatpak
 
-    (import ./impermanence.nix { machineId = "0c9ff5c1b06f402f8095327b7633e332"; })
-    (import ./disko.nix { inherit device zpool_name; })
-
+    (all { inherit pkgs nixpkgs paths; })
+    ./disko.nix
     ./hardware.nix
+    ./impermanence.nix
   ];
 
+  # nix build opts
+  nixpkgs.config.allowUnfree = true;
   nix.settings.max-jobs = 4;
 
   # hardware and boot
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 5;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot";
-
-  fileSystems."/persist".neededForBoot = true;
-
-  boot.consoleLogLevel = 0;
-
-  boot.kernelParams = [
-    "quiet"
-    "elevator=none"
-    "udev.log_level=3"
-    "zfs.zfs_arc_max=${toString (512 * 1048576)}" # max of 512mb for ZFS
-  ];
-
-  boot.initrd.kernelModules = [ "i915" ];
-  boot.initrd.supportedFilesystems = [ "zfs" ];
-  boot.supportedFilesystems = [
-    "zfs"
-    "ntfs"
-  ];
-
-  boot.zfs = {
-    forceImportRoot = false;
-    devNodes = lib.mkDefault "/dev/disk/by-id";
+  boot.loader = {
+    systemd-boot.enable = true;
+    systemd-boot.configurationLimit = 5;
+    efi.canTouchEfiVariables = true;
+    efi.efiSysMountPoint = "/boot";
   };
 
-  boot.initrd.systemd = {
-    enable = lib.mkDefault true;
-    services.reset = {
-      description = "Rollback root filesystem to a pristine state on boot";
-      wantedBy = [ "initrd.target" ];
-      after = [ "zfs-import-${zpool_name}.service" ];
-      before = [ "sysroot.mount" ];
-      path = with pkgs; [ zfs ];
-      unitConfig.DefaultDependencies = "no";
-      serviceConfig.Type = "oneshot";
-      script = "zfs rollback -r ${zpool_name}/local/root@empty";
+  boot.initrd = {
+    kernelModules = [ "i915" ];
+    supportedFilesystems = [ "zfs" ];
+    systemd = {
+      enable = lib.mkDefault true;
+      services."reset" = {
+        description = "Rollback root filesystem to a pristine state on boot";
+        wantedBy = [ "initrd.target" ];
+        after = [ "zfs-import-${name-zpool}.service" ];
+        before = [ "sysroot.mount" ];
+        path = with pkgs; [ zfs ];
+        unitConfig.DefaultDependencies = "no";
+        serviceConfig.Type = "oneshot";
+        script = "zfs rollback -r ${name-zpool}/local/root@empty";
+      };
     };
   };
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
+  boot = {
+    consoleLogLevel = 0;
+    zfs.forceImportRoot = false;
+    zfs.devNodes = lib.mkDefault "/dev/disk/by-id";
+    supportedFilesystems = [
+      "zfs"
+      "ntfs"
+    ];
+    kernelParams = [
+      "quiet"
+      "elevator=none"
+      "udev.log_level=3"
+      "zfs.zfs_arc_max=${toString (512 * 1048576)}" # max of 512mb for ZFS
+    ];
+  };
 
   zramSwap.enable = true;
+
+  # cross arch compilation
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
 
   # sops
 
@@ -141,10 +138,7 @@ in
       10.0.20.1 nginx03.k3s.lan
       10.0.20.1 longhorn.k3s.lan
     '';
-
   };
-
-  services.mullvad-vpn.enable = true;
 
   security.sudo = {
     enable = true;
@@ -171,6 +165,8 @@ in
 
   services.desktopManager.cosmic.enable = true;
   services.displayManager.cosmic-greeter.enable = true;
+
+  services.mullvad-vpn.enable = true;
 
   security.polkit.enable = true;
 
@@ -293,6 +289,7 @@ in
     foot
     xterm
 
+    osu-lazer
     pfetch
     neofetch
     pkgs.nur.repos.mic92.hello-nur
