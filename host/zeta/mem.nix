@@ -11,18 +11,18 @@
 }:
 
 {
-  nixpkgs.config.allowUnfree = true;
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "dotnet-sdk-6.0.428"
-    "aspnetcore-runtime-6.0.36"
-  ];
-
   imports = [
     (modulesPath + "/virtualisation/proxmox-lxc.nix")
     (all { inherit pkgs nixpkgs paths; })
 
     arion.nixosModules.arion
+  ];
+
+  nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "dotnet-sdk-6.0.428"
+    "aspnetcore-runtime-6.0.36"
   ];
 
   # hardware and boot
@@ -275,6 +275,7 @@
     libva-utils
     pciutils
     glxinfo
+    fastfetch
     # jellyfin
     jellyfin
     jellyfin-web

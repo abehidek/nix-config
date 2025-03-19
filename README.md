@@ -2,8 +2,8 @@ these are the existing systems that I still need to migrate:
 
 - [ ] zeta.meeru
 - [x] zeta.mem
-- [ ] zeta.fin
-- [ ] zeta.net
+- [x] zeta.fin
+- [x] zeta.net
 - [ ] zeta.mc
 - [ ] roxy
 - [ ] templates.lxc "aoi" & "beta"

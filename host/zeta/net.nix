@@ -37,18 +37,19 @@
     "net.ipv4.ping_group_range" = "0 1000";
   };
 
-  # networking
-
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
       80
+      81
       443
-      3000
-      4000
       8080
     ];
   };
+
+  services.resolved.extraConfig = ''
+    DNSStubListener=no
+  '';
 
   # services programs
 
@@ -57,35 +58,25 @@
   virtualisation.arion.backend = "docker";
 
   virtualisation.arion.projects = {
-    "baikal".settings = {
-      project.name = "baikal";
-      services."baikal".service = {
-        image = "ckulka/baikal:nginx";
+    "nginx-proxy-manager".settings = {
+      project.name = "nginx-proxy-manager";
+      services."nginx-proxy-manager".service = {
+        image = "jc21/nginx-proxy-manager:2.12.3";
+        container_name = "nginx-proxy-manager";
         restart = "unless-stopped";
-        ports = [ "4000:80" ];
+        network_mode = "host";
+        ports = [
+          "80:80"
+          "81:81"
+          "443:443"
+          "443:443/udp"
+        ];
         volumes = [
-          "/home/abe/baikal/config:/var/www/baikal/config"
-          "/home/abe/baikal/data:/var/www/baikal/Specific"
+          "/home/abe/nginx-proxy-manager/data:/data"
+          "/home/abe/nginx-proxy-manager/letsencrypt:/etc/letsencrypt"
         ];
       };
     };
-
-    "rmfakecloud".settings = {
-      project.name = "rmfakecloud";
-      services.rmfakecloud.service = {
-        image = "ddvk/rmfakecloud:0.0.23";
-        container_name = "rmfakecloud";
-        restart = "unless-stopped";
-        ports = [ "3000:3000" ];
-        env_file = [ "/home/abe/rmfakecloud/env" ];
-        volumes = [
-          "/home/abe/rmfakecloud/data:/data"
-          "/mnt/hako/life/references/books:/data/media/books"
-          "/mnt/hako/life:/data/media/life"
-        ];
-      };
-    };
-
   };
 
   programs.git.enable = true;

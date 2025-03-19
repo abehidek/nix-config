@@ -163,7 +163,7 @@
         ## zeta (200)
         "zeta.net" = lib.nixosSystem {
           system = "x86_64-linux";
-          modules = [ (outputs.paths.hosts "zeta/mem.nix") ];
+          modules = [ (outputs.paths.hosts "zeta/net.nix") ];
           specialArgs = {
             inherit nixpkgs;
             paths = outputs.paths;
@@ -180,6 +180,7 @@
             inherit nixpkgs;
             paths = outputs.paths;
             all = outputs.all;
+            arion = inputs.arion;
           };
         };
 
@@ -266,6 +267,33 @@
           profiles.system = {
             user = "root";
             path = inputs.deploy-rs.lib."aarch64-linux".activate.nixos self.nixosConfigurations."kaiki";
+          };
+        };
+        "net" = {
+          hostname = "10.0.0.200";
+          sshUser = "abe";
+          remoteBuild = true;
+          profiles.system = {
+            user = "root";
+            path = inputs.deploy-rs.lib."x86_64-linux".activate.nixos self.nixosConfigurations."zeta.net";
+          };
+        };
+        "fin" = {
+          hostname = "10.0.0.205";
+          sshUser = "abe";
+          remoteBuild = true;
+          profiles.system = {
+            user = "root";
+            path = inputs.deploy-rs.lib."x86_64-linux".activate.nixos self.nixosConfigurations."zeta.fin";
+          };
+        };
+        "mem" = {
+          hostname = "10.0.0.206";
+          sshUser = "abe";
+          remoteBuild = true;
+          profiles.system = {
+            user = "root";
+            path = inputs.deploy-rs.lib."x86_64-linux".activate.nixos self.nixosConfigurations."zeta.mem";
           };
         };
       };
