@@ -29,7 +29,7 @@
     nur.modules.nixos.default
     sops-nix.nixosModules.sops
     nixos-cosmic.nixosModules.default
-    modules.host.system
+    modules.system
 
     (all { inherit pkgs nixpkgs paths; })
     ./disko.nix

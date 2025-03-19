@@ -66,7 +66,7 @@
 
       all-users = import (outputs.paths.users "all.nix");
 
-      modules.host = import ./mod;
+      modules = import ./mod;
 
       nixosConfigurations = {
         # desktops
@@ -270,6 +270,8 @@
             path = inputs.deploy-rs.lib."aarch64-linux".activate.nixos self.nixosConfigurations."kaiki";
           };
         };
+
+        # zeta
         "net" = {
           hostname = "10.0.0.200";
           sshUser = "abe";
