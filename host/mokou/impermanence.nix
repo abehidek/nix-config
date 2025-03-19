@@ -1,13 +1,34 @@
 {
+  # config,
+  # lib,
+  # pkgs,
+  # modulesPath,
+  # nixpkgs,
+  # paths,
+  # all,
+  # disko,
   impermanence,
-  machineId,
+  # microvm,
+  # nixvirt,
+
+  id-machine,
+  # id-disk,
+  # name-zpool,
+
+  # test-ubuntu,
+  # opnsense,
+  # irene,
+  # ray,
+  # sebas,
   ...
 }:
 
 {
   imports = [ impermanence.nixosModules.impermanence ];
 
-  environment.etc.machine-id.text = machineId;
+  # required for impermanence to work
+  fileSystems."/persist".neededForBoot = true;
+  environment.etc.machine-id.text = id-machine;
 
   environment.persistence."/persist" = {
     enable = true;
@@ -25,11 +46,13 @@
 
       "/var/lib/microvms/irene-01/persist"
 
-      "/var/lib/microvms/sebas-01/persist"
-      "/var/lib/microvms/sebas-02/persist"
+      # "/var/lib/microvms/sebas-01/persist"
+      # "/var/lib/microvms/sebas-02/persist"
 
-      "/var/lib/microvms/ray-01/persist"
-      "/var/lib/microvms/ray-02/persist"
+      # "/var/lib/microvms/ray-01/persist"
+      # "/var/lib/microvms/ray-02/persist"
+
+      "/var/lib/microvms/silence-01/persist"
     ];
     files = [
       "/etc/ssh/ssh_host_ed25519_key.pub"

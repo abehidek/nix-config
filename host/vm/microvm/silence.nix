@@ -8,8 +8,8 @@
   all,
   impermanence,
   name,
-  machineId,
-  macAddress,
+  id-machine,
+  mac,
   ...
 }:
 {
@@ -18,31 +18,58 @@
     impermanence.nixosModules.impermanence
   ];
 
+  # microvm-guest opts
+
+  microvm = {
+    hypervisor = "qemu";
+    socket = "control.socket";
+    mem = 512;
+    balloonMem = 512 * 5;
+    interfaces = [
+      {
+        inherit mac;
+        type = "tap";
+        id = "vm-${name}";
+      }
+    ];
+    volumes = [
+      {
+        mountPoint = "/var";
+        image = "var.img";
+        size = 32768;
+      }
+    ];
+    shares = [
+      {
+        source = "/nix/store";
+        mountPoint = "/nix/.ro-store";
+        tag = "ro-store";
+        proto = "virtiofs";
+      }
+      {
+        source = "/var/lib/microvms/${name}/persist"; # before creating the vm, please create this folder beforehand
+        mountPoint = "/persist";
+        tag = "persist";
+        proto = "virtiofs";
+      }
+    ];
+  };
+
   # networking
 
-  microvm.interfaces = [
-    {
-      type = "tap";
-      id = "vm-${name}";
-      mac = macAddress;
-    }
-  ];
-
   networking = {
-    networkmanager.enable = false;
     hostName = name;
-  };
+    networkmanager.enable = false;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        5432 # postgresql
+        6443 # k3s
+      ];
+    };
 
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [
-      5432 # postgresql
-      6443 # k3s
-    ];
-    allowedUDPPorts = [ 6443 ];
+    useNetworkd = true;
   };
-
-  networking.useNetworkd = true;
 
   systemd.network = {
     enable = true;
@@ -61,45 +88,10 @@
     };
   };
 
-  # hardware and boot
-
-  microvm = {
-    hypervisor = "qemu";
-    socket = "control.socket";
-    mem = 512;
-    balloonMem = 512 * 3;
-  };
-
-  /*
-    It is highly recommended to share the host's nix-store
-    with the VMs to prevent building huge images.
-  */
-  microvm.shares = [
-    {
-      source = "/nix/store";
-      mountPoint = "/nix/.ro-store";
-      tag = "ro-store";
-      proto = "virtiofs";
-    }
-    {
-      source = "/var/lib/microvms/${name}/persist"; # before creating the vm, please create this folder beforehand
-      mountPoint = "/persist";
-      tag = "persist";
-      proto = "virtiofs";
-    }
-  ];
-
-  microvm.volumes = [
-    {
-      mountPoint = "/var";
-      image = "var.img";
-      size = 8192;
-    }
-  ];
+  # impermanence
 
   fileSystems."/persist".neededForBoot = true;
-
-  environment.etc.machine-id.text = machineId;
+  environment.etc.machine-id.text = id-machine;
 
   environment.persistence."/persist" = {
     enable = true;
@@ -110,7 +102,6 @@
       "/var/lib/sops-nix"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
-      "/etc/NetworkManager/system-connections"
       "/var/lib/docker"
       "/var/lib/postgresql"
     ];
@@ -141,7 +132,7 @@
     '';
   };
 
-  # services programs
+  # services and programs
 
   services.nginx = {
     enable = true;
@@ -150,8 +141,8 @@
 
       stream {
         upstream k3s_servers {
-          server 10.0.0.107:6443;
-          server 10.0.0.108:6443;
+          server 10.0.0.111:6443;
+          server 10.0.0.112:6443;
         }
 
         server {
@@ -189,14 +180,13 @@
       '';
     };
 
-  # environment & packages
-
   environment.systemPackages = with pkgs; [
-    neofetch
     stress
     htop
     lazygit
     helix
+    fastfetch
+    hello
   ];
 
   users.mutableUsers = false;

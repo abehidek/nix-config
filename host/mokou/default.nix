@@ -4,39 +4,34 @@
   pkgs,
   # modulesPath,
   nixpkgs,
-  # home-manager,
-  # nur,
   paths,
-  fns,
   all,
-  # all-users,
-  # nix-secrets,
-  # sops-nix,
-  disko,
-  impermanence,
-  microvm,
-  nixvirt,
-  ...
-}@args:
+  # disko,
+  # impermanence,
+  # microvm,
+  # nixvirt,
 
-let
-  device = "/dev/disk/by-id/nvme-SSD_128GB_AA000000000000000276";
-  zpool_name = "mroot";
-  machineId = "e8ccbf623edf4dd6aa83732a65ce08cb";
-  importWithArgs = (fns.importWithArgs args);
-in
+  # id-machine,
+  # id-disk,
+  name-zpool,
+
+  # test-ubuntu,
+  # opnsense,
+  # irene,
+  # ray,
+  # sebas,
+  ...
+}:
+
 {
   imports = [
     (all { inherit pkgs nixpkgs paths; })
+
     ./hardware.nix
-
-    (import ./disko.nix { inherit disko device zpool_name; })
-    (import ./impermanence.nix { inherit impermanence machineId; })
-
-    (importWithArgs ./libvirt.nix { inherit nixvirt; })
-    (importWithArgs ./microvm.nix {
-      inherit paths all impermanence microvm;
-    })
+    ./disko.nix
+    ./impermanence.nix
+    ./libvirt.nix
+    ./microvm.nix
   ];
 
   # networking
@@ -44,91 +39,94 @@ in
   systemd.network.wait-online.enable = false;
   boot.initrd.systemd.network.wait-online.enable = false;
 
-  networking.useDHCP = lib.mkDefault false;
-
   networking = {
-    networkmanager.enable = false;
     hostName = "mokou";
+    useDHCP = lib.mkDefault false;
+    networkmanager.enable = false;
     hostId = "f9ed0642"; # required by ZFS
     firewall.enable = false; # will be handled by opnsense vm
+    useNetworkd = true;
   };
 
-  networking.useNetworkd = true;
   systemd.network = {
     enable = true;
-    netdevs."10-enp2br0".netdevConfig = {
+
+    netdevs."20-enp2br0".netdevConfig = {
       Name = "enp2br0";
       Kind = "bridge";
     };
-    networks."20-enp2br0" = {
-      matchConfig.Name = "enp2br0";
-      linkConfig.RequiredForOnline = "routable";
-      networkConfig.DHCP = "yes";
-    };
-    networks."20-enp2s0" = {
-      matchConfig.Name = [ "enp2s0" ];
+
+    networks."30-enp2s0" = {
+      matchConfig.Name = "enp2s0";
       networkConfig.Bridge = "enp2br0";
+      linkConfig.RequiredForOnline = "enslaved";
+    };
+
+    networks."40-enp2br0" = {
+      matchConfig.Name = "enp2br0";
+      networkConfig.DHCP = "yes";
+      linkConfig.RequiredForOnline = "routable";
     };
 
     # ---
 
     # wan bridge
-    netdevs."10-enp5br0".netdevConfig = {
+    netdevs."20-enp5br0".netdevConfig = {
       Name = "enp5br0";
       Kind = "bridge";
     };
-    networks."20-enp5br0" = {
+
+    networks."30-enp5s0" = {
+      matchConfig.Name = "enp5s0";
+      networkConfig.Bridge = "enp5br0";
+      linkConfig.RequiredForOnline = "enslaved";
+    };
+
+    networks."40-enp5br0" = {
       matchConfig.Name = "enp5br0";
       linkConfig.RequiredForOnline = "routable";
-    };
-    networks."20-enp5s0" = {
-      matchConfig.Name = [ "enp5s0" ];
-      networkConfig.Bridge = "enp5br0";
     };
 
     # ---
 
     # new lan bridge (lan1)
-    netdevs."10-enp4br0".netdevConfig = {
+    netdevs."20-enp4br0".netdevConfig = {
       Name = "enp4br0";
       Kind = "bridge";
     };
-    networks."20-enp4br0" = {
-      matchConfig.Name = "enp4br0";
-      linkConfig.RequiredForOnline = "routable";
-    };
-    networks."20-vlan" = {
+
+    networks."30-enp4s0-lan" = {
       matchConfig.Name = [
         "enp4s0"
-        "vm-test-mvm01"
-        "vm-apps"
-
-        # k3s
-        "vm-irene-01"
-        "vm-sebas-01"
-        "vm-sebas-02"
-        "vm-ray-01"
-        "vm-ray-02"
-        "vm-ray-03"
+        "vm-*"
       ];
       networkConfig.Bridge = "enp4br0";
+      linkConfig.RequiredForOnline = "enslaved";
+    };
+
+    networks."40-enp4br0" = {
+      matchConfig.Name = "enp4br0";
+      linkConfig.RequiredForOnline = "routable";
     };
 
     # ---
 
     # another new lan bridge(lan2)
-    netdevs."10-enp3br0".netdevConfig = {
+    netdevs."20-enp3br0".netdevConfig = {
       Name = "enp3br0";
       Kind = "bridge";
     };
-    networks."20-enp3br0" = {
-      matchConfig.Name = "enp3br0";
-      linkConfig.RequiredForOnline = "routable";
-      networkConfig.DHCP = "yes";
-    };
-    networks."20-enp3s0" = {
-      matchConfig.Name = [ "enp3s0" ];
+
+    networks."30-enp3s0" = {
+      matchConfig.Name = "enp3s0";
       networkConfig.Bridge = "enp3br0";
+      linkConfig.RequiredForOnline = "enslaved";
+    };
+
+    networks."40-enp3br0" = {
+      matchConfig.Name = "enp3br0";
+      networkConfig.DHCP = "yes";
+      linkConfig.RequiredForOnline = "routable";
     };
   };
 
@@ -138,8 +136,6 @@ in
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
-
-  fileSystems."/persist".neededForBoot = true;
 
   boot.consoleLogLevel = 0;
 
@@ -164,12 +160,12 @@ in
     services.reset = {
       description = "Rollback root filesystem to a pristine state on boot";
       wantedBy = [ "initrd.target" ];
-      after = [ "zfs-import-${zpool_name}.service" ];
+      after = [ "zfs-import-${name-zpool}.service" ];
       before = [ "sysroot.mount" ];
       path = with pkgs; [ zfs ];
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
-      script = "zfs rollback -r ${zpool_name}/local/root@empty";
+      script = "zfs rollback -r ${name-zpool}/local/root@empty";
     };
 
     # services.enable_vfio = {
@@ -229,6 +225,7 @@ in
     pfetch
     cowsay
     lm_sensors
+    fastfetch
   ];
 
   users.mutableUsers = false;

@@ -65,9 +65,7 @@
 
       all-users = import (outputs.paths.users "all.nix");
 
-      modules = {
-        host = import ./mod;
-      };
+      modules.host = import ./mod;
 
       nixosConfigurations = {
         # desktops
@@ -119,12 +117,19 @@
           specialArgs = {
             inherit nixpkgs;
             paths = outputs.paths;
-            fns = outputs.fns;
             all = outputs.all;
             disko = inputs.disko;
             impermanence = inputs.impermanence;
             microvm = inputs.microvm;
             nixvirt = inputs.nixvirt;
+
+            id-machine = "e8ccbf623edf4dd6aa83732a65ce08cb";
+            id-disk = "/dev/disk/by-id/nvme-SSD_128GB_AA000000000000000276";
+            name-zpool = "mroot";
+
+            test-ubuntu = outputs.vms.libvirt."test-ubuntu";
+            opnsense = outputs.vms.libvirt."opnsense";
+            silence = outputs.vms.microvm."silence";
           };
         };
 
@@ -230,13 +235,29 @@
       });
 
       vms = {
-        "suzuki" = import (outputs.paths.vms "suzuki.nix");
+        libvirt = {
+          "test-ubuntu" = outputs.paths.vms "libvirt/test-ubuntu.nix";
+          "opnsense" = outputs.paths.vms "libvirt/opnsense.nix";
+        };
         microvm = {
+          "irene" = outputs.paths.vms "microvm/irene.nix";
+          "ray" = outputs.paths.vms "microvm/ray.nix";
+          "sebas" = outputs.paths.vms "microvm/sebas.nix";
           "suzuki" = outputs.paths.vms "microvm/suzuki.nix";
+          "silence" = outputs.paths.vms "microvm/silence.nix";
         };
       };
 
       deploy.nodes = {
+        "mokou" = {
+          hostname = "10.0.0.100";
+          sshUser = "abe";
+          remoteBuild = true;
+          profiles.system = {
+            user = "root";
+            path = inputs.deploy-rs.lib."x86_64-linux".activate.nixos self.nixosConfigurations."mokou";
+          };
+        };
         "kaiki" = {
           hostname = "10.0.1.1"; # 1G eth cable
           # hostname = "10.0.1.2"; # 2.4Ghz wifi

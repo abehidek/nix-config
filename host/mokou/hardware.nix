@@ -3,9 +3,25 @@
   lib,
   # pkgs,
   modulesPath,
+  # nixpkgs,
+  # paths,
+  # all,
+  # disko,
+  # impermanence,
+  # microvm,
+  # nixvirt,
+
+  # id-machine,
+  # id-disk,
+  # name-zpool,
+
+  # test-ubuntu,
+  # opnsense,
+  # irene,
+  # ray,
+  # sebas,
   ...
 }:
-
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 

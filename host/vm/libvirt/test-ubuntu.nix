@@ -10,7 +10,7 @@
 }:
 
 {
-  active = true;
+  active = false;
   definition = nixvirt.lib.domain.writeXML {
     inherit name;
     type = "kvm";

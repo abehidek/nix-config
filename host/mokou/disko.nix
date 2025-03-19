@@ -1,7 +1,26 @@
 {
+  # config,
+  # lib,
+  # pkgs,
+  # modulesPath,
+  # nixpkgs,
+  # paths,
+  # all,
   disko,
-  device,
-  zpool_name,
+  # impermanence,
+  # microvm,
+  # nixvirt,
+
+  # id-machine,
+  id-disk,
+  name-zpool,
+
+  # test-ubuntu,
+  # opnsense,
+  # irene,
+  # ray,
+  # sebas,
+  ...
 }:
 
 {
@@ -9,7 +28,7 @@
 
   # partition table type
   disko.devices.disk.disk1 = {
-    inherit device;
+    device = id-disk;
     type = "disk";
     content.type = "gpt";
   };
@@ -38,13 +57,13 @@
       size = "100%";
       content = {
         type = "zfs";
-        pool = zpool_name;
+        pool = name-zpool;
       };
     };
   };
 
   # ZFS pool settings
-  disko.devices.zpool.${zpool_name} = {
+  disko.devices.zpool.${name-zpool} = {
     type = "zpool";
     mountpoint = null;
     options = {
@@ -76,7 +95,7 @@
         options.mountpoint = "legacy";
         mountpoint = "/";
 
-        postCreateHook = "zfs snapshot ${zpool_name}/local/root@empty";
+        postCreateHook = "zfs snapshot ${name-zpool}/local/root@empty";
       };
       "local/nix" = {
         type = "zfs_fs";
