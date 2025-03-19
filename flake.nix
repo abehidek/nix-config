@@ -145,7 +145,8 @@
             sops-nix = inputs.sops-nix;
             impermanence = inputs.impermanence; # impermanence for kaiki vms
             microvm = inputs.microvm;
-            suzuki = outputs.vms."suzuki";
+
+            suzuki = outputs.vms.microvm."suzuki";
           };
         };
 
@@ -230,6 +231,9 @@
 
       vms = {
         "suzuki" = import (outputs.paths.vms "suzuki.nix");
+        microvm = {
+          "suzuki" = outputs.paths.vms "microvm/suzuki.nix";
+        };
       };
 
       deploy.nodes = {

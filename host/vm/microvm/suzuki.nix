@@ -8,8 +8,8 @@
   all,
   impermanence,
   name,
-  machineId,
-  macAddress,
+  id-machine,
+  mac,
   ...
 }:
 {
@@ -27,9 +27,9 @@
     balloonMem = 512 * 3;
     interfaces = [
       {
+        inherit mac;
         type = "tap";
         id = "vm-${name}";
-        mac = macAddress;
       }
     ];
     volumes = [
@@ -83,7 +83,7 @@
 
   fileSystems."/persist".neededForBoot = true;
 
-  environment.etc.machine-id.text = machineId;
+  environment.etc.machine-id.text = id-machine;
 
   environment.persistence."/persist" = {
     enable = true;

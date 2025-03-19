@@ -65,6 +65,7 @@
     networkmanager.enable = false;
     hostName = "kaiki";
     firewall.enable = false;
+    useNetworkd = true;
   };
 
   networking.wireless = {
@@ -76,7 +77,6 @@
     };
   };
 
-  networking.useNetworkd = true;
   systemd.network = {
     enable = true;
 
