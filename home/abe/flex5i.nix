@@ -54,8 +54,8 @@ in
   };
 
   dconf.settings."org/virt-manager/virt-manager/connections" = {
-    autoconnect = [ "qemu+ssh://abe@10.0.0.89/system" ];
-    uris = [ "qemu+ssh://abe@10.0.0.89/system" ];
+    autoconnect = [ "qemu+ssh://abe@10.0.0.100/system" ];
+    uris = [ "qemu+ssh://abe@10.0.0.100/system" ];
   };
 
   programs.nushell = {
