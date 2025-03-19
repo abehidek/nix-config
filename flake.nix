@@ -245,7 +245,10 @@
           "irene" = outputs.paths.vms "microvm/irene.nix";
           "ray" = outputs.paths.vms "microvm/ray.nix";
           "sebas" = outputs.paths.vms "microvm/sebas.nix";
+          # kaiki
           "suzuki" = outputs.paths.vms "microvm/suzuki.nix";
+
+          # mokou
           "silence" = outputs.paths.vms "microvm/silence.nix";
         };
       };
