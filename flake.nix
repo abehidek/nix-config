@@ -40,6 +40,8 @@
     arion.url = "github:hercules-ci/arion";
 
     deploy-rs.url = "github:serokell/deploy-rs";
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
   outputs =
@@ -84,6 +86,7 @@
             impermanence = inputs.impermanence;
             nixos-cosmic = inputs.nixos-cosmic;
             nix-flatpak = inputs.nix-flatpak;
+            zen-browser = inputs.zen-browser;
 
             id-machine = "0c9ff5c1b06f402f8095327b7633e332";
             id-disk = "/dev/disk/by-id/nvme-SSSTC_CL1-4D256_SS1C86490L2BR17P6972";

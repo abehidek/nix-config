@@ -16,6 +16,7 @@
   # impermanence,
   nixos-cosmic,
   nix-flatpak,
+  zen-browser,
 
   # id-machine,
   # id-disk,
@@ -290,6 +291,7 @@
     dbeaver-bin
     cowsay
     gparted
+    zen-browser.packages.${pkgs.system}.default
 
     # backup terminals
     foot
