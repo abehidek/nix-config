@@ -144,6 +144,7 @@
           modules = [ (outputs.paths.hosts "kaiki/kaiki.nix") ];
           specialArgs = {
             inherit nixpkgs;
+            modules = outputs.modules;
             paths = outputs.paths;
             nixos-hardware = inputs.nixos-hardware;
             all = outputs.all;

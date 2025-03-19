@@ -4,6 +4,7 @@
   pkgs,
   # modulesPath,
   nixpkgs,
+  # modules,
   paths,
   nixos-hardware,
   all,
