@@ -15,7 +15,6 @@
   # disko,
   impermanence,
   # nixos-cosmic,
-  # nix-flatpak,
 
   id-machine,
   # id-disk,
@@ -63,7 +62,6 @@ let
     ".local/share/icons"
     ".local/share/direnv"
     ".local/share/waydroid"
-    ".local/share/flatpak"
     ".local/share/zed"
     {
       directory = ".local/share/keyrings";
@@ -111,7 +109,6 @@ in
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/var/lib/waydroid"
-      "/var/lib/flatpak"
       "/etc/NetworkManager/system-connections"
       "/etc/mullvad-vpn"
     ];

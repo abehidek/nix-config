@@ -24,7 +24,6 @@
     # misc
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
 
     impermanence.url = "github:nix-community/impermanence";
 
@@ -85,7 +84,6 @@
             disko = inputs.disko;
             impermanence = inputs.impermanence;
             nixos-cosmic = inputs.nixos-cosmic;
-            nix-flatpak = inputs.nix-flatpak;
             zen-browser = inputs.zen-browser;
 
             id-machine = "0c9ff5c1b06f402f8095327b7633e332";

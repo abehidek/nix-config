@@ -15,7 +15,6 @@
   disko,
   # impermanence,
   # nixos-cosmic,
-  # nix-flatpak,
 
   # id-machine,
   id-disk,
