@@ -4,6 +4,7 @@
   pkgs,
   # modulesPath,
   # nixpkgs,
+  # modules,
   # paths,
   # all,
   # disko,
@@ -17,9 +18,8 @@
 
   test-ubuntu,
   opnsense,
-  # irene,
-  # ray,
-  # sebas,
+  # silence,
+  # amiya,
   ...
 }:
 let

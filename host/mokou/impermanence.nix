@@ -4,6 +4,7 @@
   # pkgs,
   # modulesPath,
   # nixpkgs,
+  # modules,
   # paths,
   # all,
   # disko,
@@ -17,9 +18,8 @@
 
   # test-ubuntu,
   # opnsense,
-  # irene,
-  # ray,
-  # sebas,
+  # silence,
+  # amiya,
   ...
 }:
 
@@ -41,18 +41,13 @@
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
       "/var/lib/libvirt"
-      "/var/lib/microvms/test-mvm01/persist"
-      "/var/lib/microvms/apps/persist"
 
+      # deprecated
       "/var/lib/microvms/irene-01/persist"
 
-      # "/var/lib/microvms/sebas-01/persist"
-      # "/var/lib/microvms/sebas-02/persist"
-
-      # "/var/lib/microvms/ray-01/persist"
-      # "/var/lib/microvms/ray-02/persist"
-
       "/var/lib/microvms/silence-01/persist"
+      "/var/lib/microvms/amiya-01/persist"
+      "/var/lib/microvms/amiya-02/persist"
     ];
     files = [
       "/etc/ssh/ssh_host_ed25519_key.pub"

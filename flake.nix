@@ -118,6 +118,7 @@
           modules = [ (outputs.paths.hosts "mokou") ];
           specialArgs = {
             inherit nixpkgs;
+            modules = outputs.modules;
             paths = outputs.paths;
             all = outputs.all;
             disko = inputs.disko;
@@ -132,6 +133,7 @@
             test-ubuntu = outputs.vms.libvirt."test-ubuntu";
             opnsense = outputs.vms.libvirt."opnsense";
             silence = outputs.vms.microvm."silence";
+            amiya = outputs.vms.microvm."amiya";
           };
         };
 
@@ -269,14 +271,12 @@
           "opnsense" = outputs.paths.vms "libvirt/opnsense.nix";
         };
         microvm = {
-          "irene" = outputs.paths.vms "microvm/irene.nix";
-          "ray" = outputs.paths.vms "microvm/ray.nix";
-          "sebas" = outputs.paths.vms "microvm/sebas.nix";
           # kaiki
           "suzuki" = outputs.paths.vms "microvm/suzuki.nix";
 
           # mokou
           "silence" = outputs.paths.vms "microvm/silence.nix";
+          "amiya" = outputs.paths.vms "microvm/amiya.nix";
         };
       };
 
