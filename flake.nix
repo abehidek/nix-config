@@ -197,6 +197,17 @@
             arion = inputs.arion;
           };
         };
+
+        # templates
+        "templates.lxc.aoi" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ (outputs.paths.templates "lxc/aoi.nix") ];
+        };
+
+        "templates.lxc.beta" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ (outputs.paths.templates "lxc/beta.nix") ];
+        };
       };
 
       homeConfigurations = {

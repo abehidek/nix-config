@@ -7,6 +7,7 @@ let
     "hosts" = "host";
     "users" = "home";
     "vms" = "host/vm";
+    "templates" = "templ";
   };
 in
 builtins.mapAttrs (
