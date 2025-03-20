@@ -1,10 +1,11 @@
 these are the existing systems that I still need to migrate:
 
 - [ ] zeta.meeru
+  - will need to temporarily migrate all *@hidek.xyz email addresses to another email provider (such as proton)
 - [x] zeta.mem
 - [x] zeta.fin
 - [x] zeta.net
-- [ ] zeta.mc
+- [x] zeta.mc
 - [ ] roxy
 - [x] templates.lxc "aoi" & "beta"
 

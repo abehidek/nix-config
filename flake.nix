@@ -41,6 +41,7 @@
     deploy-rs.url = "github:serokell/deploy-rs";
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    playit.url = "github:pedorich-n/playit-nixos-module";
   };
 
   outputs =
@@ -198,6 +199,20 @@
           };
         };
 
+        ## zeta (234)
+        "zeta.mc" = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ (outputs.paths.hosts "zeta/mc.nix") ];
+          specialArgs = {
+            inherit nixpkgs;
+            modules = outputs.modules;
+            paths = outputs.paths;
+            all = outputs.all;
+            arion = inputs.arion;
+            playit = inputs.playit;
+          };
+        };
+
         # templates
         "templates.lxc.aoi" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -312,6 +327,15 @@
           profiles.system = {
             user = "root";
             path = inputs.deploy-rs.lib."x86_64-linux".activate.nixos self.nixosConfigurations."zeta.mem";
+          };
+        };
+        "mc" = {
+          hostname = "10.0.0.234";
+          sshUser = "abe";
+          remoteBuild = true;
+          profiles.system = {
+            user = "root";
+            path = inputs.deploy-rs.lib."x86_64-linux".activate.nixos self.nixosConfigurations."zeta.mc";
           };
         };
       };
