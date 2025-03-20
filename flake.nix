@@ -2,17 +2,16 @@
   description = "hidek.xyz c NixOS ecosystem";
 
   inputs = {
+    # repos
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs.follows = "nixos-cosmic/nixpkgs"; # flex5i de
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nur.url = "github:nix-community/NUR";
 
-    # secrets
+    # secrets management
     sops-nix.url = "github:mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -21,14 +20,11 @@
       flake = false;
     };
 
-    # misc
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
-
-    impermanence.url = "github:nix-community/impermanence";
-
+    # system, tools & deployments
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    impermanence.url = "github:nix-community/impermanence";
 
     microvm.url = "github:astro/microvm.nix";
     microvm.inputs.nixpkgs.follows = "nixpkgs";
@@ -38,8 +34,12 @@
 
     arion.url = "github:hercules-ci/arion";
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     deploy-rs.url = "github:serokell/deploy-rs";
 
+    ## programs, services & desktop
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     playit.url = "github:pedorich-n/playit-nixos-module";
   };
