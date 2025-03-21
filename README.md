@@ -23,3 +23,23 @@ services:
 - smb/nfs shares
 - backup cron jobs
 - mail server exposed through headscale
+
+macos
+
+- [x] install nix and nix-darwin
+
+- install
+  - [x] zen-browser (through mac installer not nix)
+  - [x] zed-editor
+  - [x] helix
+  - [ ] scroll reverser through nix-brew
+  - [ ] setup basic ssh
+  - [ ] setup ssh through existing nix mods and w/ sops.nix
+  - [ ] setup cross-compilation
+  - [ ] setup golang dev
+
+- search about
+  - [ ] classic "things to do when you buy a mac", maybe for advanced users
+    - [ ] maybe how to make it more minimal
+  - [ ] window manager for macos (such as yabai)
+  - [ ] native metal apps and other cool things to do

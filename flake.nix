@@ -38,10 +38,14 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     deploy-rs.url = "github:serokell/deploy-rs";
 
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     ## programs, services & desktop
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     playit.url = "github:pedorich-n/playit-nixos-module";
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
   outputs =
@@ -50,6 +54,7 @@
       nixpkgs,
       home-manager,
       nur,
+      nix-darwin,
       ...
     }@inputs:
     let
@@ -224,6 +229,19 @@
         "templates.lxc.beta" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [ (outputs.paths.templates "lxc/beta.nix") ];
+        };
+      };
+
+      darwinConfigurations."kal'tsit" = nix-darwin.lib.darwinSystem {
+        modules = [ (outputs.paths.hosts "kal'tsit/kal'tsit.nix") ];
+        specialArgs = {
+          inherit nixpkgs home-manager nur;
+          name = "kal'tsit";
+          rev = self.rev or self.dirtyRev or null;
+          modules = outputs.modules;
+          paths = outputs.paths;
+          all-users = outputs.all-users;
+          mac-app-util = inputs.mac-app-util;
         };
       };
 
