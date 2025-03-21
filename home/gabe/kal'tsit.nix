@@ -17,13 +17,10 @@
   ];
 
   home.packages = with pkgs; [
-    alacritty
     obsidian
   ];
 
-  programs.ssh = {
-    enable = true;
-  };
+  programs.ssh.enable = true;
 
   programs.zsh = {
     enable = true;
@@ -37,6 +34,14 @@
   programs.zellij = {
     enable = true;
     enableZshIntegration = false;
+  };
+
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      font.normal.family = "FiraCode Nerd Font";
+      font.size = 14;
+    };
   };
 
   programs.zed-editor = {
