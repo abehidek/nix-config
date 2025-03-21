@@ -36,6 +36,13 @@
     enableZshIntegration = false;
   };
 
+  programs.starship = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
+  };
+
   programs.alacritty = {
     enable = true;
     settings = {
