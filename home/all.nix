@@ -8,11 +8,9 @@
 {
   home = {
     username = userName;
-    homeDirectory = "/home/${userName}";
     stateVersion = stateVersion;
+    homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${userName}" else "/home/${userName}";
 
-    packages = with pkgs; [
-      home-manager
-    ];
+    packages = with pkgs; [ home-manager ];
   };
 }
