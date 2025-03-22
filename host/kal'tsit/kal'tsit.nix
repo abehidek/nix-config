@@ -6,7 +6,7 @@
   # nixpkgs,
   home-manager,
   # nur,
-  name,
+  hostName,
   rev,
   modules,
   paths,
@@ -118,12 +118,7 @@
     };
   };
 
-  programs.bash.completion.enable = true;
-
-  programs.zsh = {
-    enable = true;
-    enableBashCompletion = true;
-  };
+  programs.zsh.enableBashCompletion = true;
 
   fonts.packages = [ pkgs.nerd-fonts.fira-code ];
 
@@ -137,25 +132,14 @@
     tldr
   ];
 
-  environment.variables = {
-    EDITOR = "hx";
-    VISUAL = "hx";
-  };
-
-  environment.shellAliases = {
-    dwnc = "darwin-rebuild switch --flake .#\"${name}\"";
-    k = "kubectl";
-    l = "ls -lah";
-  };
-
   # home-manager
   users.users."gabe".home = "/Users/gabe";
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit paths all-users; };
+    extraSpecialArgs = { inherit hostName paths all-users; };
     sharedModules = [ mac-app-util.homeManagerModules.default ];
-    users."gabe" = import (paths.users "gabe/${name}.nix");
+    users."gabe" = import (paths.users "gabe/${hostName}.nix");
   };
 
   system.configurationRevision = rev; # set git commit hash for darwin-version

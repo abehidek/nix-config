@@ -250,7 +250,7 @@
         modules = [ (outputs.paths.hosts "kal'tsit/kal'tsit.nix") ];
         specialArgs = {
           inherit nixpkgs home-manager nur;
-          name = "kal'tsit";
+          hostName = "kal'tsit";
           rev = self.rev or self.dirtyRev or null;
           modules = outputs.modules;
           paths = outputs.paths;

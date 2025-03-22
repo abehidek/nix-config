@@ -2,6 +2,7 @@
   # config,
   # lib,
   pkgs,
+  hostName,
   paths,
   all-users,
   ...
@@ -21,7 +22,7 @@
   programs.zsh = {
     enable = true;
     shellAliases = {
-      dwnc = "darwin-rebuild switch --flake .#\"kal'tsit\"";
+      dwnc = "darwin-rebuild switch --flake .#\"${hostName}\"";
       k = "kubectl";
       l = "ls -lah";
     };
@@ -37,8 +38,8 @@
 
     shellAliases = {
       sysc = "sudo nixos-rebuild switch --flake .#$\"(hostname)\"";
-      usrc = "home-manager switch --flake .#$\"(whoami)\"@$\"(hostname)\"";
-      dwnc = "darwin-rebuild switch --flake .#\"kal'tsit\"";
+      usrc = "home-manager switch --flake .#$\"(whoami)\"@\"${hostName}\"";
+      dwnc = "darwin-rebuild switch --flake .#\"${hostName}\"";
       l = "ls -al";
       k = "kubectl";
     };
@@ -56,7 +57,6 @@
 
   programs.starship = {
     enable = true;
-    enableBashIntegration = true;
     enableZshIntegration = true;
     enableNushellIntegration = true;
   };
@@ -72,7 +72,7 @@
         program = "${pkgs.zsh}/bin/zsh";
         args = [
           "-c"
-          "zellij options --default-shell ${pkgs.nushell}/bin/nu"
+          "${pkgs.zellij}/bin/zellij options --default-shell ${pkgs.nushell}/bin/nu"
         ];
       };
     };
@@ -85,11 +85,11 @@
       "toml"
     ];
     userSettings = {
-      "terminal"."font_family" = "FiraCode Nerd Font";
-      "theme" = {
-        "mode" = "dark";
-        "dark" = "One Dark";
-        "light" = "Solarized Light";
+      terminal.font_family = "FiraCode Nerd Font";
+      theme = {
+        mode = "dark";
+        dark = "One Dark";
+        light = "Solarized Light";
       };
     };
   };
