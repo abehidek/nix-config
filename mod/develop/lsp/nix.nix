@@ -6,10 +6,10 @@
   ...
 }:
 let
-  cfg = config."hidekxyz"."vm"."microvm"."guest";
+  cfg = config."hidekxyz"."develop"."lsp"."nix";
 in
 {
-  options."hidekxyz"."vm"."microvm"."guest" = with lib; {
+  options."hidekxyz"."develop"."lsp"."nix" = with lib; {
     formatter = {
       enable = mkOption {
         type = types.bool;
