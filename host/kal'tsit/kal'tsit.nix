@@ -11,6 +11,10 @@
   # modules,
   paths,
   all-users,
+  nix-homebrew,
+  homebrew-core,
+  homebrew-cask,
+  homebrew-bundle,
   mac-app-util,
   ...
 }:
@@ -18,10 +22,45 @@
 {
   imports = [
     home-manager.darwinModules.home-manager
+    nix-homebrew.darwinModules.nix-homebrew
     mac-app-util.darwinModules.default
   ];
 
   nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+
+  nix.extraOptions = ''
+    extra-platforms = x86_64-darwin aarch64-darwin
+  '';
+
+  nix-homebrew = {
+    enable = true;
+    enableRosetta = true; # Apple Silicon Only
+    user = "gabe"; # User owning the Homebrew prefix
+    autoMigrate = true;
+
+    taps = {
+      "homebrew/homebrew-core" = homebrew-core;
+      "homebrew/homebrew-cask" = homebrew-cask;
+      "homebrew/homebrew-bundle" = homebrew-bundle;
+    };
+
+    # Optional: Enable fully-declarative tap management
+    #
+    # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
+    mutableTaps = false;
+  };
+
+  homebrew = {
+    enable = true;
+    # brews = [ "mas" ];
+    casks = [
+      "mos"
+      # "iina"
+      # "the-unarchiver"
+    ];
+    # masApps."Yoink" = 457622435;
+    onActivation.cleanup = "zap";
+  };
 
   security.pam.services.sudo_local.touchIdAuth = true;
 

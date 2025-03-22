@@ -32,8 +32,8 @@ macos
   - [x] zen-browser (through mac installer not nix)
   - [x] zed-editor
   - [x] helix
-  - [ ] scroll reverser through nix-brew
-  - [ ] setup basic ssh
+  - [x] scroll reverser through nix-brew
+  - [x] setup basic ssh
   - [ ] setup ssh through existing nix mods and w/ sops.nix
   - [ ] setup cross-compilation
   - [ ] setup golang dev

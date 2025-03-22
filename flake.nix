@@ -46,6 +46,20 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     playit.url = "github:pedorich-n/playit-nixos-module";
     mac-app-util.url = "github:hraban/mac-app-util";
+    # nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    nix-homebrew.url = "git+https://github.com/zhaofengli/nix-homebrew?ref=refs/pull/71/merge";
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
   };
 
   outputs =
@@ -241,6 +255,10 @@
           modules = outputs.modules;
           paths = outputs.paths;
           all-users = outputs.all-users;
+          nix-homebrew = inputs.nix-homebrew;
+          homebrew-core = inputs.homebrew-core;
+          homebrew-cask = inputs.homebrew-cask;
+          homebrew-bundle = inputs.homebrew-bundle;
           mac-app-util = inputs.mac-app-util;
         };
       };
