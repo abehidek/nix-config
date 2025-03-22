@@ -92,10 +92,13 @@
       "nix"
       "toml"
     ];
-    userSettings."theme" = {
-      "mode" = "dark";
-      "dark" = "One Dark";
-      "light" = "Solarized Light";
+    userSettings = {
+      "terminal"."font_family" = "FiraCode Nerd Font";
+      "theme" = {
+        "mode" = "dark";
+        "dark" = "One Dark";
+        "light" = "Solarized Light";
+      };
     };
   };
 }
