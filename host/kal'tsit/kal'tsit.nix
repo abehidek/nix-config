@@ -24,14 +24,18 @@
     home-manager.darwinModules.home-manager
     nix-homebrew.darwinModules.nix-homebrew
     mac-app-util.darwinModules.default
+    modules.all
     modules.develop.lsp.nix
   ];
+
+  # hidekxyz
+
+  hidekxyz.all.mainUser = "gabe";
 
   # nix opts
 
   nix = {
     enable = true; # auto upgrade nix pkg and daemon
-    settings.experimental-features = "nix-command flakes";
     settings.extra-platforms = [
       "x86_64-darwin "
       "aarch64-darwin"

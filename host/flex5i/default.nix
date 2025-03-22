@@ -29,9 +29,9 @@
     nur.modules.nixos.default
     sops-nix.nixosModules.sops
     nixos-cosmic.nixosModules.default
+    modules.all
     modules.system
 
-    (all { inherit pkgs nixpkgs paths; })
     ./disko.nix
     ./hardware.nix
     ./impermanence.nix
@@ -39,8 +39,11 @@
 
   # hidekxyz
 
-  hidekxyz.system = {
-    hostname = "flex5i";
+  hidekxyz = {
+    hidekxyz.all.mainUser = "abe";
+    system = {
+      hostname = "flex5i";
+    };
   };
 
   # nix build opts
