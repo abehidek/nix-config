@@ -3,7 +3,7 @@
   # lib,
   pkgs,
   # modulesPath,
-  nixpkgs,
+  # nixpkgs,
   home-manager,
   # nur,
   name,
@@ -27,69 +27,27 @@
     modules.develop.lsp.nix
   ];
 
-  nix.extraOptions = ''
-    extra-platforms = x86_64-darwin aarch64-darwin
-  '';
+  # nix opts
 
-  nix-homebrew = {
-    enable = true;
-    enableRosetta = true; # Apple Silicon Only
-    user = "gabe"; # User owning the Homebrew prefix
-    autoMigrate = true;
-
-    taps = {
-      "homebrew/homebrew-core" = homebrew-core;
-      "homebrew/homebrew-cask" = homebrew-cask;
-      "homebrew/homebrew-bundle" = homebrew-bundle;
-    };
-
-    # Optional: Enable fully-declarative tap management
-    #
-    # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
-    mutableTaps = false;
-  };
-
-  homebrew = {
-    enable = true;
-    # brews = [ "mas" ];
-    casks = [
-      "mos"
-      # "iina"
-      # "the-unarchiver"
+  nix = {
+    enable = true; # auto upgrade nix pkg and daemon
+    settings.experimental-features = "nix-command flakes";
+    settings.extra-platforms = [
+      "x86_64-darwin "
+      "aarch64-darwin"
     ];
-    # masApps."Yoink" = 457622435;
-    onActivation.cleanup = "zap";
   };
+
+  nixpkgs = {
+    hostPlatform = "aarch64-darwin"; # aarch64 because it's Apple M chip which runs ARM
+    config.allowUnfree = true;
+  };
+
+  # hardware and boot
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
-  environment.systemPackages = with pkgs; [
-    fastfetch
-    lazygit
-    helix
-    git
-    tldr
-  ];
-
-  environment.variables = {
-    EDITOR = "hx";
-    VISUAL = "hx";
-  };
-
-  environment.shellAliases = {
-    dwnc = "darwin-rebuild switch --flake .#\"${name}\"";
-    k = "kubectl";
-    l = "ls -lah";
-  };
-
-  programs.bash.completion.enable = true;
-
-  programs.zsh = {
-    enable = true;
-    enableBashCompletion = true;
-  };
-
-  fonts.packages = [ pkgs.nerd-fonts.fira-code ];
+  # system
 
   system = {
     activationScripts."postUserActivation".text = ''
@@ -128,6 +86,68 @@
     };
   };
 
+  # services programs
+
+  nix-homebrew = {
+    enable = true;
+    enableRosetta = true; # Apple Silicon Only
+    user = "gabe"; # User owning the Homebrew prefix
+    autoMigrate = true;
+
+    mutableTaps = false; # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
+    taps = {
+      "homebrew/homebrew-core" = homebrew-core;
+      "homebrew/homebrew-cask" = homebrew-cask;
+      "homebrew/homebrew-bundle" = homebrew-bundle;
+    };
+  };
+
+  homebrew = {
+    enable = true;
+    onActivation.cleanup = "zap";
+    brews = [
+      # "mas"
+    ];
+    casks = [
+      "mos"
+      # "iina"
+      # "the-unarchiver"
+    ];
+    masApps = {
+      # "Yoink" = 457622435;
+    };
+  };
+
+  programs.bash.completion.enable = true;
+
+  programs.zsh = {
+    enable = true;
+    enableBashCompletion = true;
+  };
+
+  fonts.packages = [ pkgs.nerd-fonts.fira-code ];
+
+  # environment and packages
+
+  environment.systemPackages = with pkgs; [
+    fastfetch
+    lazygit
+    helix
+    git
+    tldr
+  ];
+
+  environment.variables = {
+    EDITOR = "hx";
+    VISUAL = "hx";
+  };
+
+  environment.shellAliases = {
+    dwnc = "darwin-rebuild switch --flake .#\"${name}\"";
+    k = "kubectl";
+    l = "ls -lah";
+  };
+
   # home-manager
   users.users."gabe".home = "/Users/gabe";
   home-manager = {
@@ -138,17 +158,6 @@
     users."gabe" = import (paths.users "gabe/${name}.nix");
   };
 
-  # auto upgrade nix pkg and daemon
-  nix.enable = true;
-  nix.settings.experimental-features = "nix-command flakes";
-
-  # set git commit hash for darwin-version
-  system.configurationRevision = rev;
-
-  # used for backwards compat, read the changelog before running: $ darwin-rebuild changelog
-  system.stateVersion = 6;
-
-  # aarch64 because it's Apple M chip which runs ARM
-  nixpkgs.hostPlatform = "aarch64-darwin";
-  nixpkgs.config.allowUnfree = true;
+  system.configurationRevision = rev; # set git commit hash for darwin-version
+  system.stateVersion = 6; # used for backwards compat, read the changelog before running: $ darwin-rebuild changelog
 }

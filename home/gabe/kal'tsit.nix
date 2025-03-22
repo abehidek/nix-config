@@ -16,14 +16,6 @@
     })
   ];
 
-  home.packages = with pkgs; [
-    obsidian
-  ];
-
-  home.file = {
-    ".config/zellij/config.kdl".source = paths.dots "zellij/config.kdl";
-  };
-
   programs.ssh.enable = true;
 
   programs.zsh = {
@@ -101,4 +93,12 @@
       };
     };
   };
+
+  home.file = {
+    ".config/zellij/config.kdl".source = paths.dots "zellij/config.kdl";
+  };
+
+  home.packages = with pkgs; [
+    obsidian
+  ];
 }
