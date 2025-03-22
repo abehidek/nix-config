@@ -8,7 +8,7 @@
   # nur,
   name,
   rev,
-  # modules,
+  modules,
   paths,
   all-users,
   nix-homebrew,
@@ -24,9 +24,8 @@
     home-manager.darwinModules.home-manager
     nix-homebrew.darwinModules.nix-homebrew
     mac-app-util.darwinModules.default
+    modules.develop.lsp.nix
   ];
-
-  nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
 
   nix.extraOptions = ''
     extra-platforms = x86_64-darwin aarch64-darwin
@@ -70,8 +69,6 @@
     helix
     git
     tldr
-    nixfmt-rfc-style
-    nixd
   ];
 
   environment.variables = {
