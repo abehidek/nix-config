@@ -72,7 +72,7 @@
         program = "${pkgs.zsh}/bin/zsh";
         args = [
           "-c"
-          "${pkgs.zellij}/bin/zellij options --default-shell ${pkgs.nushell}/bin/nu"
+          "${pkgs.zellij}/bin/zellij"
         ];
       };
     };
