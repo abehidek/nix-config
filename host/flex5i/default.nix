@@ -3,12 +3,11 @@
   lib,
   pkgs,
   # modulesPath,
-  nixpkgs,
+  # nixpkgs,
   home-manager,
   nur,
   modules,
   paths,
-  all,
   all-users,
   nix-secrets,
   sops-nix,
@@ -29,7 +28,7 @@
     nur.modules.nixos.default
     sops-nix.nixosModules.sops
     nixos-cosmic.nixosModules.default
-    modules.all
+    modules.all.linux
     modules.system
 
     ./disko.nix
@@ -40,7 +39,7 @@
   # hidekxyz
 
   hidekxyz = {
-    hidekxyz.all.mainUser = "abe";
+    all.mainUser = "abe";
     system = {
       hostname = "flex5i";
     };

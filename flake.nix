@@ -82,7 +82,7 @@
 
       fns = import (outputs.paths.functions "default.nix");
 
-      all = import (outputs.paths.hosts "all.nix");
+      old-all = import (outputs.paths.hosts "all.nix");
 
       all-users = import (outputs.paths.users "all.nix");
 
@@ -97,7 +97,6 @@
             inherit nixpkgs home-manager nur;
             modules = outputs.modules;
             paths = outputs.paths;
-            all = outputs.all;
             all-users = outputs.all-users;
             nix-secrets = inputs.nix-secrets;
             sops-nix = inputs.sops-nix;
@@ -118,7 +117,7 @@
           specialArgs = {
             inherit nixpkgs home-manager;
             paths = outputs.paths;
-            all = outputs.all;
+            all = outputs.old-all;
             all-users = outputs.all-users;
             nix-secrets = inputs.nix-secrets;
             sops-nix = inputs.sops-nix;
@@ -139,7 +138,7 @@
             inherit nixpkgs;
             modules = outputs.modules;
             paths = outputs.paths;
-            all = outputs.all;
+            all = outputs.old-all;
             disko = inputs.disko;
             impermanence = inputs.impermanence;
             microvm = inputs.microvm;
@@ -169,7 +168,7 @@
             modules = outputs.modules;
             paths = outputs.paths;
             nixos-hardware = inputs.nixos-hardware;
-            all = outputs.all;
+            all = outputs.old-all;
             nix-secrets = inputs.nix-secrets;
             sops-nix = inputs.sops-nix;
             impermanence = inputs.impermanence; # impermanence for kaiki vms
@@ -191,7 +190,7 @@
           specialArgs = {
             inherit nixpkgs;
             paths = outputs.paths;
-            all = outputs.all;
+            all = outputs.old-all;
             arion = inputs.arion;
           };
         };
@@ -203,7 +202,7 @@
           specialArgs = {
             inherit nixpkgs;
             paths = outputs.paths;
-            all = outputs.all;
+            all = outputs.old-all;
             arion = inputs.arion;
           };
         };
@@ -215,7 +214,7 @@
           specialArgs = {
             inherit nixpkgs;
             paths = outputs.paths;
-            all = outputs.all;
+            all = outputs.old-all;
             arion = inputs.arion;
           };
         };
@@ -228,7 +227,7 @@
             inherit nixpkgs;
             modules = outputs.modules;
             paths = outputs.paths;
-            all = outputs.all;
+            all = outputs.old-all;
             arion = inputs.arion;
             playit = inputs.playit;
           };

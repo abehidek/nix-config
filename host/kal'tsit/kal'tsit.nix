@@ -24,7 +24,7 @@
     home-manager.darwinModules.home-manager
     nix-homebrew.darwinModules.nix-homebrew
     mac-app-util.darwinModules.default
-    modules.all
+    modules.all.darwin
     modules.develop.lsp.nix
   ];
 
