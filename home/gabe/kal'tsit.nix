@@ -2,7 +2,7 @@
   # config,
   # lib,
   pkgs,
-  # paths,
+  paths,
   all-users,
   ...
 }:
@@ -20,6 +20,10 @@
     obsidian
   ];
 
+  home.file = {
+    ".config/zellij/config.kdl".source = paths.dots "zellij/config.kdl";
+  };
+
   programs.ssh.enable = true;
 
   programs.zsh = {
@@ -31,9 +35,31 @@
     };
   };
 
+  programs.nushell = {
+    enable = true;
+    configFile.source = (paths.dots "nushell/config.nu");
+    envFile.text = ''
+      mkdir ~/.cache/starship
+      ${pkgs.starship}/bin/starship init nu | save -f ~/.cache/starship/init.nu
+    '';
+
+    shellAliases = {
+      sysc = "sudo nixos-rebuild switch --flake .#$\"(hostname)\"";
+      usrc = "home-manager switch --flake .#$\"(whoami)\"@$\"(hostname)\"";
+      dwnc = "darwin-rebuild switch --flake .#\"kal'tsit\"";
+      l = "ls -al";
+      k = "kubectl";
+    };
+
+    environmentVariables = {
+      VISUAL = "hx";
+      EDITOR = "hx";
+    };
+  };
+
   programs.zellij = {
     enable = true;
-    enableZshIntegration = false;
+    enableZshIntegration = false; # not necessarily I want to open zellij when opening zsh
   };
 
   programs.starship = {
@@ -46,8 +72,17 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      font.normal.family = "FiraCode Nerd Font";
-      font.size = 14;
+      font = {
+        normal.family = "FiraCode Nerd Font";
+        size = 14;
+      };
+      terminal.shell = {
+        program = "${pkgs.zsh}/bin/zsh";
+        args = [
+          "-c"
+          "zellij options --default-shell ${pkgs.nushell}/bin/nu"
+        ];
+      };
     };
   };
 
