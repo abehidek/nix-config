@@ -42,6 +42,7 @@
   users.users."abe".openssh.authorizedKeys.keys = [
     (builtins.readFile (paths.keys "abe/flex5i.pub"))
     (builtins.readFile (paths.keys "abe/wsl-t16.pub"))
+    (builtins.readFile (paths.keys "gabe/kal'tsit.pub"))
   ];
 
   programs.mtr.enable = true;
