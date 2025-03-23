@@ -3,17 +3,23 @@
 
   inputs = {
     # repos
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    nixpkgs.follows = "nixos-cosmic/nixpkgs"; # flex5i de
+    nixpkgs = {
+      url = "github:nixos/nixpkgs?ref=nixos-unstable";
+      follows = "nixos-cosmic/nixpkgs"; # flex5i de
+    };
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nur.url = "github:nix-community/NUR";
 
     # secrets management
-    sops-nix.url = "github:mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix = {
+      url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-secrets = {
       url = "git+ssh://git@github.com/abehidek/nix-secrets.git?ref=main&shallow=1";
@@ -21,16 +27,22 @@
     };
 
     # system, tools & deployments
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     impermanence.url = "github:nix-community/impermanence";
 
-    microvm.url = "github:astro/microvm.nix";
-    microvm.inputs.nixpkgs.follows = "nixpkgs";
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nixvirt.url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
-    nixvirt.inputs.nixpkgs.follows = "nixpkgs";
+    nixvirt = {
+      url = "https://flakehub.com/f/AshleyYakeley/NixVirt/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     arion.url = "github:hercules-ci/arion";
 
@@ -38,8 +50,10 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     deploy-rs.url = "github:serokell/deploy-rs";
 
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-rosetta-builder = {
       url = "github:cpick/nix-rosetta-builder";
@@ -48,19 +62,26 @@
 
     ## programs, services & desktop
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
     playit.url = "github:pedorich-n/playit-nixos-module";
+
     mac-app-util.url = "github:hraban/mac-app-util";
+
     # nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     nix-homebrew.url = "git+https://github.com/zhaofengli/nix-homebrew?ref=refs/pull/71/merge";
+
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
       flake = false;
     };
+
     homebrew-cask = {
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
       flake = false;
