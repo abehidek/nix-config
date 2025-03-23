@@ -371,7 +371,7 @@
           # hostname = "10.0.1.1"; # 1G eth cable
           hostname = "10.0.1.2"; # 2.4Ghz wifi
           sshUser = "abe";
-          remoteBuild = true;
+          remoteBuild = false;
           profiles.system = {
             user = "root";
             path = inputs.deploy-rs.lib."aarch64-linux".activate.nixos self.nixosConfigurations."kaiki";
