@@ -14,6 +14,7 @@
   homebrew-cask,
   homebrew-bundle,
   mac-app-util,
+  nix-rosetta-builder,
   hostName,
   rev,
   ...
@@ -26,21 +27,20 @@
     mac-app-util.darwinModules.default
     modules.all.darwin
     modules.develop.lsp.nix
+    nix-rosetta-builder.darwinModules.default
   ];
 
   # hidekxyz
 
   hidekxyz.all.mainUser = "gabe";
 
+  # nix-rosetta
+
+  nix-rosetta-builder.onDemand = true;
+
   # nix opts
 
-  nix = {
-    enable = true; # auto upgrade nix pkg and daemon
-    settings.extra-platforms = [
-      "x86_64-darwin "
-      "aarch64-darwin"
-    ];
-  };
+  nix.enable = true; # auto upgrade nix pkg and daemon
 
   nixpkgs = {
     hostPlatform = "aarch64-darwin"; # aarch64 because it's Apple M chip which runs ARM
@@ -94,8 +94,8 @@
 
   nix-homebrew = {
     enable = true;
-    enableRosetta = true; # Apple Silicon Only
     user = "gabe"; # User owning the Homebrew prefix
+    enableRosetta = true; # Apple Silicon Only
     autoMigrate = true;
 
     mutableTaps = false; # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.

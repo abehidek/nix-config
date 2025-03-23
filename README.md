@@ -35,8 +35,8 @@ macos
   - [x] scroll reverser through nix-brew
   - [x] setup basic ssh
   - [ ] setup ssh through existing nix mods and w/ sops.nix
-  - [ ] setup cross-compilation
-  - [ ] setup golang dev
+  - [x] setup cross-compilation
+  - [x] setup golang dev
 
 - search about
   - [ ] classic "things to do when you buy a mac", maybe for advanced users

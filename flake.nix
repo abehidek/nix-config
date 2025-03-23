@@ -41,6 +41,11 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
+    nix-rosetta-builder = {
+      url = "github:cpick/nix-rosetta-builder";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ## programs, services & desktop
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
@@ -74,7 +79,12 @@
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
-      supportedSystems = [ "x86_64-linux" ];
+      supportedSystems = [
+        "x86_64-linux"
+        "x86_64-darwin"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
       forAllSystems = lib.genAttrs supportedSystems;
     in
     {
@@ -249,8 +259,6 @@
         modules = [ (outputs.paths.hosts "kal'tsit/kal'tsit.nix") ];
         specialArgs = {
           inherit nixpkgs home-manager nur;
-          hostName = "kal'tsit";
-          rev = self.rev or self.dirtyRev or null;
           modules = outputs.modules;
           paths = outputs.paths;
           all-users = outputs.all-users;
@@ -259,6 +267,10 @@
           homebrew-cask = inputs.homebrew-cask;
           homebrew-bundle = inputs.homebrew-bundle;
           mac-app-util = inputs.mac-app-util;
+          nix-rosetta-builder = inputs.nix-rosetta-builder;
+
+          hostName = "kal'tsit";
+          rev = self.rev or self.dirtyRev or null;
         };
       };
 

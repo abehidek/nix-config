@@ -25,6 +25,7 @@ in
         "abe"
         "gabe"
         "@wheel"
+        "@admin"
       ];
       substituters = [
         "https://cosmic.cachix.org/"
