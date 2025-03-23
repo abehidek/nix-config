@@ -61,6 +61,10 @@
     '';
 
     defaults = {
+      trackpad = {
+        Clicking = true;
+        TrackpadThreeFingerDrag = false;
+      };
 
       dock = {
         autohide = true;
@@ -88,7 +92,9 @@
       NSGlobalDomain = {
         AppleICUForce24HourTime = true;
         AppleInterfaceStyle = "Dark";
+        ApplePressAndHoldEnabled = true;
         KeyRepeat = 2;
+        "com.apple.mouse.tapBehavior" = 1;
       };
 
       CustomUserPreferences = {
