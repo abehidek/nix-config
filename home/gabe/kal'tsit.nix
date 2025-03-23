@@ -2,9 +2,9 @@
   # config,
   # lib,
   pkgs,
-  hostName,
   paths,
   all-users,
+  hostName,
   ...
 }:
 

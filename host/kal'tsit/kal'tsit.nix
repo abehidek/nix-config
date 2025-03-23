@@ -6,8 +6,6 @@
   # nixpkgs,
   home-manager,
   # nur,
-  hostName,
-  rev,
   modules,
   paths,
   all-users,
@@ -16,6 +14,8 @@
   homebrew-cask,
   homebrew-bundle,
   mac-app-util,
+  hostName,
+  rev,
   ...
 }:
 
@@ -141,7 +141,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit hostName paths all-users; };
+    extraSpecialArgs = { inherit paths all-users hostName; };
     sharedModules = [ mac-app-util.homeManagerModules.default ];
     users."gabe" = import (paths.users "gabe/${hostName}.nix");
   };
