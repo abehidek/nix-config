@@ -123,7 +123,7 @@
         # desktops
         "flex5i" = lib.nixosSystem {
           system = "x86_64-linux";
-          modules = [ (outputs.paths.hosts "flex5i") ];
+          modules = [ (outputs.paths.hosts "flex5i/flex5i.nix") ];
           specialArgs = {
             inherit nixpkgs home-manager nur;
             modules = outputs.modules;
