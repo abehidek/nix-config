@@ -94,6 +94,8 @@
     };
   };
 
+  programs.vscode.enable = true;
+
   home.file = {
     ".config/zellij/config.kdl".source = paths.dots "zellij/config.kdl";
   };
