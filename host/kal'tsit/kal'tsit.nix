@@ -61,26 +61,35 @@
     '';
 
     defaults = {
-      dock.autohide = true;
-      dock.mru-spaces = false;
-      dock.persistent-apps = [
-        "${pkgs.alacritty}/Applications/Alacritty.app"
-        "${pkgs.zed-editor}/Applications/Zed.app"
-        "${pkgs.obsidian}/Applications/Obsidian.app"
-        "/Applications/Zen.app"
-      ];
 
-      finder.AppleShowAllExtensions = true;
-      finder.FXPreferredViewStyle = "clmv";
+      dock = {
+        autohide = true;
+        mru-spaces = false;
+        persistent-apps = [
+          "${pkgs.alacritty}/Applications/Alacritty.app"
+          "${pkgs.zed-editor}/Applications/Zed.app"
+          "${pkgs.obsidian}/Applications/Obsidian.app"
+          "/Applications/Zen.app"
+        ];
+      };
 
-      loginwindow.GuestEnabled = false;
-      loginwindow.LoginwindowText = "hidekxyz";
+      finder = {
+        AppleShowAllExtensions = true;
+        FXPreferredViewStyle = "clmv";
+      };
+
+      loginwindow = {
+        GuestEnabled = false;
+        LoginwindowText = "hidekxyz";
+      };
 
       screencapture.location = "~/Pictures/screenshots";
 
-      NSGlobalDomain.AppleICUForce24HourTime = true;
-      NSGlobalDomain.AppleInterfaceStyle = "Dark";
-      NSGlobalDomain.KeyRepeat = 2;
+      NSGlobalDomain = {
+        AppleICUForce24HourTime = true;
+        AppleInterfaceStyle = "Dark";
+        KeyRepeat = 2;
+      };
 
       CustomUserPreferences = {
         "com.apple.Terminal" = {
