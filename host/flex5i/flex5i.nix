@@ -40,9 +40,7 @@
 
   hidekxyz = {
     all.mainUser = "abe";
-    system = {
-      hostname = "flex5i";
-    };
+    system.hostname = "flex5i";
   };
 
   # nix build opts
