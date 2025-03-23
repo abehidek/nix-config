@@ -149,6 +149,7 @@
     helix
     git
     tldr
+    nixos-rebuild
   ];
 
   # home-manager
