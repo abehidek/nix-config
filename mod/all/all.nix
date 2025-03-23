@@ -36,16 +36,21 @@ in
       ];
     };
 
-    users.users.${cfg.mainUser}.openssh.authorizedKeys.keys = [
-      (builtins.readFile (paths.keys "abe/flex5i.pub"))
-      (builtins.readFile (paths.keys "abe/wsl-t16.pub"))
-      (builtins.readFile (paths.keys "gabe/kal'tsit.pub"))
-    ];
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
 
     environment.systemPackages = with pkgs; [
       wget
       cachix
       deploy-rs
+    ];
+
+    users.users.${cfg.mainUser}.openssh.authorizedKeys.keys = [
+      (builtins.readFile (paths.keys "abe/flex5i.pub"))
+      (builtins.readFile (paths.keys "abe/wsl-t16.pub"))
+      (builtins.readFile (paths.keys "gabe/kal'tsit.pub"))
     ];
   };
 }
