@@ -13,6 +13,7 @@
   vm.microvm.guest = import ./vm/microvm/guest.nix;
 
   home = {
+    all = import ./home/all.nix;
     develop = {
       editor.zed = import ./home/develop/editor/zed.nix;
     };
