@@ -115,7 +115,7 @@
 
       old-all = import (outputs.paths.hosts "all.nix");
 
-      all-users = import (outputs.paths.users "all.nix");
+      old-all-users = import (outputs.paths.users "all.nix");
 
       modules = import ./mod;
 
@@ -128,7 +128,7 @@
             inherit nixpkgs home-manager nur;
             modules = outputs.modules;
             paths = outputs.paths;
-            all-users = outputs.all-users;
+            all-users = outputs.old-all-users;
             nix-secrets = inputs.nix-secrets;
             sops-nix = inputs.sops-nix;
             disko = inputs.disko;
@@ -149,7 +149,7 @@
             inherit nixpkgs home-manager;
             paths = outputs.paths;
             all = outputs.old-all;
-            all-users = outputs.all-users;
+            all-users = outputs.old-all-users;
             nix-secrets = inputs.nix-secrets;
             sops-nix = inputs.sops-nix;
             nixos-wsl = inputs.nixos-wsl;
@@ -303,7 +303,7 @@
           };
           extraSpecialArgs = {
             paths = outputs.paths;
-            all-users = outputs.all-users;
+            all-users = outputs.old-all-users;
             nix-secrets = inputs.nix-secrets;
             sops-nix = inputs.sops-nix;
           };
@@ -317,7 +317,7 @@
           };
           extraSpecialArgs = {
             paths = outputs.paths;
-            all-users = outputs.all-users;
+            all-users = outputs.old-all-users;
             nix-secrets = inputs.nix-secrets;
             sops-nix = inputs.sops-nix;
           };
