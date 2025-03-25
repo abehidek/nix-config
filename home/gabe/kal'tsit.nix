@@ -14,9 +14,13 @@
     modules.home.develop.editor.zed
   ];
 
-  hidekxyz.home.all = {
-    userName = "gabe";
-    stateVersion = "25.05";
+  hidekxyz.home = {
+    all = {
+      userName = "gabe";
+      stateVersion = "25.05";
+    };
+
+    develop.editor.zed.shell.program = "${pkgs.nushell}/bin/nu";
   };
 
   home = {
