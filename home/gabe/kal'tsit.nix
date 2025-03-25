@@ -4,20 +4,28 @@
   pkgs,
   modules,
   paths,
-  all-users,
   hostName,
   ...
 }:
 
 {
   imports = [
+    modules.home.all
     modules.home.develop.editor.zed
-    (all-users {
-      inherit pkgs;
-      userName = "gabe";
-      stateVersion = "25.05";
-    })
   ];
+
+  hidekxyz.home.all = {
+    userName = "gabe";
+    stateVersion = "25.05";
+  };
+
+  home = {
+    file = {
+      ".config/zellij/config.kdl".source = paths.dots "zellij/config.kdl";
+    };
+
+    packages = with pkgs; [ obsidian ];
+  };
 
   programs.ssh.enable = true;
 
@@ -81,12 +89,4 @@
   };
 
   programs.vscode.enable = true;
-
-  home.file = {
-    ".config/zellij/config.kdl".source = paths.dots "zellij/config.kdl";
-  };
-
-  home.packages = with pkgs; [
-    obsidian
-  ];
 }
