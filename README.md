@@ -6,7 +6,7 @@ these are the existing systems that I still need to migrate:
 - [x] zeta.fin
 - [x] zeta.net
 - [x] zeta.mc
-- [ ] roxy
+- [x] roxy
 - [x] templates.lxc "aoi" & "beta"
 
 after that, then switch zeta hypervisor and OS from proxmox -> NixOS w/

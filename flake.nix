@@ -209,6 +209,16 @@
           };
         };
 
+        "roxy" = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ (outputs.paths.hosts "roxy/roxy.nix") ];
+          specialArgs = {
+            inherit nixpkgs;
+            modules = outputs.modules;
+            paths = outputs.paths;
+          };
+        };
+
         /*
           LXC containers in `zeta` host
           running Proxmox hypervisor
@@ -374,6 +384,15 @@
           profiles.system = {
             user = "root";
             path = inputs.deploy-rs.lib."aarch64-linux".activate.nixos self.nixosConfigurations."kaiki";
+          };
+        };
+        "roxy" = {
+          hostname = "roxy";
+          sshUser = "abe";
+          remoteBuild = false;
+          profiles.system = {
+            user = "root";
+            path = inputs.deploy-rs.lib."x86_64-linux".activate.nixos self.nixosConfigurations."roxy";
           };
         };
 
