@@ -157,7 +157,10 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit paths all-users hostName; };
+    extraSpecialArgs = {
+      inherit modules paths all-users;
+      inherit hostName;
+    };
     sharedModules = [ mac-app-util.homeManagerModules.default ];
     users."gabe" = import (paths.users "gabe/${hostName}.nix");
   };

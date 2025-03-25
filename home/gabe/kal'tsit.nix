@@ -2,6 +2,7 @@
   # config,
   # lib,
   pkgs,
+  modules,
   paths,
   all-users,
   hostName,
@@ -10,6 +11,7 @@
 
 {
   imports = [
+    modules.home.develop.editor.zed
     (all-users {
       inherit pkgs;
       userName = "gabe";
@@ -74,22 +76,6 @@
           "-c"
           "${pkgs.zellij}/bin/zellij"
         ];
-      };
-    };
-  };
-
-  programs.zed-editor = {
-    enable = true;
-    extensions = [
-      "nix"
-      "toml"
-    ];
-    userSettings = {
-      terminal.font_family = "FiraCode Nerd Font";
-      theme = {
-        mode = "dark";
-        dark = "One Dark";
-        light = "Solarized Light";
       };
     };
   };
