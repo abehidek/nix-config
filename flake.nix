@@ -260,6 +260,18 @@
           };
         };
 
+        ## zeta (206)
+        "zeta.meeru" = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ (outputs.paths.hosts "zeta/meeru.nix") ];
+          specialArgs = {
+            inherit nixpkgs;
+            paths = outputs.paths;
+            all = outputs.old-all;
+            arion = inputs.arion;
+          };
+        };
+
         ## zeta (234)
         "zeta.mc" = lib.nixosSystem {
           system = "x86_64-linux";
@@ -422,6 +434,15 @@
           profiles.system = {
             user = "root";
             path = inputs.deploy-rs.lib."x86_64-linux".activate.nixos self.nixosConfigurations."zeta.mem";
+          };
+        };
+        "meeru" = {
+          hostname = "10.0.0.210";
+          sshUser = "abe";
+          remoteBuild = true;
+          profiles.system = {
+            user = "root";
+            path = inputs.deploy-rs.lib."x86_64-linux".activate.nixos self.nixosConfigurations."zeta.meeru";
           };
         };
         "mc" = {
