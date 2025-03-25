@@ -113,9 +113,9 @@
 
       fns = import (outputs.paths.functions "default.nix");
 
-      old-all = import (outputs.paths.hosts "all.nix");
+      old-all = import (outputs.paths.hosts "old-all.nix");
 
-      old-all-users = import (outputs.paths.users "all.nix");
+      old-all-users = import (outputs.paths.users "old-all.nix");
 
       modules = import ./mod;
 
