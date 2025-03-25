@@ -92,7 +92,8 @@
         AppleICUForce24HourTime = true;
         AppleInterfaceStyle = "Dark";
         ApplePressAndHoldEnabled = true;
-        KeyRepeat = 2;
+        InitialKeyRepeat = 20;
+        KeyRepeat = 5;
         "com.apple.mouse.tapBehavior" = 1;
       };
 
