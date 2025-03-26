@@ -28,7 +28,10 @@
       ".config/zellij/config.kdl".source = paths.dots "zellij/config.kdl";
     };
 
-    packages = with pkgs; [ obsidian ];
+    packages = with pkgs; [
+      obsidian
+      telegram-desktop
+    ];
   };
 
   programs.ssh.enable = true;
