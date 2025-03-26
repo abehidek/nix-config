@@ -40,6 +40,10 @@
   # nix opts
 
   nix.enable = true; # auto upgrade nix pkg and daemon
+  nix.settings.extra-platforms = [
+    "aarch64-linux"
+    "x86_64-linux"
+  ];
 
   nixpkgs = {
     hostPlatform = "aarch64-darwin"; # aarch64 because it's Apple M chip which runs ARM
@@ -136,6 +140,10 @@
       # "Yoink" = 457622435;
     };
   };
+
+  services.openssh.enable = false;
+
+  programs.bash.enable = true;
 
   programs.zsh.enableBashCompletion = true;
 
