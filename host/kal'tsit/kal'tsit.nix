@@ -141,6 +141,8 @@
     };
   };
 
+  services.tailscale.enable = true;
+
   services.openssh.enable = false;
 
   programs.bash.enable = true;
@@ -158,6 +160,7 @@
     git
     tldr
     nixos-rebuild
+    tailscale
   ];
 
   # home-manager
