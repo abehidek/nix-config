@@ -32,6 +32,9 @@
     packages = with pkgs; [
       obsidian
       telegram-desktop
+      code-cursor
+      vesktop
+      raycast
     ];
   };
 
