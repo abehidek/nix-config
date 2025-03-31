@@ -352,6 +352,7 @@
 
       devShells = forAllSystems (system: {
         "k3s" = import (outputs.paths.devs "k3s.nix") { inherit nixpkgs system; };
+        "meli" = import (outputs.paths.devs "meli.nix") { inherit nixpkgs system; };
       });
 
       vms = {
