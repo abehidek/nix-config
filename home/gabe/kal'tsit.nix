@@ -11,6 +11,7 @@
 {
   imports = [
     modules.home.all
+    modules.home.starship
     modules.home.develop.editor.zed
   ];
 
@@ -70,28 +71,6 @@
   programs.zellij = {
     enable = true;
     enableZshIntegration = false; # not necessarily I want to open zellij when opening zsh
-  };
-
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-    enableNushellIntegration = true;
-    settings = {
-      character = {
-        success_symbol = "[λ](bold green)";
-        error_symbol = "[λ](bold red)";
-      };
-      shell = {
-        disabled = false;
-        bash_indicator = "$";
-        zsh_indicator = "z";
-        nu_indicator = "nu";
-        fish_indicator = "󰈺 ";
-        powershell_indicator = "_";
-        unknown_indicator = "?";
-        style = "cyan bold";
-      };
-    };
   };
 
   programs.alacritty = {
