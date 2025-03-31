@@ -36,6 +36,11 @@
       vesktop
       raycast
     ];
+
+    sessionVariables = {
+      GIT_AUTHOR_NAME = "abehidek";
+      GIT_AUTHOR_EMAIL = "me@hidek.xyz";
+    };
   };
 
   programs.ssh.enable = true;
