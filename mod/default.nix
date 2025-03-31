@@ -14,6 +14,7 @@
 
   home = {
     all = import ./home/all.nix;
+    starship = import ./home/starship.nix;
     develop = {
       editor.zed = import ./home/develop/editor/zed.nix;
     };
