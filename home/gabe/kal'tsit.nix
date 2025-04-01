@@ -35,6 +35,7 @@
       code-cursor
       vesktop
       raycast
+      github-cli
     ];
 
     sessionVariables = {
