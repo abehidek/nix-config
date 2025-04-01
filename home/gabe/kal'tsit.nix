@@ -53,6 +53,10 @@
       k = "kubectl";
       l = "ls -lah";
     };
+    initExtra = ''
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+      export PATH="$HOME/.fury/fury_venv/bin:$PATH"
+    '';
   };
 
   programs.nushell = {
