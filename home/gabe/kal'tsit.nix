@@ -57,11 +57,19 @@
 
   programs.nushell = {
     enable = true;
-    configFile.source = (paths.dots "nushell/config.nu");
-    envFile.text = ''
-      mkdir ~/.cache/starship
-      ${pkgs.starship}/bin/starship init nu | save -f ~/.cache/starship/init.nu
-    '';
+    configFile.text =
+      (builtins.readFile (paths.dots "nushell/config.nu"))
+      + ''
+        alias nu-open = open
+        alias open = ^open
+        $env.PATH = ([ $"($env.HOME)/.fury/fury_venv/bin", "/opt/homebrew/bin" ] ++ $env.PATH)
+      '';
+
+    envFile.source = pkgs.substituteAll {
+      name = "env.nu";
+      src = paths.dots "nushell/env.nu";
+      starshipCmd = "${pkgs.starship}/bin/starship";
+    };
 
     shellAliases = {
       sysc = "sudo nixos-rebuild switch --flake .#$\"(hostname)\"";
