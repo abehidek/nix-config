@@ -14,7 +14,7 @@ pkgs.mkShell {
     vitetris
   ];
 
-  GIT_AUTHOR_NAME = "gabe";
+  GIT_AUTHOR_NAME = "gabe_meli";
   GIT_AUTHOR_EMAIL = "guilherme.abe@mercadolivre.com";
 
   shellHook = ''
