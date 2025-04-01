@@ -57,6 +57,7 @@ in
         ];
         userSettings = {
           soft_wrap = "editor_width";
+          buffer_font_family = cfg.font;
           terminal.font_family = cfg.font;
           theme = {
             mode = cfg.theme.mode;
