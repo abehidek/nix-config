@@ -153,7 +153,10 @@
 
   programs.zsh.enableBashCompletion = true;
 
-  fonts.packages = [ pkgs.nerd-fonts.fira-code ];
+  fonts.packages = with pkgs.nerd-fonts; [
+    fira-code
+    zed-mono
+  ];
 
   # environment and packages
 
