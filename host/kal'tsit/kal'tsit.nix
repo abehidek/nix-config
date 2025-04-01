@@ -130,6 +130,7 @@
     onActivation.cleanup = "zap";
     brews = [
       # "mas"
+      "colima"
     ];
     casks = [
       "mos"
@@ -145,7 +146,10 @@
 
   services.openssh.enable = false;
 
-  programs.bash.enable = true;
+  programs.bash = {
+    enable = true;
+    completion.enable = true;
+  };
 
   programs.zsh.enableBashCompletion = true;
 
@@ -161,6 +165,9 @@
     tldr
     nixos-rebuild
     tailscale
+    docker
+    docker-compose
+    docker-credential-helpers
   ];
 
   # home-manager
