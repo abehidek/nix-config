@@ -22,7 +22,7 @@
           };
           shell = {
             disabled = false;
-            bash_indicator = "$";
+            bash_indicator = "";
             zsh_indicator = "z";
             nu_indicator = "nu";
             fish_indicator = "󰈺 ";
