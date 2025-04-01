@@ -44,7 +44,24 @@
     };
   };
 
-  programs.ssh.enable = true;
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      "git personal" = {
+        host = "github.com";
+        hostname = "github.com";
+        identitiesOnly = true;
+        identityFile = [ "~/.ssh/id_ed25519" ];
+      };
+
+      "git meli" = {
+        host = "github.com-meli";
+        hostname = "github.com";
+        identitiesOnly = true;
+        identityFile = [ "~/.ssh/id_ed25519_meli" ];
+      };
+    };
+  };
 
   programs.zsh = {
     enable = true;
