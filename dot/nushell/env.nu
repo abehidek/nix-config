@@ -1,2 +1,3 @@
-mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
+# Necessary if enableNushellIntegration = false
+# mkdir ~/.cache/starship
+# @starshipCmd@ init nu | save -f ~/.cache/starship/init.nu
