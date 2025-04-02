@@ -36,6 +36,7 @@
       vesktop
       raycast
       github-cli
+      zoxide
     ];
 
     sessionVariables = {
@@ -106,6 +107,13 @@
       VISUAL = "hx";
       EDITOR = "hx";
     };
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
   };
 
   programs.zellij = {
