@@ -37,6 +37,8 @@
       raycast
       github-cli
       zoxide
+      keka
+      iina
     ];
 
     sessionVariables = {
