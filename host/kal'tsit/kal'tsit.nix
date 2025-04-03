@@ -12,7 +12,6 @@
   homebrew-core,
   homebrew-cask,
   homebrew-bundle,
-  mac-app-util,
   nix-rosetta-builder,
   hostName,
   rev,
@@ -23,7 +22,6 @@
   imports = [
     home-manager.darwinModules.home-manager
     nix-homebrew.darwinModules.nix-homebrew
-    mac-app-util.darwinModules.default
     modules.all.darwin
     modules.develop.lsp.nix
     nix-rosetta-builder.darwinModules.default
@@ -179,7 +177,6 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit modules paths hostName; };
-    sharedModules = [ mac-app-util.homeManagerModules.default ];
     users."gabe" = import (paths.users "gabe/${hostName}.nix");
   };
 

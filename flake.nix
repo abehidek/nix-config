@@ -67,8 +67,6 @@
 
     playit.url = "github:pedorich-n/playit-nixos-module";
 
-    mac-app-util.url = "github:hraban/mac-app-util";
-
     # nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     nix-homebrew.url = "git+https://github.com/zhaofengli/nix-homebrew?ref=refs/pull/71/merge";
 
@@ -308,7 +306,6 @@
           homebrew-core = inputs.homebrew-core;
           homebrew-cask = inputs.homebrew-cask;
           homebrew-bundle = inputs.homebrew-bundle;
-          mac-app-util = inputs.mac-app-util;
           nix-rosetta-builder = inputs.nix-rosetta-builder;
 
           hostName = "kal'tsit";
