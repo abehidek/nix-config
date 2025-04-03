@@ -22,9 +22,11 @@
   imports = [
     home-manager.darwinModules.home-manager
     nix-homebrew.darwinModules.nix-homebrew
+    sops-nix.darwinModules.sops
+    nix-rosetta-builder.darwinModules.default
+
     modules.all.darwin
     modules.develop.lsp.nix
-    nix-rosetta-builder.darwinModules.default
   ];
 
   # hidekxyz
