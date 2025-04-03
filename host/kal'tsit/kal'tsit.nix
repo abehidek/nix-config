@@ -138,6 +138,8 @@
     ];
     casks = [
       "mos"
+      "sanesidebuttons"
+      # "PlayCover/playcover/playcover-community"
     ];
     masApps = {
       # "Yoink" = 457622435;
