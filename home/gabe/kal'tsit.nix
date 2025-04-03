@@ -8,6 +8,9 @@
   ...
 }:
 
+let
+  user = "gabe";
+in
 {
   imports = [
     modules.home.all
@@ -17,7 +20,7 @@
 
   hidekxyz.home = {
     all = {
-      userName = "gabe";
+      userName = user;
       stateVersion = "25.05";
     };
 
@@ -88,7 +91,15 @@
       + ''
         alias nu-open = open
         alias open = ^open
-        $env.PATH = ([ $"($env.HOME)/.fury/fury_venv/bin", "/opt/homebrew/bin" ] ++ $env.PATH)
+        $env.PATH = ([
+          $"($env.HOME)/.fury/fury_venv/bin",
+          "/opt/homebrew/bin",
+
+          $"($env.HOME)/.nix-profile/bin",
+          "/etc/profiles/per-user/${user}/bin",
+          "/run/current-system/sw/bin",
+          "/nix/var/nix/profiles/default/bin",
+        ] ++ $env.PATH)
       '';
 
     envFile.source = pkgs.substituteAll {
