@@ -64,6 +64,8 @@
     '';
 
     defaults = {
+      universalaccess.reduceMotion = true;
+
       trackpad = {
         Clicking = true;
         TrackpadThreeFingerDrag = false;
@@ -99,6 +101,8 @@
         InitialKeyRepeat = 25;
         KeyRepeat = 2;
         "com.apple.mouse.tapBehavior" = 1;
+        NSAutomaticWindowAnimationsEnabled = false;
+        NSWindowShouldDragOnGesture = true;
       };
 
       CustomUserPreferences = {
@@ -134,8 +138,6 @@
     ];
     casks = [
       "mos"
-      # "iina"
-      # "the-unarchiver"
     ];
     masApps = {
       # "Yoink" = 457622435;
