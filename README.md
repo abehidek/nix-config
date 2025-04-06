@@ -33,12 +33,6 @@ macos
   - [x] helix
   - [x] scroll reverser through nix-brew
   - [x] setup basic ssh
-  - [ ] setup ssh through existing nix mods and w/ sops.nix
+  - [x] setup ssh through existing nix mods and w/ sops.nix
   - [x] setup cross-compilation
-  - [x] setup golang dev
-
-- search about
-  - [ ] classic "things to do when you buy a mac", maybe for advanced users
-    - [ ] maybe how to make it more minimal
-  - [ ] window manager for macos (such as yabai)
-  - [ ] native metal apps and other cool things to do
+  - [x] setup ~golang~ java dev

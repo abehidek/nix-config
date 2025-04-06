@@ -5,6 +5,8 @@
   modules,
   paths,
   hostName,
+  nix-secrets,
+  sops-nix,
   ...
 }:
 
@@ -13,10 +15,22 @@ let
 in
 {
   imports = [
+    sops-nix.homeManagerModules.sops
+
     modules.home.all
     modules.home.starship
     modules.home.develop.editor.zed
   ];
+
+  sops = {
+    age.keyFile = "/Users/${user}/.config/sops/age/keys.txt";
+    defaultSopsFile = "${builtins.toString nix-secrets}/secrets.yaml";
+    secrets = {
+      "keys/ssh-gabe@kaltsit" = {
+        path = "/Users/${user}/.ssh/id_ed25519";
+      };
+    };
+  };
 
   hidekxyz.home = {
     all = {
@@ -47,6 +61,7 @@ in
     sessionVariables = {
       GIT_AUTHOR_NAME = "abehidek";
       GIT_AUTHOR_EMAIL = "me@hidek.xyz";
+      SOPS_AGE_KEY_FILE = "/Users/${user}/.config/sops/age/keys.txt";
     };
   };
 

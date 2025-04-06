@@ -302,6 +302,8 @@
           inherit nixpkgs home-manager nur;
           modules = outputs.modules;
           paths = outputs.paths;
+          nix-secrets = inputs.nix-secrets;
+          sops-nix = inputs.sops-nix;
           nix-homebrew = inputs.nix-homebrew;
           homebrew-core = inputs.homebrew-core;
           homebrew-cask = inputs.homebrew-cask;

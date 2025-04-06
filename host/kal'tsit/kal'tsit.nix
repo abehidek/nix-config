@@ -8,6 +8,8 @@
   # nur,
   modules,
   paths,
+  nix-secrets,
+  sops-nix,
   nix-homebrew,
   homebrew-core,
   homebrew-cask,
@@ -32,6 +34,22 @@
   # hidekxyz
 
   hidekxyz.all.mainUser = "gabe";
+
+  # sops
+
+  sops = {
+    defaultSopsFile = "${builtins.toString nix-secrets}/secrets.yaml";
+    validateSopsFiles = false;
+    age = {
+      sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      generateKey = true;
+      keyFile = "/var/lib/sops-nix/key.txt";
+    };
+
+    secrets = {
+      "files/cred-hidek@hako" = { };
+    };
+  };
 
   # nix-rosetta
 
@@ -171,6 +189,7 @@
     git
     tldr
     nixos-rebuild
+    sops
     tailscale
     docker
     docker-compose
@@ -182,7 +201,10 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit modules paths hostName; };
+    extraSpecialArgs = {
+      inherit modules paths hostName;
+      inherit nix-secrets sops-nix;
+    };
     users."gabe" = import (paths.users "gabe/${hostName}.nix");
   };
 
