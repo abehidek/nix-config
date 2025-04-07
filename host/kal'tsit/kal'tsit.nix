@@ -91,6 +91,7 @@
 
       dock = {
         autohide = true;
+        autohide-delay = 0.0;
         mru-spaces = false;
         persistent-apps = [
           "${pkgs.alacritty}/Applications/Alacritty.app"
@@ -102,7 +103,12 @@
 
       finder = {
         AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;
+        ShowPathbar = true;
         FXPreferredViewStyle = "clmv";
+        QuitMenuItem = true;
+        ShowStatusBar = true;
+        _FXShowPosixPathInTitle = true;
       };
 
       loginwindow = {
@@ -127,6 +133,8 @@
         "com.apple.Terminal" = {
           SecureKeyboardEntry = 1;
         };
+
+        "com.apple.desktopservices".DSDontWriteNetworkStores = true;
       };
     };
   };
