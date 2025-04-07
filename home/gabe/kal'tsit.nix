@@ -56,6 +56,7 @@ in
       zoxide
       keka
       iina
+      anki-bin
     ];
 
     sessionVariables = {

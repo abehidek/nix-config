@@ -97,6 +97,7 @@
           "${pkgs.alacritty}/Applications/Alacritty.app"
           "${pkgs.zed-editor}/Applications/Zed.app"
           "${pkgs.obsidian}/Applications/Obsidian.app"
+          "${pkgs.anki-bin}/Applications/Anki.app"
           "/Applications/Zen.app"
         ];
       };
@@ -165,6 +166,7 @@
     casks = [
       "mos"
       "sanesidebuttons"
+      "betterdisplay"
       # "PlayCover/playcover/playcover-community"
     ];
     masApps = {
