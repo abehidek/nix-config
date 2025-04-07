@@ -82,7 +82,7 @@
     '';
 
     defaults = {
-      universalaccess.reduceMotion = true;
+      # universalaccess.reduceMotion = true;
 
       trackpad = {
         Clicking = true;
