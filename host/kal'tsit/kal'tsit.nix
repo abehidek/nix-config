@@ -74,6 +74,11 @@
 
   # system
 
+  # https://macos-defaults.com/
+  # The trick to get those configuration keys:
+  # defaults read > before
+  # defaults read > after
+  # diff before after
   system = {
     activationScripts."postUserActivation".text = ''
       plutil -insert 'Window Settings' -json '{}' ~/Library/Preferences/com.apple.Terminal.plist > /dev/null 2>&1 || true
@@ -92,6 +97,7 @@
       dock = {
         autohide = true;
         autohide-delay = 0.0;
+        show-recents = false;
         mru-spaces = false;
         persistent-apps = [
           "${pkgs.alacritty}/Applications/Alacritty.app"
@@ -105,11 +111,13 @@
       finder = {
         AppleShowAllExtensions = true;
         AppleShowAllFiles = true;
-        ShowPathbar = true;
-        FXPreferredViewStyle = "clmv";
-        QuitMenuItem = true;
-        ShowStatusBar = true;
         _FXShowPosixPathInTitle = true;
+        FXPreferredViewStyle = "clmv"; # Column as default view style
+        FXDefaultSearchScope = "SCcf"; # Define only current folder as search scope
+        FXEnableExtensionChangeWarning = false;
+        ShowStatusBar = true;
+        ShowPathbar = true;
+        QuitMenuItem = true;
       };
 
       loginwindow = {
@@ -123,19 +131,23 @@
         AppleICUForce24HourTime = true;
         AppleInterfaceStyle = "Dark";
         ApplePressAndHoldEnabled = true;
-        InitialKeyRepeat = 25;
-        KeyRepeat = 2;
-        "com.apple.mouse.tapBehavior" = 1;
+        AppleShowAllExtensions = true;
         NSAutomaticWindowAnimationsEnabled = false;
         NSWindowShouldDragOnGesture = true;
+        NSDocumentSaveNewDocumentsToCloud = false;
+        InitialKeyRepeat = 25;
+        KeyRepeat = 2;
+
+        "com.apple.mouse.tapBehavior" = 1;
       };
 
       CustomUserPreferences = {
-        "com.apple.Terminal" = {
-          SecureKeyboardEntry = 1;
-        };
+        "com.apple.Terminal".SecureKeyboardEntry = 1;
 
-        "com.apple.desktopservices".DSDontWriteNetworkStores = true;
+        "com.apple.desktopservices" = {
+          DSDontWriteNetworkStores = true;
+          DSDontWriteUSBStores = true;
+        };
       };
     };
   };
@@ -147,7 +159,6 @@
     user = "gabe"; # User owning the Homebrew prefix
     enableRosetta = true; # Apple Silicon Only
     autoMigrate = true;
-
     mutableTaps = false; # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
     taps = {
       "homebrew/homebrew-core" = homebrew-core;
