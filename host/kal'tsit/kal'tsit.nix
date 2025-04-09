@@ -97,6 +97,7 @@
       dock = {
         autohide = true;
         autohide-delay = 0.0;
+        magnification = false;
         show-recents = false;
         mru-spaces = false;
         persistent-apps = [
@@ -104,6 +105,7 @@
           "${pkgs.zed-editor}/Applications/Zed.app"
           "${pkgs.obsidian}/Applications/Obsidian.app"
           "${pkgs.anki-bin}/Applications/Anki.app"
+          "/Applications/Music.app"
           "/Applications/Zen.app"
         ];
       };
