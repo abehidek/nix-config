@@ -85,7 +85,14 @@ in
     };
   };
 
-  programs.bash.enable = true;
+  programs.bash = {
+    enable = true;
+    bashrcExtra = ''
+      cursor() {
+        open -a "${pkgs.code-cursor}/Applications/Cursor.app/Contents/MacOS/Cursor" "$@"
+      }
+    '';
+  };
 
   programs.zsh = {
     enable = true;
@@ -116,6 +123,10 @@ in
           "/run/current-system/sw/bin",
           "/nix/var/nix/profiles/default/bin",
         ] ++ $env.PATH)
+
+        def cursor [...args] {
+          open -a "${pkgs.code-cursor}/Applications/Cursor.app/Contents/MacOS/Cursor" ...$args
+        }
       '';
 
     envFile.source = pkgs.substituteAll {
