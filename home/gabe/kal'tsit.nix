@@ -57,6 +57,7 @@ in
       keka
       iina
       anki-bin
+      arc-browser
     ];
 
     sessionVariables = {
