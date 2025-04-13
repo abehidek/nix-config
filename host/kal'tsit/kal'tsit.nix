@@ -102,10 +102,10 @@
         mru-spaces = false;
         persistent-apps = [
           "${pkgs.alacritty}/Applications/Alacritty.app"
-          "${pkgs.zed-editor}/Applications/Zed.app"
+          "${pkgs.code-cursor}/Applications/Cursor.app"
           "${pkgs.obsidian}/Applications/Obsidian.app"
           "${pkgs.anki-bin}/Applications/Anki.app"
-          "/Applications/Music.app"
+          "/System/Applications/Music.app/"
           "/Applications/Zen.app"
         ];
       };
