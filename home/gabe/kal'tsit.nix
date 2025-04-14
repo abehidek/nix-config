@@ -137,8 +137,6 @@ in
     };
 
     shellAliases = {
-      sysc = "sudo nixos-rebuild switch --flake .#$\"(hostname)\"";
-      usrc = "home-manager switch --flake .#$\"(whoami)\"@\"${hostName}\"";
       dwnc = "darwin-rebuild switch --flake .#\"${hostName}\"";
       l = "ls -al";
       k = "kubectl";
