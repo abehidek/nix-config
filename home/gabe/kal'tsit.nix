@@ -88,6 +88,11 @@ in
 
   programs.bash = {
     enable = true;
+    shellAliases = {
+      dwnc = "darwin-rebuild switch --flake .#\"${hostName}\"";
+      k = "kubectl";
+      l = "ls -lah";
+    };
     bashrcExtra = ''
       cursor() {
         open -a "${pkgs.code-cursor}/Applications/Cursor.app/Contents/MacOS/Cursor" "$@"
