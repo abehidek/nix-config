@@ -97,6 +97,10 @@ in
       cursor() {
         open -a "${pkgs.code-cursor}/Applications/Cursor.app/Contents/MacOS/Cursor" "$@"
       }
+
+      idea() {
+        open -na "IntelliJ IDEA.app" --args "$@"
+      }
     '';
   };
 
@@ -132,6 +136,10 @@ in
 
         def cursor [...args] {
           open -a "${pkgs.code-cursor}/Applications/Cursor.app/Contents/MacOS/Cursor" ...$args
+        }
+
+        def idea [...args] {
+          open -na "IntelliJ IDEA.app" --args ...$args
         }
       '';
 
