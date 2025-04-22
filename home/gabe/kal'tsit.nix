@@ -58,6 +58,7 @@ in
       iina
       anki-bin
       arc-browser
+      ice-bar
     ];
 
     sessionVariables = {
