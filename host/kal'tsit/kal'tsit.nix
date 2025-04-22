@@ -180,6 +180,7 @@
       "mos"
       "sanesidebuttons"
       "betterdisplay"
+      "meetingbar"
       # "PlayCover/playcover/playcover-community"
     ];
     masApps = {
