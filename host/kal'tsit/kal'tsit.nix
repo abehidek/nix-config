@@ -14,7 +14,7 @@
   homebrew-core,
   homebrew-cask,
   homebrew-bundle,
-  nix-rosetta-builder,
+  # nix-rosetta-builder,
   hostName,
   rev,
   ...
@@ -25,7 +25,7 @@
     home-manager.darwinModules.home-manager
     nix-homebrew.darwinModules.nix-homebrew
     sops-nix.darwinModules.sops
-    nix-rosetta-builder.darwinModules.default
+    # nix-rosetta-builder.darwinModules.default
 
     modules.all.darwin
     modules.develop.lsp.nix
@@ -53,7 +53,7 @@
 
   # nix-rosetta
 
-  nix-rosetta-builder.onDemand = true;
+  # nix-rosetta-builder.onDemand = true;
 
   # nix opts
 
@@ -177,10 +177,10 @@
       "colima"
     ];
     casks = [
-      "mos"
       "sanesidebuttons"
       "betterdisplay"
       "meetingbar"
+      "linearmouse"
       # "PlayCover/playcover/playcover-community"
     ];
     masApps = {
