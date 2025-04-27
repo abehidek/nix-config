@@ -3,7 +3,11 @@
 
   inputs = {
     # repos
-    nixpkgs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
+    nixpkgs-unstable-cosmic = {
       url = "github:nixos/nixpkgs?ref=nixos-unstable";
       follows = "nixos-cosmic/nixpkgs"; # flex5i de
     };
@@ -52,7 +56,7 @@
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     nix-rosetta-builder = {
@@ -90,6 +94,8 @@
     {
       self,
       nixpkgs,
+      nixpkgs-unstable,
+      nixpkgs-unstable-cosmic,
       home-manager,
       nur,
       nix-darwin,
@@ -119,11 +125,12 @@
 
       nixosConfigurations = {
         # desktops
-        "flex5i" = lib.nixosSystem {
+        "flex5i" = nixpkgs-unstable-cosmic.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [ (outputs.paths.hosts "flex5i/flex5i.nix") ];
           specialArgs = {
-            inherit nixpkgs home-manager nur;
+            nixpkgs = nixpkgs-unstable-cosmic;
+            inherit home-manager nur;
             modules = outputs.modules;
             paths = outputs.paths;
             all-users = outputs.old-all-users;
@@ -299,7 +306,8 @@
       darwinConfigurations."kal'tsit" = nix-darwin.lib.darwinSystem {
         modules = [ (outputs.paths.hosts "kal'tsit/kal'tsit.nix") ];
         specialArgs = {
-          inherit nixpkgs home-manager nur;
+          inherit home-manager nur;
+          nixpkgs = inputs.nixpkgs-unstable;
           modules = outputs.modules;
           paths = outputs.paths;
           nix-secrets = inputs.nix-secrets;
