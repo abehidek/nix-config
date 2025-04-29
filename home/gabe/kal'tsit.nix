@@ -188,7 +188,7 @@ in
     settings = {
       font = {
         normal.family = "FiraCode Nerd Font";
-        size = 14;
+        size = 12;
       };
       terminal.shell = {
         program = "${pkgs.zsh}/bin/zsh";
