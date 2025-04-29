@@ -181,6 +181,7 @@
       "betterdisplay"
       "meetingbar"
       "linearmouse"
+      "legcord"
       # "PlayCover/playcover/playcover-community"
     ];
     masApps = {
