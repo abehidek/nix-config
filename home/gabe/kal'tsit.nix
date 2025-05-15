@@ -58,6 +58,7 @@ in
       iina
       anki-bin
       ice-bar
+      spotify
     ];
 
     sessionVariables = {
