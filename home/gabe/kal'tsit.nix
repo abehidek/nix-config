@@ -57,7 +57,6 @@ in
       keka
       iina
       anki-bin
-      arc-browser
       ice-bar
     ];
 
