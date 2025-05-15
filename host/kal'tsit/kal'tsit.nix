@@ -106,7 +106,6 @@
           "${pkgs.obsidian}/Applications/Obsidian.app"
           "${pkgs.anki-bin}/Applications/Anki.app"
           "${pkgs.spotify}/Applications/Spotify.app"
-          "/System/Applications/Music.app/"
           "/Applications/Zen.app"
         ];
       };
