@@ -289,6 +289,8 @@
 
   users.mutableUsers = false;
 
+  users.groups.shared = { };
+
   sops.secrets."passwords/user-abe@flex5i".neededForUsers = true;
 
   home-manager.users."abe" = import (paths.users "abe/${config.networking.hostName}.nix");
@@ -302,6 +304,7 @@
       "audio"
       "libvirtd"
       "networkmanager"
+      "shared"
     ];
     packages = with pkgs; [
       obsidian
@@ -319,6 +322,7 @@
     extraGroups = [
       "video"
       "audio"
+      "shared"
     ];
     packages = with pkgs; [
       chromium

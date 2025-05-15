@@ -111,6 +111,13 @@ in
       "/var/lib/waydroid"
       "/etc/NetworkManager/system-connections"
       "/etc/mullvad-vpn"
+
+      {
+        directory = "/home/shared";
+        user = "root";
+        group = "shared";
+        mode = "u=rwx,g=rwx,o=";
+      }
     ];
     files = [
       "/etc/ssh/ssh_host_ed25519_key.pub"
