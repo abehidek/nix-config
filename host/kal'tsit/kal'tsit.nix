@@ -101,11 +101,15 @@
         show-recents = false;
         mru-spaces = false;
         persistent-apps = [
+          "/Applications/Legcord.app"
+          "/Applications/Slack.app"
+          "${pkgs.spotify}/Applications/Spotify.app"
+          { spacer.small = true; }
           "${pkgs.alacritty}/Applications/Alacritty.app"
           "${pkgs.code-cursor}/Applications/Cursor.app"
           "${pkgs.obsidian}/Applications/Obsidian.app"
           "${pkgs.anki-bin}/Applications/Anki.app"
-          "${pkgs.spotify}/Applications/Spotify.app"
+          "/System/Applications/Calendar.app"
           "/Applications/Zen.app"
         ];
       };
@@ -119,7 +123,7 @@
         FXEnableExtensionChangeWarning = false;
         ShowStatusBar = true;
         ShowPathbar = true;
-        QuitMenuItem = true;
+        QuitMenuItem = false;
       };
 
       loginwindow = {
