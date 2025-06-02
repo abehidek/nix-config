@@ -84,6 +84,13 @@ in
         identitiesOnly = true;
         identityFile = [ "~/.ssh/id_ed25519_meli" ];
       };
+
+      "git emu" = {
+        host = "github.com-emu";
+        hostname = "github.com";
+        identitiesOnly = true;
+        identityFile = [ "~/.ssh/id_ed25519_melisource" ];
+      };
     };
   };
 

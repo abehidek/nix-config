@@ -224,6 +224,8 @@
     docker
     docker-compose
     docker-credential-helpers
+
+    (python312.withPackages (ps: with ps; [ pip ]))
   ];
 
   # home-manager
