@@ -97,7 +97,7 @@ in
   programs.bash = {
     enable = true;
     shellAliases = {
-      dwnc = "darwin-rebuild switch --flake .#\"${hostName}\"";
+      dwnc = "sudo darwin-rebuild switch --flake .#\"${hostName}\"";
       k = "kubectl";
       l = "ls -lah";
     };
@@ -115,7 +115,7 @@ in
   programs.zsh = {
     enable = true;
     shellAliases = {
-      dwnc = "darwin-rebuild switch --flake .#\"${hostName}\"";
+      dwnc = "sudo darwin-rebuild switch --flake .#\"${hostName}\"";
       k = "kubectl";
       l = "ls -lah";
     };
@@ -151,14 +151,12 @@ in
         }
       '';
 
-    envFile.source = pkgs.substituteAll {
-      name = "env.nu";
-      src = paths.dots "nushell/env.nu";
+    envFile.source = pkgs.replaceVars (paths.dots "nushell/env.nu") {
       starshipCmd = "${pkgs.starship}/bin/starship";
     };
 
     shellAliases = {
-      dwnc = "darwin-rebuild switch --flake .#\"${hostName}\"";
+      dwnc = "sudo darwin-rebuild switch --flake .#\"${hostName}\"";
       l = "ls -al";
       k = "kubectl";
     };
