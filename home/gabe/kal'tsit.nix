@@ -5,6 +5,7 @@
   modules,
   paths,
   hostName,
+  nixpkgs-master,
   nix-secrets,
   sops-nix,
   ...
@@ -59,6 +60,7 @@ in
       anki-bin
       ice-bar
       spotify
+      audacity
     ];
 
     sessionVariables = {
@@ -127,29 +129,27 @@ in
 
   programs.nushell = {
     enable = true;
-    configFile.text =
-      (builtins.readFile (paths.dots "nushell/config.nu"))
-      + ''
-        alias nu-open = open
-        alias open = ^open
-        $env.PATH = ([
-          $"($env.HOME)/.fury/fury_venv/bin",
-          "/opt/homebrew/bin",
+    configFile.text = (builtins.readFile (paths.dots "nushell/config.nu")) + ''
+      alias nu-open = open
+      alias open = ^open
+      $env.PATH = ([
+        $"($env.HOME)/.fury/fury_venv/bin",
+        "/opt/homebrew/bin",
 
-          $"($env.HOME)/.nix-profile/bin",
-          "/etc/profiles/per-user/${user}/bin",
-          "/run/current-system/sw/bin",
-          "/nix/var/nix/profiles/default/bin",
-        ] ++ $env.PATH)
+        $"($env.HOME)/.nix-profile/bin",
+        "/etc/profiles/per-user/${user}/bin",
+        "/run/current-system/sw/bin",
+        "/nix/var/nix/profiles/default/bin",
+      ] ++ $env.PATH)
 
-        def cursor [...args] {
-          open -a "${pkgs.code-cursor}/Applications/Cursor.app/Contents/MacOS/Cursor" ...$args
-        }
+      def cursor [...args] {
+        open -a "${pkgs.code-cursor}/Applications/Cursor.app/Contents/MacOS/Cursor" ...$args
+      }
 
-        def idea [...args] {
-          open -na "IntelliJ IDEA.app" --args ...$args
-        }
-      '';
+      def idea [...args] {
+        open -na "IntelliJ IDEA.app" --args ...$args
+      }
+    '';
 
     envFile.source = pkgs.replaceVars (paths.dots "nushell/env.nu") {
       starshipCmd = "${pkgs.starship}/bin/starship";

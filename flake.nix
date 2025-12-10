@@ -5,6 +5,8 @@
     # repos
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
+
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     nixpkgs-unstable-cosmic = {
@@ -308,6 +310,7 @@
         specialArgs = {
           inherit home-manager nur;
           nixpkgs = inputs.nixpkgs-unstable;
+          nixpkgs-master = inputs.nixpkgs-master;
           modules = outputs.modules;
           paths = outputs.paths;
           nix-secrets = inputs.nix-secrets;
