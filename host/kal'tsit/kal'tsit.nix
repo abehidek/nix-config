@@ -3,9 +3,12 @@
   # lib,
   pkgs,
   # modulesPath,
-  # nixpkgs,
   home-manager,
   # nur,
+  # nixpkgs,
+  nixpkgs-master,
+  nixpkgs-24-11,
+  nixpkgs-25-11,
   modules,
   paths,
   nix-secrets,
@@ -19,7 +22,18 @@
   rev,
   ...
 }:
+let
+  importRepoAllowUnfree =
+    input:
+    import input {
+      system = "aarch64-darwin";
+      config.allowUnfree = true;
+    };
 
+  pkgs-master = importRepoAllowUnfree nixpkgs-master;
+  pkgs-25-11 = importRepoAllowUnfree nixpkgs-25-11;
+  pkgs-24-11 = importRepoAllowUnfree nixpkgs-24-11;
+in
 {
   imports = [
     home-manager.darwinModules.home-manager
@@ -89,7 +103,7 @@
     '';
 
     defaults = {
-      # universalaccess.reduceMotion = true;
+      universalaccess.reduceMotion = false;
 
       trackpad = {
         Clicking = true;
@@ -105,13 +119,14 @@
         persistent-apps = [
           "/Applications/Legcord.app"
           "/Applications/Slack.app"
-          "${pkgs.spotify}/Applications/Spotify.app"
+          "/Applications/Spotify.app"
           { spacer.small = true; }
           "${pkgs.alacritty}/Applications/Alacritty.app"
           "${pkgs.code-cursor}/Applications/Cursor.app"
           "${pkgs.obsidian}/Applications/Obsidian.app"
           "${pkgs.anki-bin}/Applications/Anki.app"
           "/System/Applications/Calendar.app"
+          "/System/Applications/Reminders.app"
           "/Applications/Zen.app"
         ];
       };
@@ -188,6 +203,7 @@
       "meetingbar"
       "linearmouse"
       "legcord"
+      "spotify"
       # "PlayCover/playcover/playcover-community"
     ];
     masApps = {
@@ -236,6 +252,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
+      inherit pkgs-master pkgs-24-11 pkgs-25-11;
       inherit modules paths hostName;
       inherit nix-secrets sops-nix;
     };

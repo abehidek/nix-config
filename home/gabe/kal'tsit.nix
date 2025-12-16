@@ -2,10 +2,12 @@
   # config,
   # lib,
   pkgs,
+  pkgs-master,
+  pkgs-25-11,
+  pkgs-24-11,
   modules,
   paths,
   hostName,
-  nixpkgs-master,
   nix-secrets,
   sops-nix,
   ...
@@ -20,7 +22,6 @@ in
 
     modules.home.all
     modules.home.starship
-    modules.home.develop.editor.zed
   ];
 
   sops = {
@@ -38,8 +39,6 @@ in
       userName = user;
       stateVersion = "25.05";
     };
-
-    develop.editor.zed.shell.program = "${pkgs.nushell}/bin/nu";
   };
 
   home = {
@@ -47,19 +46,19 @@ in
       ".config/zellij/config.kdl".source = paths.dots "zellij/config.kdl";
     };
 
-    packages = with pkgs; [
+    packages = with pkgs-25-11; [
+      pkgs-master.raycast
+
       obsidian
       telegram-desktop
       code-cursor
       vesktop
-      raycast
       github-cli
       zoxide
       keka
       iina
       anki-bin
       ice-bar
-      spotify
       audacity
     ];
 

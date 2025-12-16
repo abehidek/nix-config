@@ -3,16 +3,14 @@
 
   inputs = {
     # repos
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+
+    nixpkgs-24-11.url = "github:nixos/nixpkgs/nixos-24.11";
 
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-
-    nixpkgs-unstable-cosmic = {
-      url = "github:nixos/nixpkgs?ref=nixos-unstable";
-      follows = "nixos-cosmic/nixpkgs"; # flex5i de
-    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -96,8 +94,8 @@
     {
       self,
       nixpkgs,
+      nixpkgs-24-11,
       nixpkgs-unstable,
-      nixpkgs-unstable-cosmic,
       home-manager,
       nur,
       nix-darwin,
@@ -127,12 +125,11 @@
 
       nixosConfigurations = {
         # desktops
-        "flex5i" = nixpkgs-unstable-cosmic.lib.nixosSystem {
+        "flex5i" = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [ (outputs.paths.hosts "flex5i/flex5i.nix") ];
           specialArgs = {
-            nixpkgs = nixpkgs-unstable-cosmic;
-            inherit home-manager nur;
+            inherit nixpkgs home-manager nur;
             modules = outputs.modules;
             paths = outputs.paths;
             all-users = outputs.old-all-users;
@@ -153,7 +150,7 @@
           system = "x86_64-linux";
           modules = [ (outputs.paths.hosts "wsl-t16") ];
           specialArgs = {
-            inherit nixpkgs home-manager;
+            inherit nixpkgs-24-11 home-manager;
             paths = outputs.paths;
             all = outputs.old-all;
             all-users = outputs.old-all-users;
@@ -173,7 +170,7 @@
           system = "x86_64-linux";
           modules = [ (outputs.paths.hosts "mokou") ];
           specialArgs = {
-            inherit nixpkgs;
+            inherit nixpkgs-24-11;
             modules = outputs.modules;
             paths = outputs.paths;
             all = outputs.old-all;
@@ -202,7 +199,7 @@
           system = "aarch64-linux";
           modules = [ (outputs.paths.hosts "kaiki/kaiki.nix") ];
           specialArgs = {
-            inherit nixpkgs;
+            inherit nixpkgs-24-11;
             modules = outputs.modules;
             paths = outputs.paths;
             nixos-hardware = inputs.nixos-hardware;
@@ -220,7 +217,7 @@
           system = "x86_64-linux";
           modules = [ (outputs.paths.hosts "roxy/roxy.nix") ];
           specialArgs = {
-            inherit nixpkgs;
+            inherit nixpkgs-24-11;
             modules = outputs.modules;
             paths = outputs.paths;
           };
@@ -236,7 +233,7 @@
           system = "x86_64-linux";
           modules = [ (outputs.paths.hosts "zeta/net.nix") ];
           specialArgs = {
-            inherit nixpkgs;
+            inherit nixpkgs-24-11;
             paths = outputs.paths;
             all = outputs.old-all;
             arion = inputs.arion;
@@ -248,7 +245,7 @@
           system = "x86_64-linux";
           modules = [ (outputs.paths.hosts "zeta/fin.nix") ];
           specialArgs = {
-            inherit nixpkgs;
+            inherit nixpkgs-24-11;
             paths = outputs.paths;
             all = outputs.old-all;
             arion = inputs.arion;
@@ -260,7 +257,7 @@
           system = "x86_64-linux";
           modules = [ (outputs.paths.hosts "zeta/mem.nix") ];
           specialArgs = {
-            inherit nixpkgs;
+            inherit nixpkgs-24-11;
             paths = outputs.paths;
             all = outputs.old-all;
             arion = inputs.arion;
@@ -272,7 +269,7 @@
           system = "x86_64-linux";
           modules = [ (outputs.paths.hosts "zeta/meeru.nix") ];
           specialArgs = {
-            inherit nixpkgs;
+            inherit nixpkgs-24-11;
             paths = outputs.paths;
             all = outputs.old-all;
             arion = inputs.arion;
@@ -284,7 +281,7 @@
           system = "x86_64-linux";
           modules = [ (outputs.paths.hosts "zeta/mc.nix") ];
           specialArgs = {
-            inherit nixpkgs;
+            inherit nixpkgs-24-11;
             modules = outputs.modules;
             paths = outputs.paths;
             all = outputs.old-all;
@@ -294,12 +291,12 @@
         };
 
         # templates
-        "templates.lxc.aoi" = nixpkgs.lib.nixosSystem {
+        "templates.lxc.aoi" = nixpkgs-24-11.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [ (outputs.paths.templates "lxc/aoi.nix") ];
         };
 
-        "templates.lxc.beta" = nixpkgs.lib.nixosSystem {
+        "templates.lxc.beta" = nixpkgs-24-11.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [ (outputs.paths.templates "lxc/beta.nix") ];
         };
@@ -311,6 +308,8 @@
           inherit home-manager nur;
           nixpkgs = inputs.nixpkgs-unstable;
           nixpkgs-master = inputs.nixpkgs-master;
+          nixpkgs-24-11 = inputs.nixpkgs-24-11;
+          nixpkgs-25-11 = inputs.nixpkgs;
           modules = outputs.modules;
           paths = outputs.paths;
           nix-secrets = inputs.nix-secrets;
@@ -329,7 +328,7 @@
       homeConfigurations = {
         "abe@flex5i" = lib.homeManagerConfiguration {
           modules = [ (outputs.paths.users "abe/flex5i.nix") ];
-          pkgs = import nixpkgs {
+          pkgs = import nixpkgs-24-11 {
             system = "x86_64-linux";
             config.allowUnfree = true;
           };
@@ -343,7 +342,7 @@
 
         "abe@wsl-t16" = lib.homeManagerConfiguration {
           modules = [ (outputs.paths.users "abe/wsl-t16.nix") ];
-          pkgs = import nixpkgs {
+          pkgs = import nixpkgs-24-11 {
             system = "x86_64-linux";
             config.allowUnfree = true;
           };
@@ -361,8 +360,8 @@
       });
 
       devShells = forAllSystems (system: {
-        "k3s" = import (outputs.paths.devs "k3s.nix") { inherit nixpkgs system; };
-        "meli" = import (outputs.paths.devs "meli.nix") { inherit nixpkgs system; };
+        "k3s" = import (outputs.paths.devs "k3s.nix") { inherit nixpkgs-24-11 system; };
+        "meli" = import (outputs.paths.devs "meli.nix") { inherit nixpkgs-24-11 system; };
       });
 
       vms = {
