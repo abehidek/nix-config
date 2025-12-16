@@ -37,8 +37,8 @@ in
     microvm = {
       hypervisor = "qemu";
       socket = "control.socket";
-      mem = 512;
-      balloonMem = cfg.memSize;
+      mem = cfg.memSize;
+      balloon = true;
       interfaces = [
         {
           mac = cfg.mac;
