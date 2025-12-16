@@ -31,6 +31,23 @@
     persistence.dirs = [ "/var/lib/docker" ];
   };
 
+  microvm.qemu =
+    let
+      SOCKLOCATION = "/var/lib/microvms/${name}/control.socket";
+    in
+    {
+      extraArgs = [
+        "-serial"
+        "unix:${SOCKLOCATION},server,nowait"
+      ];
+      serialConsole = false;
+    };
+
+  boot.kernelParams = [
+    "console=ttyS0,38400n8"
+    "earlyprint=serial,ttyS0,38400n8"
+  ];
+
   environment.systemPackages = with pkgs; [
     neofetch
     pfetch
