@@ -146,6 +146,13 @@ in
       def idea [...args] {
         open -na "IntelliJ IDEA.app" --args ...$args
       }
+
+      def ze [] {
+        let pathHash = $env.pwd | hash md5 |  str substring 0..6
+        let folderName = $env.pwd | path basename
+        let session = $"($pathHash)-($folderName)"
+        zellij attach -c $session
+      }
     '';
 
     envFile.source = pkgs.replaceVars (paths.dots "nushell/env.nu") {
