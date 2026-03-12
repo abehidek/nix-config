@@ -99,6 +99,7 @@ in
     enable = true;
     shellAliases = {
       dwnc = "sudo darwin-rebuild switch --flake .#\"${hostName}\"";
+      homec = "home-manager switch --flake .#\"${user}@${hostName}\"";
       k = "kubectl";
       l = "ls -lah";
     };
@@ -113,6 +114,7 @@ in
     enable = true;
     shellAliases = {
       dwnc = "sudo darwin-rebuild switch --flake .#\"${hostName}\"";
+      homec = "home-manager switch --flake .#\"${user}@${hostName}\"";
       k = "kubectl";
       l = "ls -lah";
     };
@@ -148,6 +150,7 @@ in
 
     shellAliases = {
       dwnc = "sudo darwin-rebuild switch --flake .#\"${hostName}\"";
+      homec = "home-manager switch --flake .#\"${user}@${hostName}\"";
       l = "ls -al";
       k = "kubectl";
     };

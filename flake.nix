@@ -353,6 +353,30 @@
             sops-nix = inputs.sops-nix;
           };
         };
+
+        "gabe@kal'tsit" =
+          let
+            importRepoAllowUnfree =
+              a:
+              import a {
+                system = "aarch64-darwin";
+                config.allowUnfree = true;
+              };
+          in
+          lib.homeManagerConfiguration {
+            modules = [ (outputs.paths.users "gabe/kal'tsit.nix") ];
+            pkgs = importRepoAllowUnfree inputs.nixpkgs-unstable;
+            extraSpecialArgs = {
+              pkgs-master = importRepoAllowUnfree inputs.nixpkgs-master;
+              pkgs-25-11 = importRepoAllowUnfree inputs.nixpkgs;
+              pkgs-24-11 = importRepoAllowUnfree inputs.nixpkgs-24-11;
+              modules = outputs.modules;
+              paths = outputs.paths;
+              hostName = "kal'tsit";
+              nix-secrets = inputs.nix-secrets;
+              sops-nix = inputs.sops-nix;
+            };
+          };
       };
 
       packages = forAllSystems (system: {
