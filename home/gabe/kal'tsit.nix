@@ -44,6 +44,10 @@ in
   home = {
     file = {
       ".config/zellij/config.kdl".source = paths.dots "zellij/config.kdl";
+
+      ".config/ghostty/config".source = pkgs.replaceVars (paths.dots "ghostty/config") {
+        command = "${pkgs.nushell}/bin/nu";
+      };
     };
 
     packages = with pkgs-25-11; [
