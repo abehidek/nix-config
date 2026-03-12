@@ -1,3 +1,4 @@
 ignore
 .direnv
 result
+.DS_STORE
