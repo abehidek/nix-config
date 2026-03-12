@@ -22,8 +22,8 @@
           };
           shell = {
             disabled = false;
-            bash_indicator = "";
-            zsh_indicator = "z";
+            bash_indicator = "bash";
+            zsh_indicator = "zsh";
             nu_indicator = "nu";
             fish_indicator = "󰈺 ";
             powershell_indicator = "_";
