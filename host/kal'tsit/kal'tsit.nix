@@ -121,8 +121,8 @@ in
           "/Applications/Slack.app"
           "/Applications/Spotify.app"
           { spacer.small = true; }
-          "${pkgs.alacritty}/Applications/Alacritty.app"
-          "${pkgs.code-cursor}/Applications/Cursor.app"
+          "/Applications/Ghostty.app"
+          "${pkgs.vscode}/Applications/Visual Studio Code.app"
           "${pkgs.obsidian}/Applications/Obsidian.app"
           "${pkgs.anki-bin}/Applications/Anki.app"
           "/System/Applications/Calendar.app"
@@ -204,6 +204,7 @@ in
       "linearmouse"
       "legcord"
       "spotify"
+      "ghostty"
       # "PlayCover/playcover/playcover-community"
     ];
     masApps = {
@@ -242,6 +243,7 @@ in
     docker
     docker-compose
     docker-credential-helpers
+    gnupg
 
     (python312.withPackages (ps: with ps; [ pip ]))
   ];

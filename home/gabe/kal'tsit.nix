@@ -48,18 +48,18 @@ in
 
     packages = with pkgs-25-11; [
       pkgs-master.raycast
+      pkgs-24-11.vesktop
+      pkgs.vscode
 
-      obsidian
+      pkgs.obsidian
       telegram-desktop
-      code-cursor
-      vesktop
       github-cli
-      zoxide
       keka
       iina
       anki-bin
       ice-bar
       audacity
+      claude-code
     ];
 
     sessionVariables = {
@@ -185,23 +185,6 @@ in
   programs.zellij = {
     enable = true;
     enableZshIntegration = false; # not necessarily I want to open zellij when opening zsh
-  };
-
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      font = {
-        normal.family = "FiraCode Nerd Font";
-        size = 12;
-      };
-      terminal.shell = {
-        program = "${pkgs.zsh}/bin/zsh";
-        args = [
-          "-c"
-          "${pkgs.zellij}/bin/zellij"
-        ];
-      };
-    };
   };
 
   programs.vscode.enable = true;
