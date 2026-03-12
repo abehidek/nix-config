@@ -103,10 +103,6 @@ in
       l = "ls -lah";
     };
     bashrcExtra = ''
-      cursor() {
-        open -a "${pkgs.code-cursor}/Applications/Cursor.app/Contents/MacOS/Cursor" "$@"
-      }
-
       idea() {
         open -na "IntelliJ IDEA.app" --args "$@"
       }
@@ -140,10 +136,6 @@ in
         "/run/current-system/sw/bin",
         "/nix/var/nix/profiles/default/bin",
       ] ++ $env.PATH)
-
-      def cursor [...args] {
-        open -a "${pkgs.code-cursor}/Applications/Cursor.app/Contents/MacOS/Cursor" ...$args
-      }
 
       def idea [...args] {
         open -na "IntelliJ IDEA.app" --args ...$args
