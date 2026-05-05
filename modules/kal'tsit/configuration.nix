@@ -61,6 +61,7 @@
           pkgs-master.raycast
           pkgs-24-11.vesktop
           pkgs.vscode
+          pkgs.bruno
 
           cbonsai
 
@@ -415,6 +416,8 @@
           "legcord"
           "spotify"
           "ghostty"
+          "keyboardcleantool"
+          "mullvad-vpn"
           # "PlayCover/playcover/playcover-community"
         ];
         masApps = {
@@ -445,7 +448,7 @@
         nixd
         nixfmt
 
-        hello
+        pre-commit
 
         fastfetch
         lazygit
