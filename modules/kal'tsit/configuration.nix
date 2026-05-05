@@ -33,6 +33,16 @@
         inputs.sops-nix.homeManagerModules.sops
       ];
 
+      sops = {
+        age.keyFile = "/Users/${user}/.config/sops/age/keys.txt";
+        defaultSopsFile = "${builtins.toString inputs.nix-secrets}/secrets.yaml";
+        secrets = {
+          "keys/ssh-gabe@kaltsit" = {
+            path = "/Users/${user}/.ssh/id_ed25519";
+          };
+        };
+      };
+
       home = {
         username = user;
         stateVersion = "25.05";
