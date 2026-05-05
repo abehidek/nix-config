@@ -62,7 +62,7 @@
           anki-bin
           ice-bar
           audacity
-          claude-code
+          pkgs.claude-code
         ];
 
         sessionVariables = {
@@ -161,7 +161,7 @@
 
           def ze [] {
             let pathHash = $env.pwd | hash md5 |  str substring 0..6
-            let folderName = $env.pwd | path basename
+            let folderName = $env.pwd | path basename | str substring 0..9
             let session = $"($pathHash)-($folderName)"
             zellij attach -c $session
           }
@@ -268,6 +268,10 @@
       # nix opts
 
       nix.enable = true; # auto upgrade nix pkg and daemon
+      nix.settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       nix.settings.extra-platforms = [
         "aarch64-linux"
         "x86_64-linux"
@@ -429,7 +433,7 @@
 
       environment.systemPackages = with pkgs; [
         nixd
-        nixfmt-rfc-style
+        nixfmt
 
         hello
 
