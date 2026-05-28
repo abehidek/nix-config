@@ -71,7 +71,6 @@
           keka
           iina
           anki-bin
-          ice-bar
           audacity
           pkgs.claude-code
         ];
@@ -418,6 +417,7 @@
           "ghostty"
           "keyboardcleantool"
           "mullvad-vpn"
+          "thaw"
           # "PlayCover/playcover/playcover-community"
         ];
         masApps = {
