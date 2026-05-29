@@ -238,6 +238,14 @@
           };
         };
       };
+
+      programs.lazygit = {
+        enable = true;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
+        enableNushellIntegration = true;
+        settings."git"."overrideGpg" = true;
+      };
     };
 
   flake.darwinModules."hostKaltsit" =
@@ -451,7 +459,6 @@
         pre-commit
 
         fastfetch
-        lazygit
         helix
         git
         tldr
