@@ -270,7 +270,7 @@
       nix.nixPath = [ "nixpkgs=${pkgs.path}" ];
 
       sops = {
-        defaultSopsFile = "${builtins.toString inputs.nix-secrets}/secrets.yaml";
+        defaultSopsFile = "${toString inputs.nix-secrets}/secrets.yaml";
         validateSopsFiles = false;
         age = {
           sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
