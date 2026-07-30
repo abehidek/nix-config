@@ -46,6 +46,8 @@
       ];
 
       environment.systemPackages = with pkgs; [
+        spotify
+        claude-code
         wget
         cachix
         deploy-rs
@@ -68,20 +70,18 @@
         sops
         virt-manager
         mullvad-vpn
-        cbonsai
         dbeaver-bin
         cowsay
         gparted
         fastfetch
         code-cursor
         inputs.zen-browser.packages."x86_64-linux".twilight
-        nerdfetch
+        chromium
 
         # backup terminals
         foot
         xterm
 
-        osu-lazer
         pfetch
         pkgs.nur.repos.mic92.hello-nur
       ];
@@ -121,9 +121,9 @@
       };
 
       users.users."abe".openssh.authorizedKeys.keys = [
-        (builtins.readFile (../../keys + "/abe@flex5i.pub"))
-        (builtins.readFile (../../keys + "/abe@wsl.pub"))
-        (builtins.readFile (../../keys + "/abe@kal'tsit.pub"))
+        (builtins.readFile "${self}/keys/abe@flex5i.pub")
+        (builtins.readFile "${self}/keys/abe@wsl.pub")
+        (builtins.readFile "${self}/keys/abe@kal'tsit.pub")
       ];
 
       nix.settings.auto-optimise-store = true;
@@ -375,7 +375,6 @@
         ];
       };
 
-      # home-manager.users."naohiro" = import (paths.users "naohiro/${config.networking.hostName}.nix");
       users.users."naohiro" = {
         isNormalUser = true;
         initialPassword = "password";

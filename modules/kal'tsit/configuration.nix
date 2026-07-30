@@ -35,7 +35,7 @@
 
       sops = {
         age.keyFile = "/Users/${user}/.config/sops/age/keys.txt";
-        defaultSopsFile = "${builtins.toString inputs.nix-secrets}/secrets.yaml";
+        defaultSopsFile = "${toString inputs.nix-secrets}/secrets.yaml";
         secrets = {
           "keys/ssh-gabe@kaltsit" = {
             path = "/Users/${user}/.ssh/id_ed25519";
@@ -49,9 +49,9 @@
         homeDirectory = "/Users/${user}";
 
         file = {
-          ".config/zellij/config.kdl".source = ./zellij/config.kdl;
+          ".config/zellij/config.kdl".source = "${self}/dots/zellij/config.kdl";
 
-          ".config/ghostty/config".source = pkgs.replaceVars ./ghostty/config {
+          ".config/ghostty/config".source = pkgs.replaceVars "${self}/dots/ghostty/config" {
             command = "${pkgs.nushell}/bin/nu";
           };
         };
@@ -152,7 +152,7 @@
 
       programs.nushell = {
         enable = true;
-        configFile.text = (builtins.readFile (./nushell/config.nu)) + ''
+        configFile.text = (builtins.readFile "${self}/dots/nushell/config.nu") + ''
           alias nu-open = open
           alias open = ^open
           $env.PATH = ([
@@ -177,7 +177,7 @@
           }
         '';
 
-        envFile.source = pkgs.replaceVars (./nushell/env.nu) {
+        envFile.source = pkgs.replaceVars "${self}/dots/nushell/env.nu" {
           starshipCmd = "${pkgs.starship}/bin/starship";
         };
 

@@ -61,7 +61,7 @@
 
       programs.nushell = {
         enable = true;
-        configFile.source = (../.. + "/kal'tsit/nushell/config.nu");
+        configFile.source = "${self}/dots/nushell/config.nu";
 
         shellAliases = {
           sysc = "sudo nixos-rebuild switch --flake .#$\"(hostname)\"";
@@ -75,7 +75,7 @@
           EDITOR = "hx";
         };
 
-        envFile.source = (../.. + "/kal'tsit/nushell/env.nu");
+        envFile.source = "${self}/dots/nushell/env.nu";
       };
 
       programs.starship = {
@@ -104,13 +104,9 @@
         };
       };
 
-      home.sessionVariables = {
-        TEST = "123";
-      };
-
       home.file = {
-        ".ssh/id_ed25519.pub".source = (../../../keys + "/abe@flex5i.pub");
-        ".config/zellij/config.kdl".source = (../.. + "/kal'tsit/zellij/config.kdl");
+        ".ssh/id_ed25519.pub".source = "${self}/keys/abe@flex5i.pub";
+        ".config/zellij/config.kdl".source = "${self}/dots/zellij/config.kdl";
       };
     };
 }
