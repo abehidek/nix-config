@@ -75,7 +75,10 @@
         gparted
         fastfetch
         code-cursor
-        inputs.zen-browser.packages."x86_64-linux".twilight
+        (inputs.zen-browser.packages."x86_64-linux".twilight.override {
+          nativeMessagingHosts = [ pkgs.firefoxpwa ];
+        })
+        firefoxpwa
         chromium
 
         # backup terminals
@@ -559,6 +562,8 @@
         ".local/share/direnv"
         ".local/share/waydroid"
         ".local/share/zed"
+        ".local/share/applications"
+        ".local/share/firefoxpwa"
         {
           directory = ".local/share/keyrings";
           mode = "0700";
