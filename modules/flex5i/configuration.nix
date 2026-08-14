@@ -584,6 +584,7 @@
         ".config/discord"
         ".config/Bitwarden"
         ".config/gh"
+        ".config/spotify"
 
         # $XDG_CACHE_HOME
         ".cache/starship"
