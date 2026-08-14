@@ -19,6 +19,7 @@
         packages = with pkgs; [
           ani-cli
           home-manager
+          github-cli
         ];
       };
 

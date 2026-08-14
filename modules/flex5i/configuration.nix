@@ -578,6 +578,7 @@
         ".config/obsidian"
         ".config/discord"
         ".config/Bitwarden"
+        ".config/gh"
 
         # $XDG_CACHE_HOME
         ".cache/starship"
