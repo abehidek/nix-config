@@ -48,6 +48,7 @@
       environment.systemPackages = with pkgs; [
         spotify
         claude-code
+        teamspeak6-client
         wget
         cachix
         deploy-rs
