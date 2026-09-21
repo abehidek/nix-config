@@ -458,7 +458,29 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
         "sops-nix": "sops-nix",
+        "zapfast": "zapfast",
         "zen-browser": "zen-browser"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "zapfast",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789977098,
+        "narHash": "sha256-fKY4BedarKx4aR0+UOHk65hhDW8pxFytFkaUi0VYDYk=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "2776e42828203ec89511699c8dcdedec69ab98e1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "sops-nix": {
@@ -478,6 +500,27 @@
       "original": {
         "owner": "mic92",
         "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "zapfast": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1790013528,
+        "narHash": "sha256-CXt4CBWPSmXzxKpRItF2bZo7T4unJDyp+Fhrd18EGOQ=",
+        "owner": "abehidek",
+        "repo": "zapfast",
+        "rev": "2ea3cc2f41ff3b5f5936ccc5114d40aa80e44a35",
+        "type": "github"
+      },
+      "original": {
+        "owner": "abehidek",
+        "repo": "zapfast",
         "type": "github"
       }
     },

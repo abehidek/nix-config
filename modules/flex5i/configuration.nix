@@ -76,9 +76,10 @@
         gparted
         fastfetch
         code-cursor
-        (inputs.zen-browser.packages."x86_64-linux".twilight.override {
+        (inputs.zen-browser.packages.${pkgs.system}.twilight.override {
           nativeMessagingHosts = [ pkgs.firefoxpwa ];
         })
+        inputs.zapfast.packages.${pkgs.system}.default
         firefoxpwa
         chromium
 

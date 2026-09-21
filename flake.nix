@@ -58,6 +58,9 @@
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
+    zapfast.url = "github:abehidek/zapfast";
+    zapfast.inputs.nixpkgs.follows = "nixpkgs";
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
