@@ -270,6 +270,8 @@
       services.displayManager.cosmic-greeter.enable = true;
       services.system76-scheduler.enable = true;
 
+      virtualisation.docker.enable = true;
+
       services.mullvad-vpn.enable = true;
 
       services.fstrim.enable = true;
@@ -369,6 +371,7 @@
           "libvirtd"
           "networkmanager"
           "shared"
+          "docker"
         ];
         packages = with pkgs; [
           obsidian
