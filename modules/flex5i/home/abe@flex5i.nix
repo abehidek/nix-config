@@ -16,6 +16,8 @@
         stateVersion = "24.11";
         homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${userName}" else "/home/${userName}";
 
+        language.base = "en_US.utf8";
+
         packages = with pkgs; [
           ani-cli
           home-manager
