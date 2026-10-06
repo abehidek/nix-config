@@ -5,7 +5,7 @@
     modules = [ self.darwinModules."hostKaltsit" ];
   };
 
-  flake.homeConfigurations."abe@kal'tsit" = inputs.home-manager.lib.homeManagerConfiguration {
+  flake.homeConfigurations."abe@kal'tsit" = inputs.home-manager-24-11.lib.homeManagerConfiguration {
     modules = [ self.homeManagerModules."homeKaltsit" ];
     pkgs = import inputs.nixpkgs-24-11 {
       system = "x86_64-linux";

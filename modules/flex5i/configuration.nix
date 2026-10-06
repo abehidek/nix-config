@@ -94,7 +94,7 @@
       networking.hostName = "flex5i";
       time.timeZone = "America/Sao_Paulo";
       i18n.defaultLocale = "pt_BR.UTF-8";
-      i18n.extraLocales = ["en_US.UTF-8/UTF-8"];
+      i18n.extraLocales = [ "all" ];
 
       nixpkgs.config.allowUnfree = true;
 

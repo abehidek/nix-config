@@ -16,7 +16,7 @@
         stateVersion = "24.11";
         homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${userName}" else "/home/${userName}";
 
-        language.base = "en_US.utf8";
+        language.base = "en_US.UTF-8";
 
         packages = with pkgs; [
           ani-cli
@@ -110,6 +110,13 @@
       home.file = {
         ".ssh/id_ed25519.pub".source = "${self}/keys/abe@flex5i.pub";
         ".config/zellij/config.kdl".source = "${self}/dots/zellij/config.kdl";
+        ".profile".text = ''
+            export MY_VAR=1
+            export LANG="en_US.UTF-8"
+            export LC_ADDRESS="pt_BR.UTF-8"
+            export LC_MONETARY="pt_BR.UTF-8"
+            export LC_TIME="pt_BR.UTF-8"
+          '';
       };
     };
 }
